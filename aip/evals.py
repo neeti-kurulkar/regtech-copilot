@@ -28,6 +28,7 @@ Three families of metric live here:
 from __future__ import annotations
 
 import json
+import re
 import statistics
 import time
 from collections.abc import Callable, Sequence
@@ -127,6 +128,92 @@ def _log2(x: float) -> float:
     import math
 
     return math.log2(x)
+
+
+# --------------------------------------------------------------------------
+# [regtech] Evidence-level (passage-level) relevance
+# --------------------------------------------------------------------------
+# Lab 3 labels relevance per document. For clause-level citation that is too
+# coarse: "the KYC Directions" is relevant to every KYC question. Instead a
+# label names the passage by a short verbatim evidence phrase, which scores
+# every chunking strategy against the same ground truth.
+#
+#   relevant = [{"doc_id": "reg-rbc", "evidence": "within 21 days from the date"},
+#               {"doc_id": "enf-iifl-2026-02-13"}]          # doc-level: no evidence
+#
+# A chunk satisfies a label if it is from that doc and contains the phrase, or
+# at least `min_fraction` of it as a prefix/suffix (so a chunk boundary through
+# the phrase is not scored as a total miss). If every label is doc-level, the
+# ranking is de-duplicated to documents first, exactly as in Lab 3.
+
+def normalise_text(s: str) -> str:
+    s = s.replace("<br>", " ").replace("’", "'").replace("‘", "'")
+    s = s.replace("“", '"').replace("”", '"')
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def _contains_evidence(chunk_text: str, evidence: str, min_fraction: float) -> bool:
+    if evidence in chunk_text:
+        return True
+    cut = max(20, int(len(evidence) * min_fraction))
+    return evidence[:cut] in chunk_text or evidence[-cut:] in chunk_text
+
+
+def evidence_labels(ranked: Sequence[tuple[str, str]], relevant: Sequence[dict],
+                    min_fraction: float = 0.6) -> tuple[list[str], list[str]]:
+    """Map ranked (doc_id, text) results to (retrieved_ids, relevant_ids) for retrieval_metrics.
+
+    Each relevant label gets an id "<doc_id>#<i>" and is credited at most once;
+    positions that satisfy no label get a unique placeholder so ranks are kept.
+    """
+    units = [(f"{r['doc_id']}#{i}", r["doc_id"],
+              normalise_text(r["evidence"]) if r.get("evidence") else None)
+             for i, r in enumerate(relevant)]
+    relevant_ids = [u for u, _, _ in units]
+    if all(ev is None for _, _, ev in units):
+        docs: list[str] = []
+        for doc_id, _ in ranked:
+            if doc_id not in docs:
+                docs.append(doc_id)
+        by_doc = {d: u for u, d, _ in units}
+        return [by_doc.get(d, f"_x:{d}") for d in docs], relevant_ids
+
+    credited: set[str] = set()
+    labels: list[str] = []
+    for rank, (doc_id, text) in enumerate(ranked):
+        norm = normalise_text(text)
+        label = f"_x{rank}"
+        for u, d, ev in units:
+            if u not in credited and d == doc_id and ev is not None and _contains_evidence(norm, ev, min_fraction):
+                label = u
+                credited.add(u)
+                break
+        labels.append(label)
+    return labels, relevant_ids
+
+
+def evidence_retrieval_metrics(ranked: Sequence[tuple[str, str]], relevant: Sequence[dict],
+                               ks: Sequence[int] = (1, 3, 5, 10), k: int | None = None,
+                               min_fraction: float = 0.6) -> dict[str, float]:
+    """retrieval_metrics() over evidence-phrase (or doc-level) labels. `k` truncates after mapping."""
+    retrieved, rel = evidence_labels(ranked, relevant, min_fraction)
+    return retrieval_metrics(retrieved[:k] if k else retrieved, rel, ks)
+
+
+def missing_evidence(relevant_by_case: dict[str, Sequence[dict]], docs: dict[str, str]) -> list[str]:
+    """Labels whose doc is unknown or whose evidence phrase is not verbatim in the doc.
+
+    Run this before trusting any number: a mistyped phrase silently scores zero.
+    """
+    normed = {d: normalise_text(t) for d, t in docs.items()}
+    problems = []
+    for case_id, labels in relevant_by_case.items():
+        for r in labels:
+            if r["doc_id"] not in normed:
+                problems.append(f"{case_id}: unknown doc_id {r['doc_id']}")
+            elif r.get("evidence") and normalise_text(r["evidence"]) not in normed[r["doc_id"]]:
+                problems.append(f"{case_id}: evidence not found verbatim in {r['doc_id']}: {r['evidence']!r}")
+    return problems
 
 
 # ==========================================================================
@@ -309,6 +396,22 @@ class EvalReport:
             f"{b.get('calls', 0)} calls, {b.get('cached_calls', 0)} cached)"
         )
         return "\n".join(lines)
+
+    def breakdown(self, cases: Sequence[Case], key: str, metric: str) -> dict[str, float]:
+        """[regtech] Mean of `metric` grouped by `case.meta[key]` (e.g. MRR by query kind, Lab 3 B2)."""
+        group = {c.id: str(c.meta.get(key, "?")) for c in cases}
+        buckets: dict[str, list[float]] = {}
+        for r in self.results:
+            if metric in r.metrics:
+                buckets.setdefault(group.get(r.id, "?"), []).append(r.metrics[metric])
+        return {g: statistics.fmean(v) for g, v in sorted(buckets.items())}
+
+    def latency_percentile(self, p: float) -> float:
+        """[regtech] Per-case wall-clock latency percentile (the budget only times model calls)."""
+        xs = sorted(r.latency_ms for r in self.results)
+        if not xs:
+            return 0.0
+        return xs[min(len(xs) - 1, int(round((p / 100.0) * (len(xs) - 1))))]
 
     def failures(self, metric: str, limit: int = 10) -> list[CaseResult]:
         """The cases you should actually read. Error triage starts here."""

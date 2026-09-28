@@ -7,6 +7,10 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# aip traces are local diagnostics; .aip_cache is NOT ignored because the
-# Stage 7 CI gate replays it with AIP_OFFLINE=1
+# aip traces are local diagnostics
 .aip_traces/
+
+# The working response cache holds embeddings for every Stage 1 sweep config
+# (>100 MB, over GitHub's file limit). Stage 7 commits a slim cache containing
+# only what the CI regression gate replays with AIP_OFFLINE=1.
+.aip_cache/

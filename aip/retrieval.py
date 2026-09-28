@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import contextlib
 import re
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
 
 import numpy as np
@@ -43,11 +43,28 @@ class Hit:
         return self.chunk.text
 
 
+ChunkFilter = Callable[[Chunk], bool]
+
+
 class Retriever:
     name = "base"
 
     def search(self, query: str, k: int = 8) -> list[Hit]:  # pragma: no cover
         raise NotImplementedError
+
+
+def _top_k(scores: np.ndarray, chunks: Sequence[Chunk], k: int,
+           chunk_filter: ChunkFilter | None) -> np.ndarray:
+    """[regtech] Indices of the k best scores, optionally restricted by a chunk predicate.
+
+    Exact-search counterpart of Chroma's `where=`: excluded chunks are masked
+    before ranking, so a filtered search still returns up to k results.
+    """
+    if chunk_filter is not None:
+        keep = np.fromiter((chunk_filter(c) for c in chunks), dtype=bool, count=len(chunks))
+        scores = np.where(keep, scores, -np.inf)
+        k = min(k, int(keep.sum()))
+    return np.argsort(-scores)[:k]
 
 
 # --------------------------------------------------------------------------
@@ -74,11 +91,11 @@ class DenseRetriever(Retriever):
             show_progress=show_progress, input_type="passage",
         )
 
-    def search(self, query: str, k: int = 8) -> list[Hit]:
-        with tracing.trace("retrieve.dense", k=k):
+    def search(self, query: str, k: int = 8, chunk_filter: ChunkFilter | None = None) -> list[Hit]:
+        with tracing.trace("retrieve.dense", k=k, filtered=chunk_filter is not None):
             q = embed(query, model=self.model, input_type="query")
             scores = self.matrix @ q
-            top = np.argsort(-scores)[:k]
+            top = _top_k(scores, self.chunks, k, chunk_filter)
             return [
                 Hit(self.chunks[i], float(scores[i]), "dense", rank)
                 for rank, i in enumerate(top)
@@ -109,10 +126,10 @@ class Bm25Retriever(Retriever):
         self.chunks = list(chunks)
         self.bm25 = BM25Okapi([tokenize(c.text) for c in self.chunks])
 
-    def search(self, query: str, k: int = 8) -> list[Hit]:
-        with tracing.trace("retrieve.bm25", k=k):
-            scores = self.bm25.get_scores(tokenize(query))
-            top = np.argsort(-scores)[:k]
+    def search(self, query: str, k: int = 8, chunk_filter: ChunkFilter | None = None) -> list[Hit]:
+        with tracing.trace("retrieve.bm25", k=k, filtered=chunk_filter is not None):
+            scores = np.asarray(self.bm25.get_scores(tokenize(query)), dtype=float)
+            top = _top_k(scores, self.chunks, k, chunk_filter)
             return [
                 Hit(self.chunks[i], float(scores[i]), "bm25", rank)
                 for rank, i in enumerate(top)
@@ -140,13 +157,14 @@ class HybridRetriever(Retriever):
         self.rrf_k = rrf_k
         self.weights = list(weights) if weights else [1.0] * len(self.retrievers)
 
-    def search(self, query: str, k: int = 8) -> list[Hit]:
+    def search(self, query: str, k: int = 8, chunk_filter: ChunkFilter | None = None) -> list[Hit]:
         with tracing.trace("retrieve.hybrid", k=k, n_retrievers=len(self.retrievers)):
             pool = max(k * 4, 20)
             fused: dict[str, float] = {}
             best: dict[str, Hit] = {}
             for w, r in zip(self.weights, self.retrievers):
-                for hit in r.search(query, k=pool):
+                hits = r.search(query, k=pool, chunk_filter=chunk_filter) if chunk_filter else r.search(query, k=pool)
+                for hit in hits:
                     cid = hit.chunk.chunk_id
                     fused[cid] = fused.get(cid, 0.0) + w / (self.rrf_k + hit.rank + 1)
                     if cid not in best or hit.rank < best[cid].rank:

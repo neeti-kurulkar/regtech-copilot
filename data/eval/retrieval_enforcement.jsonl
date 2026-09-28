@@ -1,0 +1,17 @@
+{"id": "E01", "kind": "lexical", "query": "failure to periodically review risk categorisation of customer accounts", "relevant": [{"doc_id": "enf-fusion-2026-08-14"}, {"doc_id": "enf-muthoot-2026-07-17"}]}
+{"id": "E02", "kind": "paraphrase", "query": "customers were never sorted into low, medium or high risk", "relevant": [{"doc_id": "enf-ola-fs-2026-09-24"}, {"doc_id": "enf-shri-ram-finance-corp-2026-08-21"}]}
+{"id": "E03", "kind": "paraphrase", "query": "weak software for spotting and reporting suspicious transactions", "relevant": [{"doc_id": "enf-five-star-2026-06-19"}, {"doc_id": "enf-muthoot-2026-07-17"}]}
+{"id": "E04", "kind": "paraphrase", "query": "lender did not explain to borrowers why different categories were charged different interest rates", "relevant": [{"doc_id": "enf-five-star-2026-06-19"}]}
+{"id": "E05", "kind": "paraphrase", "query": "borrowers were overcharged interest on their loans", "relevant": [{"doc_id": "enf-hero-fincorp-2026-09-24"}]}
+{"id": "E06", "kind": "lexical", "query": "no board-approved policy on pricing of microfinance loans", "relevant": [{"doc_id": "enf-hinduja-leyland-2026-09-04"}]}
+{"id": "E07", "kind": "identifier", "query": "synthetic securitisation", "relevant": [{"doc_id": "enf-hinduja-leyland-2026-09-04"}]}
+{"id": "E08", "kind": "paraphrase", "query": "restructured loans were not marked as bad loans", "relevant": [{"doc_id": "enf-iifl-2026-02-13"}, {"doc_id": "enf-satya-2026-07-17"}]}
+{"id": "E09", "kind": "paraphrase", "query": "extra money from selling a borrower's pledged gold was not given back to them", "relevant": [{"doc_id": "enf-iifl-2026-05-15"}]}
+{"id": "E10", "kind": "paraphrase", "query": "higher foreclosure charges were applied even though the loan agreement did not allow it", "relevant": [{"doc_id": "enf-mahindra-finance-2026-02-27"}]}
+{"id": "E11", "kind": "lexical", "query": "rejected complaints not escalated to the Internal Ombudsman", "relevant": [{"doc_id": "enf-mahindra-finance-2026-02-27"}]}
+{"id": "E12", "kind": "paraphrase", "query": "top executives were paid their whole bonus upfront instead of deferring part of it", "relevant": [{"doc_id": "enf-manappuram-2026-03-13"}]}
+{"id": "E13", "kind": "identifier", "query": "CRILC reporting failure", "relevant": [{"doc_id": "enf-sammaan-finserve-2026-09-04"}]}
+{"id": "E14", "kind": "paraphrase", "query": "more than a third of the board was replaced without asking the regulator first", "relevant": [{"doc_id": "enf-shri-ram-finance-corp-2026-08-21"}]}
+{"id": "E15", "kind": "lexical", "query": "KYC records not uploaded onto CKYCR", "relevant": [{"doc_id": "enf-shri-ram-finance-corp-2026-08-21"}]}
+{"id": "E16", "kind": "identifier", "query": "penalties imposed on IIFL Finance", "relevant": [{"doc_id": "enf-iifl-2026-02-13"}, {"doc_id": "enf-iifl-2026-05-15"}]}
+{"id": "E17", "kind": "lexical", "query": "penalty for non-compliance with Know Your Customer directions", "relevant": [{"doc_id": "enf-five-star-2026-06-19"}, {"doc_id": "enf-fusion-2026-08-14"}, {"doc_id": "enf-muthoot-2026-07-17"}, {"doc_id": "enf-ola-fs-2026-09-24"}, {"doc_id": "enf-shri-ram-finance-corp-2026-08-21"}]}

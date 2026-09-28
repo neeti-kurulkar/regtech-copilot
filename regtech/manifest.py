@@ -10,7 +10,7 @@ from pydantic import BaseModel, ValidationError, field_validator, model_validato
 
 from regtech.paths import CORPUS_DIRS, MANIFEST_PATH
 
-COLUMNS = ["doc_id", "doc_type", "entity_name", "publish_date", "source_url", "file_name"]
+COLUMNS = ["doc_id", "doc_type", "title", "entity_name", "publish_date", "source_url", "file_name"]
 
 DOC_ID_PREFIX = {"regulation": "reg", "internal_policy": "fpc", "enforcement": "enf"}
 _DOC_ID_RE = re.compile(r"^(reg|fpc|enf)-[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -19,6 +19,7 @@ _DOC_ID_RE = re.compile(r"^(reg|fpc|enf)-[a-z0-9]+(?:-[a-z0-9]+)*$")
 class ManifestRow(BaseModel):
     doc_id: str
     doc_type: Literal["regulation", "internal_policy", "enforcement"]
+    title: str
     entity_name: str
     publish_date: date | None = None
     source_url: str | None = None
@@ -36,7 +37,7 @@ class ManifestRow(BaseModel):
             raise ValueError(f"doc_id {v!r} must look like 'reg-kyc' / 'fpc-iifl' / 'enf-iifl-2026-02-13'")
         return v
 
-    @field_validator("entity_name", "file_name")
+    @field_validator("title", "entity_name", "file_name")
     @classmethod
     def _non_empty(cls, v: str) -> str:
         if not v.strip():

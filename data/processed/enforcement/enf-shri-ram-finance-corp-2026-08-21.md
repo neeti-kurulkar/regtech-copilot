@@ -1,0 +1,11 @@
+# RBI imposes monetary penalty on Shri Ram Finance Corporation Private Limited
+
+August 21, 2026 RBI imposes monetary penalty on Shri Ram Finance Corporation Private Limited The Reserve Bank of India (RBI) has, by an order dated August 19, 2026, imposed a monetary penalty of ₹8.10 lakh (Rupees Eight Lakh Ten Thousand only) on Shri Ram Finance Corporation Private Limited (the company) for non-compliance with certain provisions of the directions issued by RBI on ‘Governance’ and the ‘Reserve Bank of India (Know Your Customer (KYC)) Directions’. This penalty has been imposed in exercise of powers conferred on RBI under section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934. The statutory inspection of the company was conducted by RBI with reference to its financial position as on March 31, 2025. Based on the supervisory findings of noncompliance with RBI directions and related correspondence in that regard, a notice was issued to the company advising it to show cause as to why penalty should not be imposed on it for failure to comply with the said directions. After considering the company's reply to the notice, additional submissions made by it and oral submissions made during the personal hearing, RBI found that the following charges against the company were sustained, warranting imposition of monetary penalty:.
+
+i. The company failed to take prior written permission of the RBI while appointing a director resulting in change in management, on account of change in more than 30 per cent of its directors, excluding independent directors;
+
+ii. The company failed to put in place a system to categorize its customers as low, medium and high- risk category; and,
+
+iii. The company failed to upload KYC records of certain customers onto Central KYC Records Registry within the prescribed timeline. This action is based on deficiencies in regulatory compliance and is not intended to pronounce upon the validity of any transaction or agreement entered into by the company with its customers. Further, imposition of this monetary penalty is without prejudice to any other action that may be initiated by RBI against the company.
+
+(Brij Raj) Press Release: 2026-2027/943 Chief General Manager

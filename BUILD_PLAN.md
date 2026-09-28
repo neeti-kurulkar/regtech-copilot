@@ -14,8 +14,10 @@ Lab 7 is being done separately; this project still builds all stages 0–8.
 
 ## Ground rules
 
-- `aip/` is used as-is: imported, never modified, reinstalled or reimplemented.
-- All new code lives in the `regtech/` package and composes `aip`.
+- Build on `aip`, never beside it: use aip's harness, metrics, retrievers, chunkers, budgets
+  and cache instead of writing parallel versions. When the project needs something general,
+  add it to the right `aip` module and log it in `aip/CHANGELOG_REGTECH.md`.
+- Project-specific code (NBFC corpora, the three tools, the agent) lives in `regtech/`.
 - Windows-native: no Makefile or bash tooling; commands run as
   `python -m regtech <command>`, and paths use `pathlib`.
 - Provider: `gemini` profile (key in `.env`, never committed).
@@ -32,6 +34,8 @@ Run from the repo root with the venv active (`.venv\Scripts\Activate.ps1`):
 | `python -m regtech check` | Environment, all `aip` imports, settings, corpus layout, manifest validity |
 | `python -m regtech check --live` | The same, plus one tiny chat + embed call (cached after the first run) |
 | `python -m regtech init-manifest` | Create `data/manifest.csv` with its header row |
+| `python -m regtech ingest [--only DOC_ID]` | PDF → Markdown for every manifest doc into `data/processed/`; writes `reports/stage1_ingestion.md` |
+| `python -m regtech eval-retrieval [--corpus C]` | Lab 3 retrieval sweep per corpus; writes `reports/stage1_retrieval.{md,json}` |
 | `python -m pytest` | Offline unit tests |
 
 Later stages add their own subcommands here.

@@ -19,7 +19,8 @@ def test_corpus_dirs_cover_every_doc_type():
 
 
 def _row(**overrides):
-    base = dict(doc_id="fpc-iifl", doc_type="internal_policy", entity_name="IIFL Finance Limited",
+    base = dict(doc_id="fpc-iifl", doc_type="internal_policy", title="IIFL Finance Limited - Fair Practices Code",
+                entity_name="IIFL Finance Limited",
                 publish_date="2026-04-29", source_url="", file_name="iifl.pdf")
     base.update(overrides)
     return base

@@ -18,7 +18,7 @@ from functools import lru_cache
 
 import numpy as np
 
-from aip import cache, cost, tracing
+from aip import cache, cost, retry, tracing
 from aip.config import resolve_model, settings
 
 
@@ -56,7 +56,8 @@ def _embed_uncached(texts: list[str], model: str,
     kwargs = {"model": model, "input": texts, "timeout": settings.timeout_s}
     if _supports_input_type(model):
         kwargs["input_type"] = input_type
-    resp = embedding(**kwargs)
+    # [regtech] transient provider errors are retried, as chat calls already were.
+    resp = retry.call_with_retries(lambda: embedding(**kwargs), event="embed.retry")
     pt = int(getattr(resp.usage, "prompt_tokens", 0) or 0)
     cost.record(
         cost.Usage(model, pt, 0, cost.price_of(model, pt, 0), 0.0, cached=False,

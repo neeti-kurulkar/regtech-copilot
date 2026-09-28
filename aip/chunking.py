@@ -100,13 +100,16 @@ def recursive_chunks(text: str, doc_id: str, size: int = 800, overlap: int = 100
 _HEADING = re.compile(r"^(#{1,6})\s+(.*)$", re.MULTILINE)
 
 
-def markdown_chunks(text: str, doc_id: str, size: int = 1200) -> list[Chunk]:
+def markdown_chunks(text: str, doc_id: str, size: int = 1200, prefix: bool = True) -> list[Chunk]:
     """Split on headings; prepend the heading path to every chunk.
 
     The prepended path ("Claims > Reimbursement > Timelines") is a cheap and
     very effective trick: it gives an otherwise context-free chunk enough
     signal for the embedding model to place it correctly, and it gives the
     generator enough context to cite it correctly.
+
+    [regtech] `prefix=False` drops the path from the chunk text (it is still
+    kept in `meta["heading"]`) -- the Lab 3 A3 ablation as a parameter.
     """
     matches = list(_HEADING.finditer(text))
     if not matches:
@@ -124,17 +127,63 @@ def markdown_chunks(text: str, doc_id: str, size: int = 1200) -> list[Chunk]:
 
     chunks: list[Chunk] = []
     for heading_path, body in sections:
-        prefix = f"[{heading_path}]\n"
-        room = max(size - len(prefix), 200)
+        head = f"[{heading_path}]\n" if prefix else ""
+        room = max(size - len(f"[{heading_path}]\n"), 200)
         for piece in _recursive_split(body, room, _SEPARATORS):
             chunks.append(
                 Chunk(
-                    prefix + piece,
+                    head + piece,
                     doc_id,
-                    f"{doc_id}::m{len(chunks)}",
-                    {"strategy": "markdown", "heading": heading_path},
+                    f"{doc_id}::m{len(chunks)}" if prefix else f"{doc_id}::n{len(chunks)}",
+                    {"strategy": "markdown" if prefix else "markdown_noprefix", "heading": heading_path},
                 )
             )
+    return chunks
+
+
+def markdown_noprefix_chunks(text: str, doc_id: str, size: int = 1200) -> list[Chunk]:
+    """[regtech] markdown_chunks without the heading-path prefix, as a sweepable strategy."""
+    return markdown_chunks(text, doc_id, size, prefix=False)
+
+
+def whole_chunks(text: str, doc_id: str, size: int | None = None) -> list[Chunk]:
+    """[regtech] One chunk per document. The right baseline for very short documents
+    (press releases), and a useful demonstration of dilution on long ones."""
+    return [Chunk(text, doc_id, f"{doc_id}::w0", {"strategy": "whole"})] if text.strip() else []
+
+
+_PREFIX = re.compile(r"^\[[^\]\n]*\]\n")
+
+
+def strip_heading_prefix(text: str) -> str:
+    """[regtech] Remove the "[A > B]\\n" path that markdown_chunks prepends."""
+    return _PREFIX.sub("", text)
+
+
+def annotate_provenance(text: str, chunks: list[Chunk],
+                        number_pattern: str | None = r"(?m)^(\d{1,3})\.\s") -> list[Chunk]:
+    """[regtech] Locate each chunk in its source markdown and record where it came from.
+
+    Adds `meta["start"]` (char offset), `meta["heading"]` (heading path at that
+    offset, if the chunker did not already set one) and `meta["number"]` (the
+    last numbered paragraph -- "12." -- that begins at or before the chunk).
+    Works for every strategy, so a fixed or sliding chunk can be cited as
+    precisely as a markdown one. Chunks that cannot be located are left as is.
+    """
+    heads, path = [], []
+    for m in _HEADING.finditer(text):
+        level = len(m.group(1))
+        path = path[: level - 1] + [m.group(2).strip()]
+        heads.append((m.start(), " > ".join(path)))
+    numbers = [(m.start(), m.group(1)) for m in re.finditer(number_pattern, text)] if number_pattern else []
+
+    for c in chunks:
+        pos = text.find(strip_heading_prefix(c.text)[:120])
+        if pos < 0:
+            continue
+        c.meta["start"] = pos
+        c.meta.setdefault("heading", next((p for off, p in reversed(heads) if off <= pos), ""))
+        c.meta["number"] = next((n for off, n in reversed(numbers) if off <= pos), "")
     return chunks
 
 
@@ -143,4 +192,6 @@ STRATEGIES = {
     "sliding": sliding_chunks,
     "recursive": recursive_chunks,
     "markdown": markdown_chunks,
+    "markdown_noprefix": markdown_noprefix_chunks,  # [regtech]
+    "whole": whole_chunks,  # [regtech]
 }

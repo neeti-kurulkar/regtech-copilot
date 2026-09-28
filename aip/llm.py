@@ -25,7 +25,7 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel, ValidationError
 
-from aip import cache, cost, tracing
+from aip import cache, cost, retry, tracing
 from aip.config import resolve_model, settings
 
 T = TypeVar("T", bound=BaseModel)
@@ -56,13 +56,8 @@ def _normalise(prompt_or_messages: str | Messages, system: str | None) -> list[d
 
 
 def _is_retryable(exc: Exception) -> bool:
-    name = type(exc).__name__.lower()
-    text = str(exc).lower()
-    retryable_markers = (
-        "ratelimit", "timeout", "overloaded", "apiconnection", "internalserver",
-        "serviceunavailable", "529", "503", "502", "500", "429",
-    )
-    return any(m in name or m in text for m in retryable_markers)
+    # [regtech] predicate moved to aip.retry so aip.embed can share it.
+    return retry.is_retryable(exc)
 
 
 def raw_call(

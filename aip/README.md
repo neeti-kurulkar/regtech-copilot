@@ -2,6 +2,10 @@
 
 **AI in Practice I · Module 1: Applied GenAI**
 
+> **RegTech Copilot fork:** this copy has been extended for the RegTech Compliance Copilot
+> (retry for embeddings, chunk provenance, filtered exact retrieval, evidence-level retrieval
+> metrics). Every change is listed in [`CHANGELOG_REGTECH.md`](CHANGELOG_REGTECH.md).
+
 Twelve modules, about 2,000 lines. Every lab in the module runs on this package,
 and **you are expected to open it.** Nothing here is magic: each module is under
 ~380 lines, has no framework hiding underneath it, and is fair game to modify,

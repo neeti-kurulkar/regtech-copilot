@@ -8,7 +8,7 @@ import sys
 from regtech.paths import CORPUS_DIRS, MANIFEST_PATH
 
 AIP_MODULES = [
-    "config", "llm", "cost", "cache", "tracing",
+    "config", "llm", "cost", "cache", "tracing", "retry",
     "chunking", "embed", "retrieval", "rag", "evals", "guards",
 ]
 
