@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regtech-copilot"
+version = "0.1.0"
+description = "RegTech Compliance Copilot for Indian NBFC regulation, built on the aip library"
+requires-python = ">=3.11,<3.15"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+include = ["regtech*"]
+
+# Commands (run from the repo root with the venv active):
+#   python -m regtech check            environment, aip imports, corpus layout, manifest
+#   python -m regtech check --live     the same, plus one tiny chat + embed call
+#   python -m regtech init-manifest    create data/manifest.csv with its header
+#   python -m pytest                   offline unit tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

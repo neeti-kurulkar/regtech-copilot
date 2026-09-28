@@ -1,0 +1,12 @@
+# secrets
+.env
+
+# environments and tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# aip traces are local diagnostics; .aip_cache is NOT ignored because the
+# Stage 7 CI gate replays it with AIP_OFFLINE=1
+.aip_traces/

@@ -1,0 +1,22 @@
+# RegTech Compliance Copilot
+# Python >=3.11,<3.15 (same range as the aip library)
+
+# --- aip core (model access, config, validation) ---------------------------
+litellm>=1.55.0
+python-dotenv>=1.0.0
+pydantic>=2.9.0
+numpy>=1.26.0
+
+# --- retrieval ---------------------------------------------------------------
+rank-bm25>=0.2.2           # aip.retrieval.Bm25Retriever, for the Lab 3 comparison
+
+# --- ingestion ---------------------------------------------------------------
+pymupdf>=1.24.0            # PDF -> Markdown with font/heading info
+
+# --- dev ---------------------------------------------------------------------
+pytest>=8.3.0
+
+# Deliberately omitted (imported lazily by aip, only needed if we opt in):
+#   sentence-transformers  -> CrossEncoderReranker / local embeddings (pulls in torch, several GB)
+#   chromadb               -> ChromaRetriever
+#   fastapi, uvicorn, ...  -> Lab 7-style service layer
