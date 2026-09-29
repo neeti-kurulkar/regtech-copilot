@@ -69,3 +69,50 @@ Tests for everything below: `tests/test_aip_extensions.py`.
   (Lab 3 B2's per-kind MRR table).
 - `EvalReport.latency_percentile(p)`: per-case wall-clock latency. The budget's latency only
   times model calls, which are $0 / 0 ms on a cached re-run.
+
+---
+
+## Stage 2 (2026-09-29)
+
+### `aip/rag.py`: Lab 4 Part B in the reference pipeline
+- `validate_answer(text, n_sources, finish_reason=None)`: the Lab 4 B2 checks as code (non-empty,
+  not truncated, every `[n]` in range, and a non-refusal carries at least one citation).
+- `is_refusal(text)`: the whole answer is the refusal. A partial answer that declines one part
+  is not a refusal.
+- `RagPipeline(..., max_repairs=0, fail_closed=False, context_label=None, max_tokens=600)`:
+  - `max_repairs`: on a validation problem, regenerate with a corrective turn that shows the
+    model its rejected answer and the reasons.
+  - `fail_closed`: if still invalid after the repairs, return `REFUSAL`, never a flawed answer
+    (the Lab 4 B3 choice).
+  - `context_label`: per-source header passed to `format_context`.
+  - Defaults reproduce the original behaviour exactly.
+- `RagPipeline.answer_from_hits(question, hits)`: generate, validate and repair over supplied
+  passages. `answer()` now calls it after retrieval. Needed for Lab 4 E2 (gold context vs
+  retrieved context).
+- `RagAnswer` gains `problems`, `repairs`, `fallback` and `cited_indices`.
+- Internal `_generate(...)` uses `chat(return_full=True)` so truncation (`finish_reason=length`)
+  is visible to validation; `generate()` keeps its signature.
+- **Truncation doubles the budget instead of being "repaired".** On `finish_reason=length`,
+  `_generate` re-sends the *same* request once at `2 * max_tokens` (a `rag.truncated_retry`
+  trace event); `RagAnswer.budget_doublings` counts it. This follows the convention of
+  `aip.llm.structured` and `aip.evals.llm_judge`.
+  **Why:** the MAIN tier is a reasoning model whose hidden thinking counts against `max_tokens`.
+  In the first Stage 2 run, 4 of 31 answers were truncated, the corrective "write a shorter answer"
+  turn could not help, and fail-closed turned them into false refusals (refusal precision 0.50,
+  0.83 after the fix).
+
+### `aip/retrieval.py`
+- `format_context(hits, max_chars=8000, label=None)`: `label(hit)` replaces the bare doc_id in
+  each numbered source header. The regulation Q&A shows
+  `Responsible Business Conduct Directions, 2025 | A. Fair Practices Code > A.4 General | paras 19-21`,
+  so the model can name the paragraph it relies on.
+
+### `aip/chunking.py`
+- `annotate_provenance` also records `meta["numbers"]`: every numbered paragraph a chunk touches.
+  **Why:** a sliding window that starts in para 17 can hold the answer in para 19. Citing only
+  the starting paragraph would point the reader to the wrong clause.
+
+### `aip/evals.py`
+- `refusal_metrics(refused, should_refuse)`: refusal recall and precision together, with the
+  raw counts (Lab 4: never report one without the other; five unanswerable questions make each
+  case worth 0.2).

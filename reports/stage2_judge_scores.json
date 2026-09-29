@@ -1,0 +1,82 @@
+{
+  "A01": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A02": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 0
+  },
+  "A03": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A04": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A05": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 0
+  },
+  "A06": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A07": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A08": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A09": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A10": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A11": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A12": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A13": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A14": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A15": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A16": {
+    "faithfulness": 0.0,
+    "correctness_0_1_2": 2
+  },
+  "A17": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A18": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A19": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  },
+  "A20": {
+    "faithfulness": 1.0,
+    "correctness_0_1_2": 2
+  }
+}

@@ -57,6 +57,19 @@ class RagAnswer:
     invalid_citations: list[int] = field(default_factory=list)
     refused: bool = False
     stages: dict[str, Any] = field(default_factory=dict)
+    # [regtech] Lab 4 Part B bookkeeping: what validation found, how many
+    # corrective regenerations it took, and whether we failed closed.
+    problems: list[str] = field(default_factory=list)
+    repairs: int = 0
+    fallback: bool = False
+    budget_doublings: int = 0
+
+    @property
+    def cited_indices(self) -> list[int]:
+        import re
+
+        return sorted({int(m) for m in re.findall(r"\[(\d+)\]", self.answer)
+                       if 1 <= int(m) <= len(self.hits)})
 
     @property
     def cited_doc_ids(self) -> list[str]:
@@ -67,6 +80,34 @@ class RagAnswer:
 
 
 REFUSAL = "I don't have enough information in the provided sources to answer that."
+
+
+def is_refusal(text: str) -> bool:
+    """[regtech] True if the answer *is* the refusal (a partial answer that ends
+    by declining one part is not a refusal)."""
+    return text.strip().startswith(REFUSAL[:40])
+
+
+def validate_answer(text: str, n_sources: int, finish_reason: str | None = None) -> list[str]:
+    """[regtech] Lab 4 Part B2 as code. Returns the problems found (empty = valid).
+
+    Checks: non-empty; not truncated; every [n] refers to a supplied source;
+    a non-refusal carries at least one citation.
+    """
+    stripped = text.strip()
+    if not stripped:
+        return ["the answer was empty"]
+    problems = []
+    if finish_reason == "length":
+        problems.append("the answer was cut off (token limit); write a shorter complete answer")
+    if is_refusal(stripped):
+        return problems
+    ok, invalid = enforce_citations(stripped, n_sources)
+    if invalid:
+        problems.append(f"it cites sources that do not exist: {invalid} (only [1]..[{n_sources}] were given)")
+    elif not ok:
+        problems.append("it has no citations; every factual sentence must end with a citation like [1]")
+    return problems
 
 
 class RagPipeline:
@@ -87,7 +128,15 @@ class RagPipeline:
         max_context_chars: int = 8000,
         query_transform: Callable[[str], str] | None = None,
         system: str = ANSWER_SYSTEM,
+        max_repairs: int = 0,
+        fail_closed: bool = False,
+        context_label: Callable[[Hit], str] | None = None,
+        max_tokens: int = 600,
     ):
+        """[regtech] `max_repairs`: corrective regenerations when validate_answer
+        finds a problem. `fail_closed`: if still invalid after the repairs,
+        return REFUSAL instead of the flawed answer. `context_label`: per-source
+        header for format_context. Defaults reproduce the original behaviour."""
         self.retriever = retriever
         self.reranker = reranker
         self.k = k
@@ -96,6 +145,10 @@ class RagPipeline:
         self.max_context_chars = max_context_chars
         self.query_transform = query_transform
         self.system = system
+        self.max_repairs = max_repairs
+        self.fail_closed = fail_closed
+        self.context_label = context_label
+        self.max_tokens = max_tokens
 
     # -- stage 3/4 -------------------------------------------------------
     def retrieve(self, question: str) -> list[Hit]:
@@ -115,35 +168,89 @@ class RagPipeline:
 
     # -- stage 6/7 -------------------------------------------------------
     def generate(self, question: str, hits: Sequence[Hit]) -> str:
+        return self._generate(question, hits)["text"].strip()
+
+    def _generate(self, question: str, hits: Sequence[Hit],
+                  previous: str | None = None, problems: Sequence[str] = ()) -> dict[str, Any]:
+        """[regtech] One generation; with `previous`/`problems` it is a corrective
+        turn that shows the model its own answer and what was wrong with it.
+
+        Truncation is not a content problem, so it is not "repaired": the same
+        request is retried once at double the token budget, the convention
+        aip.llm.structured and aip.evals.llm_judge already follow. Reasoning
+        models spend part of max_tokens on invisible thinking, so a budget that
+        looks generous can still cut the visible answer off.
+        """
+        res = self._generate_once(question, hits, previous, problems, self.max_tokens)
+        if res.get("finish_reason") == "length":
+            tracing.event("rag.truncated_retry", max_tokens=self.max_tokens * 2)
+            res = self._generate_once(question, hits, previous, problems, self.max_tokens * 2)
+            res["budget_doubled"] = True
+        return res
+
+    def _generate_once(self, question: str, hits: Sequence[Hit], previous: str | None,
+                       problems: Sequence[str], max_tokens: int) -> dict[str, Any]:
         context = delimit_untrusted(
-            format_context(hits, max_chars=self.max_context_chars)
+            format_context(hits, max_chars=self.max_context_chars, label=self.context_label)
         )
         prompt = f"{context}\n\nQuestion: {question}\n\nAnswer with citations:"
-        with tracing.trace("rag.generate", n_sources=len(hits), tier=self.tier):
-            return chat(prompt, system=self.system, tier=self.tier,
-                        temperature=0.0, max_tokens=600).strip()
+        messages: list[dict[str, str]] = [{"role": "user", "content": prompt}]
+        if previous is not None:
+            messages += [
+                {"role": "assistant", "content": previous},
+                {"role": "user", "content": "Your answer was rejected because " + "; and ".join(problems)
+                 + ". Rewrite it following every rule in your instructions."},
+            ]
+        with tracing.trace("rag.generate", n_sources=len(hits), tier=self.tier, repair=previous is not None):
+            return chat(messages, system=self.system, tier=self.tier,
+                        temperature=0.0, max_tokens=max_tokens, return_full=True)
+
+    def answer_from_hits(self, question: str, hits: Sequence[Hit],
+                         stages: dict[str, Any] | None = None) -> RagAnswer:
+        """[regtech] Generate -> validate -> repair -> (fail closed) over the given hits.
+
+        Split out of answer() so the same generator can be run on gold context
+        (Lab 4 E2: the generation ceiling vs. what retrieval actually supplies).
+        """
+        final = list(hits)
+        res = self._generate(question, final)
+        doubled = int(bool(res.get("budget_doubled")))
+        text = res["text"].strip()
+        problems = validate_answer(text, len(final), res.get("finish_reason"))
+        repairs = 0
+        while problems and repairs < self.max_repairs:
+            repairs += 1
+            tracing.event("rag.repair", attempt=repairs, problems=problems)
+            res = self._generate(question, final, previous=text, problems=problems)
+            doubled += int(bool(res.get("budget_doubled")))
+            text = res["text"].strip()
+            problems = validate_answer(text, len(final), res.get("finish_reason"))
+        fallback = bool(problems) and self.fail_closed
+        if fallback:
+            tracing.event("rag.fail_closed", problems=problems)
+            text = REFUSAL
+        ok, invalid = enforce_citations(text, len(final))
+        refused = is_refusal(text)
+        return RagAnswer(
+            question=question,
+            answer=text,
+            hits=final,
+            citations_valid=ok or refused,
+            invalid_citations=invalid,
+            refused=refused,
+            stages={**(stages or {}), "final": [h.doc_id for h in final], "final_k": len(final)},
+            problems=problems,
+            repairs=repairs,
+            fallback=fallback,
+            budget_doublings=doubled,
+        )
 
     def answer(self, question: str) -> RagAnswer:
         with tracing.trace("rag.answer", question=question[:120]):
             hits = self.retrieve(question)
             final = self.rerank(question, hits)
-            text = self.generate(question, final)
-            ok, invalid = enforce_citations(text, len(final))
-            refused = text.strip().startswith(REFUSAL[:40])
-            return RagAnswer(
-                question=question,
-                answer=text,
-                hits=list(final),
-                citations_valid=ok or refused,
-                invalid_citations=invalid,
-                refused=refused,
-                stages={
-                    "retrieved": [h.doc_id for h in hits],
-                    "final": [h.doc_id for h in final],
-                    "retrieve_k": self.k,
-                    "final_k": self.final_k,
-                },
-            )
+            return self.answer_from_hits(question, final, stages={
+                "retrieved": [h.doc_id for h in hits], "retrieve_k": self.k})
 
 
 # --------------------------------------------------------------------------

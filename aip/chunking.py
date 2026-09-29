@@ -165,8 +165,10 @@ def annotate_provenance(text: str, chunks: list[Chunk],
     """[regtech] Locate each chunk in its source markdown and record where it came from.
 
     Adds `meta["start"]` (char offset), `meta["heading"]` (heading path at that
-    offset, if the chunker did not already set one) and `meta["number"]` (the
-    last numbered paragraph -- "12." -- that begins at or before the chunk).
+    offset, if the chunker did not already set one), `meta["number"]` (the
+    last numbered paragraph -- "12." -- that begins at or before the chunk) and
+    `meta["numbers"]` (every numbered paragraph the chunk touches, in order --
+    a window that starts in para 17 can hold the answer in para 19).
     Works for every strategy, so a fixed or sliding chunk can be cited as
     precisely as a markdown one. Chunks that cannot be located are left as is.
     """
@@ -178,12 +180,15 @@ def annotate_provenance(text: str, chunks: list[Chunk],
     numbers = [(m.start(), m.group(1)) for m in re.finditer(number_pattern, text)] if number_pattern else []
 
     for c in chunks:
-        pos = text.find(strip_heading_prefix(c.text)[:120])
+        body = strip_heading_prefix(c.text)
+        pos = text.find(body[:120])
         if pos < 0:
             continue
         c.meta["start"] = pos
         c.meta.setdefault("heading", next((p for off, p in reversed(heads) if off <= pos), ""))
         c.meta["number"] = next((n for off, n in reversed(numbers) if off <= pos), "")
+        inside = [n for off, n in numbers if pos < off < pos + len(body)]
+        c.meta["numbers"] = ([c.meta["number"]] if c.meta["number"] else []) + inside
     return chunks
 
 

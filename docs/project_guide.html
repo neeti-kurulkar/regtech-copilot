@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegTech Copilot Guide</title>
+<style>
+:root {
+  --bg: #fbfaf7; --panel: #ffffff; --ink: #1d2328; --muted: #5d6770; --line: #e3e0d8;
+  --accent: #1f6f5c; --accent-soft: #e3f1ec; --warn: #9a5b00; --warn-soft: #fbf0dc;
+  --bad: #a4372c; --bad-soft: #f8e4e1; --code: #f3f1ec; --nav: #f4f2ed;
+  --reg: #2f5d8a; --pol: #7a4f9a; --enf: #a4372c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15191c; --panel: #1c2226; --ink: #e6e9eb; --muted: #9aa5ad; --line: #2e363c;
+    --accent: #5cc0a2; --accent-soft: #1d3830; --warn: #e5a94b; --warn-soft: #3a2e1a;
+    --bad: #ec8a7f; --bad-soft: #3d2320; --code: #232a2f; --nav: #181d20;
+    --reg: #7fb0e0; --pol: #c29ce0; --enf: #ec8a7f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15191c; --panel: #1c2226; --ink: #e6e9eb; --muted: #9aa5ad; --line: #2e363c;
+  --accent: #5cc0a2; --accent-soft: #1d3830; --warn: #e5a94b; --warn-soft: #3a2e1a;
+  --bad: #ec8a7f; --bad-soft: #3d2320; --code: #232a2f; --nav: #181d20;
+  --reg: #7fb0e0; --pol: #c29ce0; --enf: #ec8a7f;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.62 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+a { color: var(--accent); }
+code, pre { font-family: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace; font-size: 0.86em; }
+code { background: var(--code); padding: 1px 5px; border-radius: 4px; }
+pre { background: var(--code); padding: 14px 16px; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+
+/* layout */
+.layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+nav.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--nav);
+  border-right: 1px solid var(--line); padding: 22px 16px 40px; }
+nav.side .brand { font-weight: 700; font-size: 17px; margin: 0 0 2px 8px; }
+nav.side .sub { color: var(--muted); font-size: 13px; margin: 0 0 18px 8px; }
+nav.side h4 { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  margin: 20px 8px 6px; }
+nav.side a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 6px;
+  color: var(--ink); text-decoration: none; font-size: 14px; }
+nav.side a:hover { background: var(--line); }
+nav.side a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+nav.side a.sub-link { padding-left: 22px; font-size: 13px; color: var(--muted); }
+nav.side a.sub-link.active { color: var(--accent); }
+.dot { width: 9px; height: 9px; border-radius: 50%; flex: none; border: 2px solid var(--muted); }
+.dot.done { background: var(--accent); border-color: var(--accent); }
+.dot.now { border-color: var(--warn); background: var(--warn-soft); }
+.theme-btn { margin: 22px 8px 0; font: inherit; font-size: 13px; background: none; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+
+main { padding: 36px 48px 80px; max-width: 980px; }
+section { scroll-margin-top: 20px; padding-bottom: 12px; }
+h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 26px; margin: 48px 0 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+h3 { font-size: 19px; margin: 28px 0 8px; }
+h4 { font-size: 16px; margin: 20px 0 6px; }
+p.lead { font-size: 18px; color: var(--muted); margin-top: 0; }
+.muted { color: var(--muted); }
+
+/* components */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 18px 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.card h4 { margin: 0 0 6px; }
+.card p { margin: 0; font-size: 15px; }
+.card .big { font-size: 28px; font-weight: 700; line-height: 1.1; }
+.card.reg { border-top: 4px solid var(--reg); }
+.card.pol { border-top: 4px solid var(--pol); }
+.card.enf { border-top: 4px solid var(--enf); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 12px 16px;
+  border-radius: 0 8px 8px 0; margin: 16px 0; }
+.callout.warn { border-color: var(--warn); background: var(--warn-soft); }
+.callout.bad { border-color: var(--bad); background: var(--bad-soft); }
+.callout p { margin: 4px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 18px; border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--panel); }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--code); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; background: var(--code);
+  color: var(--muted); white-space: nowrap; }
+.tag.good { background: var(--accent-soft); color: var(--accent); }
+.tag.warn { background: var(--warn-soft); color: var(--warn); }
+.tag.bad { background: var(--bad-soft); color: var(--bad); }
+.status { font-size: 13px; font-weight: 600; padding: 2px 10px; border-radius: 12px; margin-left: 8px; vertical-align: middle; }
+.status.done { background: var(--accent-soft); color: var(--accent); }
+.status.next { background: var(--warn-soft); color: var(--warn); }
+.status.todo { background: var(--code); color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid2 pre { margin: 0; height: 100%; }
+.label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.chain { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 10px; align-items: stretch; margin: 16px 0; }
+.chain .arrow { align-self: center; color: var(--muted); font-size: 22px; }
+dl.gloss dt { font-weight: 700; margin-top: 12px; }
+dl.gloss dd { margin: 2px 0 0 0; color: var(--ink); }
+svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  nav.side { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+  main { padding: 24px 16px 60px; }
+  .grid2, .chain { grid-template-columns: 1fr; }
+  .chain .arrow { transform: rotate(90deg); justify-self: center; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="side" id="nav">
+  <p class="brand">RegTech Compliance Copilot</p>
+  <p class="sub">Project guide · AI in Practice I</p>
+
+  <h4>The project</h4>
+  <a href="#overview">What we are building</a>
+  <a href="#how-it-works">How it works</a>
+  <a href="#aip">The aip library</a>
+
+  <h4>The dataset</h4>
+  <a href="#dataset">Three corpora, one story</a>
+  <a class="sub-link" href="#corpus-regulation">Regulations</a>
+  <a class="sub-link" href="#corpus-policy">Company policies</a>
+  <a class="sub-link" href="#corpus-enforcement">Penalties</a>
+  <a class="sub-link" href="#connections">How they connect</a>
+  <a class="sub-link" href="#curation">Curation decisions</a>
+
+  <h4>Build stages</h4>
+  <a href="#stages"><span class="dot done"></span>Progress</a>
+  <a href="#stage-0"><span class="dot done"></span>0 · Scaffolding</a>
+  <a href="#stage-1"><span class="dot done"></span>1 · Corpus ingestion</a>
+  <a href="#stage-2"><span class="dot done"></span>2 · Grounded Q&amp;A</a>
+  <a href="#stage-3"><span class="dot now"></span>3 · check_policy_gap</a>
+  <a href="#stage-4"><span class="dot"></span>4 · find_enforcement_precedent</a>
+  <a href="#stage-5"><span class="dot"></span>5 · Compliance calendar</a>
+  <a href="#stage-6"><span class="dot"></span>6 · Agent + guardrails</a>
+  <a href="#stage-7"><span class="dot"></span>7 · Service layer</a>
+  <a href="#stage-8"><span class="dot"></span>8 · Evaluation report</a>
+
+  <h4>Reference</h4>
+  <a href="#aip-changes">Changes to aip</a>
+  <a href="#run">How to run it</a>
+  <a href="#glossary">Glossary</a>
+
+  <button class="theme-btn" id="themeBtn" type="button">Toggle light / dark</button>
+</nav>
+
+<main>
+
+<!-- ================================================================== -->
+<section id="overview">
+  <h1>RegTech Compliance Copilot</h1>
+  <p class="lead">An AI assistant that helps an Indian lending company (an NBFC) check whether its own
+  policies follow the Reserve Bank of India's current rules, shows real cases where companies were
+  fined for similar gaps, and lists the compliance deadlines coming up.</p>
+
+  <p>Non-Banking Financial Companies (NBFCs) are lenders that are not banks: gold-loan companies,
+  vehicle financiers, microfinance lenders, consumer-loan companies. The Reserve Bank of India (RBI)
+  writes the rules they must follow, in long legal documents called <em>Directions</em>. Every NBFC
+  also publishes its own <em>Fair Practices Code</em>: its promise to customers about how it will lend,
+  charge and collect. When the company's promise falls short of the RBI's rule, and nobody notices,
+  the RBI can fine the company.</p>
+
+  <p>Checking this by hand means reading hundreds of pages of regulation against dozens of pages of
+  policy. This project builds a copilot that does the reading and answers three questions, always with
+  citations back to the exact paragraph it relied on:</p>
+
+  <div class="cards">
+    <div class="card reg"><h4>1 · Is there a gap?</h4>
+      <p><code>check_policy_gap</code>: compare a company's policy with the current RBI rule on a
+      topic and report where the policy is silent, weaker or out of date.</p></div>
+    <div class="card enf"><h4>2 · Has this been punished before?</h4>
+      <p><code>find_enforcement_precedent</code>: find real 2026 RBI penalties for the same kind
+      of failure, with the company, date and fine.</p></div>
+    <div class="card pol"><h4>3 · What is due soon?</h4>
+      <p><code>extract_deadlines</code> / <code>check_upcoming</code>: pull every deadline out of the
+      rules into a calendar you can query ("what is due in the next 30 days?").</p></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>What makes this more than a chatbot.</strong> Every lab in the course answered questions
+    from <em>one</em> document collection. This project keeps <em>three</em> separate collections
+    (the rules, what companies say they do, and what happened when they did not) and reasons
+    across them. That cross-corpus step is the new part.</p>
+  </div>
+
+  <p class="muted">Built for the AI in Practice I final assignment (Fintech track), on top of the
+  course's <code>aip</code> library. Deliverables: a presentation (4 slides max) and a concept note,
+  due Friday 2 October 2026.</p>
+</section>
+
+<!-- ================================================================== -->
+<section id="how-it-works">
+  <h2>How it works</h2>
+  <p>The system is a pipeline. Documents go in on the left; answers with citations come out on the right.
+  Each stage of the build adds one part of this picture.</p>
+
+  <svg viewBox="0 0 900 330" role="img" aria-label="Architecture: three corpora are converted and indexed separately, three tools use them, an agent with guardrails calls the tools, and a service answers users." style="width:100%;height:auto;margin:10px 0 6px">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+      </marker>
+    </defs>
+    <!-- corpora -->
+    <g font-size="13">
+      <rect x="10" y="30" width="150" height="62" rx="8" fill="var(--panel)" stroke="var(--reg)" stroke-width="2"/>
+      <text x="85" y="56" text-anchor="middle" fill="var(--ink)" font-weight="700">Regulations</text>
+      <text x="85" y="76" text-anchor="middle" fill="var(--muted)">12 RBI Directions</text>
+      <rect x="10" y="134" width="150" height="62" rx="8" fill="var(--panel)" stroke="var(--pol)" stroke-width="2"/>
+      <text x="85" y="160" text-anchor="middle" fill="var(--ink)" font-weight="700">Company policies</text>
+      <text x="85" y="180" text-anchor="middle" fill="var(--muted)">11 Fair Practice Codes</text>
+      <rect x="10" y="238" width="150" height="62" rx="8" fill="var(--panel)" stroke="var(--enf)" stroke-width="2"/>
+      <text x="85" y="264" text-anchor="middle" fill="var(--ink)" font-weight="700">Penalties</text>
+      <text x="85" y="284" text-anchor="middle" fill="var(--muted)">13 RBI press releases</text>
+    </g>
+    <!-- ingestion + indices -->
+    <g font-size="13">
+      <rect x="205" y="30" width="170" height="270" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+      <text x="290" y="54" text-anchor="middle" fill="var(--ink)" font-weight="700">Ingestion (Stage 1)</text>
+      <text x="290" y="74" text-anchor="middle" fill="var(--muted)">PDF → Markdown,</text>
+      <text x="290" y="92" text-anchor="middle" fill="var(--muted)">chunk, embed</text>
+      <rect x="225" y="112" width="130" height="40" rx="6" fill="var(--panel)" stroke="var(--reg)"/>
+      <text x="290" y="137" text-anchor="middle" fill="var(--ink)">rules index</text>
+      <rect x="225" y="170" width="130" height="40" rx="6" fill="var(--panel)" stroke="var(--pol)"/>
+      <text x="290" y="195" text-anchor="middle" fill="var(--ink)">policy index</text>
+      <rect x="225" y="228" width="130" height="40" rx="6" fill="var(--panel)" stroke="var(--enf)"/>
+      <text x="290" y="253" text-anchor="middle" fill="var(--ink)">penalty index</text>
+    </g>
+    <!-- tools -->
+    <g font-size="13">
+      <rect x="420" y="30" width="200" height="62" rx="8" fill="var(--panel)" stroke="var(--line)"/>
+      <text x="520" y="55" text-anchor="middle" fill="var(--ink)" font-weight="700">Grounded Q&amp;A (2)</text>
+      <text x="520" y="75" text-anchor="middle" fill="var(--muted)">rules, with citations</text>
+      <rect x="420" y="102" width="200" height="62" rx="8" fill="var(--panel)" stroke="var(--line)"/>
+      <text x="520" y="127" text-anchor="middle" fill="var(--ink)" font-weight="700">check_policy_gap (3)</text>
+      <text x="520" y="147" text-anchor="middle" fill="var(--muted)">rules vs. policy</text>
+      <rect x="420" y="174" width="200" height="62" rx="8" fill="var(--panel)" stroke="var(--line)"/>
+      <text x="520" y="199" text-anchor="middle" fill="var(--ink)" font-weight="700">find_precedent (4)</text>
+      <text x="520" y="219" text-anchor="middle" fill="var(--muted)">penalty history</text>
+      <rect x="420" y="246" width="200" height="54" rx="8" fill="var(--panel)" stroke="var(--line)"/>
+      <text x="520" y="268" text-anchor="middle" fill="var(--ink)" font-weight="700">deadlines (5)</text>
+      <text x="520" y="287" text-anchor="middle" fill="var(--muted)">compliance calendar</text>
+    </g>
+    <!-- agent + service -->
+    <g font-size="13">
+      <rect x="665" y="80" width="100" height="170" rx="8" fill="var(--warn-soft)" stroke="var(--warn)"/>
+      <text x="715" y="150" text-anchor="middle" fill="var(--ink)" font-weight="700">Agent (6)</text>
+      <text x="715" y="170" text-anchor="middle" fill="var(--muted)">budgets,</text>
+      <text x="715" y="188" text-anchor="middle" fill="var(--muted)">guardrails</text>
+      <rect x="800" y="120" width="90" height="90" rx="8" fill="var(--panel)" stroke="var(--line)"/>
+      <text x="845" y="160" text-anchor="middle" fill="var(--ink)" font-weight="700">Service</text>
+      <text x="845" y="180" text-anchor="middle" fill="var(--muted)">/ask (7)</text>
+    </g>
+    <g stroke="var(--muted)" stroke-width="1.5" fill="none" marker-end="url(#arr)">
+      <path d="M160 61 H203"/><path d="M160 165 H203"/><path d="M160 269 H203"/>
+      <path d="M375 132 H418"/><path d="M375 190 H418"/><path d="M375 248 H418"/>
+      <path d="M620 61 L663 110"/><path d="M620 133 H663"/><path d="M620 205 H663"/><path d="M620 273 L663 235"/>
+      <path d="M765 165 H798"/>
+    </g>
+  </svg>
+  <p class="muted" style="font-size:14px">Numbers in brackets are the build stage that adds each part.</p>
+
+  <p>Three ideas run through every stage:</p>
+  <ul>
+    <li><strong>Grounded, not guessed.</strong> The copilot may only state what a retrieved passage
+    says, and must cite it. If the documents do not support an answer, it says so.</li>
+    <li><strong>Measured, not assumed.</strong> Every design choice (how to cut documents into
+    pieces, which search method, which prompt) is decided by a measurement on a hand-labelled test set.</li>
+    <li><strong>Built on the course library.</strong> We reuse the <code>aip</code> library from the
+    labs and extend it where the project needs something general, keeping a log of every change.</li>
+  </ul>
+</section>
+
+<!-- ================================================================== -->
+<section id="aip">
+  <h2>The aip library</h2>
+  <p><code>aip</code> is the small Python toolkit every lab in the course was built on. It hides no
+  magic; each module is a few hundred lines. We use it as the foundation and build the RegTech-specific
+  parts in a separate package called <code>regtech/</code>.</p>
+  <div class="table-wrap"><table>
+    <tr><th>aip module</th><th>What it does</th><th>Used here for</th></tr>
+    <tr><td><code>config</code></td><td>Picks the AI provider and model "tiers" (SMALL, MAIN, LARGE, EMBED)</td><td>Gemini models for everything</td></tr>
+    <tr><td><code>llm</code></td><td>Calls a model; <code>structured()</code> returns validated JSON</td><td>Answers (Stage 2), extraction (Stage 5)</td></tr>
+    <tr><td><code>cost</code>, <code>cache</code>, <code>tracing</code></td><td>Counts money, never pays twice for the same call, logs every step</td><td>Every stage; re-running an evaluation costs $0</td></tr>
+    <tr><td><code>chunking</code></td><td>Cuts documents into searchable pieces (4 strategies)</td><td>Stage 1 indices</td></tr>
+    <tr><td><code>embed</code>, <code>retrieval</code></td><td>Turns text into vectors; searches them (dense, keyword, hybrid)</td><td>The three indices</td></tr>
+    <tr><td><code>rag</code></td><td>Reference "retrieve then answer with citations" pipeline</td><td>Stage 2 baseline</td></tr>
+    <tr><td><code>evals</code></td><td>The measuring instrument: test cases, metrics, reports</td><td>Every measurement in this guide</td></tr>
+    <tr><td><code>guards</code></td><td>Prompt-injection defences, tool budgets, citation checks</td><td>Stages 2 and 6</td></tr>
+  </table></div>
+  <p>Where the project needed something general that <code>aip</code> did not have, we added it to
+  <code>aip</code> itself instead of writing a parallel version. See <a href="#aip-changes">Changes to aip</a>.</p>
+</section>
+
+<!-- ================================================================== -->
+<section id="dataset">
+  <h2>The dataset: three corpora, one story</h2>
+  <p>A <em>corpus</em> is a collection of documents. We have three, and each plays a different role,
+  like the three sides of a compliance check:</p>
+  <div class="cards">
+    <div class="card reg"><div class="big">12</div><h4>Regulations</h4>
+      <p><strong>"The rulebook."</strong> What NBFCs are legally required to do. This is ground truth.</p></div>
+    <div class="card pol"><div class="big">11</div><h4>Company policies</h4>
+      <p><strong>"What a company says it does."</strong> Each company's published Fair Practices Code. May or may not meet the rules.</p></div>
+    <div class="card enf"><div class="big">13</div><h4>Penalties</h4>
+      <p><strong>"What failure costs."</strong> Real RBI fines from 2026, proof that gaps have consequences.</p></div>
+  </div>
+  <p>All 36 documents are public PDFs. Each has a row in <code>data/manifest.csv</code> recording its id,
+  type, title, company, date and source file. The whole collection is 623 pages (493 of them regulation).</p>
+</section>
+
+<section id="corpus-regulation">
+  <h3>Corpus 1 · Regulations: the rulebook</h3>
+  <p>In November 2025 the RBI reorganised its NBFC rules into a set of topic-by-topic
+  <em>Directions</em>. We use the 12 that matter for lending conduct, customer protection, and the
+  penalties in corpus 3. Most have been amended since; we always use the latest "updated as on" version.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Direction</th><th>In plain words, it covers…</th><th class="num">Pages</th><th>Version</th></tr>
+    <tr><td>Responsible Business Conduct</td><td>How to treat borrowers: Fair Practices Code, Key Facts Statement, penal charges, gold-loan auctions, recovery agents, microfinance conduct</td><td class="num">37</td><td>1 Jul 2026</td></tr>
+    <tr><td>Know Your Customer (KYC)</td><td>Verifying customers, risk categories, periodic re-checks, the central KYC registry</td><td class="num">96</td><td>29 Dec 2025</td></tr>
+    <tr><td>Fraud Risk Management</td><td>Detecting, investigating and reporting fraud; early warning signals</td><td class="num">24</td><td>31 Jul 2026</td></tr>
+    <tr><td>Compliance Function</td><td>The Chief Compliance Officer and the compliance team</td><td class="num">15</td><td>31 Jul 2026</td></tr>
+    <tr><td>Governance</td><td>Boards, directors, key managerial pay (including deferred bonuses)</td><td class="num">31</td><td>24 Jun 2026</td></tr>
+    <tr><td>Income Recognition, Asset Classification &amp; Provisioning</td><td>When a loan counts as "bad" (NPA) and when it can be upgraded</td><td class="num">25</td><td>1 Jul 2026</td></tr>
+    <tr><td>Resolution of Stressed Assets</td><td>Early stress buckets (SMA-0/1/2), reporting large borrowers to CRILC</td><td class="num">66</td><td>1 Jul 2026</td></tr>
+    <tr><td>Credit Information Reporting</td><td>Reporting to credit bureaus; compensation for wrong credit records</td><td class="num">72</td><td>1 Jul 2026</td></tr>
+    <tr><td>Credit Facilities</td><td>Loan products, including loan-to-value limits on gold loans</td><td class="num">54</td><td>15 Jul 2026</td></tr>
+    <tr><td>Microfinance Institution</td><td>Registration and prudential rules for microfinance lenders</td><td class="num">19</td><td>28 Nov 2025</td></tr>
+    <tr><td>Registration &amp; Scale Based Regulation</td><td>The Base / Middle / Upper layer system that decides which rules apply to whom</td><td class="num">31</td><td>1 Jul 2026</td></tr>
+    <tr><td>Concentration Risk Management</td><td>Limits on lending too much to one borrower or group (kept as a realistic distractor)</td><td class="num">23</td><td>25 Aug 2026</td></tr>
+  </table></div>
+</section>
+
+<section id="corpus-policy">
+  <h3>Corpus 2 · Company policies: what companies say they do</h3>
+  <p>Every NBFC must publish a Fair Practices Code on its website. We collected 11, chosen to span
+  gold loans, vehicle finance, microfinance and diversified lenders. Some are recent, some are
+  years old. An old policy is <em>not</em> a data problem: if that is what the company publishes today,
+  "the policy predates the current rules" is itself a finding.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Company</th><th>Version</th><th>Currency</th><th>Also fined in corpus 3?</th></tr>
+    <tr><td>Bajaj Finance</td><td>Ver 7.1, Jan 2026</td><td><span class="tag good">current</span></td><td></td></tr>
+    <tr><td>Cholamandalam Investment &amp; Finance</td><td>Mar 2025</td><td><span class="tag warn">predates Nov 2025 rules</span></td><td></td></tr>
+    <tr><td>IIFL Finance</td><td>v9, 29 Apr 2026</td><td><span class="tag good">current</span></td><td><strong>Yes, twice</strong></td></tr>
+    <tr><td>L&amp;T Finance (microloans code)</td><td>undated (file from 2022)</td><td><span class="tag warn">likely old</span></td><td></td></tr>
+    <tr><td>Mahindra &amp; Mahindra Financial Services</td><td>undated web page</td><td><span class="tag warn">cites 2021–22 circulars</span></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Manappuram Finance</td><td>reviewed 11 Aug 2026</td><td><span class="tag good">current</span></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Muthoot Finance</td><td>v10, 12 Nov 2025</td><td><span class="tag good">current</span></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Nissan Renault Financial Services</td><td>v4.0 (file from 2020)</td><td><span class="tag warn">likely old</span></td><td></td></tr>
+    <tr><td>Protium Finance</td><td>undated</td><td><span class="tag good">cites Nov 2025 rules</span></td><td></td></tr>
+    <tr><td>Shri Ram Finance Corporation Pvt Ltd</td><td>30 Jun 2025</td><td><span class="tag warn">predates Nov 2025 rules</span></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Tata Capital</td><td>v5, 19 Jan 2026</td><td><span class="tag good">current</span></td><td></td></tr>
+  </table></div>
+</section>
+
+<section id="corpus-enforcement">
+  <h3>Corpus 3 · Penalties: what failure costs</h3>
+  <p>When the RBI fines a company, it publishes a one-page press release: who, when, how much, and the
+  charge that was upheld. We use 13 from 2026, chosen so that the violations are varied.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Company</th><th>Date</th><th class="num">Fine</th><th>What went wrong (from the release)</th></tr>
+    <tr><td>Mahindra &amp; Mahindra Fin.</td><td>27 Feb 2026</td><td class="num">₹11.50 lakh</td><td>Raised foreclosure charges not allowed by the loan agreement; rejected complaints not escalated to the Internal Ombudsman</td></tr>
+    <tr><td>Hero Fincorp</td><td>24 Sep 2026</td><td class="num">₹10.00 lakh</td><td>Collected excess interest on some loans</td></tr>
+    <tr><td>Shri Ram Finance Corp.</td><td>21 Aug 2026</td><td class="num">₹8.10 lakh</td><td>Changed over 30% of directors without RBI approval; no customer risk categories; KYC records not uploaded</td></tr>
+    <tr><td>Five Star Business Finance</td><td>19 Jun 2026</td><td class="num">₹6.20 lakh</td><td>Weak suspicious-transaction software; did not explain its interest-rate risk gradation to borrowers</td></tr>
+    <tr><td>Hinduja Leyland Finance</td><td>4 Sep 2026</td><td class="num">₹6.20 lakh</td><td>No board policy on microfinance loan pricing; "synthetic securitisation"</td></tr>
+    <tr><td>Muthoot Finance</td><td>17 Jul 2026</td><td class="num">₹5.80 lakh</td><td>No periodic review of customer risk categories; weak suspicious-transaction software</td></tr>
+    <tr><td>IIFL Finance</td><td>13 Feb 2026</td><td class="num">₹5.30 lakh</td><td>Restructured loans not classified as non-performing</td></tr>
+    <tr><td>Sammaan Finserve</td><td>4 Sep 2026</td><td class="num">₹4.20 lakh</td><td>Did not report a large borrower to CRILC</td></tr>
+    <tr><td>IIFL Finance</td><td>15 May 2026</td><td class="num">₹3.10 lakh</td><td>Did not pay borrowers the surplus from auctions of their pledged gold</td></tr>
+    <tr><td>Ola Financial Services</td><td>24 Sep 2026</td><td class="num">₹3.10 lakh</td><td>Did not risk-categorise some customers (fined as a payment operator)</td></tr>
+    <tr><td>Satya MicroCapital</td><td>17 Jul 2026</td><td class="num">₹3.10 lakh</td><td>Restructured loans not classified as non-performing</td></tr>
+    <tr><td>Fusion Finance</td><td>14 Aug 2026</td><td class="num">₹2.70 lakh</td><td>No six-monthly review of customer risk categories</td></tr>
+    <tr><td>Manappuram Finance</td><td>13 Mar 2026</td><td class="num">₹2.70 lakh</td><td>Paid key managers' whole bonus upfront instead of deferring part</td></tr>
+  </table></div>
+</section>
+
+<section id="connections">
+  <h3>How the three corpora connect</h3>
+  <p>The value is in linking them. Five companies appear in both the policy and the penalty corpus
+  (IIFL, Muthoot, Manappuram, Mahindra, Shri Ram Finance Corporation), and every penalty topic except
+  two maps to a regulation in corpus 1. Here is one complete chain, found in the real documents:</p>
+  <div class="chain">
+    <div class="card reg"><div class="label">The rule</div>
+      <p>RBI Responsible Business Conduct, Chapter III.G (gold loans), paragraph 66: any surplus from
+      auctioning a borrower's pledged gold "shall be refunded to the borrower(s) … within a maximum period
+      of seven working days".</p></div>
+    <div class="arrow">→</div>
+    <div class="card pol"><div class="label">The company's policy</div>
+      <p>IIFL's Fair Practices Code has a gold-loan section describing its auction procedure.</p></div>
+    <div class="arrow">→</div>
+    <div class="card enf"><div class="label">What happened</div>
+      <p>15 May 2026: RBI fined IIFL ₹3.10 lakh because it "failed to pay the surplus amount realised from
+      the auction of pledged gold articles… to certain borrowers".</p></div>
+  </div>
+  <p>Known limits: Mahindra's Internal Ombudsman breach and Hinduja's securitisation breach have no
+  matching regulation in the corpus. Several releases also name the <em>old</em> rulebooks (inspections
+  look at earlier years), so penalties are linked to rules by topic, not by exact paragraph.</p>
+</section>
+
+<section id="curation">
+  <h3>Curation decisions</h3>
+  <p>The first version of the dataset had problems that would have produced wrong answers. We checked
+  every document before building anything:</p>
+  <div class="table-wrap"><table>
+    <tr><th>Found</th><th>Why it mattered</th><th>What we did</th></tr>
+    <tr><td>No regulation covered Fair Practices Codes</td><td>Comparing Codes against KYC or fraud rules would report "gap" everywhere, a false finding</td><td>Added the Responsible Business Conduct Directions</td></tr>
+    <tr><td>BNP Paribas's Code was a <em>bank's</em> Code</td><td>Banks follow different rules</td><td>Removed; replaced with Manappuram and Mahindra</td></tr>
+    <tr><td>Bajaj Housing Finance is a housing finance company</td><td>Governed by separate housing-finance directions</td><td>Removed</td></tr>
+    <tr><td>TransUnion CIBIL and Asset Care were fined, but are not NBFCs</td><td>Precedents from other kinds of entity</td><td>Replaced with NBFC penalties</td></tr>
+    <tr><td>The "Shriram" Code was actually <em>Shri Ram Finance Corporation Pvt Ltd</em></td><td>A lookalike name: linking it to Shriram Finance Ltd would be wrong</td><td>Kept under its correct name and added its own penalty. It becomes a red-team test in Stage 6.</td></tr>
+    <tr><td>Three penalties were from 2024</td><td>The corpus is meant to be 2026 cases</td><td>Replaced with the same companies' 2026 releases</td></tr>
+    <tr><td>Penalty topics without rules (KMP pay, CRILC)</td><td>The chain would break</td><td>Added Governance and Resolution of Stressed Assets</td></tr>
+  </table></div>
+</section>
+
+<!-- ================================================================== -->
+<section id="stages">
+  <h2>Build stages</h2>
+  <p>The project is built one stage at a time. Each stage ends with a review before the next begins,
+  and each connects to one or more course labs.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Stage</th><th>What it adds</th><th>Course lab</th><th>Status</th></tr>
+    <tr><td>0</td><td>Project skeleton, environment check</td><td>Lab 7 (setup)</td><td><span class="status done">done</span></td></tr>
+    <tr><td>1</td><td>PDF → Markdown, three indices, retrieval measured</td><td>Lab 3</td><td><span class="status done">done</span></td></tr>
+    <tr><td>2</td><td>Question answering over the rules, with enforced citations</td><td>Labs 4, 5</td><td><span class="status done">done</span></td></tr>
+    <tr><td>3</td><td><code>check_policy_gap</code></td><td>Labs 1, 5</td><td><span class="status next">next</span></td></tr>
+    <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 4, 5</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>8</td><td>Evaluation report, "what it is not safe for"</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
+  </table></div>
+</section>
+
+<!-- ================================================================== -->
+<section id="stage-0">
+  <h2>Stage 0 · Scaffolding <span class="status done">done</span></h2>
+  <h3>What we built</h3>
+  <ul>
+    <li>The project layout: <code>aip/</code> (the course library), <code>regtech/</code> (our code),
+    <code>data/corpus/</code> with one folder per corpus, <code>tests/</code>, <code>reports/</code>.</li>
+    <li>The <strong>manifest</strong>: one row per document. Every row is validated, so a bad date,
+    a malformed id or a missing file is caught immediately rather than surfacing as a strange result later.</li>
+    <li>An <strong>environment check</strong>, <code>python -m regtech check --live</code>: imports every
+    <code>aip</code> module, confirms the Gemini key, checks the folders and manifest, and makes one tiny
+    real model call.</li>
+  </ul>
+  <h3>Connection to the labs</h3>
+  <p>This is the operational groundwork Lab 7 insists on: configuration through <code>.env</code>,
+  model tiers instead of hard-coded model names, and the response cache that makes re-runs free.</p>
+  <h3>Example</h3>
+<pre><code>Live model call (costs a fraction of a cent; free on re-run via cache)
+  [ OK ] chat(tier=SMALL) replied 'OK'
+  [ OK ] embed() returned a 3072-dim vector
+ALL CHECKS PASSED</code></pre>
+  <h3>Result</h3>
+  <p>Environment verified: Python 3.12, all <code>aip</code> modules import, Gemini chat and embedding calls
+  work. Second run served from cache at $0.</p>
+</section>
+
+<!-- ================================================================== -->
+<section id="stage-1">
+  <h2>Stage 1 · Corpus ingestion and retrieval <span class="status done">done</span></h2>
+
+  <h3>What we built</h3>
+  <ol>
+    <li><strong>PDF → Markdown converter.</strong> PDFs have no real structure, just positioned text.
+    The converter reads each line's font size and boldness, recognises the RBI's layout
+    (Chapter → Section "A." → Subsection "A.1" → numbered paragraph "19."), and writes Markdown headings.
+    It removes noise: the Hindi letterhead, running headers and footers, page numbers, tables of contents,
+    and website menus on the two web-page printouts. Tables are kept as tables.</li>
+    <li><strong>Three separate indices</strong>, one per corpus, each cut into chunks and embedded with
+    Gemini's embedding model.</li>
+    <li><strong>A hand-labelled test set</strong> of 59 questions (24 on rules, 18 on policies, 17 on
+    penalties). Each label quotes the exact phrase that answers the question.</li>
+    <li><strong>A measurement sweep</strong>, following Lab 3: try each way of cutting documents, then each
+    chunk size, then each search method, and keep what measures best.</li>
+  </ol>
+
+  <h3>Connection to Lab 3: Semantic Search That Actually Works</h3>
+  <p>Lab 3's lesson was that chunking is the biggest lever on search quality, and that you must measure
+  rather than assume. We applied its method three times, once per corpus, because the corpora are very
+  different: dense legal clauses, varied company prose, and short templated press releases.</p>
+
+  <h3>Additions to aip in this stage</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Module</th><th>Addition</th><th>Why</th></tr>
+    <tr><td><code>retry</code> (new)</td><td>Retry with back-off, shared by chat and embeddings</td><td>One embedding timeout crashed the first sweep; chat calls already retried, embeddings did not</td></tr>
+    <tr><td><code>chunking</code></td><td><code>whole</code> strategy, heading-prefix switch, <code>annotate_provenance</code></td><td>Tag every chunk with its heading path and paragraph number, whichever chunker wins</td></tr>
+    <tr><td><code>retrieval</code></td><td><code>chunk_filter</code> on dense / keyword / hybrid search</td><td>"Search only IIFL's policy", needed by <code>check_policy_gap</code></td></tr>
+    <tr><td><code>evals</code></td><td>Evidence-phrase relevance, label checker, per-kind breakdown</td><td>Lab 3 scored whole documents; citations need clause-level scoring</td></tr>
+  </table></div>
+
+  <h3>Examples</h3>
+  <h4>1 · What conversion does</h4>
+  <div class="grid2">
+    <div><div class="label">Raw PDF text (page 8)</div>
+<pre><code>भारतीय įरज़वर् बैंक
+RESERVE BANK OF INDIA
+8
+Chapter III – Responsible Lending Conduct
+A. Fair Practices Code for NBFCs
+...
+19. In case of receipt of request from
+the borrower for transfer of borrowal
+account, the consent or otherwise ...</code></pre></div>
+    <div><div class="label">Markdown output</div>
+<pre><code>## Chapter III – Responsible Lending Conduct
+### A. Fair Practices Code for NBFCs
+#### A.4 General
+
+19. In case of receipt of request from the
+borrower for transfer of borrowal account,
+the consent or otherwise i.e., objection of
+the NBFC, if any, shall be conveyed within
+21 days from the date of receipt of request.</code></pre></div>
+  </div>
+
+  <h4>2 · A labelled test question</h4>
+<pre><code>Question : "A borrower wants to shift their loan to another lender.
+            How long does the NBFC have to give its consent or objection?"
+Answer is: Responsible Business Conduct, containing the phrase
+           "shall be conveyed within 21 days from the date of receipt of request"
+Kind     : paraphrase  (the question shares almost no words with the rule)</code></pre>
+  <p>The system found it first time (rank 1), in the chunk tagged
+  <em>Chapter III – Responsible Lending Conduct › A. Fair Practices Code for NBFCs</em>.</p>
+
+  <h4>3 · Meaning, not keywords</h4>
+  <p>Penalty question <em>"extra money from selling a borrower's pledged gold was not given back to them"</em>
+  retrieved IIFL's May 2026 release at rank 1, even though the release says <em>"failed to pay the surplus
+  amount realised from the auction of pledged gold articles"</em>. Almost no words in common.</p>
+
+  <h4>4 · A miss</h4>
+  <p><em>"CKYCR upload deadline after opening an account"</em> ranked the right passage only 6th. The top
+  results were other paragraphs about the CKYCR registry. Exact identifiers like <code>CKYCR</code> and
+  <code>SMA-2</code> are where meaning-based search is weakest.</p>
+
+  <h3>Results</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Corpus</th><th>Chosen setup</th><th class="num">nDCG@10</th><th class="num">recall@5</th><th class="num">hit@1</th><th class="num">MRR</th></tr>
+    <tr><td>Regulations (24 questions)</td><td>sliding windows, 800 characters</td><td class="num">0.900</td><td class="num">0.958</td><td class="num">0.792</td><td class="num">0.872</td></tr>
+    <tr><td>Company policies (18)</td><td>sliding windows, 1600 characters</td><td class="num">0.959</td><td class="num">1.000</td><td class="num">0.889</td><td class="num">0.944</td></tr>
+    <tr><td>Penalties (17)</td><td>heading-aware, 800 characters</td><td class="num">0.995</td><td class="num">1.000</td><td class="num">1.000</td><td class="num">1.000</td></tr>
+  </table></div>
+  <p>All three meet Lab 3's targets (nDCG@10 ≥ 0.80, recall@5 ≥ 0.85, hit@1 ≥ 0.65). The whole sweep
+  cost about <strong>$0.27</strong> in embeddings; every re-run is $0 from the cache.
+  <span class="muted">In plain words: hit@1 is "was the right passage the very first result?",
+  recall@5 is "was it anywhere in the top 5?", MRR and nDCG reward putting it near the top.</span></p>
+
+  <h3>What we learned</h3>
+  <div class="callout warn"><p><strong>Lab 3's winning method loses here.</strong> On the Lab 3 corpus,
+  cutting at headings won. On RBI Directions it scores 0.82 against 0.90 for simple sliding windows,
+  because the rules have many tiny subsections and heading-cutting produces 2,201 fragments too small to
+  carry context. A technique that is right on one corpus can be wrong on another, which is why we measure.</p></div>
+  <ul>
+    <li><strong>Size matters, but not in a straight line:</strong> 400 characters scored 0.845, 800 scored 0.900,
+    1600 scored 0.757. Too big and one chunk mixes several rules.</li>
+    <li><strong>Keyword + meaning ("hybrid") search lost again</strong>, as in Lab 3. It helps exact
+    identifiers (MRR 0.81 vs 0.74) but hurts plain-language questions (0.68 vs 0.94).</li>
+    <li><strong>Whole press releases search worse than chunks</strong> (MRR 0.93 vs 1.00). About 80% of each
+    release is identical boilerplate, which drowns out the one sentence describing the charge.</li>
+    <li><strong>The penalty scores are saturated:</strong> 13 short documents are too easy to rank. The hard
+    part of precedent-finding is saying "no comparable precedent", which Stage 4 will measure.</li>
+    <li><strong>A labelling mistake was caught</strong> by reading the misses: one rule appears twice with
+    different spellings ("capitalisation" and "capitalization"). Fixing the label moved nDCG@10 from 0.882 to 0.900.</li>
+  </ul>
+</section>
+
+<!-- ================================================================== -->
+<section id="stage-2">
+  <h2>Stage 2 · Grounded question answering <span class="status done">done</span></h2>
+
+  <h3>What we built</h3>
+  <p>A question-answering assistant over the 12 RBI Directions. You ask a question in plain English;
+  it finds the six most relevant passages, and the model answers <em>only</em> from them. Four rules
+  are enforced:</p>
+  <ol>
+    <li><strong>Every sentence is cited</strong> with a numbered source, and each source is labelled with
+    its Direction, section and paragraph numbers, so the answer can say "para 19 of the Responsible
+    Business Conduct Directions".</li>
+    <li><strong>Citations are checked by code, not trusted.</strong> An answer that cites a source that
+    does not exist, or has no citations, gets one chance to be rewritten. If it is still wrong, the
+    system refuses rather than show it ("fail closed").</li>
+    <li><strong>It refuses when the rules do not cover the question</strong>, using one exact sentence
+    that a program can detect.</li>
+    <li><strong>It answers the half it can.</strong> For a question that is partly covered, it answers
+    that part and says plainly which part the rules do not cover.</li>
+  </ol>
+  <p>Try it: <code>python -m regtech ask "How long does an NBFC have to respond to a loan transfer request?"</code></p>
+
+  <h3>Connection to Labs 4 and 5</h3>
+  <p><strong>Lab 4 (RAG v1: grounded answers with citations)</strong> set the targets and the method we
+  follow: citation validity enforced in code, refusal measured in <em>both</em> directions, an LLM
+  judge for faithfulness and correctness that must be calibrated against human labels, and the
+  "gold context" experiment that separates retrieval errors from generation errors.
+  <strong>Lab 5 (diagnose, fix, prove)</strong> shaped how we handled the first run's failures: find
+  which stage failed, fix that stage, and keep the before/after evidence.</p>
+
+  <h3>Additions to aip in this stage</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Module</th><th>Addition</th><th>Why</th></tr>
+    <tr><td><code>rag</code></td><td>Validate → repair once → refuse if still invalid; truncation retried at double the token budget</td><td>Lab 4 Part B belongs in the reference pipeline, not rewritten per project</td></tr>
+    <tr><td><code>rag</code></td><td><code>answer_from_hits</code></td><td>Run the same generator on "gold" passages (Lab 4's decomposition)</td></tr>
+    <tr><td><code>retrieval</code></td><td>Labelled sources in <code>format_context</code></td><td>So the model sees "KYC Directions | para 41", not just "reg-kyc"</td></tr>
+    <tr><td><code>chunking</code></td><td>Paragraph <em>range</em> per chunk</td><td>A chunk that starts in para 17 can hold the answer in para 19</td></tr>
+    <tr><td><code>evals</code></td><td><code>refusal_metrics</code></td><td>Refusal precision and recall together, with raw counts</td></tr>
+  </table></div>
+
+  <h3>How we tested it</h3>
+  <p>31 questions with reference answers: 24 answerable, 2 <em>partial</em> (half answerable, half not),
+  and 5 <em>unanswerable</em>. Two of the unanswerable ones are traps. One asks for the capital
+  adequacy ratio of an ordinary NBFC, when the documents only give the figure for microfinance lenders
+  (15%). The other asks about climate risk, whose Direction is only mentioned by name.</p>
+
+  <h3>Examples</h3>
+  <h4>1 · A cited answer</h4>
+<pre><code>Q: A borrower wants to shift their loan to another lender. How long does the
+   NBFC have to give its consent or objection?
+
+A: According to para 19 of the Responsible Business Conduct Directions, 2025,
+   ... the consent or objection of the NBFC must be conveyed "within 21 days
+   from the date of receipt of request" [1][2].
+
+Sources:
+  [1] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code
+      for NBFCs > A.3 Disbursement of loans ... | paras 17-20
+  [2] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code
+      for NBFCs > A.4 General | paras 19-21</code></pre>
+
+  <h4>2 · A partial answer</h4>
+<pre><code>Q: What is the minimum tenure of a Chief Compliance Officer, and what minimum
+   salary must the CCO be paid?
+
+A: According to para 21 of the Compliance Function Directions, 2026, the CCO
+   shall be appointed for a fixed minimum tenure of "not less than three
+   years" ... [1]. The provided sources do not contain information regarding
+   the minimum salary that must be paid to the CCO.</code></pre>
+
+  <h4>3 · The trap, refused</h4>
+<pre><code>Q: What minimum capital adequacy ratio must a middle-layer NBFC that is not a
+   microfinance institution maintain?
+
+A: I don't have enough information in the provided sources to answer that.</code></pre>
+
+  <h3>Results</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Metric (Lab 4 target)</th><th>Result</th></tr>
+    <tr><td>Citation validity (1.00)</td><td><span class="tag good">1.000</span></td></tr>
+    <tr><td>Faithfulness, judged (≥ 0.90)</td><td><span class="tag good">0.968</span> <span class="muted">calibration pending</span></td></tr>
+    <tr><td>Correctness on answerable, judged (≥ 0.75)</td><td><span class="tag good">0.917</span> <span class="muted">calibration pending</span></td></tr>
+    <tr><td>Refusal recall (≥ 4/5)</td><td><span class="tag good">5/5</span></td></tr>
+    <tr><td>Refusal precision (≥ 0.70)</td><td><span class="tag good">0.83</span> (5 of 6 refusals right)</td></tr>
+    <tr><td>Cost per question (≤ $0.01)</td><td><span class="tag good">$0.0045</span></td></tr>
+    <tr><td>p95 latency (≤ 6 s)</td><td><span class="tag warn">6.7 s</span> borderline; typical 4.7 s</td></tr>
+  </table></div>
+  <p><strong>Where the remaining errors come from.</strong> Given the correct passages directly, the same
+  model scores 0.958; with its own search it scores 0.917. So search costs about 0.04 and the model's
+  own mistakes about 0.04. Both remaining failures are search misses, including the "CKYCR" identifier
+  that Stage 1 already flagged.</p>
+  <p class="muted"><em>"Judged"</em> means scored by a second AI model (Gemini 3.5, deliberately a different
+  model from the one answering). Lab 4 does not allow a judged number to be trusted until it has been
+  compared with 20 human-labelled answers; that sheet is ready in
+  <code>reports/stage2_judge_calibration.csv</code>.</p>
+
+  <h3>What we learned</h3>
+  <div class="callout bad"><p><strong>The biggest bug was a word limit, not a prompt.</strong> The first run
+  refused 5 answerable questions (precision 0.50). The logs showed that 4 of them were not refusals at
+  all: the answers had been <em>cut off</em>. The model is a "reasoning" model whose hidden thinking
+  counts against the word limit, so the answer ran out of room, and our safety rule turned the
+  broken answer into a refusal. After the fix (retry with double the limit, the same rule the course
+  library already used elsewhere), correctness rose from 0.79 to 0.92 and precision to 0.83.</p></div>
+  <ul>
+    <li><strong>Balanced beats strict.</strong> A stricter prompt refused both partial questions and one
+    more answerable question (precision 0.56), without catching any extra unanswerable ones. We keep the
+    balanced prompt: an answer that clearly says what it does <em>not</em> cover is more useful to an analyst.</li>
+    <li><strong>Measurements need checking too.</strong> The first "perfect search" baseline scored
+    <em>worse</em> than real search, which is impossible, and that exposed a flaw in how the baseline was built.
+    The first latency probe included a 22-second cold start. Both were fixed before reporting.</li>
+    <li><strong>Two metrics disagreeing is a clue.</strong> One answer was judged fully correct but
+    "unfaithful": it spelled out an abbreviation (ACB, "Audit Committee of the Board") that the source
+    did not. The human labels will decide whether that is a real slip or an over-strict judge.</li>
+  </ul>
+</section>
+
+<section id="stage-3">
+  <h2>Stage 3 · check_policy_gap <span class="status next">next</span></h2>
+  <p>Given a company and a topic, retrieve the relevant rule paragraphs and, separately, the matching
+  parts of that company's Code; then report each requirement as met, missing, weaker, inconsistent or
+  outdated, with both citations.</p>
+</section>
+
+<section id="stage-4">
+  <h2>Stage 4 · find_enforcement_precedent <span class="status todo">planned</span></h2>
+  <p>Given a risk or a gap, return real penalties for the same kind of failure (company, date, fine,
+  charge), or say clearly that no comparable precedent exists.</p>
+</section>
+
+<section id="stage-5">
+  <h2>Stage 5 · Compliance calendar <span class="status todo">planned</span></h2>
+  <p>Extract every deadline into a validated structure: fixed dates, recurring duties ("quarterly")
+  and event-triggered deadlines ("within 14 days of detecting fraud"). Then answer
+  "what is due in the next N days?".</p>
+</section>
+
+<section id="stage-6">
+  <h2>Stage 6 · Agent and guardrails <span class="status todo">planned</span></h2>
+  <p>Wire the three tools into an agent with call and spend budgets, then attack it: a poisoned
+  company policy containing hidden instructions, lookalike company names, and more. Targets from Lab 6:
+  block at least 80% of attacks with at most 25% false alarms.</p>
+</section>
+
+<section id="stage-7">
+  <h2>Stage 7 · Service layer <span class="status todo">planned</span></h2>
+  <p>A FastAPI service (<code>/ask</code>, <code>/metrics</code>) with caching, streaming, tracing, a cost
+  dashboard, and a regression gate that blocks changes which make quality worse.</p>
+</section>
+
+<section id="stage-8">
+  <h2>Stage 8 · Evaluation report <span class="status todo">planned</span></h2>
+  <p>The final report, including an honest section on what the copilot is <em>not</em> safe for:
+  it is not legal advice, and it cannot see rules outside its 12 documents.</p>
+</section>
+
+<!-- ================================================================== -->
+<section id="aip-changes">
+  <h2>Changes to the aip library</h2>
+  <p>Every change is backwards compatible (lab code still works unchanged), marked <code>[regtech]</code> in
+  the source, tested in <code>tests/test_aip_extensions.py</code>, and listed in full in
+  <code>aip/CHANGELOG_REGTECH.md</code>. The unmodified library is the first git commit, so
+  <code>git diff</code> shows every line we changed.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Stage</th><th>Module</th><th>Change</th></tr>
+    <tr><td>1</td><td><code>retry</code> (new)</td><td><code>is_retryable</code>, <code>call_with_retries</code>, shared by <code>llm</code> and <code>embed</code></td></tr>
+    <tr><td>1</td><td><code>embed</code></td><td>Embedding calls retry transient errors</td></tr>
+    <tr><td>1</td><td><code>chunking</code></td><td><code>markdown_chunks(prefix=)</code>, <code>whole</code> and <code>markdown_noprefix</code> strategies, <code>strip_heading_prefix</code>, <code>annotate_provenance</code></td></tr>
+    <tr><td>1</td><td><code>retrieval</code></td><td><code>chunk_filter</code> on Dense, BM25 and Hybrid search</td></tr>
+    <tr><td>1</td><td><code>evals</code></td><td><code>evidence_labels</code>, <code>evidence_retrieval_metrics</code>, <code>missing_evidence</code>, <code>EvalReport.breakdown</code>, <code>EvalReport.latency_percentile</code></td></tr>
+    <tr><td>2</td><td><code>rag</code></td><td><code>validate_answer</code>, <code>is_refusal</code>; <code>RagPipeline(max_repairs, fail_closed, context_label, max_tokens)</code>; truncation retried at double budget; <code>answer_from_hits</code>; <code>RagAnswer.problems / repairs / fallback / budget_doublings</code></td></tr>
+    <tr><td>2</td><td><code>retrieval</code></td><td><code>format_context(label=...)</code></td></tr>
+    <tr><td>2</td><td><code>chunking</code></td><td><code>annotate_provenance</code> records <code>meta["numbers"]</code> (every paragraph a chunk touches)</td></tr>
+    <tr><td>2</td><td><code>evals</code></td><td><code>refusal_metrics</code></td></tr>
+  </table></div>
+</section>
+
+<!-- ================================================================== -->
+<section id="run">
+  <h2>How to run it</h2>
+  <p>From the project folder, with the virtual environment active (<code>.venv\Scripts\Activate.ps1</code>):</p>
+  <div class="table-wrap"><table>
+    <tr><th>Command</th><th>What it does</th></tr>
+    <tr><td><code>python -m regtech check --live</code></td><td>Verify the environment with one tiny model call</td></tr>
+    <tr><td><code>python -m regtech ingest</code></td><td>Convert all 36 PDFs to Markdown</td></tr>
+    <tr><td><code>python -m regtech eval-retrieval</code></td><td>Re-run the Stage 1 search measurements ($0 from cache)</td></tr>
+    <tr><td><code>python -m regtech ask "your question"</code></td><td>Ask the RBI Directions a question; answer with cited paragraphs</td></tr>
+    <tr><td><code>python -m regtech eval-qa</code></td><td>Re-run the Stage 2 evaluation (about $0.04 for the uncached latency probe)</td></tr>
+    <tr><td><code>python -m regtech judge-kappa</code></td><td>After hand-labelling the calibration sheet: how far to trust the AI judge</td></tr>
+    <tr><td><code>python -m pytest</code></td><td>Run the offline test suite</td></tr>
+  </table></div>
+</section>
+
+<!-- ================================================================== -->
+<section id="glossary">
+  <h2>Glossary</h2>
+  <dl class="gloss">
+    <dt>NBFC</dt><dd>Non-Banking Financial Company: a lender regulated by the RBI that is not a bank.</dd>
+    <dt>RBI Directions</dt><dd>The RBI's binding rulebooks, reorganised topic by topic in November 2025.</dd>
+    <dt>Fair Practices Code (FPC)</dt><dd>A company's published promise about how it treats borrowers. The RBI requires one.</dd>
+    <dt>KYC</dt><dd>Know Your Customer: verifying who a customer is and how risky they are.</dd>
+    <dt>CKYCR</dt><dd>Central KYC Records Registry, where lenders must upload customers' KYC records.</dd>
+    <dt>KFS</dt><dd>Key Facts Statement: a standard one-page loan summary a borrower must get before signing.</dd>
+    <dt>NPA</dt><dd>Non-performing asset: a loan overdue for more than 90 days, treated as "bad".</dd>
+    <dt>SMA-0 / 1 / 2</dt><dd>Early-stress buckets for loans overdue up to 30 / 60 / 90 days.</dd>
+    <dt>CRILC</dt><dd>Central Repository of Information on Large Credits: where lenders report borrowers with ₹5 crore or more of exposure.</dd>
+    <dt>Corpus</dt><dd>A collection of documents. This project has three.</dd>
+    <dt>Chunk</dt><dd>A piece of a document small enough to search and to show a model.</dd>
+    <dt>Embedding</dt><dd>A list of numbers representing a text's meaning; similar meanings have similar numbers.</dd>
+    <dt>Dense / BM25 / hybrid search</dt><dd>Search by meaning / by keyword matches / a blend of both.</dd>
+    <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
+    <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
+  </dl>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 2 · 29 September 2026</p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("themeBtn");
+  try { var saved = localStorage.getItem("guide-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  btn.addEventListener("click", function () {
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("guide-theme", next); } catch (e) {}
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.side a[href^='#']"));
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && byId[e.target.id]) {
+        links.forEach(function (a) { a.classList.remove("active"); });
+        byId[e.target.id].classList.add("active");
+      }
+    });
+  }, { rootMargin: "-10% 0px -80% 0px" });
+  document.querySelectorAll("main section[id]").forEach(function (s) { observer.observe(s); });
+})();
+</script>
+</body>
+</html>

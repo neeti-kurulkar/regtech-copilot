@@ -200,6 +200,27 @@ def evidence_retrieval_metrics(ranked: Sequence[tuple[str, str]], relevant: Sequ
     return retrieval_metrics(retrieved[:k] if k else retrieved, rel, ks)
 
 
+def refusal_metrics(refused: Sequence[bool], should_refuse: Sequence[bool]) -> dict[str, float]:
+    """[regtech] Refusal recall AND precision, with the raw counts behind them.
+
+    Lab 4's rule: never report one without the other (refusing everything gives
+    recall 1.0), and report counts, because on a handful of unanswerable
+    questions one case moves the ratio by 0.2.
+    """
+    if len(refused) != len(should_refuse):
+        raise ValueError("refused and should_refuse must be the same length")
+    tp = sum(1 for r, s in zip(refused, should_refuse) if r and s)
+    n_refused, n_should = sum(map(bool, refused)), sum(map(bool, should_refuse))
+    return {
+        "refusal_recall": tp / n_should if n_should else float("nan"),
+        "refusal_precision": tp / n_refused if n_refused else float("nan"),
+        "refused_correctly": float(tp),
+        "refused_total": float(n_refused),
+        "should_refuse_total": float(n_should),
+        "over_refusals": float(n_refused - tp),
+    }
+
+
 def missing_evidence(relevant_by_case: dict[str, Sequence[dict]], docs: dict[str, str]) -> list[str]:
     """Labels whose doc is unknown or whose evidence phrase is not verbatim in the doc.
 

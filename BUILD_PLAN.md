@@ -36,6 +36,9 @@ Run from the repo root with the venv active (`.venv\Scripts\Activate.ps1`):
 | `python -m regtech init-manifest` | Create `data/manifest.csv` with its header row |
 | `python -m regtech ingest [--only DOC_ID]` | PDF → Markdown for every manifest doc into `data/processed/`; writes `reports/stage1_ingestion.md` |
 | `python -m regtech eval-retrieval [--corpus C]` | Lab 3 retrieval sweep per corpus; writes `reports/stage1_retrieval.{md,json}` |
+| `python -m regtech ask "QUESTION" [--strict]` | Grounded, cited answer from the RBI Directions |
+| `python -m regtech eval-qa [--no-judge]` | Lab 4 evaluation of the Q&A; writes `reports/stage2_qa.{md,json}` and the judge calibration sheet |
+| `python -m regtech judge-kappa` | Cohen's κ between the LLM judge and your hand labels in `reports/stage2_judge_calibration.csv` |
 | `python -m pytest` | Offline unit tests |
 
 Later stages add their own subcommands here.

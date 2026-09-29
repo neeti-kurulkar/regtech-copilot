@@ -301,16 +301,21 @@ class ChromaRetriever(Retriever):
             return hits
 
 
-def format_context(hits: Sequence[Hit], max_chars: int = 8000) -> str:
+def format_context(hits: Sequence[Hit], max_chars: int = 8000,
+                   label: Callable[[Hit], str] | None = None) -> str:
     """Render hits as a numbered context block the generator can cite.
 
     Numbering is what makes `[1]`-style citations checkable: the generator can
     only cite a number you gave it, so a hallucinated citation index is a
     detectable error rather than an invisible one.
+
+    [regtech] `label(hit)` replaces the bare doc_id in each source header, e.g.
+    "KYC Directions | Chapter VI | paras 38-40", so the model can name the rule
+    it relies on.
     """
     parts, total = [], 0
     for i, h in enumerate(hits, start=1):
-        block = f"[{i}] (source: {h.doc_id})\n{h.text.strip()}\n"
+        block = f"[{i}] (source: {label(h) if label else h.doc_id})\n{h.text.strip()}\n"
         if total + len(block) > max_chars:
             break
         parts.append(block)
