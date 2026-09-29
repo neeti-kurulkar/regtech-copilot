@@ -1,0 +1,1877 @@
+{
+  "aggregate": {
+    "recall": 1.0,
+    "precision": 1.0,
+    "hit_at_1": 1.0,
+    "correct_no_precedent": 1.0,
+    "false_precedent": 0.0,
+    "baseline_hit_at_1": 0.9473684210526315,
+    "baseline_false_precedent": 1.0
+  },
+  "refusal": {
+    "refusal_recall": 1.0,
+    "refusal_precision": 1.0,
+    "refused_correctly": 13.0,
+    "refused_total": 13.0,
+    "should_refuse_total": 13.0,
+    "over_refusals": 0.0
+  },
+  "per_case": {
+    "P01": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "failure to periodically review risk categorisation of customer accounts",
+        "precedents": [
+          {
+            "case_id": "enf-fusion-2026-08-14",
+            "entity": "Fusion Finance Limited",
+            "press_release_date": "2026-08-14",
+            "order_date": "2026-08-14",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months.",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses the failure to periodically review the risk categorisation of accounts."
+          },
+          {
+            "case_id": "enf-muthoot-2026-07-17",
+            "entity": "Muthoot Finance Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-10",
+            "penalty_inr": 580000,
+            "penalty_text": "\u20b95.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+            "directions": [
+              "Reserve Bank of India Know Your Customer (KYC) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts;",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses the failure to put in place a system of periodic review of risk categorisation of accounts."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-ola-fs-2026-09-24",
+            "entity": "Ola Financial Services Private Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-24",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three lakh ten thousand only)",
+            "directions": [
+              "Know Your Customer (KYC)"
+            ],
+            "matched_charge": "The company failed to carry out risk categorisation of certain customers.",
+            "match": "related",
+            "reason": "The charge pertains to risk categorisation under KYC norms, but relates to the initial/ongoing categorisation rather than periodic review."
+          },
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system to categorize its customers as low, medium and high- risk category; and,",
+            "match": "related",
+            "reason": "The charge is in the same regulatory area of KYC customer risk categorisation, but concerns the initial classification framework rather than periodic review."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions; and",
+            "match": "related",
+            "reason": "The charge falls under the same regulatory area of KYC Directions, but concerns transaction monitoring software rather than risk categorisation review."
+          }
+        ],
+        "no_precedent": false,
+        "message": "2 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-fusion-2026-08-14",
+          "enf-ola-fs-2026-09-24",
+          "enf-muthoot-2026-07-17",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-five-star-2026-06-19",
+          "enf-satya-2026-07-17"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P02": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "customers were never sorted into low, medium or high risk",
+        "precedents": [
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system to categorize its customers as low, medium and high- risk category; and,",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses the failure to categorize customers into low, medium, and high-risk categories under KYC directions."
+          },
+          {
+            "case_id": "enf-ola-fs-2026-09-24",
+            "entity": "Ola Financial Services Private Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-24",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three lakh ten thousand only)",
+            "directions": [
+              "Know Your Customer (KYC)"
+            ],
+            "matched_charge": "The company failed to carry out risk categorisation of certain customers.",
+            "match": "same_failure",
+            "reason": "Failing to carry out risk categorisation of customers is the same compliance failure of not sorting customers into risk categories."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-fusion-2026-08-14",
+            "entity": "Fusion Finance Limited",
+            "press_release_date": "2026-08-14",
+            "order_date": "2026-08-14",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months.",
+            "match": "related",
+            "reason": "Concerns risk categorisation under KYC directions, but specifically targets the periodic review requirement rather than the initial sorting/categorisation system."
+          },
+          {
+            "case_id": "enf-muthoot-2026-07-17",
+            "entity": "Muthoot Finance Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-10",
+            "penalty_inr": 580000,
+            "penalty_text": "\u20b95.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+            "directions": [
+              "Reserve Bank of India Know Your Customer (KYC) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts;",
+            "match": "related",
+            "reason": "Concerns customer risk categorisation obligations under KYC directions, but relates to periodic review rather than initial risk categorization."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters.",
+            "match": "related",
+            "reason": "Concerns risk gradation in loan pricing and KYC compliance, but addresses disclosure of interest rate rationale rather than customer KYC risk categorization."
+          }
+        ],
+        "no_precedent": false,
+        "message": "2 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-ola-fs-2026-09-24",
+          "enf-fusion-2026-08-14",
+          "enf-muthoot-2026-07-17",
+          "enf-five-star-2026-06-19",
+          "enf-mahindra-finance-2026-02-27"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P03": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "weak software for spotting and reporting suspicious transactions",
+        "precedents": [
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions;",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses the failure to implement robust software for identifying and reporting suspicious transactions."
+          },
+          {
+            "case_id": "enf-muthoot-2026-07-17",
+            "entity": "Muthoot Finance Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-10",
+            "penalty_inr": 580000,
+            "penalty_text": "\u20b95.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+            "directions": [
+              "Reserve Bank of India Know Your Customer (KYC) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions.",
+            "match": "same_failure",
+            "reason": "The sustained charge directly penalizes the failure to put in place robust software for identifying and reporting suspicious transactions."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-fusion-2026-08-14",
+            "entity": "Fusion Finance Limited",
+            "press_release_date": "2026-08-14",
+            "order_date": "2026-08-14",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months.",
+            "match": "related",
+            "reason": "The charge falls under KYC directions but concerns periodic review of account risk categorisation rather than transaction monitoring software."
+          },
+          {
+            "case_id": "enf-ola-fs-2026-09-24",
+            "entity": "Ola Financial Services Private Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-24",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three lakh ten thousand only)",
+            "directions": [
+              "Know Your Customer (KYC)"
+            ],
+            "matched_charge": "The company failed to carry out risk categorisation of certain customers.",
+            "match": "related",
+            "reason": "The charge is under KYC directions but addresses customer risk categorisation rather than software for suspicious transaction monitoring."
+          },
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system to categorize its customers as low, medium and high- risk category;",
+            "match": "related",
+            "reason": "The charge falls under KYC directions regarding customer risk categorisation systems rather than transaction monitoring software."
+          }
+        ],
+        "no_precedent": false,
+        "message": "2 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-five-star-2026-06-19",
+          "enf-muthoot-2026-07-17",
+          "enf-fusion-2026-08-14",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-ola-fs-2026-09-24",
+          "enf-shri-ram-finance-corp-2026-08-21"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P04": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "lender did not explain to borrowers why different categories were charged different interest rates",
+        "precedents": [
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters.",
+            "match": "same_failure",
+            "reason": "The sustained charge directly penalizes the failure to disclose the rationale for charging different interest rates to different borrower categories."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-hinduja-leyland-2026-09-04",
+            "entity": "Hinduja Leyland Finance Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-09-02",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh",
+            "directions": [
+              "Pricing of Microfinance Loans",
+              "Securitisation of Standard Assets"
+            ],
+            "matched_charge": "The company failed to put in place a Board-approved policy on pricing of microfinance loans.",
+            "match": "related",
+            "reason": "Concerns loan pricing and interest rate regulatory requirements, but relates to board approval of a pricing policy rather than explaining interest rate rationale across categories to borrowers."
+          },
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements; and",
+            "match": "related",
+            "reason": "Concerns the Fair Practices Code and disclosures in borrower agreements, but involves foreclosure charges rather than differential interest rate rationale."
+          },
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "Concerns Fair Practices Code for charging of interest, but penalizes collecting excess interest rather than failing to explain the rationale for differential interest rates."
+          }
+        ],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-five-star-2026-06-19",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-ola-fs-2026-09-24",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-fusion-2026-08-14"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P05": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "borrowers were overcharged interest on their loans",
+        "precedents": [
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "same_failure",
+            "reason": "The charge directly addresses collecting excess interest from loan accounts, which is the exact same failure as overcharging interest on loans."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements; and",
+            "match": "related",
+            "reason": "This charge pertains to unauthorized borrower fees/charges under the Fair Practices Code, which is in the same regulatory area of fair lending practices but concerns foreclosure charges rather than excess interest."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters.",
+            "match": "related",
+            "reason": "This charge concerns disclosure obligations regarding interest rate pricing and risk gradation under Fair Practice Code, which is in the same area of interest regulation but concerns transparency rather than overcharging."
+          },
+          {
+            "case_id": "enf-hinduja-leyland-2026-09-04",
+            "entity": "Hinduja Leyland Finance Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-09-02",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh",
+            "directions": [
+              "Pricing of Microfinance Loans",
+              "Securitisation of Standard Assets"
+            ],
+            "matched_charge": "The company failed to put in place a Board-approved policy on pricing of microfinance loans.",
+            "match": "related",
+            "reason": "This charge relates to loan pricing governance requirements under microfinance lending directions, which is related to loan pricing/interest regulations but is a governance failure rather than an instance of overcharging interest."
+          }
+        ],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-hero-fincorp-2026-09-24",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-iifl-2026-05-15",
+          "enf-five-star-2026-06-19",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-iifl-2026-02-13"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P06": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "no board-approved policy on pricing of microfinance loans",
+        "precedents": [
+          {
+            "case_id": "enf-hinduja-leyland-2026-09-04",
+            "entity": "Hinduja Leyland Finance Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-09-02",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh",
+            "directions": [
+              "Pricing of Microfinance Loans",
+              "Securitisation of Standard Assets"
+            ],
+            "matched_charge": "The company failed to put in place a Board-approved policy on pricing of microfinance loans.",
+            "match": "same_failure",
+            "reason": "The charge directly addresses the failure to establish a Board-approved policy on the pricing of microfinance loans, which is the exact compliance risk."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-satya-2026-07-17",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-five-star-2026-06-19",
+          "enf-muthoot-2026-07-17",
+          "enf-mahindra-finance-2026-02-27"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P07": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "synthetic securitisation",
+        "precedents": [
+          {
+            "case_id": "enf-hinduja-leyland-2026-09-04",
+            "entity": "Hinduja Leyland Finance Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-09-02",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh",
+            "directions": [
+              "Pricing of Microfinance Loans",
+              "Securitisation of Standard Assets"
+            ],
+            "matched_charge": "The company undertook activities in the nature of \u2018Synthetic Securitisation\u2019.",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses undertaking activities in the nature of synthetic securitisation in violation of RBI directions."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-ola-fs-2026-09-24",
+          "enf-satya-2026-07-17",
+          "enf-iifl-2026-02-13",
+          "enf-fusion-2026-08-14",
+          "enf-sammaan-finserve-2026-09-04"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P08": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "restructured loans were not marked as bad loans",
+        "precedents": [
+          {
+            "case_id": "enf-iifl-2026-02-13",
+            "entity": "IIFL Finance Limited",
+            "press_release_date": "2026-02-13",
+            "order_date": "2026-02-06",
+            "penalty_inr": 530000,
+            "penalty_text": "\u20b95.30 lakh (Rupees Five Lakh Thirty Thousand only)",
+            "directions": [
+              "Asset Classification"
+            ],
+            "matched_charge": "The company failed to classify certain accounts as \u2018non-performing asset\u2019, on restructuring.",
+            "match": "same_failure",
+            "reason": "The charge directly addresses the failure to classify accounts as non-performing assets (bad loans) upon restructuring."
+          },
+          {
+            "case_id": "enf-satya-2026-07-17",
+            "entity": "Satya MicroCapital Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-13",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three Lakh Ten Thousand only)",
+            "directions": [
+              "Asset Classification"
+            ],
+            "matched_charge": "The company failed to classify certain accounts as \u2018non-performing assets\u2019 upon restructuring.",
+            "match": "same_failure",
+            "reason": "The charge directly concerns the failure to classify restructured accounts as non-performing assets (bad loans)."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "2 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-iifl-2026-02-13",
+          "enf-satya-2026-07-17",
+          "enf-fusion-2026-08-14",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-ola-fs-2026-09-24"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P09": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "extra money from selling a borrower's pledged gold was not given back to them",
+        "precedents": [
+          {
+            "case_id": "enf-iifl-2026-05-15",
+            "entity": "IIFL Finance Limited",
+            "press_release_date": "2026-05-15",
+            "order_date": "2026-05-11",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh",
+            "directions": [
+              "Master Direction- Reserve Bank of India (Non-Banking Financial Company - Scale Based Regulation) Directions, 2023"
+            ],
+            "matched_charge": "The company had failed to pay the surplus amount realised from the auction of pledged gold articles, over and above the loan outstanding, to certain borrowers.",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses the failure to refund the surplus amount realized from auctioning pledged gold over the outstanding loan amount to borrowers."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-iifl-2026-05-15",
+          "enf-manappuram-2026-03-13",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-muthoot-2026-07-17",
+          "enf-five-star-2026-06-19"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P10": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "higher foreclosure charges were applied even though the loan agreement did not allow it",
+        "precedents": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements; and",
+            "match": "same_failure",
+            "reason": "The charge directly concerns levying revised foreclosure charges without having the appropriate enabling condition in the borrowers' loan agreements."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "Concerns charging/collecting unauthorized amounts under Fair Practices Code, but specifically relates to excess interest rather than foreclosure charges without loan agreement terms."
+          }
+        ],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-mahindra-finance-2026-02-27",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-iifl-2026-05-15",
+          "enf-iifl-2026-02-13",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-muthoot-2026-07-17"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P11": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "rejected complaints not escalated to the Internal Ombudsman",
+        "precedents": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company failed to ensure:\n\n(a) escalation of certain complaints, partly / wholly rejected by the company\u2019s Internal Grievance Redress Mechanism to its Internal Ombudsman within the prescribed time.\n\n(b) communication of final decision to the complainant, within the prescribed time, in certain cases.",
+            "match": "same_failure",
+            "reason": "The charge directly addresses the failure to escalate partly or wholly rejected complaints to the Internal Ombudsman within the prescribed timeline."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-mahindra-finance-2026-02-27",
+          "enf-ola-fs-2026-09-24",
+          "enf-fusion-2026-08-14",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-satya-2026-07-17",
+          "enf-muthoot-2026-07-17"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P12": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "top executives were paid their whole bonus upfront instead of deferring part of it",
+        "precedents": [
+          {
+            "case_id": "enf-manappuram-2026-03-13",
+            "entity": "Manappuram Finance Limited",
+            "press_release_date": "2026-03-13",
+            "order_date": "2026-03-09",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Guidelines on Compensation of Key Managerial Personnel-Deferral of variable pay"
+            ],
+            "matched_charge": "The company had paid the entire variable pay upfront to certain Key Managerial Personnel, without any deferment.",
+            "match": "same_failure",
+            "reason": "The charge directly addresses paying the entire variable pay (bonus) upfront without deferment to key managerial personnel, matching the described risk."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-manappuram-2026-03-13",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-muthoot-2026-07-17",
+          "enf-iifl-2026-02-13",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-iifl-2026-05-15"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P13": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "CRILC reporting failure",
+        "precedents": [
+          {
+            "case_id": "enf-sammaan-finserve-2026-09-04",
+            "entity": "Sammaan Finserve Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-08-31",
+            "penalty_inr": 420000,
+            "penalty_text": "\u20b94.20 lakh",
+            "directions": [
+              "Early Recognition of Stress and Reporting to Central Repository of Information on Large Credits (CRILC)"
+            ],
+            "matched_charge": "The company failed to report credit information of its borrower to Central Repository of Information on Large Credits (CRILC).",
+            "match": "same_failure",
+            "reason": "The charge directly addresses the failure to report borrower credit information to CRILC, which is the exact failure described in the risk."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-iifl-2026-02-13",
+          "enf-iifl-2026-05-15",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-muthoot-2026-07-17"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P14": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "more than a third of the board was replaced without asking the regulator first",
+        "precedents": [
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to take prior written permission of the RBI while appointing a director resulting in change in management, on account of change in more than 30 per cent of its directors, excluding independent directors;",
+            "match": "same_failure",
+            "reason": "Directly addresses the failure to obtain prior regulatory approval for appointing directors resulting in a change in more than 30 percent of the board."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-muthoot-2026-07-17",
+          "enf-iifl-2026-02-13",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-manappuram-2026-03-13"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P15": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "KYC records not uploaded onto CKYCR",
+        "precedents": [
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to upload KYC records of certain customers onto Central KYC Records Registry within the prescribed timeline.",
+            "match": "same_failure",
+            "reason": "Directly breaches the obligation to upload KYC records to the Central KYC Records Registry (CKYCR)."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-muthoot-2026-07-17",
+            "entity": "Muthoot Finance Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-10",
+            "penalty_inr": 580000,
+            "penalty_text": "\u20b95.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+            "directions": [
+              "Reserve Bank of India Know Your Customer (KYC) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts;",
+            "match": "related",
+            "reason": "Falls under RBI KYC Directions but addresses risk categorisation review and transaction monitoring rather than CKYCR uploading."
+          },
+          {
+            "case_id": "enf-fusion-2026-08-14",
+            "entity": "Fusion Finance Limited",
+            "press_release_date": "2026-08-14",
+            "order_date": "2026-08-14",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months.",
+            "match": "related",
+            "reason": "Falls under RBI KYC Directions but concerns periodic review of customer risk categorisation rather than uploading records to CKYCR."
+          },
+          {
+            "case_id": "enf-ola-fs-2026-09-24",
+            "entity": "Ola Financial Services Private Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-24",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three lakh ten thousand only)",
+            "directions": [
+              "Know Your Customer (KYC)"
+            ],
+            "matched_charge": "The company failed to carry out risk categorisation of certain customers.",
+            "match": "related",
+            "reason": "Concerns KYC customer risk categorisation rather than uploading KYC records onto CKYCR."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions;",
+            "match": "related",
+            "reason": "Concerns KYC directions relating to software for suspicious transaction reporting rather than CKYCR uploads."
+          }
+        ],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-muthoot-2026-07-17",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-fusion-2026-08-14",
+          "enf-ola-fs-2026-09-24",
+          "enf-five-star-2026-06-19"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "P17": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "penalty for non-compliance with Know Your Customer directions",
+        "precedents": [
+          {
+            "case_id": "enf-muthoot-2026-07-17",
+            "entity": "Muthoot Finance Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-10",
+            "penalty_inr": 580000,
+            "penalty_text": "\u20b95.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+            "directions": [
+              "Reserve Bank of India Know Your Customer (KYC) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts;",
+            "match": "same_failure",
+            "reason": "The charge directly relates to non-compliance with the RBI Know Your Customer (KYC) Directions regarding periodic review of risk categorisation."
+          },
+          {
+            "case_id": "enf-fusion-2026-08-14",
+            "entity": "Fusion Finance Limited",
+            "press_release_date": "2026-08-14",
+            "order_date": "2026-08-14",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months.",
+            "match": "same_failure",
+            "reason": "The penalty was imposed for failure to comply with the RBI Know Your Customer (KYC) Directions."
+          },
+          {
+            "case_id": "enf-ola-fs-2026-09-24",
+            "entity": "Ola Financial Services Private Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-24",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three lakh ten thousand only)",
+            "directions": [
+              "Know Your Customer (KYC)"
+            ],
+            "matched_charge": "The company failed to carry out risk categorisation of certain customers.",
+            "match": "same_failure",
+            "reason": "The failure to carry out risk categorisation of customers is a direct non-compliance with Know Your Customer (KYC) requirements."
+          },
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system to categorize its customers as low, medium and high- risk category; and,",
+            "match": "same_failure",
+            "reason": "The charge involves failure to comply with obligations under the RBI Know Your Customer (KYC) Directions."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions; and",
+            "match": "same_failure",
+            "reason": "The charge constitutes a breach of obligations under the RBI Know Your Customer (KYC) Directions."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "5 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-muthoot-2026-07-17",
+          "enf-fusion-2026-08-14",
+          "enf-ola-fs-2026-09-24",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-five-star-2026-06-19",
+          "enf-sammaan-finserve-2026-09-04"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N01": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Gold auction reserve price set below 90 per cent of the gold's current value",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-iifl-2026-05-15",
+            "entity": "IIFL Finance Limited",
+            "press_release_date": "2026-05-15",
+            "order_date": "2026-05-11",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh",
+            "directions": [
+              "Master Direction- Reserve Bank of India (Non-Banking Financial Company - Scale Based Regulation) Directions, 2023"
+            ],
+            "matched_charge": "The company had failed to pay the surplus amount realised from the auction of pledged gold articles, over and above the loan outstanding, to certain borrowers.",
+            "match": "related",
+            "reason": "The charge concerns auction procedures for pledged gold articles, which is the same regulatory area as gold auction rules, but addresses refunding surplus amounts rather than fixing the reserve price."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-iifl-2026-05-15",
+          "enf-manappuram-2026-03-13",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-muthoot-2026-07-17",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-fusion-2026-08-14"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N02": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Borrowers not given a Key Facts Statement before signing the loan agreement",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements; and",
+            "match": "related",
+            "reason": "Both concern Fair Practices Code compliance regarding loan disclosures and agreements with borrowers, but this charge concerns levying foreclosure charges not stipulated in the loan agreement rather than failing to provide a Key Facts Statement."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters.",
+            "match": "related",
+            "reason": "Both concern regulatory obligations under the Fair Practice Code regarding pre-loan transparency and disclosures to borrowers in loan documentation, but this charge concerns interest rate risk gradation disclosures rather than a Key Facts Statement."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-mahindra-finance-2026-02-27",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-five-star-2026-06-19",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-iifl-2026-05-15"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N03": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Original property documents not returned within 30 days after the loan was repaid",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements",
+            "match": "related",
+            "reason": "The charge falls under Fair Practices Code / lending conduct rules, but addresses improper levy of foreclosure charges rather than the return of property documents post-repayment."
+          },
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "The charge concerns Fair Practices Code for Lenders regarding interest charging, which is in the same regulatory area of lending practices but covers a different obligation."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters.",
+            "match": "related",
+            "reason": "The charge pertains to Fair Practices Code disclosures in loan documents, which is in the same regulatory domain of lending conduct but concerns interest rate disclosures rather than property document release."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-iifl-2026-05-15",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-five-star-2026-06-19",
+          "enf-muthoot-2026-07-17"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N04": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Recovery agents phoned borrowers late at night to collect overdue loans",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "Concerns Fair Practices Code for lenders, but relates to interest calculation rather than recovery agent conduct or timing of collection calls."
+          },
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements;",
+            "match": "related",
+            "reason": "Concerns Fair Practices Code compliance regarding loan terms/charges and grievance redressal, rather than recovery agent collection practices."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-hero-fincorp-2026-09-24",
+          "enf-iifl-2026-05-15",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-satya-2026-07-17",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-fusion-2026-08-14"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N05": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Fraud cases were reported to the RBI after the 14-day deadline",
+        "precedents": [],
+        "related": [],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus.",
+        "candidates_considered": [
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-fusion-2026-08-14",
+          "enf-muthoot-2026-07-17",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-five-star-2026-06-19"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N06": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "The Chief Compliance Officer was removed before completing the minimum tenure",
+        "precedents": [],
+        "related": [],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus.",
+        "candidates_considered": [
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-manappuram-2026-03-13",
+          "enf-iifl-2026-05-15",
+          "enf-iifl-2026-02-13",
+          "enf-five-star-2026-06-19"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N07": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Requests to transfer a loan account to another lender were refused without reasons",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements",
+            "match": "related",
+            "reason": "Both fall under the Fair Practices Code governing loan account management and customer rights upon closure/transfer, but this charge concerns foreclosure charges rather than refusing transfer requests without reason."
+          },
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "Pertains to compliance with Fair Practices Code guidelines for lenders, but specifically addresses excess interest collection rather than loan account transfer refusal."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-iifl-2026-02-13",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-satya-2026-07-17",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-hinduja-leyland-2026-09-04"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "N08": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Microfinance loans given to households above the income limit",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-hinduja-leyland-2026-09-04",
+            "entity": "Hinduja Leyland Finance Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-09-02",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh",
+            "directions": [
+              "Pricing of Microfinance Loans",
+              "Securitisation of Standard Assets"
+            ],
+            "matched_charge": "The company failed to put in place a Board-approved policy on pricing of microfinance loans.",
+            "match": "related",
+            "reason": "The charge involves microfinance regulatory directions, but pertains to the requirement for a Board-approved policy on pricing rather than household income limits for microfinance eligibility."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-satya-2026-07-17",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-ola-fs-2026-09-24",
+          "enf-iifl-2026-05-15",
+          "enf-mahindra-finance-2026-02-27"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "X01": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "Failure to comply with: An NBFC must refund any surplus from the gold or silver collateral auction to the borrower or legal heir within seven working days of receiving full auction proceeds. (missing: The provided excerpts outline auction transparency and procedures for gold loans, but do not mention the requirement or timeline to refund surplus auction proceeds to borrowers or legal heirs.)",
+        "precedents": [
+          {
+            "case_id": "enf-iifl-2026-05-15",
+            "entity": "IIFL Finance Limited",
+            "press_release_date": "2026-05-15",
+            "order_date": "2026-05-11",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh",
+            "directions": [
+              "Master Direction- Reserve Bank of India (Non-Banking Financial Company - Scale Based Regulation) Directions, 2023"
+            ],
+            "matched_charge": "The company had failed to pay the surplus amount realised from the auction of pledged gold articles, over and above the loan outstanding, to certain borrowers.",
+            "match": "same_failure",
+            "reason": "The charge directly addresses the failure to refund/pay the surplus amount realised from the auction of pledged gold articles to borrowers."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-iifl-2026-05-15",
+          "enf-manappuram-2026-03-13",
+          "enf-muthoot-2026-07-17",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-satya-2026-07-17",
+          "enf-shri-ram-finance-corp-2026-08-21"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "X02": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Failure to comply with: Upon receiving a request from a borrower to transfer a borrowal account, the NBFC must convey its consent or objection within 21 days from receiving the request. (inconsistent: The policy contradicts the regulatory requirement by stating that the company will not entertain any request for the transfer of borrowal accounts, rather than conveying consent or objection within 21 days.)",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-mahindra-finance-2026-02-27",
+            "entity": "Mahindra & Mahindra Financial Services Limited",
+            "press_release_date": "2026-02-27",
+            "order_date": "2026-02-27",
+            "penalty_inr": 1150000,
+            "penalty_text": "\u20b911.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+            "directions": [
+              "Fair Practices Code",
+              "Internal Ombudsman for Regulated Entities"
+            ],
+            "matched_charge": "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements",
+            "match": "related",
+            "reason": "The charge involves non-compliance with the Fair Practices Code regarding borrower loan conditions/charges, which is in the same regulatory domain but concerns a different obligation than transferring borrowal accounts."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters.",
+            "match": "related",
+            "reason": "The charge concerns Fair Practice Code requirements regarding disclosure of risk gradation and interest rates, which is in the same regulatory area but addresses a different obligation."
+          },
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "The charge pertains to Fair Practices Code for Lenders regarding charging of interest, which is the same broader regulatory area but involves an obligation different from account transfer requests."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-mahindra-finance-2026-02-27",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-muthoot-2026-07-17",
+          "enf-five-star-2026-06-19",
+          "enf-iifl-2026-02-13",
+          "enf-hero-fincorp-2026-09-24"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "X03": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Failure to comply with: An NBFC must set a reserve price of at least 90 percent of current value, which can be reduced to not less than 85 percent if auctions fail twice. (missing: The provided excerpts outline general auction transparency and advertisement procedures but do not mention any requirement to set a reserve price of at least 90 percent of the current value or 85 percent after two failed auctions.)",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-iifl-2026-05-15",
+            "entity": "IIFL Finance Limited",
+            "press_release_date": "2026-05-15",
+            "order_date": "2026-05-11",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh",
+            "directions": [
+              "Master Direction- Reserve Bank of India (Non-Banking Financial Company - Scale Based Regulation) Directions, 2023"
+            ],
+            "matched_charge": "The company had failed to pay the surplus amount realised from the auction of pledged gold articles, over and above the loan outstanding, to certain borrowers.",
+            "match": "related",
+            "reason": "Pertains to regulatory requirements governing auctions of pledged collateral, but concerns non-refund of surplus proceeds rather than reserve price thresholds."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-iifl-2026-05-15",
+          "enf-mahindra-finance-2026-02-27",
+          "enf-fusion-2026-08-14",
+          "enf-five-star-2026-06-19",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-shri-ram-finance-corp-2026-08-21"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "X04": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Failure to comply with: An NBFC must release all original movable or immovable property documents and remove registered charges within 30 days after full repayment or settlement of the loan account. (weaker: The policy commits to releasing securities upon loan repayment, but it omits the specific 30-day timeline and does not address the obligation to remove charges registered with registries.)",
+        "precedents": [],
+        "related": [],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus.",
+        "candidates_considered": [
+          "enf-mahindra-finance-2026-02-27",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-iifl-2026-05-15",
+          "enf-iifl-2026-02-13",
+          "enf-satya-2026-07-17",
+          "enf-hero-fincorp-2026-09-24"
+        ],
+        "cost_usd": 0.0
+      }
+    },
+    "B01": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Gold loan auctions were held without advertising them in newspapers",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-iifl-2026-05-15",
+            "entity": "IIFL Finance Limited",
+            "press_release_date": "2026-05-15",
+            "order_date": "2026-05-11",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh",
+            "directions": [
+              "Master Direction- Reserve Bank of India (Non-Banking Financial Company - Scale Based Regulation) Directions, 2023"
+            ],
+            "matched_charge": "The company had failed to pay the surplus amount realised from the auction of pledged gold articles, over and above the loan outstanding, to certain borrowers.",
+            "match": "related",
+            "reason": "Both concern regulatory compliance surrounding gold loan auctions, but the charge concerns non-payment of surplus auction proceeds rather than auction advertisement in newspapers."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-iifl-2026-05-15",
+          "enf-manappuram-2026-03-13",
+          "enf-muthoot-2026-07-17",
+          "enf-sammaan-finserve-2026-09-04",
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-fusion-2026-08-14"
+        ],
+        "cost_usd": 0.003032
+      }
+    },
+    "B02": {
+      "metrics": {
+        "no_precedent": 1.0,
+        "baseline_claimed_precedent": 1.0,
+        "correct_no_precedent": 1.0,
+        "false_precedent": 0.0,
+        "baseline_false_precedent": 1.0
+      },
+      "output": {
+        "risk": "Interest charged on microfinance loans exceeded the cap in the lender's own board-approved pricing policy",
+        "precedents": [],
+        "related": [
+          {
+            "case_id": "enf-hinduja-leyland-2026-09-04",
+            "entity": "Hinduja Leyland Finance Limited",
+            "press_release_date": "2026-09-04",
+            "order_date": "2026-09-02",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh",
+            "directions": [
+              "Pricing of Microfinance Loans",
+              "Securitisation of Standard Assets"
+            ],
+            "matched_charge": "The company failed to put in place a Board-approved policy on pricing of microfinance loans.",
+            "match": "related",
+            "reason": "Concerns the regulatory requirement for a Board-approved pricing policy for microfinance loans, but relates to the failure to put the policy in place rather than exceeding its interest cap."
+          },
+          {
+            "case_id": "enf-hero-fincorp-2026-09-24",
+            "entity": "Hero Fincorp Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-22",
+            "penalty_inr": 1000000,
+            "penalty_text": "\u20b910 lakh (Rupees Ten Lakh only)",
+            "directions": [
+              "Fair Practices Code for Lenders \u2013 Charging of Interest"
+            ],
+            "matched_charge": "The company collected excess interest from certain loan accounts.",
+            "match": "related",
+            "reason": "Concerns collecting excess interest from loan accounts under the Fair Practices Code, but does not specifically address exceeding the interest cap set in a board-approved microfinance pricing policy."
+          }
+        ],
+        "no_precedent": true,
+        "message": "No comparable precedent among the 13 RBI penalty cases in the corpus (related cases in the same area are listed below).",
+        "candidates_considered": [
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-hero-fincorp-2026-09-24",
+          "enf-satya-2026-07-17",
+          "enf-iifl-2026-05-15",
+          "enf-muthoot-2026-07-17",
+          "enf-mahindra-finance-2026-02-27"
+        ],
+        "cost_usd": 0.005566
+      }
+    },
+    "B03": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 1.0
+      },
+      "output": {
+        "risk": "A lender never assessed how risky each of its customers was from a money-laundering point of view",
+        "precedents": [
+          {
+            "case_id": "enf-ola-fs-2026-09-24",
+            "entity": "Ola Financial Services Private Limited",
+            "press_release_date": "2026-09-24",
+            "order_date": "2026-09-24",
+            "penalty_inr": 310000,
+            "penalty_text": "\u20b93.10 lakh (Rupees Three lakh ten thousand only)",
+            "directions": [
+              "Know Your Customer (KYC)"
+            ],
+            "matched_charge": "The company failed to carry out risk categorisation of certain customers.",
+            "match": "same_failure",
+            "reason": "The sustained charge directly addresses the failure to carry out risk categorisation of customers under KYC directions."
+          },
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system to categorize its customers as low, medium and high- risk category; and,",
+            "match": "same_failure",
+            "reason": "The sustained charge directly pertains to the failure to establish a system to assess and categorize customers into risk categories."
+          }
+        ],
+        "related": [
+          {
+            "case_id": "enf-fusion-2026-08-14",
+            "entity": "Fusion Finance Limited",
+            "press_release_date": "2026-08-14",
+            "order_date": "2026-08-14",
+            "penalty_inr": 270000,
+            "penalty_text": "\u20b92.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months.",
+            "match": "related",
+            "reason": "The charge concerns periodic review of risk categorisation rather than the initial risk categorisation/assessment itself."
+          },
+          {
+            "case_id": "enf-muthoot-2026-07-17",
+            "entity": "Muthoot Finance Limited",
+            "press_release_date": "2026-07-17",
+            "order_date": "2026-07-10",
+            "penalty_inr": 580000,
+            "penalty_text": "\u20b95.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+            "directions": [
+              "Reserve Bank of India Know Your Customer (KYC) Directions"
+            ],
+            "matched_charge": "The company failed to put in place a system of periodic review of risk categorisation of accounts;",
+            "match": "related",
+            "reason": "The charge involves the periodic review of risk categorisation and transaction monitoring, which are related KYC obligations."
+          },
+          {
+            "case_id": "enf-five-star-2026-06-19",
+            "entity": "Five Star Business Finance Limited",
+            "press_release_date": "2026-06-19",
+            "order_date": "2026-06-18",
+            "penalty_inr": 620000,
+            "penalty_text": "\u20b96.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+            "directions": [
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+              "Fair Practice Code"
+            ],
+            "matched_charge": "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions; and",
+            "match": "related",
+            "reason": "The charges relate to KYC AML monitoring and credit risk gradation for loan pricing, but do not directly address money-laundering customer risk categorisation."
+          }
+        ],
+        "no_precedent": false,
+        "message": "2 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-ola-fs-2026-09-24",
+          "enf-fusion-2026-08-14",
+          "enf-muthoot-2026-07-17",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-five-star-2026-06-19",
+          "enf-hinduja-leyland-2026-09-04"
+        ],
+        "cost_usd": 0.005162
+      }
+    },
+    "B04": {
+      "metrics": {
+        "no_precedent": 0.0,
+        "baseline_claimed_precedent": 1.0,
+        "recall": 1.0,
+        "hit_at_1": 1.0,
+        "precision": 1.0,
+        "baseline_hit_at_1": 0.0
+      },
+      "output": {
+        "risk": "Board seats were reshuffled heavily without getting the regulator's nod first",
+        "precedents": [
+          {
+            "case_id": "enf-shri-ram-finance-corp-2026-08-21",
+            "entity": "Shri Ram Finance Corporation Private Limited",
+            "press_release_date": "2026-08-21",
+            "order_date": "2026-08-19",
+            "penalty_inr": 810000,
+            "penalty_text": "\u20b98.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+            "directions": [
+              "Governance",
+              "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+            ],
+            "matched_charge": "The company failed to take prior written permission of the RBI while appointing a director resulting in change in management, on account of change in more than 30 per cent of its directors, excluding independent directors;",
+            "match": "same_failure",
+            "reason": "Directly addresses failing to obtain RBI's prior written permission for board changes resulting in a change in management."
+          }
+        ],
+        "related": [],
+        "no_precedent": false,
+        "message": "1 precedent(s): the RBI has penalised this kind of failure.",
+        "candidates_considered": [
+          "enf-hinduja-leyland-2026-09-04",
+          "enf-shri-ram-finance-corp-2026-08-21",
+          "enf-iifl-2026-02-13",
+          "enf-muthoot-2026-07-17",
+          "enf-satya-2026-07-17",
+          "enf-manappuram-2026-03-13"
+        ],
+        "cost_usd": 0.004412
+      }
+    }
+  }
+}

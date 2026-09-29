@@ -137,8 +137,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
   <a href="#stage-1"><span class="dot done"></span>1 · Corpus ingestion</a>
   <a href="#stage-2"><span class="dot done"></span>2 · Grounded Q&amp;A</a>
   <a href="#stage-3"><span class="dot done"></span>3 · check_policy_gap</a>
-  <a href="#stage-4"><span class="dot now"></span>4 · find_enforcement_precedent</a>
-  <a href="#stage-5"><span class="dot"></span>5 · Compliance calendar</a>
+  <a href="#stage-4"><span class="dot done"></span>4 · find_enforcement_precedent</a>
+  <a href="#stage-5"><span class="dot now"></span>5 · Compliance calendar</a>
   <a href="#stage-6"><span class="dot"></span>6 · Agent + guardrails</a>
   <a href="#stage-7"><span class="dot"></span>7 · Service layer</a>
   <a href="#stage-8"><span class="dot"></span>8 · Evaluation report</a>
@@ -431,8 +431,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
     <tr><td>1</td><td>PDF → Markdown, three indices, retrieval measured</td><td>Lab 3</td><td><span class="status done">done</span></td></tr>
     <tr><td>2</td><td>Question answering over the rules, with enforced citations</td><td>Labs 4, 5</td><td><span class="status done">done</span></td></tr>
     <tr><td>3</td><td><code>check_policy_gap</code></td><td>Labs 1, 5</td><td><span class="status done">done</span></td></tr>
-    <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 4, 5</td><td><span class="status next">next</span></td></tr>
-    <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 1, 4, 5</td><td><span class="status done">done</span></td></tr>
+    <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2</td><td><span class="status next">next</span></td></tr>
     <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status todo">planned</span></td></tr>
     <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
     <tr><td>8</td><td>Evaluation report, "what it is not safe for"</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
@@ -790,13 +790,76 @@ Result: 2 met, 2 weaker, 4 missing
 </section>
 
 <section id="stage-4">
-  <h2>Stage 4 · find_enforcement_precedent <span class="status next">next</span></h2>
-  <p>Given a risk or a gap, return real penalties for the same kind of failure (company, date, fine,
-  charge), or say clearly that no comparable precedent exists.</p>
+  <h2>Stage 4 · find_enforcement_precedent <span class="status done">done</span></h2>
+
+  <h3>What we built</h3>
+  <p>A tool that answers <em>"has the RBI punished this kind of failure before?"</em> You describe a risk in
+  plain words, or hand it a gap found in Stage 3, and it returns the real penalty cases for the same failure:
+  company, date, fine, and the exact charge the RBI upheld. If there are none, it says so plainly.</p>
+  <ol>
+    <li><strong>A clean table of the 13 penalties.</strong> Each press release is read once into a structured
+    record (company, dates, fine, rules broken, charges). Every charge and amount is checked word for word
+    against the release, and the fine in rupees is worked out by code, not guessed by the model.</li>
+    <li><strong>Shortlist:</strong> search the penalty collection for the 6 closest cases.</li>
+    <li><strong>Judge each one</strong>, all six, no skipping: is it the <span class="tag bad">same failure</span>,
+    a <span class="tag warn">related</span> one (same area, different rule), or unrelated? Only "same failure"
+    counts as a precedent, and the matching charge must be quoted exactly.</li>
+  </ol>
+  <p>Try it: <code>python -m regtech precedent "customers were never sorted into risk categories"</code>, or chain
+  both tools: <code>python -m regtech gap "IIFL" "gold loan auctions" --precedents</code>.</p>
+
+  <h3>Connection to the labs</h3>
+  <p><strong>Lab 1</strong>: the penalty table is structured extraction with validation, and so are the
+  verdicts. <strong>Lab 4</strong>: grounding and refusal. A precedent must be backed by a quoted charge, and
+  "no comparable precedent" is the refusal, measured in both directions. <strong>Lab 5</strong>: we compare
+  against a baseline (plain search) to show exactly what the judging step adds.</p>
+
+  <h3>Additions to aip in this stage</h3>
+  <p><strong>None needed.</strong> Stage 4 is built entirely from pieces the library already had, including the
+  ones added in earlier stages: structured output with repair, the word-for-word quote check, the evaluation
+  harness and the refusal metrics.</p>
+
+  <h3>Example: the full chain for IIFL</h3>
+<pre><code>* [MISSING] Refund any surplus from the gold auction to the borrower within
+            seven working days of receiving the auction proceeds.
+  1 precedent(s): the RBI has penalised this kind of failure.
+    - IIFL Finance Limited: fined ₹3.10 lakh, press release 2026-05-15
+      Charge upheld: "The company had failed to pay the surplus amount realised
+      from the auction of pledged gold articles ... to certain borrowers."
+
+* [MISSING] Set a reserve price of at least 90 percent of current value ...
+  No comparable precedent among the 13 RBI penalty cases in the corpus.
+  Related penalties (same area, different obligation):
+    - IIFL Finance Limited: fined ₹3.10 lakh ... (auction surplus, not reserve price)</code></pre>
+  <p>Of IIFL's six gold-auction gaps, only the surplus refund is matched to a real penalty. For the other five,
+  IIFL's fine is shown as <em>related</em>, never passed off as proof.</p>
+
+  <h3>Results (32 test cases)</h3>
+  <div class="table-wrap"><table>
+    <tr><th></th><th class="num">Plain search (top hit)</th><th class="num">Our tool</th></tr>
+    <tr><td>Right penalty first, when one exists (19 cases)</td><td class="num">0.95</td><td class="num"><strong>1.00</strong></td></tr>
+    <tr><td>Said "no precedent" when there is none (13 cases)</td><td class="num">0.00</td><td class="num"><strong>1.00</strong></td></tr>
+    <tr><td><strong>Invented a precedent that does not exist</strong></td><td class="num"><strong>1.00</strong></td><td class="num"><strong>0.00</strong></td></tr>
+  </table></div>
+  <p>Cost: about $0.004 per question. The penalty table cost $0.05 to build, once.</p>
+
+  <h3>What we learned</h3>
+  <div class="callout"><p><strong>Search always has an answer, so it cannot tell you when there isn't one.</strong>
+  Plain search puts the right penalty first 95% of the time, but for every risk the RBI has <em>not</em>
+  penalised it still returns its closest match, inventing a precedent 13 times out of 13. The judging step
+  fixes exactly that: 0 invented precedents, with every real one still found.</p></div>
+  <ul>
+    <li><strong>It keeps close cases apart.</strong> Never sorting customers into risk levels (Shri Ram, Ola) is a
+    different failure from not <em>reviewing</em> those levels every six months (Fusion, Muthoot).</li>
+    <li><strong>Be suspicious of a perfect score.</strong> The first 28 cases were all right, so we added four
+    harder "boundary" cases: two near misses that must <em>not</em> count, and two distant paraphrases that must.
+    All four passed. The honest caveat stands: 13 penalties is a small record, and "no precedent" means "none
+    among these 13".</li>
+  </ul>
 </section>
 
 <section id="stage-5">
-  <h2>Stage 5 · Compliance calendar <span class="status todo">planned</span></h2>
+  <h2>Stage 5 · Compliance calendar <span class="status next">next</span></h2>
   <p>Extract every deadline into a validated structure: fixed dates, recurring duties ("quarterly")
   and event-triggered deadlines ("within 14 days of detecting fraud"). Then answer
   "what is due in the next N days?".</p>
@@ -842,6 +905,7 @@ Result: 2 met, 2 weaker, 4 missing
     <tr><td>3</td><td><code>guards</code></td><td><code>normalise_text</code> (shared with <code>evals</code>), <code>quote_in_source</code></td></tr>
     <tr><td>3</td><td><code>cost</code></td><td>Bug fix: active budgets are context-local; <code>map_in_context</code> for thread pools</td></tr>
     <tr><td>3</td><td><code>evals</code></td><td><code>run_eval</code> uses <code>map_in_context</code> for parallel cases</td></tr>
+    <tr><td>4</td><td>none</td><td>Built entirely on existing aip pieces</td></tr>
   </table></div>
 </section>
 
@@ -859,6 +923,9 @@ Result: 2 met, 2 weaker, 4 missing
     <tr><td><code>python -m regtech judge-kappa</code></td><td>After hand-labelling the calibration sheet: how far to trust the AI judge</td></tr>
     <tr><td><code>python -m regtech gap "IIFL" "gold loan auctions"</code></td><td>Compare a company's Code with the rules on a topic (add <code>--file policy.pdf</code> for an uploaded policy)</td></tr>
     <tr><td><code>python -m regtech eval-gap</code></td><td>Re-run the Stage 3 evaluation</td></tr>
+    <tr><td><code>python -m regtech precedent "a risk in plain words"</code></td><td>Has the RBI penalised this kind of failure?</td></tr>
+    <tr><td><code>python -m regtech gap "IIFL" "gold loan auctions" --precedents</code></td><td>Gap check, then a penalty search for every gap</td></tr>
+    <tr><td><code>python -m regtech eval-precedent</code></td><td>Re-run the Stage 4 evaluation</td></tr>
     <tr><td><code>python -m pytest</code></td><td>Run the offline test suite</td></tr>
   </table></div>
 </section>
@@ -883,7 +950,7 @@ Result: 2 met, 2 weaker, 4 missing
     <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
     <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
   </dl>
-  <p class="muted" style="margin-top:32px">Last updated after Stage 3 · 29 September 2026</p>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 4 · 29 September 2026</p>
 </section>
 
 </main>

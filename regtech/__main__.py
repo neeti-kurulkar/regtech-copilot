@@ -37,6 +37,14 @@ def main(argv: list[str] | None = None) -> int:
     p_gap.add_argument("topic", help="e.g. 'gold loan auctions'")
     p_gap.add_argument("--file", help="path to an uploaded policy (.pdf/.md/.txt) instead of an indexed one")
     p_gap.add_argument("--json", action="store_true", help="print the structured GapReport as JSON")
+    p_gap.add_argument("--precedents", action="store_true", help="also search RBI penalties for every gap found")
+
+    sub.add_parser("build-cases", help="extract the structured enforcement case table (data/processed/enforcement_cases.json)")
+
+    p_prec = sub.add_parser("precedent", help="find_enforcement_precedent: has the RBI penalised this kind of failure?")
+    p_prec.add_argument("risk", help="the compliance risk in plain words")
+
+    sub.add_parser("eval-precedent", help="Stage 4 evaluation; writes reports/stage4_precedent.{md,json}")
 
     p_egap = sub.add_parser("eval-gap", help="Stage 3 evaluation of check_policy_gap; writes reports/stage3_policy_gap_<label>.*")
     p_egap.add_argument("--label", default="current")
@@ -52,6 +60,28 @@ def main(argv: list[str] | None = None) -> int:
             print(e)
             return 2
         print(report.model_dump_json(indent=2) if args.json else report.render())
+        if args.precedents:
+            from regtech.precedent import precedents_for_gaps
+            print("\n" + "=" * 78 + "\nHas the RBI penalised these gaps before?\n" + "=" * 78)
+            for finding, prec in precedents_for_gaps(report.model_dump()):
+                print(f"\n* [{finding['status'].upper()}] {finding['requirement']}")
+                print("  " + prec.render().split("\n", 2)[-1].replace("\n", "\n  "))
+        return 0
+
+    if args.command == "build-cases":
+        from regtech.enforcement import build_cases
+        print(f"{len(build_cases())} cases written")
+        return 0
+
+    if args.command == "precedent":
+        from regtech.precedent import PrecedentFinder
+        print(PrecedentFinder().find({"risk": args.risk}).render())
+        return 0
+
+    if args.command == "eval-precedent":
+        from regtech.precedent_eval import run as run_prec
+        out = run_prec()
+        print({k: round(v, 3) for k, v in out["aggregate"].items() if v == v})
         return 0
 
     if args.command == "eval-gap":

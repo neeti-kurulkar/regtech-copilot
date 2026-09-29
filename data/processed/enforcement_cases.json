@@ -1,0 +1,295 @@
+[
+  {
+    "doc_id": "enf-five-star-2026-06-19",
+    "entity": "Five Star Business Finance Limited",
+    "press_release_date": "2026-06-19",
+    "order_date": "2026-06-18",
+    "penalty_text": "₹6.20 lakh (Rupees Six Lakh Twenty Thousand only)",
+    "penalty_inr": 620000,
+    "statute": "Section 58G(1)(b) read with Section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Reserve Bank of India (Know Your Customer (KYC)) Directions",
+      "Fair Practice Code"
+    ],
+    "charges": [
+      "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions; and",
+      "The company failed to disclose the approach for gradation of risk and rationale for charging different rate of interest to different categories of borrowers in the application forms and the sanction letters."
+    ],
+    "categories": [
+      "kyc_aml",
+      "fair_practices_code",
+      "interest_and_charges"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/501",
+    "title": "RBI imposes monetary penalty on Five Star Business Finance Limited"
+  },
+  {
+    "doc_id": "enf-fusion-2026-08-14",
+    "entity": "Fusion Finance Limited",
+    "press_release_date": "2026-08-14",
+    "order_date": "2026-08-14",
+    "penalty_text": "₹2.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+    "penalty_inr": 270000,
+    "statute": "Section 58G(1)(b) read with Section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+    ],
+    "charges": [
+      "The company failed to put in place a system of periodic review of risk categorisation of accounts, with such periodicity being at least once in six months."
+    ],
+    "categories": [
+      "kyc_aml"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/898",
+    "title": "RBI imposes monetary penalty on Fusion Finance Limited"
+  },
+  {
+    "doc_id": "enf-hero-fincorp-2026-09-24",
+    "entity": "Hero Fincorp Limited",
+    "press_release_date": "2026-09-24",
+    "order_date": "2026-09-22",
+    "penalty_text": "₹10 lakh (Rupees Ten Lakh only)",
+    "penalty_inr": 1000000,
+    "statute": "section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Fair Practices Code for Lenders – Charging of Interest"
+    ],
+    "charges": [
+      "The company collected excess interest from certain loan accounts."
+    ],
+    "categories": [
+      "fair_practices_code",
+      "interest_and_charges"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/1180",
+    "title": "RBI imposes monetary penalty on Hero Fincorp Limited"
+  },
+  {
+    "doc_id": "enf-hinduja-leyland-2026-09-04",
+    "entity": "Hinduja Leyland Finance Limited",
+    "press_release_date": "2026-09-04",
+    "order_date": "2026-09-02",
+    "penalty_text": "₹6.20 lakh",
+    "penalty_inr": 620000,
+    "statute": "Section 58G(1)(b) read with Section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Pricing of Microfinance Loans",
+      "Securitisation of Standard Assets"
+    ],
+    "charges": [
+      "The company failed to put in place a Board-approved policy on pricing of microfinance loans.",
+      "The company undertook activities in the nature of ‘Synthetic Securitisation’."
+    ],
+    "categories": [
+      "microfinance",
+      "securitisation",
+      "governance",
+      "interest_and_charges"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/1049",
+    "title": "RBI imposes monetary penalty on Hinduja Leyland Finance Limited"
+  },
+  {
+    "doc_id": "enf-iifl-2026-02-13",
+    "entity": "IIFL Finance Limited",
+    "press_release_date": "2026-02-13",
+    "order_date": "2026-02-06",
+    "penalty_text": "₹5.30 lakh (Rupees Five Lakh Thirty Thousand only)",
+    "penalty_inr": 530000,
+    "statute": "section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Asset Classification"
+    ],
+    "charges": [
+      "The company failed to classify certain accounts as ‘non-performing asset’, on restructuring."
+    ],
+    "categories": [
+      "asset_classification"
+    ],
+    "inspection_as_of": "2024-03-31",
+    "press_release_no": "2025-2026/2112",
+    "title": "RBI imposes monetary penalty on IIFL Finance Limited"
+  },
+  {
+    "doc_id": "enf-iifl-2026-05-15",
+    "entity": "IIFL Finance Limited",
+    "press_release_date": "2026-05-15",
+    "order_date": "2026-05-11",
+    "penalty_text": "₹3.10 lakh",
+    "penalty_inr": 310000,
+    "statute": "section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Master Direction- Reserve Bank of India (Non-Banking Financial Company - Scale Based Regulation) Directions, 2023"
+    ],
+    "charges": [
+      "The company had failed to pay the surplus amount realised from the auction of pledged gold articles, over and above the loan outstanding, to certain borrowers."
+    ],
+    "categories": [
+      "gold_loans",
+      "fair_practices_code"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/267",
+    "title": "RBI imposes monetary penalty on IIFL Finance Limited"
+  },
+  {
+    "doc_id": "enf-mahindra-finance-2026-02-27",
+    "entity": "Mahindra & Mahindra Financial Services Limited",
+    "press_release_date": "2026-02-27",
+    "order_date": "2026-02-27",
+    "penalty_text": "₹11.50 lakh (Rupees Eleven Lakh Fifty Thousand only)",
+    "penalty_inr": 1150000,
+    "statute": "Section 58G(1)(b) read with Section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Fair Practices Code",
+      "Internal Ombudsman for Regulated Entities"
+    ],
+    "charges": [
+      "The company levied revised foreclosure charges on certain accounts of borrowers without incorporating a suitable condition in their loan agreements; and",
+      "The company failed to ensure:\n\n(a) escalation of certain complaints, partly / wholly rejected by the company’s Internal Grievance Redress Mechanism to its Internal Ombudsman within the prescribed time.\n\n(b) communication of final decision to the complainant, within the prescribed time, in certain cases."
+    ],
+    "categories": [
+      "fair_practices_code",
+      "interest_and_charges",
+      "grievance_redressal"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2025-2026/2192",
+    "title": "RBI imposes monetary penalty on Mahindra & Mahindra Financial Services Limited"
+  },
+  {
+    "doc_id": "enf-manappuram-2026-03-13",
+    "entity": "Manappuram Finance Limited",
+    "press_release_date": "2026-03-13",
+    "order_date": "2026-03-09",
+    "penalty_text": "₹2.70 lakh (Rupees Two Lakh Seventy Thousand only)",
+    "penalty_inr": 270000,
+    "statute": "section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Guidelines on Compensation of Key Managerial Personnel-Deferral of variable pay"
+    ],
+    "charges": [
+      "The company had paid the entire variable pay upfront to certain Key Managerial Personnel, without any deferment."
+    ],
+    "categories": [
+      "governance"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2025-2026/2265",
+    "title": "RBI imposes monetary penalty on Manappuram Finance Limited"
+  },
+  {
+    "doc_id": "enf-muthoot-2026-07-17",
+    "entity": "Muthoot Finance Limited",
+    "press_release_date": "2026-07-17",
+    "order_date": "2026-07-10",
+    "penalty_text": "₹5.80 lakh (Rupees Five Lakh Eighty Thousand only)",
+    "penalty_inr": 580000,
+    "statute": "section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Reserve Bank of India Know Your Customer (KYC) Directions"
+    ],
+    "charges": [
+      "The company failed to put in place a system of periodic review of risk categorisation of accounts;",
+      "The company failed to put in place a robust software for effective identification and reporting of suspicious transactions."
+    ],
+    "categories": [
+      "kyc_aml"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/698",
+    "title": "RBI imposes monetary penalty on Muthoot Finance Limited"
+  },
+  {
+    "doc_id": "enf-ola-fs-2026-09-24",
+    "entity": "Ola Financial Services Private Limited",
+    "press_release_date": "2026-09-24",
+    "order_date": "2026-09-24",
+    "penalty_text": "₹3.10 lakh (Rupees Three lakh ten thousand only)",
+    "penalty_inr": 310000,
+    "statute": "section 30(1) read with section 26(6) of the Payment and Settlement Systems Act, 2007",
+    "directions": [
+      "Know Your Customer (KYC)"
+    ],
+    "charges": [
+      "The company failed to carry out risk categorisation of certain customers."
+    ],
+    "categories": [
+      "kyc_aml"
+    ],
+    "inspection_as_of": null,
+    "press_release_no": "2026-2027/1179",
+    "title": "Reserve Bank of India imposes monetary penalty on Ola Financial Services Private Limited"
+  },
+  {
+    "doc_id": "enf-sammaan-finserve-2026-09-04",
+    "entity": "Sammaan Finserve Limited",
+    "press_release_date": "2026-09-04",
+    "order_date": "2026-08-31",
+    "penalty_text": "₹4.20 lakh",
+    "penalty_inr": 420000,
+    "statute": "Section 58G(1)(b) read with Section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Early Recognition of Stress and Reporting to Central Repository of Information on Large Credits (CRILC)"
+    ],
+    "charges": [
+      "The company failed to report credit information of its borrower to Central Repository of Information on Large Credits (CRILC)."
+    ],
+    "categories": [
+      "credit_reporting"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/1044",
+    "title": "RBI imposes monetary penalty on Sammaan Finserve Limited"
+  },
+  {
+    "doc_id": "enf-satya-2026-07-17",
+    "entity": "Satya MicroCapital Limited",
+    "press_release_date": "2026-07-17",
+    "order_date": "2026-07-13",
+    "penalty_text": "₹3.10 lakh (Rupees Three Lakh Ten Thousand only)",
+    "penalty_inr": 310000,
+    "statute": "Section 58G(1)(b) read with Section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Asset Classification"
+    ],
+    "charges": [
+      "The company failed to classify certain accounts as ‘non-performing assets’ upon restructuring."
+    ],
+    "categories": [
+      "asset_classification"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/699",
+    "title": "RBI imposes monetary penalty on Satya MicroCapital Limited"
+  },
+  {
+    "doc_id": "enf-shri-ram-finance-corp-2026-08-21",
+    "entity": "Shri Ram Finance Corporation Private Limited",
+    "press_release_date": "2026-08-21",
+    "order_date": "2026-08-19",
+    "penalty_text": "₹8.10 lakh (Rupees Eight Lakh Ten Thousand only)",
+    "penalty_inr": 810000,
+    "statute": "section 58G(1)(b) read with section 58B(5)(aa) of the Reserve Bank of India Act, 1934",
+    "directions": [
+      "Governance",
+      "Reserve Bank of India (Know Your Customer (KYC)) Directions"
+    ],
+    "charges": [
+      "The company failed to take prior written permission of the RBI while appointing a director resulting in change in management, on account of change in more than 30 per cent of its directors, excluding independent directors;",
+      "The company failed to put in place a system to categorize its customers as low, medium and high- risk category; and,",
+      "The company failed to upload KYC records of certain customers onto Central KYC Records Registry within the prescribed timeline."
+    ],
+    "categories": [
+      "governance",
+      "kyc_aml"
+    ],
+    "inspection_as_of": "2025-03-31",
+    "press_release_no": "2026-2027/943",
+    "title": "RBI imposes monetary penalty on Shri Ram Finance Corporation Private Limited"
+  }
+]

@@ -150,3 +150,12 @@ and metrics).
 ### `aip/evals.py`
 - `run_eval(workers>1)` submits cases with `cost.map_in_context`, so its budget keeps counting
   the worker threads' calls under context-local budgets. Reported costs are unchanged.
+
+---
+
+## Stage 4 (2026-09-29)
+
+No changes. `find_enforcement_precedent` is built entirely on existing aip pieces: `llm.structured`
+(the case table and the relevance verdicts, both with grounding checks inside the schema),
+`guards.quote_in_source` / `delimit_untrusted`, `retrieval` via the Stage 1 index,
+`evals.run_eval` / `refusal_metrics`, and `cost.Budget`.
