@@ -102,3 +102,12 @@ calibration sheet will settle which.
 See `aip/CHANGELOG_REGTECH.md` (Stage 2): validate, repair and fail-closed, plus truncation
 doubling, in `RagPipeline`; `answer_from_hits` for gold-context runs; labelled sources in
 `format_context`; the full paragraph range in `annotate_provenance`; and `refusal_metrics`.
+
+## Re-run after the Governance title fix (30 Sep 2026)
+
+Correctness, faithfulness, refusal and citation validity are identical. The gold-context ceiling
+rose from 0.958 to 0.979 (the Governance gold passages now carry a clean source label), so the
+retrieval-attributable loss reads 0.062 and the generation loss 0.021. Latency on this run was
+p50 6.9 s and p95 10.0 s, against 4.7 s and 6.7 s earlier, with no code change on the
+generation path. Provider latency varies by run and by time of day, so the 6 s p95 target should
+be treated as **not reliably met** with this reasoning-tier generator.

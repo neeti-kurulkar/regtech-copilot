@@ -59,3 +59,18 @@ Embedding spend for the whole sweep: about $0.27 (first builds; every re-run is 
 - KYC paragraph 63's heading wraps in a way that splits it ("Registry (CKYCR)" becomes its own heading).
 - Reranking (Lab 3 Part C) was not run: the cross-encoder needs PyTorch (not installed), and the LLM
   reranker adds a per-query model cost. Revisit only if Stage 2 diagnosis shows ranking failures.
+
+## Correction made during Stage 5 (30 Sep 2026)
+
+The manifest title for `reg-governance` was corrupt: the title regex matched from the first
+"Reserve Bank of India (" all the way across the table of contents to the first
+") Directions, 2025", producing a 4,218-character "title". It showed up as unreadable source labels
+in the Stage 5 calendar. The title is fixed, the document re-converted, and a regression test
+(`test_regulation_titles_are_clean`) now checks every regulation title.
+
+Re-running this sweep afterwards: `sliding@800` is unchanged at nDCG@10 0.900, and `fixed@800`
+rose from 0.880 to 0.901 (a Governance query improved once the junk title was gone), so the
+automatic winner flips to `fixed@800` by 0.001. That is far inside the noise level noted above
+(differences under about 0.02 on 24 queries), `sliding@800` keeps the higher MRR (0.872 vs 0.868),
+and Stages 2-4 are built and measured on it, so **`sliding@800` remains the default**.
+Stages 3 and 4 re-evaluated with identical results; Stage 2 accuracy is identical (see its findings).

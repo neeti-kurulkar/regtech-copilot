@@ -21,10 +21,10 @@ configuration's chunks on first build; every re-build is $0 from the aip cache.
 ```text
 metric              regulation:fixed@800/dense    regulation:sliding@800/dense  regulation:recursive@800/dense   regulation:markdown@800/dense
 ----------------------------------------------------------------------------------------------------------------------------------------------
-ndcg@10                                 0.8801                         0.9000*                          0.7993                          0.8187
-recall@5                               0.9583*                         0.9583*                         0.9583*                         0.9583*
-hit_rate@1                             0.7917*                         0.7917*                          0.6250                          0.6667
-mrr                                     0.8542                         0.8715*                          0.7472                          0.7722
+ndcg@10                                0.9010*                          0.9000                          0.7993                          0.8442
+recall@5                               1.0000*                          0.9583                          0.9583                          0.9583
+hit_rate@1                             0.7917*                         0.7917*                          0.6250                          0.7083
+mrr                                     0.8681                         0.8715*                          0.7472                          0.8056
 cost_usd                                0.0000                          0.0000                          0.0000                          0.0000
 latency_p95_ms                          0.0000                          0.0000                          0.0000                          0.0000
 
@@ -33,70 +33,70 @@ latency_p95_ms                          0.0000                          0.0000  
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| fixed@800/dense | 1012 | 0.0000 | 21 |
-| sliding@800/dense | 1241 | 0.0000 | 9 |
-| recursive@800/dense | 1311 | 0.0000 | 20 |
-| markdown@800/dense | 2201 | 0.0000 | 26 |
+| fixed@800/dense | 1007 | 0.0013 | 10 |
+| sliding@800/dense | 1234 | 0.0015 | 8 |
+| recursive@800/dense | 1305 | 0.0001 | 8 |
+| markdown@800/dense | 1996 | 0.0020 | 9 |
 
-### B. chunk size for sliding
+### B. chunk size for fixed
 
 ```text
-metric           regulation:sliding@400/dense   regulation:sliding@800/dense  regulation:sliding@1600/dense
------------------------------------------------------------------------------------------------------------
-ndcg@10                                0.8449                        0.9000*                         0.7565
-recall@5                               0.9167                        0.9583*                         0.8958
-hit_rate@1                             0.7083                        0.7917*                         0.5833
-mrr                                    0.8115                        0.8715*                         0.7122
-cost_usd                               0.0000                         0.0000                         0.0000
-latency_p95_ms                         0.0000                         0.0000                         0.0000
+metric           regulation:fixed@400/dense   regulation:fixed@800/dense  regulation:fixed@1600/dense
+-----------------------------------------------------------------------------------------------------
+ndcg@10                              0.8406                      0.9010*                       0.8207
+recall@5                             0.9167                      1.0000*                       0.9583
+hit_rate@1                           0.7500                      0.7917*                       0.6250
+mrr                                  0.8035                      0.8681*                       0.7618
+cost_usd                             0.0000                       0.0000                       0.0000
+latency_p95_ms                       0.0000                       0.0000                       0.0000
 
 * = best on that metric. Remember to read the cost row before celebrating.
 ```
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| sliding@400/dense | 3223 | 0.0000 | 25 |
-| sliding@800/dense | 1241 | 0.0000 | 9 |
-| sliding@1600/dense | 560 | 0.0000 | 79 |
+| fixed@400/dense | 2008 | 0.0211 | 14 |
+| fixed@800/dense | 1007 | 0.0013 | 10 |
+| fixed@1600/dense | 507 | 0.0250 | 14 |
 
 ### D. retriever
 
 ```text
-metric           regulation:sliding@800/dense    regulation:sliding@800/bm25  regulation:sliding@800/hybrid
------------------------------------------------------------------------------------------------------------
-ndcg@10                               0.9000*                         0.6091                         0.8274
-recall@5                              0.9583*                         0.7917                         0.9167
-hit_rate@1                            0.7917*                         0.3333                         0.6667
-mrr                                   0.8715*                         0.5229                         0.7837
-cost_usd                               0.0000                         0.0000                         0.0000
-latency_p95_ms                         0.0000                         0.0000                         0.0000
+metric           regulation:fixed@800/dense    regulation:fixed@800/bm25  regulation:fixed@800/hybrid
+-----------------------------------------------------------------------------------------------------
+ndcg@10                             0.9010*                       0.6701                       0.7828
+recall@5                            1.0000*                       0.6875                       0.8333
+hit_rate@1                          0.7917*                       0.5833                       0.6667
+mrr                                 0.8681*                       0.6432                       0.7479
+cost_usd                             0.0000                       0.0000                       0.0000
+latency_p95_ms                       0.0000                       0.0000                       0.0000
 
 * = best on that metric. Remember to read the cost row before celebrating.
 ```
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| sliding@800/dense | 1241 | 0.0000 | 9 |
-| sliding@800/bm25 | 1241 | 0.0000 | 56 |
-| sliding@800/hybrid | 1241 | 0.0000 | 56 |
+| fixed@800/dense | 1007 | 0.0013 | 10 |
+| fixed@800/bm25 | 1007 | 0.0000 | 18 |
+| fixed@800/hybrid | 1007 | 0.0000 | 20 |
 
 ### MRR by query kind (retriever step)
 
 | config | identifier | lexical | paraphrase |
 |---|---:|---:|---:|
-| sliding@800/dense | 0.736 | 0.889 | 0.944 |
-| sliding@800/bm25 | 0.694 | 0.639 | 0.293 |
-| sliding@800/hybrid | 0.806 | 0.870 | 0.683 |
+| fixed@800/dense | 0.833 | 0.917 | 0.843 |
+| fixed@800/bm25 | 0.867 | 0.792 | 0.346 |
+| fixed@800/hybrid | 0.917 | 0.856 | 0.528 |
 
-**Winner: `sliding@800/dense`** - ndcg@10=0.900, recall@5=0.958, hit_rate@1=0.792, mrr=0.872
+**Winner: `fixed@800/dense`** - ndcg@10=0.901, recall@5=1.000, hit_rate@1=0.792, mrr=0.868
 
 Queries the winner does not rank first (`EvalReport.failures`) - inputs to Lab 5-style diagnosis:
 
-- **R02** MRR 0.17 "CKYCR upload deadline after opening an account" - top hit `reg-kyc::s155`
-- **R18** MRR 0.25 "SMA-2 classification overdue days" - top hit `reg-iracp::s15`
-- **R10** MRR 0.50 "Are collection agents allowed to phone borrowers early in the morning or late at night?" - top hit `reg-rbc::s77`
-- **R11** MRR 0.50 "How must an auction of pledged gold be announced to the public?" - top hit `reg-rbc::s65`
-- **R20** MRR 0.50 "When can an NPA loan account be upgraded back to standard?" - top hit `reg-iracp::s19`
+- **R03** MRR 0.25 "parameters for risk categorisation of customers under KYC" - top hit `reg-kyc::f43`
+- **R21** MRR 0.25 "What is a customer owed if a mistake in their credit report is not fixed within a month of complaining?" - top hit `reg-credit-info-reporting::f43`
+- **R17** MRR 0.33 "Can part of a senior executive's bonus be held back and paid out later depending on risk?" - top hit `reg-governance::f26`
+- **R15** MRR 0.50 "EWS framework requirement for upper and middle layer NBFCs" - top hit `reg-sbr::f23`
+- **R18** MRR 0.50 "SMA-2 classification overdue days" - top hit `reg-iracp::f12`
 
 ## internal_policy (18 queries) - selection metric `ndcg@10`
 
@@ -117,10 +117,10 @@ latency_p95_ms                               0.0000                             
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| fixed@800/dense | 297 | 0.0000 | 34 |
-| sliding@800/dense | 362 | 0.0000 | 19 |
-| recursive@800/dense | 367 | 0.0000 | 29 |
-| markdown@800/dense | 491 | 0.0000 | 23 |
+| fixed@800/dense | 297 | 0.0000 | 7 |
+| sliding@800/dense | 362 | 0.0000 | 8 |
+| recursive@800/dense | 367 | 0.0000 | 8 |
+| markdown@800/dense | 491 | 0.0000 | 7 |
 
 ### B. chunk size for sliding
 
@@ -139,9 +139,9 @@ latency_p95_ms                              0.0000                              
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| sliding@400/dense | 932 | 0.0000 | 21 |
-| sliding@800/dense | 362 | 0.0000 | 19 |
-| sliding@1600/dense | 167 | 0.0000 | 30 |
+| sliding@400/dense | 932 | 0.0000 | 6 |
+| sliding@800/dense | 362 | 0.0000 | 8 |
+| sliding@1600/dense | 167 | 0.0000 | 7 |
 
 ### D. retriever
 
@@ -160,9 +160,9 @@ latency_p95_ms                               0.0000                             
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| sliding@1600/dense | 167 | 0.0000 | 30 |
-| sliding@1600/bm25 | 167 | 0.0000 | 23 |
-| sliding@1600/hybrid | 167 | 0.0000 | 37 |
+| sliding@1600/dense | 167 | 0.0000 | 7 |
+| sliding@1600/bm25 | 167 | 0.0000 | 7 |
+| sliding@1600/hybrid | 167 | 0.0000 | 14 |
 
 ### MRR by query kind (retriever step)
 
@@ -198,11 +198,11 @@ latency_p95_ms                           0.0000                           0.0000
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| fixed@800/dense | 39 | 0.0000 | 15 |
-| sliding@800/dense | 41 | 0.0000 | 13 |
-| recursive@800/dense | 60 | 0.0000 | 19 |
-| markdown@800/dense | 54 | 0.0000 | 15 |
-| whole@0/dense | 13 | 0.0000 | 15 |
+| fixed@800/dense | 39 | 0.0000 | 6 |
+| sliding@800/dense | 41 | 0.0000 | 6 |
+| recursive@800/dense | 60 | 0.0000 | 6 |
+| markdown@800/dense | 54 | 0.0000 | 5 |
+| whole@0/dense | 13 | 0.0000 | 7 |
 
 ### B. chunk size for markdown
 
@@ -221,9 +221,9 @@ latency_p95_ms                           0.0000                           0.0000
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| markdown@400/dense | 116 | 0.0000 | 14 |
-| markdown@800/dense | 54 | 0.0000 | 15 |
-| markdown@1600/dense | 35 | 0.0000 | 15 |
+| markdown@400/dense | 116 | 0.0000 | 6 |
+| markdown@800/dense | 54 | 0.0000 | 5 |
+| markdown@1600/dense | 35 | 0.0000 | 6 |
 
 ### C. heading-path prefix ablation
 
@@ -242,8 +242,8 @@ latency_p95_ms                                   0.0000                         
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| markdown@800/dense | 54 | 0.0000 | 15 |
-| markdown_noprefix@800/dense | 54 | 0.0000 | 15 |
+| markdown@800/dense | 54 | 0.0000 | 5 |
+| markdown_noprefix@800/dense | 54 | 0.0000 | 6 |
 
 ### D. retriever
 
@@ -262,9 +262,9 @@ latency_p95_ms                           0.0000                           0.0000
 
 | config | chunks | build $ | case p95 ms |
 |---|---:|---:|---:|
-| markdown@800/dense | 54 | 0.0000 | 15 |
-| markdown@800/bm25 | 54 | 0.0000 | 9 |
-| markdown@800/hybrid | 54 | 0.0000 | 23 |
+| markdown@800/dense | 54 | 0.0000 | 5 |
+| markdown@800/bm25 | 54 | 0.0000 | 3 |
+| markdown@800/hybrid | 54 | 0.0000 | 9 |
 
 ### MRR by query kind (retriever step)
 

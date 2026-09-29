@@ -131,3 +131,14 @@ def test_retry_recovers_from_transient_error(monkeypatch):
 def test_retry_does_not_retry_permanent_errors():
     with pytest.raises(ValueError):
         retry.call_with_retries(lambda: (_ for _ in ()).throw(ValueError("bad request")), event="t")
+
+
+# --- guards: figure and date grounding (Stage 5) -------------------------------------
+def test_number_and_date_grounding():
+    from datetime import date
+
+    from aip.guards import date_in_text, number_forms, number_in_text
+    assert {"21", "twenty-one", "twenty one"} <= number_forms(21) and "one hundred and eighty" in number_forms(180)
+    assert number_in_text(7, "a maximum period of seven working days") and not number_in_text(4, "within 14 days")
+    assert date_in_text(date(2026, 3, 31), "By March 31, 2026") and date_in_text(date(2026, 3, 31), "31.03.2026")
+    assert not date_in_text(date(2026, 3, 31), "By March 31, 2025")

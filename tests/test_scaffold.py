@@ -66,3 +66,14 @@ def test_wrong_header_rejected(tmp_path):
     path.write_text(",".join(reversed(COLUMNS)) + "\n", encoding="utf-8")
     with pytest.raises(ManifestError, match="header"):
         load_manifest(path)
+
+
+def test_regulation_titles_are_clean():
+    """Regression: the Stage 1 title regex once matched across the whole table of contents (reg-governance)."""
+    import re
+
+    from regtech.manifest import load_manifest
+    for r in load_manifest():
+        assert len(r.title) <= 160, r.doc_id
+        if r.doc_type == "regulation":
+            assert re.fullmatch(r"Reserve Bank of India \(.+\) Directions, 20\d\d", r.title), r.doc_id

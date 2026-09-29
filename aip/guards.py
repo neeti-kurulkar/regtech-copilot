@@ -203,6 +203,44 @@ def quote_in_source(quote: str, source: str, min_fraction: float = 0.9) -> bool:
     return len(q) > cut and (q[:cut] in s or q[-cut:] in s)
 
 
+_ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+         "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+_MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
+           "november", "december"]
+
+
+def number_forms(n: int) -> set[str]:
+    """[regtech] How a number appears in prose: '30', 'thirty', 'twenty-one', 'one hundred and eighty'."""
+    out = {str(n)}
+    if 0 <= n < 20:
+        out.add(_ONES[n])
+    elif n < 100:
+        t, o = divmod(n, 10)
+        out |= {_TENS[t]} if o == 0 else {f"{_TENS[t]}-{_ONES[o]}", f"{_TENS[t]} {_ONES[o]}"}
+    elif n < 1000:
+        h, r = divmod(n, 100)
+        words = [w for w in number_forms(r) if not w.isdigit()] if r else []
+        out.add(f"{_ONES[h]} hundred" if r == 0 else f"{_ONES[h]} hundred and {min(words, key=len)}")
+    return out
+
+
+def number_in_text(n: int, text: str) -> bool:
+    """[regtech] Grounding for extracted figures: does `text` state the number n (as digits or words)?
+    Digit boundaries are respected, so 4 is not "found" inside 14."""
+    t = normalise_text(text)
+    return any(re.search(rf"(?<![\d-]){re.escape(w)}(?![\d])", t) for w in number_forms(n))
+
+
+def date_in_text(d: Any, text: str) -> bool:
+    """[regtech] Grounding for extracted dates: 'March 31, 2026', '31 March 2026', '31.03.2026', '2026-03-31'."""
+    t = normalise_text(text)
+    month = _MONTHS[d.month - 1]
+    forms = [f"{month} {d.day}, {d.year}", f"{month} {d.day:02d}, {d.year}", f"{d.day} {month} {d.year}",
+             f"{d.day:02d}.{d.month:02d}.{d.year}", f"{d.day:02d}/{d.month:02d}/{d.year}", d.isoformat()]
+    return any(f in t for f in forms) or bool(re.search(rf"{month}\s+{d.day}(?:st|nd|rd|th)?,?\s+{d.year}", t))
+
+
 def enforce_citations(answer: str, n_sources: int) -> tuple[bool, list[int]]:
     """Check that every [n] citation in an answer refers to a real source.
 

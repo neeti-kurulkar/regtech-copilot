@@ -12,7 +12,7 @@ Baseline = what retrieval alone would claim: the top-ranked penalty case, always
 | Said 'no precedent' when there is none (n=13) | 0.00 | 1.00 |
 | **Claimed a precedent that does not exist** | 1.00 | **0.00** |
 | 'No precedent' precision: right / all such answers | - | 1.00 (13/13) |
-| Cost per query | - | $0.0006 |
+| Cost per query | - | $0.0000 |
 
 ## Per case
 
@@ -64,4 +64,4 @@ Precedents (same failure penalised):
     Why it matches: The charge directly addresses the failure to refund/pay the surplus amount realised from the auction of pledged gold articles to borrowers.
 ```
 
-Evaluation cost: $0.0182 (36 model calls, 28 from cache).
+Evaluation cost: $0.0000 (32 model calls, 32 from cache).

@@ -159,3 +159,21 @@ No changes. `find_enforcement_precedent` is built entirely on existing aip piece
 (the case table and the relevance verdicts, both with grounding checks inside the schema),
 `guards.quote_in_source` / `delimit_untrusted`, `retrieval` via the Stage 1 index,
 `evals.run_eval` / `refusal_metrics`, and `cost.Budget`.
+
+---
+
+## Stage 5 (2026-09-29)
+
+### `aip/guards.py`: grounding for extracted figures and dates
+- `number_forms(n)` gives the ways a number appears in prose ('21', 'twenty-one', 'one hundred and eighty').
+- `number_in_text(n, text)` checks that text states the number, as digits or words, respecting
+  digit boundaries (4 is not "found" inside 14).
+- `date_in_text(d, text)` checks that text states the date ('March 31, 2026', '31 March 2026',
+  '31.03.2026', ISO).
+- **Why:** `quote_in_source` proves the quoted words exist. These prove the *structured fields*
+  extracted from them are backed by those words: a model that quotes "within 14 days" but puts
+  `within_days=15` is caught and repaired by `aip.llm.structured`'s loop. It generalises the
+  "a 'met' needs a stated figure" guard from Stage 3. Used by `regtech/deadlines.py`.
+
+Stage 5 also fixed a bug in `number_forms` found by its own test: 180 rendered as
+"one hundred and 80" (the shortest form of the remainder was its digits); remainders now use words.

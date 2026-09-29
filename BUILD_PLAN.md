@@ -43,6 +43,11 @@ Run from the repo root with the venv active (`.venv\Scripts\Activate.ps1`):
 | `python -m regtech build-cases` | Extract the structured enforcement case table (`data/processed/enforcement_cases.json`) |
 | `python -m regtech precedent "RISK"` | `find_enforcement_precedent`: has the RBI penalised this kind of failure? |
 | `python -m regtech eval-precedent` | Stage 4 evaluation; writes `reports/stage4_precedent.{md,json}` |
+| `python -m regtech eval-deadlines` | Stage 5 Lab 2 comparison of four extraction variants; writes `reports/stage5_deadline_variants.*` |
+| `python -m regtech build-calendar [--prompt B --tier MAIN]` | Extract every deadline in the Directions (and tag who it binds) into `data/processed/compliance_calendar.json` |
+| `python -m regtech upcoming [DAYS] [--as-of YYYY-MM-DD]` | `check_upcoming`: what is due in the next N days |
+| `python -m regtech deadlines DOC_ID` | `extract_deadlines` for one document |
+| `python -m regtech audit-calendar [--n 20]` | Seeded random sample of calendar entries for a precision audit |
 | `python -m regtech eval-gap [--label L]` | Stage 3 evaluation; writes `reports/stage3_policy_gap_<L>.{md,json}` |
 | `python -m regtech judge-kappa` | Cohen's κ between the LLM judge and your hand labels in `reports/stage2_judge_calibration.csv` |
 | `python -m pytest` | Offline unit tests |

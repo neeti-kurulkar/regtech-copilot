@@ -1673,7 +1673,7 @@
           "enf-hinduja-leyland-2026-09-04",
           "enf-fusion-2026-08-14"
         ],
-        "cost_usd": 0.003032
+        "cost_usd": 0.0
       }
     },
     "B02": {
@@ -1728,7 +1728,7 @@
           "enf-muthoot-2026-07-17",
           "enf-mahindra-finance-2026-02-27"
         ],
-        "cost_usd": 0.005566
+        "cost_usd": 0.0
       }
     },
     "B03": {
@@ -1828,7 +1828,7 @@
           "enf-five-star-2026-06-19",
           "enf-hinduja-leyland-2026-09-04"
         ],
-        "cost_usd": 0.005162
+        "cost_usd": 0.0
       }
     },
     "B04": {
@@ -1870,7 +1870,7 @@
           "enf-satya-2026-07-17",
           "enf-manappuram-2026-03-13"
         ],
-        "cost_usd": 0.004412
+        "cost_usd": 0.0
       }
     }
   }

@@ -138,8 +138,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
   <a href="#stage-2"><span class="dot done"></span>2 · Grounded Q&amp;A</a>
   <a href="#stage-3"><span class="dot done"></span>3 · check_policy_gap</a>
   <a href="#stage-4"><span class="dot done"></span>4 · find_enforcement_precedent</a>
-  <a href="#stage-5"><span class="dot now"></span>5 · Compliance calendar</a>
-  <a href="#stage-6"><span class="dot"></span>6 · Agent + guardrails</a>
+  <a href="#stage-5"><span class="dot done"></span>5 · Compliance calendar</a>
+  <a href="#stage-6"><span class="dot now"></span>6 · Agent + guardrails</a>
   <a href="#stage-7"><span class="dot"></span>7 · Service layer</a>
   <a href="#stage-8"><span class="dot"></span>8 · Evaluation report</a>
 
@@ -432,8 +432,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
     <tr><td>2</td><td>Question answering over the rules, with enforced citations</td><td>Labs 4, 5</td><td><span class="status done">done</span></td></tr>
     <tr><td>3</td><td><code>check_policy_gap</code></td><td>Labs 1, 5</td><td><span class="status done">done</span></td></tr>
     <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 1, 4, 5</td><td><span class="status done">done</span></td></tr>
-    <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2</td><td><span class="status next">next</span></td></tr>
-    <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2, 5</td><td><span class="status done">done</span></td></tr>
+    <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status next">next</span></td></tr>
     <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
     <tr><td>8</td><td>Evaluation report, "what it is not safe for"</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
   </table></div>
@@ -554,6 +554,11 @@ Kind     : paraphrase  (the question shares almost no words with the rule)</code
   <span class="muted">In plain words: hit@1 is "was the right passage the very first result?",
   recall@5 is "was it anywhere in the top 5?", MRR and nDCG reward putting it near the top.</span></p>
 
+  <div class="callout warn"><p><strong>A correction found later (Stage 5).</strong> The Governance
+  Directions' title had been read wrongly: the pattern matched across its whole table of contents, giving a
+  4,000-character "title". It was fixed at the source, with a test so it cannot recur. Re-measuring moved one
+  setting by 0.001 and changed no decision.</p></div>
+
   <h3>What we learned</h3>
   <div class="callout warn"><p><strong>Lab 3's winning method loses here.</strong> On the Lab 3 corpus,
   cutting at headings won. On RBI Directions it scores 0.82 against 0.90 for simple sliding windows,
@@ -658,7 +663,7 @@ A: I don't have enough information in the provided sources to answer that.</code
     <tr><td>Refusal recall (≥ 4/5)</td><td><span class="tag good">5/5</span></td></tr>
     <tr><td>Refusal precision (≥ 0.70)</td><td><span class="tag good">0.83</span> (5 of 6 refusals right)</td></tr>
     <tr><td>Cost per question (≤ $0.01)</td><td><span class="tag good">$0.0045</span></td></tr>
-    <tr><td>p95 latency (≤ 6 s)</td><td><span class="tag warn">6.7 s</span> borderline; typical 4.7 s</td></tr>
+    <tr><td>p95 latency (≤ 6 s)</td><td><span class="tag bad">not reliably met</span> 6.7 s on one run, 10 s on a later one; typical 4.7–6.9 s</td></tr>
   </table></div>
   <p><strong>Where the remaining errors come from.</strong> Given the correct passages directly, the same
   model scores 0.958; with its own search it scores 0.917. So search costs about 0.04 and the model's
@@ -859,14 +864,80 @@ Result: 2 met, 2 weaker, 4 missing
 </section>
 
 <section id="stage-5">
-  <h2>Stage 5 · Compliance calendar <span class="status next">next</span></h2>
-  <p>Extract every deadline into a validated structure: fixed dates, recurring duties ("quarterly")
-  and event-triggered deadlines ("within 14 days of detecting fraud"). Then answer
-  "what is due in the next N days?".</p>
+  <h2>Stage 5 · Compliance calendar <span class="status done">done</span></h2>
+
+  <h3>What we built</h3>
+  <p>A compliance calendar built automatically from the 12 RBI Directions. The tool reads every section that
+  mentions a time limit and pulls out each deadline, in one of three kinds:</p>
+  <ul>
+    <li><span class="tag good">fixed date</span>: "by 31 March 2027", "with effect from …"</li>
+    <li><span class="tag warn">recurring</span>: "monthly", "every Friday", "within 30 days from the end of the half-year"</li>
+    <li><span class="tag bad">event-triggered</span>: "within 14 days of classifying a fraud". These start when something happens,
+    which the system cannot see, so they are listed rather than dated.</li>
+  </ul>
+  <p>Then <code>check_upcoming</code> answers "what is due in the next N days?", laying recurring duties onto the
+  Indian financial year (quarters end 30 June, 30 September, 31 December, 31 March) and printing every
+  assumption it makes. Try it: <code>python -m regtech upcoming 90</code>.</p>
+
+  <h3>Connection to the labs</h3>
+  <p><strong>Lab 1</strong>: each deadline is a validated structured record, and the record checks itself. The quote
+  must appear word for word in the regulation, and any number of days or date the model writes must appear in that
+  quote, as digits or words. <strong>Lab 2</strong>: before building the whole calendar we compared four versions of
+  the extractor (two prompts × a cheap and a stronger model) on a hand-labelled test set, and picked the best with
+  evidence. <strong>Lab 5</strong>: three problems were found by reading the output, traced to the step that caused
+  them, fixed, and re-measured.</p>
+
+  <h3>Additions to aip in this stage</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Module</th><th>Addition</th><th>Why</th></tr>
+    <tr><td><code>guards</code></td><td><code>number_in_text</code>, <code>date_in_text</code>, <code>number_forms</code></td>
+    <td>Prove that "14 days" or "31 March 2026" in an extracted field is really in the quoted text (including "seven working days")</td></tr>
+  </table></div>
+
+  <h3>Example: the next 90 days (from 30 September 2026)</h3>
+<pre><code>Due in this window (38 dates, 18 obligations):
+  2026-10-02 ... 2026-12-25  (13 times)  Weekly report of defaults by borrowers
+              with exposure of Rs 5 crore and above, by close of business every Friday
+  2026-10-05 ... 2026-12-05  (3 times)   Full credit-information file to the credit
+              bureaus by the 5th of each month
+  2026-10-15  Quarterly return on robberies, dacoities, thefts and burglaries
+  2026-10-15  Quarterly statement on change of directors, within 15 days of quarter end
+  2026-10-30  Upload relief-measure data within 30 days from the end of the half-year
+  2026-11-30  Data Quality Index review to top management within two months of the half-year
+
+Recurring, but the Directions set no calendar day (14)
+Standing obligations triggered by events (43)</code></pre>
+
+  <h3>Results</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Extractor version (17 hand-labelled deadlines)</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">All fields right</th></tr>
+    <tr><td>Simple prompt, cheap model</td><td class="num">0.88</td><td class="num">0.82</td><td class="num">0.93</td></tr>
+    <tr><td>Simple prompt, stronger model</td><td class="num">0.85</td><td class="num">1.00</td><td class="num">0.94</td></tr>
+    <tr><td>Detailed prompt, cheap model</td><td class="num">0.88</td><td class="num">0.88</td><td class="num">1.00</td></tr>
+    <tr><td><strong>Detailed prompt, stronger model (chosen)</strong></td><td class="num"><strong>0.94</strong></td><td class="num"><strong>1.00</strong></td><td class="num"><strong>1.00</strong></td></tr>
+  </table></div>
+  <p>The full calendar holds <strong>93 deadlines</strong> and cost about $0.75 to build once. On a random sample of 20
+  entries checked against the source, <strong>18 of the 19 shown are real NBFC deadlines</strong> (the other is an
+  optional window), and 17 of 18 have every detail right.</p>
+
+  <h3>What we learned</h3>
+  <div class="callout bad"><p><strong>The quietest step was the weakest.</strong> The first calendar found only 4
+  deadlines in the Responsible Business Conduct Directions. The AI wasn't failing: a simple text filter that decides
+  <em>which sections to send to the AI</em> only recognised "within 30 days", and skipped sections written "within a
+  maximum period of seven working days", including the gold-auction surplus refund. Our test set could not catch it,
+  because we had picked its sections by hand. After the fix: 93 deadlines instead of 73.</p></div>
+  <ul>
+    <li><strong>Who has to do it matters.</strong> The rules also give duties to credit bureaus, working groups and
+    customers. A second pass now labels who each deadline binds, and only the NBFC's own duties are shown.</li>
+    <li><strong>The cheap model is not consistent.</strong> On the same test set it scored 0.97 one day and 0.88
+    the next, so we used the stronger model for this one-off build.</li>
+    <li><strong>Reading the output found an old bug.</strong> Garbled source names in the calendar traced back to
+    a wrongly read document title from Stage 1. It was fixed there, and every earlier stage re-checked.</li>
+  </ul>
 </section>
 
 <section id="stage-6">
-  <h2>Stage 6 · Agent and guardrails <span class="status todo">planned</span></h2>
+  <h2>Stage 6 · Agent and guardrails <span class="status next">next</span></h2>
   <p>Wire the three tools into an agent with call and spend budgets, then attack it: a poisoned
   company policy containing hidden instructions, lookalike company names, and more. Targets from Lab 6:
   block at least 80% of attacks with at most 25% false alarms.</p>
@@ -906,6 +977,7 @@ Result: 2 met, 2 weaker, 4 missing
     <tr><td>3</td><td><code>cost</code></td><td>Bug fix: active budgets are context-local; <code>map_in_context</code> for thread pools</td></tr>
     <tr><td>3</td><td><code>evals</code></td><td><code>run_eval</code> uses <code>map_in_context</code> for parallel cases</td></tr>
     <tr><td>4</td><td>none</td><td>Built entirely on existing aip pieces</td></tr>
+    <tr><td>5</td><td><code>guards</code></td><td><code>number_forms</code>, <code>number_in_text</code>, <code>date_in_text</code> (grounding for extracted figures and dates)</td></tr>
   </table></div>
 </section>
 
@@ -926,6 +998,8 @@ Result: 2 met, 2 weaker, 4 missing
     <tr><td><code>python -m regtech precedent "a risk in plain words"</code></td><td>Has the RBI penalised this kind of failure?</td></tr>
     <tr><td><code>python -m regtech gap "IIFL" "gold loan auctions" --precedents</code></td><td>Gap check, then a penalty search for every gap</td></tr>
     <tr><td><code>python -m regtech eval-precedent</code></td><td>Re-run the Stage 4 evaluation</td></tr>
+    <tr><td><code>python -m regtech upcoming 90</code></td><td>What is due in the next 90 days</td></tr>
+    <tr><td><code>python -m regtech deadlines reg-kyc</code></td><td>Every deadline in one Direction</td></tr>
     <tr><td><code>python -m pytest</code></td><td>Run the offline test suite</td></tr>
   </table></div>
 </section>
@@ -950,7 +1024,7 @@ Result: 2 met, 2 weaker, 4 missing
     <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
     <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
   </dl>
-  <p class="muted" style="margin-top:32px">Last updated after Stage 4 · 29 September 2026</p>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 5 · 30 September 2026</p>
 </section>
 
 </main>

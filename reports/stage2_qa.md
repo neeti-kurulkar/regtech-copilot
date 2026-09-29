@@ -20,8 +20,8 @@ and free deterministic checks (`run_eval`), phase 2 runs the LLM judges over the
 | Refusal recall | ≥ 4/5 | 1.00 (5/5) |
 | Refusal precision | ≥ 0.70 | 0.83 (5/6) |
 | Repair rate | reported | 0.000 |
-| Cost per query (generation only) | ≤ $0.01 | $0.0045 (uncached, from the latency probe) |
-| p95 end-to-end latency | ≤ 6,000 ms | 6,672 ms (p50 4,664 ms; warm, serial, cache off, n=8, so p95 ≈ max) |
+| Cost per query (generation only) | ≤ $0.01 | $0.0043 (uncached, from the latency probe) |
+| p95 end-to-end latency | ≤ 6,000 ms | 10,020 ms (p50 6,855 ms; warm, serial, cache off, n=8, so p95 ≈ max) |
 
 Refusal numbers rest on 5 unanswerable questions: one case moves recall by 0.20. Treat
 them as a direction, not a measurement (Lab 4).
@@ -64,10 +64,10 @@ The same generator, given the gold passages directly instead of retrieved ones:
 
 | | Correctness |
 |---|---:|
-| A: with gold context (generation ceiling) | 0.958 |
+| A: with gold context (generation ceiling) | 0.979 |
 | B: with retrieved context (the real system) | 0.917 |
-| Retrieval-attributable loss (A - B) | 0.042 |
-| Generation-attributable loss (1 - A) | 0.042 |
+| Retrieval-attributable loss (A - B) | 0.062 |
+| Generation-attributable loss (1 - A) | 0.021 |
 
 ## Failure modes (Lab 4 E3, Lab 5 backlog)
 
@@ -113,7 +113,7 @@ I don't have enough information in the provided sources to answer that.
 
 Anything already in the aip cache costs $0 on a re-run, so these are this run's marginal costs.
 
-- Generation, balanced: $0.0000; strict: $0.0000
-- Judging: $0.0000; gold-context run incl. judging: $0.0000
-- Total: $0.0401 (215 model calls, 197 from cache)
+- Generation, balanced: $0.0112; strict: $0.0120
+- Judging: $0.0218; gold-context run incl. judging: $0.0142
+- Total: $0.0969 (215 model calls, 184 from cache)
 

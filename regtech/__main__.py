@@ -46,6 +46,23 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("eval-precedent", help="Stage 4 evaluation; writes reports/stage4_precedent.{md,json}")
 
+    sub.add_parser("eval-deadlines", help="Stage 5 Lab 2 comparison of extraction variants on the labelled dev set")
+
+    p_aud = sub.add_parser("audit-calendar", help="write a seeded random sample of calendar entries for a precision audit")
+    p_aud.add_argument("--n", type=int, default=20)
+
+    p_bcal = sub.add_parser("build-calendar", help="extract every deadline in the regulation corpus into the calendar")
+    p_bcal.add_argument("--prompt", default="B")
+    p_bcal.add_argument("--tier", default="SMALL")
+
+    p_up = sub.add_parser("upcoming", help="check_upcoming: what is due in the next N days")
+    p_up.add_argument("days", type=int, nargs="?", default=30)
+    p_up.add_argument("--as-of", help="YYYY-MM-DD (default: today)")
+    p_up.add_argument("--doc", action="append", help="limit to a regulation doc_id (repeatable)")
+
+    p_dl = sub.add_parser("deadlines", help="extract_deadlines from one document (a doc_id in the corpus)")
+    p_dl.add_argument("doc_id")
+
     p_egap = sub.add_parser("eval-gap", help="Stage 3 evaluation of check_policy_gap; writes reports/stage3_policy_gap_<label>.*")
     p_egap.add_argument("--label", default="current")
 
@@ -76,6 +93,48 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "precedent":
         from regtech.precedent import PrecedentFinder
         print(PrecedentFinder().find({"risk": args.risk}).render())
+        return 0
+
+    if args.command == "eval-deadlines":
+        from regtech.deadline_eval import run as run_dl
+        out = run_dl()
+        for r in out["rows"]:
+            print(f"{r['variant']:8} P={r['precision']:.2f} R={r['recall']:.2f} F1={r['f1']:.2f} "
+                  f"fields={r['field_accuracy']:.2f} cost=${r['cost_usd']:.4f}")
+        print("best:", out["best"])
+        return 0
+
+    if args.command == "audit-calendar":
+        from regtech.deadline_eval import AUDIT_CSV, write_audit
+        print(f"{len(write_audit(args.n))} entries written to {AUDIT_CSV}")
+        return 0
+
+    if args.command == "build-calendar":
+        from regtech.deadlines import build_calendar
+        recs = build_calendar(args.prompt, args.tier)
+        from collections import Counter
+        print(f"{len(recs)} deadlines:", dict(Counter(r.kind for r in recs)))
+        return 0
+
+    if args.command == "upcoming":
+        from datetime import date as _date
+
+        from regtech.deadlines import check_upcoming
+        req = {"days": args.days, "as_of": _date.fromisoformat(args.as_of) if args.as_of else None, "doc_ids": args.doc}
+        print(check_upcoming(req).render())
+        return 0
+
+    if args.command == "deadlines":
+        from regtech.deadlines import extract_deadlines
+        from regtech.manifest import load_manifest
+        doc_type = next((r.doc_type for r in load_manifest() if r.doc_id == args.doc_id), None)
+        if doc_type is None:
+            print(f"unknown doc_id {args.doc_id!r}")
+            return 2
+        for r in extract_deadlines(doc_type, {args.doc_id}):
+            detail = r.due_date or (f"{r.frequency}" + (f" x{r.n_years}" if r.n_years else "")) if r.kind != "event_triggered" \
+                else f"{r.window()} of {r.trigger}"
+            print(f"[{r.kind}] {detail}: {r.obligation}\n    {r.source}\n    \"{r.quote[:200]}\"")
         return 0
 
     if args.command == "eval-precedent":
