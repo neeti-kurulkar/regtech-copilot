@@ -32,7 +32,33 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("judge-kappa", help="Cohen's kappa between the judge and your labels in the calibration sheet")
 
+    p_gap = sub.add_parser("gap", help="check_policy_gap: compare a company's Fair Practices Code with the RBI rules on a topic")
+    p_gap.add_argument("entity", help="NBFC name, e.g. 'IIFL'; or use --file")
+    p_gap.add_argument("topic", help="e.g. 'gold loan auctions'")
+    p_gap.add_argument("--file", help="path to an uploaded policy (.pdf/.md/.txt) instead of an indexed one")
+    p_gap.add_argument("--json", action="store_true", help="print the structured GapReport as JSON")
+
+    p_egap = sub.add_parser("eval-gap", help="Stage 3 evaluation of check_policy_gap; writes reports/stage3_policy_gap_<label>.*")
+    p_egap.add_argument("--label", default="current")
+
     args = parser.parse_args(argv)
+
+    if args.command == "gap":
+        from regtech.entities import EntityNotFound
+        from regtech.policy_gap import PolicyGapChecker
+        try:
+            report = PolicyGapChecker().check({"entity": args.entity, "topic": args.topic, "policy_path": args.file})
+        except EntityNotFound as e:
+            print(e)
+            return 2
+        print(report.model_dump_json(indent=2) if args.json else report.render())
+        return 0
+
+    if args.command == "eval-gap":
+        from regtech.gap_eval import run
+        out = run(args.label)
+        print({k: round(v, 3) for k, v in out["aggregate"].items() if v == v}, out["diagnosis"])
+        return 0
 
     if args.command == "ask":
         from regtech.qa import RegulationQA

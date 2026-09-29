@@ -179,6 +179,30 @@ class ToolGuard:
             self.log.append(record)
 
 
+def normalise_text(s: str) -> str:
+    """[regtech] Lower-case, straight quotes, no table/markup noise, single spaces: the form in
+    which "is this quote in that source?" is asked (shared with aip.evals)."""
+    s = s.replace("<br>", " ").replace("|", " ").replace("’", "'").replace("‘", "'")
+    s = s.replace("“", '"').replace("”", '"').replace("–", "-").replace("—", "-")
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def quote_in_source(quote: str, source: str, min_fraction: float = 0.9) -> bool:
+    """[regtech] Is `quote` (near-)verbatim in `source`? The grounding check for extracted quotes.
+
+    enforce_citations proves a citation *number* exists; this proves the words attributed to a
+    source are actually in it. Exact after normalisation, or a leading/trailing `min_fraction` of
+    the quote (at least 30 chars) to tolerate an ellipsis or a trimmed clause, never a paraphrase.
+    """
+    q, s = normalise_text(quote).strip(" .\"'"), normalise_text(source)
+    if not q:
+        return False
+    if q in s:
+        return True
+    cut = max(30, int(len(q) * min_fraction))
+    return len(q) > cut and (q[:cut] in s or q[-cut:] in s)
+
+
 def enforce_citations(answer: str, n_sources: int) -> tuple[bool, list[int]]:
     """Check that every [n] citation in an answer refers to a real source.
 

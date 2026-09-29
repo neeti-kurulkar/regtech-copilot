@@ -91,6 +91,29 @@ def test_report_breakdown_and_latency():
     assert rep.latency_percentile(50) == 20
 
 
+# --- cost: context-local budgets ------------------------------------------------
+def test_parallel_budgets_do_not_count_each_others_calls():
+    import threading
+    from concurrent.futures import ThreadPoolExecutor
+
+    from aip import cost
+
+    barrier = threading.Barrier(2)
+
+    def task(n_calls):
+        with cost.Budget(limit_usd=1.0, label=f"task{n_calls}") as b:
+            barrier.wait()  # both budgets are open at the same time
+            for _ in range(n_calls):
+                cost.record(cost.Usage("local/x", 10, 0, 0.0, 1.0))
+            barrier.wait()
+        return b.calls
+
+    with cost.Budget(limit_usd=1.0, label="outer") as outer:
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            assert cost.map_in_context(pool, task, [2, 5]) == [2, 5]
+    assert outer.calls == 7  # the caller's budget still sees all work done in the pool
+
+
 # --- retry --------------------------------------------------------------------
 def test_retry_recovers_from_transient_error(monkeypatch):
     monkeypatch.setattr(retry.time, "sleep", lambda s: None)

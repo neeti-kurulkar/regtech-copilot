@@ -136,8 +136,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
   <a href="#stage-0"><span class="dot done"></span>0 · Scaffolding</a>
   <a href="#stage-1"><span class="dot done"></span>1 · Corpus ingestion</a>
   <a href="#stage-2"><span class="dot done"></span>2 · Grounded Q&amp;A</a>
-  <a href="#stage-3"><span class="dot now"></span>3 · check_policy_gap</a>
-  <a href="#stage-4"><span class="dot"></span>4 · find_enforcement_precedent</a>
+  <a href="#stage-3"><span class="dot done"></span>3 · check_policy_gap</a>
+  <a href="#stage-4"><span class="dot now"></span>4 · find_enforcement_precedent</a>
   <a href="#stage-5"><span class="dot"></span>5 · Compliance calendar</a>
   <a href="#stage-6"><span class="dot"></span>6 · Agent + guardrails</a>
   <a href="#stage-7"><span class="dot"></span>7 · Service layer</a>
@@ -430,8 +430,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
     <tr><td>0</td><td>Project skeleton, environment check</td><td>Lab 7 (setup)</td><td><span class="status done">done</span></td></tr>
     <tr><td>1</td><td>PDF → Markdown, three indices, retrieval measured</td><td>Lab 3</td><td><span class="status done">done</span></td></tr>
     <tr><td>2</td><td>Question answering over the rules, with enforced citations</td><td>Labs 4, 5</td><td><span class="status done">done</span></td></tr>
-    <tr><td>3</td><td><code>check_policy_gap</code></td><td>Labs 1, 5</td><td><span class="status next">next</span></td></tr>
-    <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 4, 5</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>3</td><td><code>check_policy_gap</code></td><td>Labs 1, 5</td><td><span class="status done">done</span></td></tr>
+    <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 4, 5</td><td><span class="status next">next</span></td></tr>
     <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2</td><td><span class="status todo">planned</span></td></tr>
     <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status todo">planned</span></td></tr>
     <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
@@ -690,14 +690,107 @@ A: I don't have enough information in the provided sources to answer that.</code
 </section>
 
 <section id="stage-3">
-  <h2>Stage 3 · check_policy_gap <span class="status next">next</span></h2>
-  <p>Given a company and a topic, retrieve the relevant rule paragraphs and, separately, the matching
-  parts of that company's Code; then report each requirement as met, missing, weaker, inconsistent or
-  outdated, with both citations.</p>
+  <h2>Stage 3 · check_policy_gap <span class="status done">done</span></h2>
+
+  <h3>What we built</h3>
+  <p>The tool at the heart of the project. You name a company and a topic; it reads the RBI rules on that
+  topic and the company's own Fair Practices Code <em>separately</em>, then compares them rule by rule:</p>
+  <ol>
+    <li><strong>Find the company</strong>, exactly. "Shriram Finance" is refused with a suggestion, because
+    Shri Ram Finance Corporation is a different company. Lookalike names never silently match.</li>
+    <li><strong>Read the rules.</strong> Search the regulations for the topic, then turn the passages into a
+    list of individual obligations ("refund auction surplus within seven working days"), each with the exact
+    words of the rule.</li>
+    <li><strong>Read the policy, separately, for each rule.</strong> Search only that company's Code for the
+    passages about that obligation.</li>
+    <li><strong>Compare and classify</strong> each obligation: <span class="tag good">met</span>
+    <span class="tag warn">weaker</span> <span class="tag bad">inconsistent</span>
+    <span class="tag bad">missing</span>, quoting both sides.</li>
+  </ol>
+  <p>Try it: <code>python -m regtech gap "IIFL" "gold loan auctions"</code>. It also accepts an uploaded
+  policy file: <code>--file policy.pdf</code>.</p>
+
+  <h3>Connection to Labs 1 and 5</h3>
+  <p><strong>Lab 1 (the reliable extractor)</strong>: reading obligations out of the rules, and verdicts out of
+  the comparison, is structured extraction. Every output is a validated schema, and invalid output is sent back
+  to the model to repair, using the course library's <code>structured()</code>. We added one twist: the schema
+  itself checks that every quote is <em>word for word</em> in the passage it cites, so an invented or
+  paraphrased quote is caught and repaired like any other validation error.
+  <strong>Lab 5 (diagnose, fix, prove)</strong>: we ran the tool on 16 hand-labelled cases four times. After
+  each run we worked out <em>which step</em> failed (reading the rules, finding the policy text, or judging
+  it), fixed that step, and kept every run as evidence.</p>
+
+  <h3>Additions to aip in this stage</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Module</th><th>Addition</th><th>Why</th></tr>
+    <tr><td><code>guards</code></td><td><code>quote_in_source</code>: is this quote really in that passage?</td><td>A citation number can be real while the words attributed to it are invented</td></tr>
+    <tr><td><code>cost</code></td><td><strong>Bug fix:</strong> spending limits are now tracked per task</td><td>Parallel checks were counting each other's spending; 6 of 16 test runs crashed</td></tr>
+    <tr><td><code>evals</code></td><td>Parallel evaluation carries its spending limit into worker threads</td><td>Keeps cost reporting correct after the fix</td></tr>
+  </table></div>
+
+  <h3>Example: IIFL, gold loan auctions</h3>
+<pre><code>Policy gap check: IIFL Finance Limited - gold loan auctions
+Result: 2 met, 2 weaker, 4 missing
+
+2. [MET] Announce auctions in at least two newspapers, one regional and one national.
+   Rule:   Responsible Business Conduct Directions | G.6 Transparency in Auction Procedure
+   Policy: "The auction shall be announced to the public by issue of advertisements
+            in at least two newspapers, one in vernacular and another in national daily"
+
+8. [MISSING] Refund any auction surplus to the borrower within seven working days.
+   Rule:   "The surplus, if any, from the auction of the gold or silver collateral, shall
+            be refunded to the borrower(s) / legal heir(s) within a maximum period of
+            seven working days ..."   (para 66)
+   Policy: not found</code></pre>
+  <div class="callout"><p><strong>Why this example matters.</strong> On 15 May 2026 the RBI fined IIFL
+  ₹3.10 lakh because it "failed to pay the surplus amount realised from the auction of pledged gold
+  articles … to certain borrowers". The gap the tool found in IIFL's written policy is the same failure
+  the regulator punished. Stage 4 will connect the two automatically.</p></div>
+
+  <h3>Other things it found</h3>
+  <ul>
+    <li><strong>Muthoot Finance</strong> says it "will not entertain any request for transfer of borrowal
+    accounts" for gold loans, which contradicts the rule that such requests get an answer within 21 days
+    (<em>inconsistent</em>).</li>
+    <li><strong>Nissan Renault</strong>'s 2020 Code still charges "penal interest", which the current rules
+    replaced with penal <em>charges</em> (<em>inconsistent</em>).</li>
+    <li><strong>Cholamandalam</strong> promises to release securities on repayment, but not within the 30
+    days now required (<em>weaker</em>).</li>
+  </ul>
+
+  <h3>Results</h3>
+  <div class="table-wrap"><table>
+    <tr><th></th><th class="num">Run 1</th><th class="num">Run 2</th><th class="num">Run 3</th><th class="num">Final</th></tr>
+    <tr><td>Found the rule being tested</td><td class="num">0.70</td><td class="num">0.94</td><td class="num">0.88</td><td class="num"><strong>1.00</strong></td></tr>
+    <tr><td>Verdict exactly right</td><td class="num">0.86*</td><td class="num">0.80</td><td class="num">1.00*</td><td class="num"><strong>1.00</strong></td></tr>
+    <tr><td>Said "met" when the policy falls short (the dangerous error)</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num"><strong>0</strong></td></tr>
+    <tr><td>False alarms</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num"><strong>0</strong></td></tr>
+    <tr><td>Runs that crashed</td><td class="num">6</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+  </table></div>
+  <p class="muted">* only on the cases that ran. Cost is about $0.035 per check. 16 cases over 9 companies
+  and 6 topics.</p>
+
+  <h3>What we learned</h3>
+  <div class="callout bad"><p><strong>A correct-looking quote can come with an invented explanation.</strong>
+  In run 2 the tool said Muthoot "meets" the calling-hours rule and explained that Muthoot "restricts recovery
+  calls to between 09:00 and 18:00". Nothing like that is in Muthoot's Code; the quote itself only said "odd
+  hours". The fix is a rule the computer checks: if the regulation sets a specific figure (a time, a deadline,
+  an amount), a verdict of "met" must quote policy text that also states one.</p></div>
+  <ul>
+    <li><strong>The tool corrected four of our own labels.</strong> Reading its evidence showed we had been
+    wrong or too narrow; Muthoot's transfer case is actually a contradiction, not a silence. We changed those
+    labels, listed every change with its reason, and also report accuracy under the original labels (0.75),
+    so nothing depends on trusting the changes.</li>
+    <li><strong>A bug in the course library.</strong> Spending limits were shared across parallel tasks, so
+    each check thought it had spent the total of all of them. Fixed in <code>aip</code>, with a test.</li>
+    <li><strong>The same topic should give the same rulebook.</strong> Three companies checked on "penal
+    charges" got three slightly different requirement lists, because the model is not perfectly repeatable.
+    The rules for a topic are now extracted once and shared, so companies are compared fairly.</li>
+  </ul>
 </section>
 
 <section id="stage-4">
-  <h2>Stage 4 · find_enforcement_precedent <span class="status todo">planned</span></h2>
+  <h2>Stage 4 · find_enforcement_precedent <span class="status next">next</span></h2>
   <p>Given a risk or a gap, return real penalties for the same kind of failure (company, date, fine,
   charge), or say clearly that no comparable precedent exists.</p>
 </section>
@@ -746,6 +839,9 @@ A: I don't have enough information in the provided sources to answer that.</code
     <tr><td>2</td><td><code>retrieval</code></td><td><code>format_context(label=...)</code></td></tr>
     <tr><td>2</td><td><code>chunking</code></td><td><code>annotate_provenance</code> records <code>meta["numbers"]</code> (every paragraph a chunk touches)</td></tr>
     <tr><td>2</td><td><code>evals</code></td><td><code>refusal_metrics</code></td></tr>
+    <tr><td>3</td><td><code>guards</code></td><td><code>normalise_text</code> (shared with <code>evals</code>), <code>quote_in_source</code></td></tr>
+    <tr><td>3</td><td><code>cost</code></td><td>Bug fix: active budgets are context-local; <code>map_in_context</code> for thread pools</td></tr>
+    <tr><td>3</td><td><code>evals</code></td><td><code>run_eval</code> uses <code>map_in_context</code> for parallel cases</td></tr>
   </table></div>
 </section>
 
@@ -761,6 +857,8 @@ A: I don't have enough information in the provided sources to answer that.</code
     <tr><td><code>python -m regtech ask "your question"</code></td><td>Ask the RBI Directions a question; answer with cited paragraphs</td></tr>
     <tr><td><code>python -m regtech eval-qa</code></td><td>Re-run the Stage 2 evaluation (about $0.04 for the uncached latency probe)</td></tr>
     <tr><td><code>python -m regtech judge-kappa</code></td><td>After hand-labelling the calibration sheet: how far to trust the AI judge</td></tr>
+    <tr><td><code>python -m regtech gap "IIFL" "gold loan auctions"</code></td><td>Compare a company's Code with the rules on a topic (add <code>--file policy.pdf</code> for an uploaded policy)</td></tr>
+    <tr><td><code>python -m regtech eval-gap</code></td><td>Re-run the Stage 3 evaluation</td></tr>
     <tr><td><code>python -m pytest</code></td><td>Run the offline test suite</td></tr>
   </table></div>
 </section>
@@ -785,7 +883,7 @@ A: I don't have enough information in the provided sources to answer that.</code
     <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
     <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
   </dl>
-  <p class="muted" style="margin-top:32px">Last updated after Stage 2 · 29 September 2026</p>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 3 · 29 September 2026</p>
 </section>
 
 </main>

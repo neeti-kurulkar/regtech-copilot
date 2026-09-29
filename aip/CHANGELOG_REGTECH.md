@@ -116,3 +116,37 @@ Tests for everything below: `tests/test_aip_extensions.py`.
 - `refusal_metrics(refused, should_refuse)`: refusal recall and precision together, with the
   raw counts (Lab 4: never report one without the other; five unanswerable questions make each
   case worth 0.2).
+
+---
+
+## Stage 3 (2026-09-29)
+
+### `aip/guards.py`
+- `normalise_text(s)` (moved here from `aip.evals`, which now imports it so there is one
+  definition): lower-case, straight quotes, en/em dashes to hyphens, table pipes and `<br>`
+  removed, single spaces.
+- `quote_in_source(quote, source, min_fraction=0.9)`: is a quote (near-)verbatim in its
+  source? Exact after normalisation, or a leading/trailing 90% of the quote (at least 30 chars)
+  to tolerate an ellipsis or a trimmed clause, never a paraphrase.
+  **Why:** `enforce_citations` proves a citation *number* exists; this proves the *words*
+  attributed to a source are in it. `check_policy_gap` puts it inside the Pydantic schemas it
+  hands to `aip.llm.structured`, so a fabricated or paraphrased quote is fed back and repaired
+  by aip's own repair loop, like any other validation error.
+
+Stage 1 retrieval numbers are unchanged by the shared normalisation (re-run: identical winners
+and metrics).
+
+### `aip/cost.py`: budgets are context-local (bug fix)
+- The active-budget stack was one process-wide list. Two budgets entered in parallel threads
+  each recorded the *other's* calls. Found in Stage 3: four concurrent `check_policy_gap` runs,
+  each with a $0.25 budget, each "spent" the sum of all four (about 110 calls instead of about 12)
+  and raised `BudgetExceeded`; 6 of 16 evaluation cases crashed, and the reported cost per check
+  was inflated about 2x.
+- Now a `contextvars.ContextVar`. A budget counts calls made in its own context only.
+- `map_in_context(pool, fn, items)`: `pool.map` with each task in a copy of the caller's
+  context, so a budget entered around the submission still counts the pool's work, while a budget
+  entered *inside* a task stays private to that task.
+
+### `aip/evals.py`
+- `run_eval(workers>1)` submits cases with `cost.map_in_context`, so its budget keeps counting
+  the worker threads' calls under context-local budgets. Reported costs are unchanged.

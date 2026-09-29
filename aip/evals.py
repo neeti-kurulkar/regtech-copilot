@@ -146,10 +146,7 @@ def _log2(x: float) -> float:
 # the phrase is not scored as a total miss). If every label is doc-level, the
 # ranking is de-duplicated to documents first, exactly as in Lab 3.
 
-def normalise_text(s: str) -> str:
-    s = s.replace("<br>", " ").replace("’", "'").replace("‘", "'")
-    s = s.replace("“", '"').replace("”", '"')
-    return re.sub(r"\s+", " ", s).strip().lower()
+from aip.guards import normalise_text  # noqa: E402  [regtech] one definition, shared with guards
 
 
 def _contains_evidence(chunk_text: str, evidence: str, min_fraction: float) -> bool:
@@ -511,7 +508,8 @@ def run_eval(
                     print(f"  {name}: {i}/{len(cases)}", end="\r")
         else:
             with ThreadPoolExecutor(max_workers=workers) as pool:
-                results = list(pool.map(run_one, cases))
+                # [regtech] carry this run's budget into the worker threads (budgets are context-local)
+                results = cost.map_in_context(pool, run_one, cases)
         if progress:
             print(" " * 60, end="\r")
 

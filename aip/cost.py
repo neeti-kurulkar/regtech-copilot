@@ -6,8 +6,11 @@ usually the wrong system, and you cannot know that unless you measure.
 """
 from __future__ import annotations
 
+import contextvars
 import threading
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
+from typing import Any
 
 from aip.config import FREE_PREFIXES, PRICES_PER_MTOK, settings
 
@@ -96,6 +99,7 @@ class Budget:
     completion_tokens: int = 0
     latencies_ms: list[float] = field(default_factory=list)
     _lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
+    _token: Any = field(default=None, repr=False)
 
     def record(self, usage: Usage) -> None:
         with self._lock:
@@ -154,23 +158,41 @@ class Budget:
         }
 
     def __enter__(self) -> Budget:
-        _ACTIVE.append(self)
+        self._token = _ACTIVE.set(_ACTIVE.get() + (self,))
         return self
 
     def __exit__(self, *exc) -> None:
-        if _ACTIVE and _ACTIVE[-1] is self:
-            _ACTIVE.pop()
+        if self._token is not None:
+            _ACTIVE.reset(self._token)
+            self._token = None
 
 
-_ACTIVE: list[Budget] = []
+# [regtech] Active budgets are context-local (a ContextVar), not one process-wide list.
+# With a shared list, two budgets entered in parallel threads each recorded the OTHER's
+# calls: in Stage 3, four concurrent check_policy_gap runs each "spent" the sum of all four
+# and tripped BudgetExceeded. Work submitted to a thread pool must carry its caller's
+# context to be counted by the caller's budget: use map_in_context() below.
+_ACTIVE: contextvars.ContextVar[tuple[Budget, ...]] = contextvars.ContextVar("aip_active_budgets", default=())
 _GLOBAL = Budget(limit_usd=settings.budget_usd, label="process-total")
 
 
 def record(usage: Usage) -> None:
     """Called by aip.llm / aip.embed after every model call."""
     _GLOBAL.record(usage)
-    for b in _ACTIVE:
+    for b in _ACTIVE.get():
         b.record(usage)
+
+
+def map_in_context(pool: Any, fn: Callable[[Any], Any], items: Iterable[Any]) -> list[Any]:
+    """[regtech] pool.map(fn, items), with each task running in a copy of the caller's context.
+
+    So the budgets active where the work was submitted also count the work done in the
+    pool's threads, while budgets entered *inside* one task stay private to that task.
+    A context is copied per task because one Context cannot be entered by two threads at once.
+    """
+    items = list(items)
+    contexts = [contextvars.copy_context() for _ in items]
+    return list(pool.map(lambda pair: pair[0].run(fn, pair[1]), zip(contexts, items)))
 
 
 def global_budget() -> Budget:
