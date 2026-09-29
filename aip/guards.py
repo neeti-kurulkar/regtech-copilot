@@ -33,6 +33,14 @@ _PII_PATTERNS: dict[str, re.Pattern] = {
 }
 
 
+def pii_patterns(*labels: str) -> dict[str, re.Pattern]:  # [regtech]
+    """A subset of the built-in PII patterns, e.g. pii_patterns("PAN", "AADHAAR"), in the safe order."""
+    unknown = set(labels) - set(_PII_PATTERNS)
+    if unknown:
+        raise KeyError(f"unknown PII labels: {sorted(unknown)}")
+    return {k: v for k, v in _PII_PATTERNS.items() if k in labels}
+
+
 def redact_pii(text: str, patterns: dict[str, re.Pattern] | None = None
                ) -> tuple[str, dict[str, int]]:
     """Replace PII with typed placeholders. Returns (clean_text, counts).
@@ -66,6 +74,9 @@ _INJECTION_SIGNALS: list[tuple[str, re.Pattern]] = [
 ]
 
 
+INJECTION_SIGNALS = _INJECTION_SIGNALS  # [regtech] public name, to build tuned signal lists from
+
+
 @dataclass
 class InjectionVerdict:
     flagged: bool
@@ -73,16 +84,18 @@ class InjectionVerdict:
     detail: dict[str, str] = field(default_factory=dict)
 
 
-def detect_injection(text: str) -> InjectionVerdict:
+def detect_injection(text: str, signals: list[tuple[str, re.Pattern]] | None = None) -> InjectionVerdict:
     """Heuristic first-pass injection detector.
 
     Cheap, deterministic, and trivially bypassable by a competent attacker —
     which is exactly why Lab 6 asks you to measure its false-negative rate on
     the supplied attack suite before deciding what else you need. A detector
     you have not measured is a false sense of security.
+
+    [regtech] `signals` replaces the built-in list, e.g. a tuned list for one input channel.
     """
     hits, detail = [], {}
-    for name, pat in _INJECTION_SIGNALS:
+    for name, pat in (_INJECTION_SIGNALS if signals is None else signals):
         m = pat.search(text)
         if m:
             hits.append(name)

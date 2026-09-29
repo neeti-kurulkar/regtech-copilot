@@ -65,8 +65,72 @@ def main(argv: list[str] | None = None) -> int:
 
     p_egap = sub.add_parser("eval-gap", help="Stage 3 evaluation of check_policy_gap; writes reports/stage3_policy_gap_<label>.*")
     p_egap.add_argument("--label", default="current")
+    p_egap.add_argument("--tier", default="MAIN", help="model tier for requirement extraction")
+    p_egap.add_argument("--assess-tier", default="SMALL", help="model tier for the per-requirement assessments")
+
+    p_ag = sub.add_parser("agent", help="Stage 6: ask the compliance agent (it picks and calls the tools)")
+    p_ag.add_argument("message")
+    p_ag.add_argument("--layers", default="default", help="'default' (all but structured), 'all', 'none', or a '+'-joined subset of "
+                      "delimit+detect+structured+privilege+output")
+    p_ag.add_argument("--as-of", help="YYYY-MM-DD for calendar questions (default: today)")
+    p_ag.add_argument("--confirm", action="store_true", help="ask you (y/n) before the privileged send tool runs")
+
+    sub.add_parser("make-fixtures", help="write the poisoned policy PDFs used by the red-team into tests/fixtures/redteam/")
+
+    p_rt = sub.add_parser("redteam", help="Stage 6 red-team: attacks and controls under cumulative layers")
+    p_rt.add_argument("--only", action="append", help="run only these case ids (repeatable)")
+    p_rt.add_argument("--final-only", action="store_true", help="run only the all-layers configuration")
+    p_rt.add_argument("--default-only", action="store_true", help="run only the default configuration (all but structured)")
+    p_rt.add_argument("--label", default="stage6_redteam")
+    p_rt.add_argument("--workers", type=int, default=6)
 
     args = parser.parse_args(argv)
+
+    if args.command == "agent":
+        from datetime import date as _date
+        from regtech.agent import ALL_LAYERS, DEFAULT_LAYERS, ComplianceAgent, Layers, internal_only
+        if args.layers in ("all", "default"):
+            layers = ALL_LAYERS if args.layers == "all" else DEFAULT_LAYERS
+        else:
+            names = {"output": "output_filter"}
+            on = [] if args.layers == "none" else args.layers.split("+")
+            layers = Layers(**{names.get(n, n): True for n in on})
+        confirm = internal_only
+        if args.confirm:
+            def confirm(tool: str, a: dict) -> bool:
+                return input(f"\nAllow {tool} to {a.get('recipient')}? [y/N] ").strip().lower() == "y"
+        agent = ComplianceAgent(layers, confirm_fn=confirm,
+                                today=_date.fromisoformat(args.as_of) if args.as_of else None)
+        run = agent.run(args.message)
+        print(run.answer)
+        print(f"\n[{run.layers}] stop={run.stop_reason} tools={[c['tool'] + ('' if c['ok'] else ' (denied)') for c in run.tool_calls]} "
+              f"cost=${run.cost_usd:.4f} time={run.latency_ms / 1000:.1f}s")
+        for f in run.flags:
+            print("  flag:", f)
+        for m in run.outbox:
+            print(f"  outbox (simulated): to {m['recipient']}: {m['subject']}")
+        return 0
+
+    if args.command == "make-fixtures":
+        from regtech.redteam import make_fixtures
+        for p in make_fixtures():
+            print("wrote", p)
+        return 0
+
+    if args.command == "redteam":
+        from regtech.redteam import CASES, CONFIGS, run_suite, summarise, write_report
+        cases = [c for c in CASES if not args.only or c.id in args.only]
+        from regtech.agent import DEFAULT_LAYERS
+        configs = CONFIGS[-1:] if args.final_only else [DEFAULT_LAYERS] if args.default_only else CONFIGS
+        by_config = run_suite(configs, cases, workers=args.workers)
+        path = write_report(by_config, args.label)
+        for cfg, rs in by_config.items():
+            s = summarise(rs)
+            print(f"{cfg:45} block={s['block_rate']:.2f} FP={s['false_positive_rate']:.2f} "
+                  f"priv={s['privileged_calls_by_attacks']} cost=${s['mean_cost_usd']:.4f} p95={s['p95_latency_s']}s "
+                  f"succeeded={s['succeeded']} fp={s['false_positives']}")
+        print("report:", path)
+        return 0
 
     if args.command == "gap":
         from regtech.entities import EntityNotFound
@@ -145,7 +209,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "eval-gap":
         from regtech.gap_eval import run
-        out = run(args.label)
+        out = run(args.label, args.tier, args.assess_tier)
         print({k: round(v, 3) for k, v in out["aggregate"].items() if v == v}, out["diagnosis"])
         return 0
 

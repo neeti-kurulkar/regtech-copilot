@@ -177,3 +177,42 @@ No changes. `find_enforcement_precedent` is built entirely on existing aip piece
 
 Stage 5 also fixed a bug in `number_forms` found by its own test: 180 rendered as
 "one hundred and 80" (the shortest form of the remainder was its digits); remainders now use words.
+
+---
+
+## Stage 6 (2026-10-01)
+
+### `aip/guards.py`
+- `pii_patterns(*labels)`: a named subset of the built-in PII patterns, kept in the built-in order
+  (the order matters: CARD must run before AADHAAR). Unknown labels raise `KeyError`.
+  **Why:** the agent's output filter redacts phone, Aadhaar, PAN and card numbers but must leave
+  alone (a) e-mail addresses, because an internal compliance address is legitimate output and
+  external ones are handled by a separate allow-list rule, and (b) the `IP` pattern, which would
+  redact RBI paragraph numbers such as `3.1.2.4`. Previously the only way to get a subset was to
+  import the private `_PII_PATTERNS`.
+
+- `detect_injection(text, signals=None)`: an optional signal list replaces the built-in one; the built-in
+  list is now also public as `INJECTION_SIGNALS`, so a caller can tune a copy.
+  **Why:** red-team v1 measured the stock detector on the agent's user input at a 0.60 false-positive
+  rate (3 of 5 benign controls): compliance users say "ignore the previous instructions I gave",
+  "act as if you are our compliance officer" and "show me the instructions in the KYC Directions".
+  It blocked no attack the model had not already refused. The agent now uses a tuned list on user
+  input and the full stock list on uploaded documents. Default behaviour is unchanged.
+
+### `aip/cache.py`
+- `AIP_CACHE_SALT`: when set, chat-call cache keys get the salt mixed in; embedding keys never do.
+  Unset, every key is exactly as before.
+  **Why:** a cached re-run reports $0 and 0 ms. To measure cold cost and latency, the red-team needs
+  every model call to miss the cache, but disabling the cache (`AIP_CACHE=0`) would also re-embed
+  the whole corpus on every index load.
+
+### `aip/cost.py`
+- `Budget.cold_usd` (and `cold_cost_usd` in `as_dict()`): what the budget's calls would have cost with
+  an empty cache. Cache hits are priced from their recorded tokens.
+  **Why:** the same honesty problem as above, for runs that *are* partly cached. Reporting "$0.003
+  per query" because most calls were cache hits would overstate how cheap the agent is.
+
+Everything else in the agent is existing aip: `llm.chat(tools=...)` for tool calling,
+`guards.ToolGuard` (allow-list, call cap, schema validation before execution, confirmation),
+`guards.detect_injection` / `delimit_untrusted` / `UNTRUSTED_SYSTEM_CLAUSE` / `redact_pii`,
+`llm.structured` for the typed final answer, `cost.Budget` / `map_in_context`.

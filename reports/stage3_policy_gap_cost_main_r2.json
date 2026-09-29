@@ -1,0 +1,2874 @@
+{
+  "aggregate": {
+    "requirement_found": 0.9375,
+    "status_exact": 1.0,
+    "status_exact_original_labels": 0.8,
+    "gap_call_correct": 1.0,
+    "missed_gap": 0.0,
+    "false_alarm": 0.0,
+    "policy_evidence_seen": 1.0,
+    "policy_cited_right": 1.0,
+    "needs_review_share": 0.0
+  },
+  "diagnosis": {
+    "2 requirement extraction": 1
+  },
+  "budget": {
+    "label": "stage3-cost_main_r2",
+    "calls": 125,
+    "cached_calls": 9,
+    "prompt_tokens": 277747,
+    "completion_tokens": 74388,
+    "cost_usd": 0.406585,
+    "cold_cost_usd": 0.487265,
+    "unpriced_calls": 0,
+    "unpriced_models": [],
+    "latency_p50_ms": 3215.0,
+    "latency_p95_ms": 5704.1
+  },
+  "rows": [
+    [
+      "G01",
+      "IIFL",
+      "gold loan auctions",
+      "missing",
+      "missing",
+      "ok"
+    ],
+    [
+      "G02",
+      "Muthoot Finance",
+      "gold loan auctions",
+      "missing",
+      "missing",
+      "ok"
+    ],
+    [
+      "G03",
+      "Manappuram",
+      "gold loan auctions",
+      "missing",
+      "missing",
+      "ok"
+    ],
+    [
+      "G04",
+      "Manappuram",
+      "gold loan auctions",
+      "met",
+      "met",
+      "ok"
+    ],
+    [
+      "G05",
+      "Nissan Renault",
+      "penal charges on loans",
+      "missing",
+      "missing",
+      "ok"
+    ],
+    [
+      "G06",
+      "Cholamandalam",
+      "penal charges on loans",
+      "missing/weaker",
+      "missing",
+      "ok"
+    ],
+    [
+      "G07",
+      "Bajaj Finance",
+      "penal charges on loans",
+      "met",
+      "met",
+      "ok"
+    ],
+    [
+      "G08",
+      "Muthoot Finance",
+      "transfer of a loan account to another lender",
+      "inconsistent",
+      "inconsistent",
+      "ok"
+    ],
+    [
+      "G09",
+      "Tata Capital",
+      "transfer of a loan account to another lender",
+      "met",
+      "met",
+      "ok"
+    ],
+    [
+      "G10",
+      "Nissan Renault",
+      "Key Facts Statement for loans",
+      "missing",
+      "missing",
+      "ok"
+    ],
+    [
+      "G11",
+      "Tata Capital",
+      "Key Facts Statement for loans",
+      "met",
+      "met",
+      "ok"
+    ],
+    [
+      "G12",
+      "Mahindra Finance",
+      "recovery of overdue loans and calling hours",
+      "met/weaker",
+      "weaker",
+      "ok"
+    ],
+    [
+      "G13",
+      "Muthoot Finance",
+      "recovery of overdue loans and calling hours",
+      "weaker/missing",
+      "weaker",
+      "ok"
+    ],
+    [
+      "G14",
+      "Cholamandalam",
+      "release of property documents after loan repayment",
+      "missing/weaker",
+      "weaker",
+      "ok"
+    ],
+    [
+      "G15",
+      "IIFL",
+      "release of property documents after loan repayment",
+      "met",
+      "met",
+      "ok"
+    ],
+    [
+      "G16",
+      "L&T Finance",
+      "recovery practices for microfinance loans",
+      "weaker/met",
+      "-",
+      "2 requirement extraction: passage retrieved but rule not extracted"
+    ]
+  ],
+  "per_case": {
+    "G01": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G02": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G03": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G04": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G05": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G06": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G07": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G08": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 0.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G09": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G10": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G11": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G12": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G13": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G14": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 0.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0
+    },
+    "G15": {
+      "requirement_found": 1.0,
+      "needs_review_share": 0.0,
+      "status_exact": 1.0,
+      "status_exact_original_labels": 1.0,
+      "gap_call_correct": 1.0,
+      "missed_gap": 0.0,
+      "false_alarm": 0.0,
+      "policy_evidence_seen": 1.0,
+      "policy_cited_right": 1.0
+    },
+    "G16": {
+      "requirement_found": 0.0,
+      "needs_review_share": 0.0,
+      "stage_failed_rule_retrieval": 0.0,
+      "stage_failed_extraction": 1.0
+    }
+  },
+  "reports": {
+    "IIFL | gold loan auctions": {
+      "entity": "IIFL Finance Limited",
+      "policy_doc_id": "fpc-iifl",
+      "policy_title": "IIFL Finance Limited - Fair Practices Code",
+      "policy_date": "2026-04-29",
+      "topic": "gold loan auctions",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "An NBFC must give adequate notice to the borrower or legal heir through available communication means to settle loan dues before initiating the auction procedure.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s63",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.5 Release of Collateral after Repayment | paras 57-60",
+            "quote": "An NBFC shall give adequate notice to the borrower(s)/ legal heir(s), as applicable, through available means of communication to repay or settle the loan dues prior to initiating the auction procedure."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s8",
+            "label": "IIFL Finance Limited - Fair Practices Code | I. Loans",
+            "quote": "The Company shall follow transparent auction procedure in case of nonrepayment with adequate prior notice to the borrower."
+          },
+          "explanation": "The policy commits to providing adequate prior notice to the borrower in case of non-repayment before auction, but it omits notice to legal heirs and does not specify using available communication means to give them an opportunity to repay or settle dues prior to initiating the auction.",
+          "considered": [
+            "fpc-iifl::s8",
+            "fpc-iifl::s17",
+            "fpc-iifl::s4",
+            "fpc-iifl::s24"
+          ]
+        },
+        {
+          "requirement": "An NBFC must announce the auction to the public by publishing advertisements in at least two newspapers, one in a regional language and another in a national daily.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s64",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 60-62",
+            "quote": "An NBFC shall implement a transparent auction procedure, which shall include, inter alia, announcement of the auction to the public by issue of advertisements in at least two newspapers, one in the regional language and another in a national daily."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s18",
+            "label": "IIFL Finance Limited - Fair Practices Code | T.Lending against collateral of Gold Jewellery",
+            "quote": "The auction shall be announced to the public by issue of advertisements in at least two newspapers, one in vernacular and another in national daily newspaper"
+          },
+          "explanation": "The policy meets the requirement by mandating that public auctions be announced via advertisements in at least two newspapers, one in vernacular and another in a national daily.",
+          "considered": [
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s2",
+            "fpc-iifl::s19"
+          ]
+        },
+        {
+          "requirement": "An NBFC must auction pledged collateral only through trained or experienced employees or through an auctioneer empanelled as per its policy.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s65",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64",
+            "quote": "The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary experience and / or training or an auctioneer empanelled by the NBFC as per its policy."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s18",
+            "label": "IIFL Finance Limited - Fair Practices Code | T.Lending against collateral of Gold Jewellery",
+            "quote": "Gold pledged shall be auctioned only through auctioneers approved by the Board"
+          },
+          "explanation": "The policy meets the requirement by mandating that gold pledged shall be auctioned only through auctioneers approved by the Board.",
+          "considered": [
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s19",
+            "fpc-iifl::s23"
+          ]
+        },
+        {
+          "requirement": "An NBFC must set a reserve price for gold and silver collateral at auction that is not less than 90 percent of its current value.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s65",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64",
+            "quote": "An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy outlines auction transparency measures such as newspaper advertisements, non-participation by the company, and board-approved auctioneers, but it does not mention declaring a reserve price or setting it at not less than 90 percent of current value.",
+          "considered": [
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s19",
+            "fpc-iifl::s17"
+          ]
+        },
+        {
+          "requirement": "An NBFC must conduct the first auction physically in the same district where the lending branch is located.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "The first auction shall be conducted physically in the same district in which the lending branch is located."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts outline general auction transparency rules, board-approved auctioneers, and newspaper advertising requirements, but do not mention that the first auction must be conducted physically in the same district where the lending branch is located.",
+          "considered": [
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s23",
+            "fpc-iifl::s24"
+          ]
+        },
+        {
+          "requirement": "An NBFC and its related parties are prohibited from participating in auctions to avoid potential conflicts of interest.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "As a matter of policy, an NBFC or its related parties shall not participate in the auctions to ensure that there is no potential conflict of interest."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s18",
+            "label": "IIFL Finance Limited - Fair Practices Code | T.Lending against collateral of Gold Jewellery",
+            "quote": "There shall be no conflict of interest and the auction process must ensure that there is arm\u2019s length relationship in all transactions during the auction including with group companies and related entities:"
+          },
+          "explanation": "The policy prohibits the company itself from participating in auctions and mentions maintaining an arm's-length relationship with related entities, but it does not expressly prohibit related parties from participating in auctions as required by the regulation.",
+          "considered": [
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s25",
+            "fpc-iifl::s1"
+          ]
+        },
+        {
+          "requirement": "After the auction, an NBFC must provide the borrower or legal heir full details of the value fetched and dues adjusted.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "After the auction, an NBFC shall mandatorily provide full details of the value fetched at the auction and the dues adjusted to the borrower(s) / legal heir(s)."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts cover pre-auction notices, advertisement requirements, and auction procedures, but do not mention providing the borrower or legal heir with details of the value fetched and dues adjusted after the auction.",
+          "considered": [
+            "fpc-iifl::s8",
+            "fpc-iifl::s17",
+            "fpc-iifl::s18",
+            "fpc-iifl::s15"
+          ]
+        },
+        {
+          "requirement": "An NBFC must refund any auction surplus to the borrower or legal heir within a maximum of seven working days from receiving full auction proceeds.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s67",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 66-68",
+            "quote": "The surplus, if any, from the auction of the gold or silver collateral, shall be refunded to the borrower(s) / legal heir(s) within a maximum period of seven working days from the date of receipt of the full auction proceeds."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts cover general gold loan auction procedures and notices, but do not mention the refund of auction surplus to borrowers or legal heirs within seven working days of receiving full auction proceeds.",
+          "considered": [
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s19",
+            "fpc-iifl::s17"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 2,
+        "weaker": 2,
+        "inconsistent": 0,
+        "missing": 4,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.034951
+    },
+    "Muthoot Finance | gold loan auctions": {
+      "entity": "Muthoot Finance Limited",
+      "policy_doc_id": "fpc-muthoot",
+      "policy_title": "Muthoot Finance Limited - Fair Practices Code",
+      "policy_date": "2025-11-12",
+      "topic": "gold loan auctions",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "An NBFC must give adequate notice to the borrower or legal heir through available communication means to settle loan dues before initiating the auction procedure.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s63",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.5 Release of Collateral after Repayment | paras 57-60",
+            "quote": "An NBFC shall give adequate notice to the borrower(s)/ legal heir(s), as applicable, through available means of communication to repay or settle the loan dues prior to initiating the auction procedure."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s8",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > VII.Policy on KYC, Appraisal, Insurance, Storage of Securities, Auction etc.",
+            "quote": "The auction procedure in case of non \u2013 repayment shall be transparent. Prior notice to the borrower shall be given before the auction and there shall not be any conflict of interest."
+          },
+          "explanation": "The policy requires giving prior notice to the borrower before an auction for non-repayment, but it is weaker because it omits notice to legal heirs and does not specify providing adequate notice via available communication means to settle loan dues prior to initiating the auction.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s2",
+            "fpc-muthoot::s5"
+          ]
+        },
+        {
+          "requirement": "An NBFC must announce the auction to the public by publishing advertisements in at least two newspapers, one in a regional language and another in a national daily.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s64",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 60-62",
+            "quote": "An NBFC shall implement a transparent auction procedure, which shall include, inter alia, announcement of the auction to the public by issue of advertisements in at least two newspapers, one in the regional language and another in a national daily."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s8",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > VII.Policy on KYC, Appraisal, Insurance, Storage of Securities, Auction etc.",
+            "quote": "The auction shall be announced to the public by issuing advertisements in at least two newspapers, one in vernacular language and the other in a national daily newspaper."
+          },
+          "explanation": "The company's policy fully meets the regulatory requirement by committing to publicly announce auctions through advertisements in at least two newspapers, consisting of one vernacular language newspaper and one national daily.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s9",
+            "fpc-muthoot::s2",
+            "fpc-muthoot::s5"
+          ]
+        },
+        {
+          "requirement": "An NBFC must auction pledged collateral only through trained or experienced employees or through an auctioneer empanelled as per its policy.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s65",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64",
+            "quote": "The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary experience and / or training or an auctioneer empanelled by the NBFC as per its policy."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s8",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > VII.Policy on KYC, Appraisal, Insurance, Storage of Securities, Auction etc.",
+            "quote": "The auction will be only through auctioneers approved by the Board and the Company shall not participate in the auction."
+          },
+          "explanation": "The policy satisfies the requirement by mandating that auctions are conducted solely through Board-approved auctioneers.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s7",
+            "fpc-muthoot::s11"
+          ]
+        },
+        {
+          "requirement": "An NBFC must set a reserve price for gold and silver collateral at auction that is not less than 90 percent of its current value.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s65",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64",
+            "quote": "An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts detail general auction procedures such as prior notice and newspaper advertisements, but do not mention declaring a reserve price or mandating that it be at least 90 percent of current value.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s7",
+            "fpc-muthoot::s6",
+            "fpc-muthoot::s12"
+          ]
+        },
+        {
+          "requirement": "An NBFC must conduct the first auction physically in the same district where the lending branch is located.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "The first auction shall be conducted physically in the same district in which the lending branch is located."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy outlines general auction procedures, including prior notice, board-approved auctioneers, and newspaper advertisements, but does not state that the first auction must be conducted physically in the same district where the lending branch is located.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s11",
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s9"
+          ]
+        },
+        {
+          "requirement": "An NBFC and its related parties are prohibited from participating in auctions to avoid potential conflicts of interest.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "As a matter of policy, an NBFC or its related parties shall not participate in the auctions to ensure that there is no potential conflict of interest."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s8",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > VII.Policy on KYC, Appraisal, Insurance, Storage of Securities, Auction etc.",
+            "quote": "an arm\u2019s length relationship in all transactions during the auction is maintained including with group companies and related entities. The details regarding procedure for auction shall be disclosed in the loan document for availing the loan. The auction will be only through auctioneers approved by the Board and the Company shall not participate in the auction."
+          },
+          "explanation": "While the policy prohibits the company itself from participating in auctions, it only specifies maintaining an arm's length relationship with group companies and related entities instead of expressly prohibiting related parties from participating.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s1"
+          ]
+        },
+        {
+          "requirement": "After the auction, an NBFC must provide the borrower or legal heir full details of the value fetched and dues adjusted.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "After the auction, an NBFC shall mandatorily provide full details of the value fetched at the auction and the dues adjusted to the borrower(s) / legal heir(s)."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy outlines pre-auction notice requirements and general auction procedures, but does not contain a commitment to provide the borrower or legal heir with details of the value fetched at the auction and the dues adjusted.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s7",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s6"
+          ]
+        },
+        {
+          "requirement": "An NBFC must refund any auction surplus to the borrower or legal heir within a maximum of seven working days from receiving full auction proceeds.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s67",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 66-68",
+            "quote": "The surplus, if any, from the auction of the gold or silver collateral, shall be refunded to the borrower(s) / legal heir(s) within a maximum period of seven working days from the date of receipt of the full auction proceeds."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts outline auction procedures, storage, and interest calculations, but do not mention the refund of auction surplus or the requirement to remit surplus funds to the borrower or legal heir within seven working days.",
+          "considered": [
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s7",
+            "fpc-muthoot::s6",
+            "fpc-muthoot::s5"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 2,
+        "weaker": 2,
+        "inconsistent": 0,
+        "missing": 4,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.030926
+    },
+    "Manappuram | gold loan auctions": {
+      "entity": "Manappuram Finance Limited",
+      "policy_doc_id": "fpc-manappuram",
+      "policy_title": "Manappuram Finance Limited - Fair Practices Code",
+      "policy_date": "2026-08-11",
+      "topic": "gold loan auctions",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": false,
+      "findings": [
+        {
+          "requirement": "An NBFC must give adequate notice to the borrower or legal heir through available communication means to settle loan dues before initiating the auction procedure.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s63",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.5 Release of Collateral after Repayment | paras 57-60",
+            "quote": "An NBFC shall give adequate notice to the borrower(s)/ legal heir(s), as applicable, through available means of communication to repay or settle the loan dues prior to initiating the auction procedure."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-manappuram",
+            "chunk_id": "fpc-manappuram::s13",
+            "label": "Manappuram Finance Limited - Fair Practices Code | (V) Recovery of Dues, Exercise of Lien & Delivery of Security",
+            "quote": "The disposal of the security will be taken up through public auction when the customer does not positively respond to the communications sent by the Company to close the loan account along with interest and other charges."
+          },
+          "explanation": "The policy provides that auction will be initiated only after sending communications to the customer to close the loan account, but it omits the requirement to give notice to legal heirs.",
+          "considered": [
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s17",
+            "fpc-manappuram::s13",
+            "fpc-manappuram::s16"
+          ]
+        },
+        {
+          "requirement": "An NBFC must announce the auction to the public by publishing advertisements in at least two newspapers, one in a regional language and another in a national daily.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s64",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 60-62",
+            "quote": "An NBFC shall implement a transparent auction procedure, which shall include, inter alia, announcement of the auction to the public by issue of advertisements in at least two newspapers, one in the regional language and another in a national daily."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-manappuram",
+            "chunk_id": "fpc-manappuram::s20",
+            "label": "Manappuram Finance Limited - Fair Practices Code | Gold Ornaments and Coins",
+            "quote": "The auction shall be announced to the public by issue of advertisements in at least two newspapers, one in vernacular and another in national daily newspaper."
+          },
+          "explanation": "The policy fully meets the regulatory requirement by specifying that auctions must be publicly announced via advertisements in at least two newspapers, one vernacular and one national daily.",
+          "considered": [
+            "fpc-manappuram::s21",
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s20",
+            "fpc-manappuram::s17"
+          ]
+        },
+        {
+          "requirement": "An NBFC must auction pledged collateral only through trained or experienced employees or through an auctioneer empanelled as per its policy.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s65",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64",
+            "quote": "The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary experience and / or training or an auctioneer empanelled by the NBFC as per its policy."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-manappuram",
+            "chunk_id": "fpc-manappuram::s21",
+            "label": "Manappuram Finance Limited - Fair Practices Code | Gold Ornaments and Coins",
+            "quote": "Gold pledged shall be auctioned only through auctioneers approved by the Board."
+          },
+          "explanation": "The policy satisfies the requirement by committing to conduct auctions of pledged gold exclusively through auctioneers approved by the Board.",
+          "considered": [
+            "fpc-manappuram::s20",
+            "fpc-manappuram::s21",
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s19"
+          ]
+        },
+        {
+          "requirement": "An NBFC must set a reserve price for gold and silver collateral at auction that is not less than 90 percent of its current value.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s65",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64",
+            "quote": "An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts mention auction procedures, notice requirements, and approved auctioneers for pledged gold, but make no reference to declaring a reserve price of at least 90 percent of current value at auction.",
+          "considered": [
+            "fpc-manappuram::s20",
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s21",
+            "fpc-manappuram::s19"
+          ]
+        },
+        {
+          "requirement": "An NBFC must conduct the first auction physically in the same district where the lending branch is located.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "The first auction shall be conducted physically in the same district in which the lending branch is located."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not mention the requirement to conduct the first auction physically in the same district where the lending branch is located.",
+          "considered": [
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s17",
+            "fpc-manappuram::s19",
+            "fpc-manappuram::s21"
+          ]
+        },
+        {
+          "requirement": "An NBFC and its related parties are prohibited from participating in auctions to avoid potential conflicts of interest.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "As a matter of policy, an NBFC or its related parties shall not participate in the auctions to ensure that there is no potential conflict of interest."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-manappuram",
+            "chunk_id": "fpc-manappuram::s20",
+            "label": "Manappuram Finance Limited - Fair Practices Code | Gold Ornaments and Coins",
+            "quote": "There shall be no conflict of interest and the auction process must ensure that there is arm's length relationship in all transactions during the auction including with group companies and related entities."
+          },
+          "explanation": "The policy prohibits the company itself from participating in auctions, but does not explicitly bar related parties and group companies from participating, requiring only an arm's length relationship instead.",
+          "considered": [
+            "fpc-manappuram::s20",
+            "fpc-manappuram::s16",
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s21"
+          ]
+        },
+        {
+          "requirement": "After the auction, an NBFC must provide the borrower or legal heir full details of the value fetched and dues adjusted.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s66",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 63-66",
+            "quote": "After the auction, an NBFC shall mandatorily provide full details of the value fetched at the auction and the dues adjusted to the borrower(s) / legal heir(s)."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not state that after an auction, the company will provide full details of the auction value fetched and dues adjusted to the borrower or legal heir.",
+          "considered": [
+            "fpc-manappuram::s17",
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s13",
+            "fpc-manappuram::s16"
+          ]
+        },
+        {
+          "requirement": "An NBFC must refund any auction surplus to the borrower or legal heir within a maximum of seven working days from receiving full auction proceeds.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s67",
+            "label": "Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 66-68",
+            "quote": "The surplus, if any, from the auction of the gold or silver collateral, shall be refunded to the borrower(s) / legal heir(s) within a maximum period of seven working days from the date of receipt of the full auction proceeds."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not address the refund of auction surplus to the borrower or legal heirs, nor do they specify the requirement to complete such refunds within seven working days of receiving auction proceeds.",
+          "considered": [
+            "fpc-manappuram::s10",
+            "fpc-manappuram::s18",
+            "fpc-manappuram::s13",
+            "fpc-manappuram::s20"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 2,
+        "weaker": 2,
+        "inconsistent": 0,
+        "missing": 4,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.028475
+    },
+    "Nissan Renault | penal charges on loans": {
+      "entity": "Nissan Renault Financial Services India Private Limited",
+      "policy_doc_id": "fpc-nrfsi",
+      "policy_title": "Nissan Renault Financial Services India Private Limited - Fair Practices Code",
+      "policy_date": null,
+      "topic": "penal charges on loans",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": null,
+      "findings": [
+        {
+          "requirement": "Penalty for non-compliance with loan terms must be levied as penal charges and not in the form of penal interest added to the interest rate.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s33",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as \u2018penal charges\u2019 and shall not be levied in the form of \u2018penal interest\u2019 that is added to the rate of interest charged on the advances."
+          },
+          "status": "inconsistent",
+          "policy": {
+            "doc_id": "fpc-nrfsi",
+            "chunk_id": "fpc-nrfsi::s4",
+            "label": "Nissan Renault Financial Services India Private Limited - Fair Practices Code | 1.INTRODUCTION > 7.LOAN APPRAISAL AND TERMS/CONDITIONS",
+            "quote": "The Company shall mention the penal interest charged for late repayment in bold in the loan agreement."
+          },
+          "explanation": "The policy provides for levying 'penal interest' for late repayment, directly contradicting the regulatory mandate that penalties must be levied as penal charges and not as penal interest added to the interest rate.",
+          "considered": [
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s3"
+          ]
+        },
+        {
+          "requirement": "The NBFC must formulate a Board-approved policy on penal charges or similar charges on loans.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s36",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The NBFC shall formulate a Board approved policy on penal charges or similar charges on loans, by whatever name called."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided policy excerpts mention penal interest and internal principles for charges, but do not state a requirement to formulate a Board-approved policy on penal charges or similar charges on loans.",
+          "considered": [
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s3"
+          ]
+        },
+        {
+          "requirement": "The quantum of penal charges must be reasonable and commensurate with the non-compliance of material terms, without being discriminatory within a particular loan or product category.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s36",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The quantum of penal charges shall be reasonable and commensurate with the non-compliance of material terms and conditions of loan contract without being discriminatory within a particular loan / product category."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts only mention highlighting penal interest for late repayment in bold and ensuring charges are not excessive, but do not state that penal charges must be commensurate with non-compliance of material terms or non-discriminatory within a product category.",
+          "considered": [
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s3"
+          ]
+        },
+        {
+          "requirement": "The NBFC must ensure that there is no capitalization of penal charges and that no further interest is computed on such charges.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s35",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Further, it shall be ensured that there is no capitalization of the penal charges i.e., no further interest computed on such charges."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not address the prohibition on capitalizing penal charges or computing further interest on such charges.",
+          "considered": [
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s7"
+          ]
+        },
+        {
+          "requirement": "The NBFC cannot levy additional or fresh penal charges on the earlier outstanding amount of penal charges.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s35",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Additional / fresh penal charges cannot be levied on the earlier outstanding amount of penal charges."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not address the restriction on levying additional or fresh penal charges on previously outstanding penal charges.",
+          "considered": [
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s7",
+            "fpc-nrfsi::s4"
+          ]
+        },
+        {
+          "requirement": "For individual borrowers for purposes other than business, penal charges must not exceed the penal charges applicable to non-individual borrowers for similar non-compliance.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s37",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The penal charges in case of loans sanctioned to \u2018individual borrowers, for purposes other than business\u2019, shall not be higher than the penal charges applicable to non-individual borrowers for similar non-compliance of material terms and conditions."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts only mention stating penal interest for late repayment in bold in loan agreements and do not address the requirement that penal charges for individual borrowers for non-business purposes cannot exceed those for non-individual borrowers.",
+          "considered": [
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s3"
+          ]
+        },
+        {
+          "requirement": "The NBFC must clearly disclose the quantum and reason for penal charges upfront in the loan agreement, MITC/KFS, and on its website.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s38",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The quantum and reason for penal charges shall be clearly disclosed by the NBFC to the customers upfront in the loan agreement and Most Important Terms & Conditions/ Key Fact Statement as applicable, in addition to being displayed on the NBFC\u2019s website under Interest rates and Service Charges."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-nrfsi",
+            "chunk_id": "fpc-nrfsi::s4",
+            "label": "Nissan Renault Financial Services India Private Limited - Fair Practices Code | 1.INTRODUCTION > 7.LOAN APPRAISAL AND TERMS/CONDITIONS",
+            "quote": "The Company shall mention the penal interest charged for late repayment in bold in the loan agreement."
+          },
+          "explanation": "The policy requires mentioning penal interest for late repayment in bold in the loan agreement, but does not commit to disclosing the quantum and reason for penal charges in the MITC/KFS or on the company's website.",
+          "considered": [
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s3"
+          ]
+        },
+        {
+          "requirement": "The NBFC must communicate the applicable penal charges whenever reminders for non-compliance with loan terms and conditions are sent to borrowers.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s38",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Whenever reminders for non-compliance of material terms and conditions of loan are sent to borrowers, the applicable penal charges shall be communicated."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not contain any provision requiring the communication of applicable penal charges whenever reminders for non-compliance with loan terms and conditions are sent to borrowers.",
+          "considered": [
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s7"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 0,
+        "weaker": 1,
+        "inconsistent": 1,
+        "missing": 6,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.023477
+    },
+    "Cholamandalam | penal charges on loans": {
+      "entity": "Cholamandalam Investment and Finance Company Limited",
+      "policy_doc_id": "fpc-cholamandalam",
+      "policy_title": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code",
+      "policy_date": "2025-03-01",
+      "topic": "penal charges on loans",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "Penalty for non-compliance with loan terms must be levied as penal charges and not in the form of penal interest added to the interest rate.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s33",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as \u2018penal charges\u2019 and shall not be levied in the form of \u2018penal interest\u2019 that is added to the rate of interest charged on the advances."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-cholamandalam",
+            "chunk_id": "fpc-cholamandalam::s2",
+            "label": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code | Loan appraisal and terms/conditions",
+            "quote": "The Company shall disclose the penal charges levied for any non-compliance of material terms and conditions of loan contract in bold in the loan agreement and Key Fact Statement (KFS)."
+          },
+          "explanation": "The policy provides for disclosing and communicating penal charges for non-compliance with loan terms, but it omits the explicit regulatory requirement prohibiting the levy of penalty in the form of penal interest added to the interest rate.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s6"
+          ]
+        },
+        {
+          "requirement": "The NBFC must formulate a Board-approved policy on penal charges or similar charges on loans.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s36",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The NBFC shall formulate a Board approved policy on penal charges or similar charges on loans, by whatever name called."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts outline rules on disclosing and communicating penal charges, but they do not mention the requirement to formulate a Board-approved policy on penal charges or similar charges.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s1"
+          ]
+        },
+        {
+          "requirement": "The quantum of penal charges must be reasonable and commensurate with the non-compliance of material terms, without being discriminatory within a particular loan or product category.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s36",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The quantum of penal charges shall be reasonable and commensurate with the non-compliance of material terms and conditions of loan contract without being discriminatory within a particular loan / product category."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-cholamandalam",
+            "chunk_id": "fpc-cholamandalam::s2",
+            "label": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code | Loan appraisal and terms/conditions",
+            "quote": "The quantum of penal charges shall be reasonable and commensurate with the non-compliance of material terms and conditions of loan contract without being discriminatory within a particular loan/ product category."
+          },
+          "explanation": "The company's policy fully meets the requirement by verbatim adopting the standard that penal charges must be reasonable, commensurate with non-compliance of material terms, and non-discriminatory within a product category.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s0"
+          ]
+        },
+        {
+          "requirement": "The NBFC must ensure that there is no capitalization of penal charges and that no further interest is computed on such charges.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s35",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Further, it shall be ensured that there is no capitalization of the penal charges i.e., no further interest computed on such charges."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "While the policy addresses the disclosure, communication, and reasonableness of penal charges, it does not include any provision prohibiting the capitalization of penal charges or computing further interest on them.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s6"
+          ]
+        },
+        {
+          "requirement": "The NBFC cannot levy additional or fresh penal charges on the earlier outstanding amount of penal charges.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s35",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Additional / fresh penal charges cannot be levied on the earlier outstanding amount of penal charges."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided policy excerpts do not mention the prohibition against levying additional or fresh penal charges on previously outstanding penal charges.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s6"
+          ]
+        },
+        {
+          "requirement": "For individual borrowers for purposes other than business, penal charges must not exceed the penal charges applicable to non-individual borrowers for similar non-compliance.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s37",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The penal charges in case of loans sanctioned to \u2018individual borrowers, for purposes other than business\u2019, shall not be higher than the penal charges applicable to non-individual borrowers for similar non-compliance of material terms and conditions."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts cover general penal charge principles such as proportionality and non-discrimination within a product category, but do not state that penal charges for individual non-business borrowers cannot exceed those for non-individual borrowers.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s0"
+          ]
+        },
+        {
+          "requirement": "The NBFC must clearly disclose the quantum and reason for penal charges upfront in the loan agreement, MITC/KFS, and on its website.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s38",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The quantum and reason for penal charges shall be clearly disclosed by the NBFC to the customers upfront in the loan agreement and Most Important Terms & Conditions/ Key Fact Statement as applicable, in addition to being displayed on the NBFC\u2019s website under Interest rates and Service Charges."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-cholamandalam",
+            "chunk_id": "fpc-cholamandalam::s2",
+            "label": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code | Loan appraisal and terms/conditions",
+            "quote": "The Company shall disclose the penal charges levied for any non-compliance of material terms and conditions of loan contract in bold in the loan agreement and Key Fact Statement (KFS)."
+          },
+          "explanation": "The policy commits to disclosing penal charges in the loan agreement and Key Fact Statement, but it omits the requirement to display the quantum and reason on the company's website under Interest rates and Service Charges.",
+          "considered": [
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s0"
+          ]
+        },
+        {
+          "requirement": "The NBFC must communicate the applicable penal charges whenever reminders for non-compliance with loan terms and conditions are sent to borrowers.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s38",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Whenever reminders for non-compliance of material terms and conditions of loan are sent to borrowers, the applicable penal charges shall be communicated."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-cholamandalam",
+            "chunk_id": "fpc-cholamandalam::s2",
+            "label": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code | Loan appraisal and terms/conditions",
+            "quote": "Whenever reminders for non-compliance of material terms and conditions of loan are sent to borrowers, the penal charges shall be communicated to the borrower."
+          },
+          "explanation": "The policy fully satisfies the requirement by explicitly stating that penal charges will be communicated to the borrower whenever reminders for non-compliance of material terms and conditions of the loan are sent.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s1",
+            "fpc-cholamandalam::s7"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 2,
+        "weaker": 2,
+        "inconsistent": 0,
+        "missing": 4,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.02484
+    },
+    "Bajaj Finance | penal charges on loans": {
+      "entity": "Bajaj Finance Limited",
+      "policy_doc_id": "fpc-bajaj-finance",
+      "policy_title": "Bajaj Finance Limited - Fair Practices Code",
+      "policy_date": "2026-01-01",
+      "topic": "penal charges on loans",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "Penalty for non-compliance with loan terms must be levied as penal charges and not in the form of penal interest added to the interest rate.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s33",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as \u2018penal charges\u2019 and shall not be levied in the form of \u2018penal interest\u2019 that is added to the rate of interest charged on the advances."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s3",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 5. Loan appraisal and terms/conditions",
+            "quote": "Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as \u2018penal charges\u2019 and shall not be levied in the form of \u2018penal interest\u2019 that is added to the rate of interest charged on the advances."
+          },
+          "explanation": "The policy explicitly adopts the regulatory requirement, specifying that any penalty for non-compliance with loan terms will be treated as penal charges rather than penal interest added to the interest rate.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s10",
+            "fpc-bajaj-finance::s5"
+          ]
+        },
+        {
+          "requirement": "The NBFC must formulate a Board-approved policy on penal charges or similar charges on loans.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s36",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The NBFC shall formulate a Board approved policy on penal charges or similar charges on loans, by whatever name called."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s5",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 6. Penal Charges in Loan Accounts",
+            "quote": "A separate Policy on Fair Lending Practice- Penal Charges on Loan accounts has been put in place and duly approved by the Board of Directors in its meeting held on October 17, 2023."
+          },
+          "explanation": "The company meets the requirement by putting in place a separate Board-approved Policy on Fair Lending Practice - Penal Charges on Loan accounts.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s10"
+          ]
+        },
+        {
+          "requirement": "The quantum of penal charges must be reasonable and commensurate with the non-compliance of material terms, without being discriminatory within a particular loan or product category.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s36",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The quantum of penal charges shall be reasonable and commensurate with the non-compliance of material terms and conditions of loan contract without being discriminatory within a particular loan / product category."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s4",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 6. Penal Charges in Loan Accounts",
+            "quote": "The quantum of penal charges shall be reasonable and commensurate with the non-compliance of material terms and conditions of loan contract without being discriminatory within a particular loan / product category."
+          },
+          "explanation": "The policy adopts the exact regulatory requirement that penal charges must be reasonable, commensurate with non-compliance of material terms and conditions, and non-discriminatory within a loan/product category.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s10"
+          ]
+        },
+        {
+          "requirement": "The NBFC must ensure that there is no capitalization of penal charges and that no further interest is computed on such charges.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s35",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Further, it shall be ensured that there is no capitalization of the penal charges i.e., no further interest computed on such charges."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s4",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 6. Penal Charges in Loan Accounts",
+            "quote": "There shall be no capitalization of penal charges i.e., no further interest computed on such charges."
+          },
+          "explanation": "The policy explicitly states that there will be no capitalization of penal charges and that no further interest will be computed on such charges, fully satisfying the requirement.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s10"
+          ]
+        },
+        {
+          "requirement": "The NBFC cannot levy additional or fresh penal charges on the earlier outstanding amount of penal charges.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s35",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Additional / fresh penal charges cannot be levied on the earlier outstanding amount of penal charges."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts address the prohibition on capitalizing penal charges (computing interest on them), but do not mention the restriction against levying additional or fresh penal charges on earlier outstanding penal charges.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s10"
+          ]
+        },
+        {
+          "requirement": "For individual borrowers for purposes other than business, penal charges must not exceed the penal charges applicable to non-individual borrowers for similar non-compliance.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s37",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The penal charges in case of loans sanctioned to \u2018individual borrowers, for purposes other than business\u2019, shall not be higher than the penal charges applicable to non-individual borrowers for similar non-compliance of material terms and conditions."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s4",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 6. Penal Charges in Loan Accounts",
+            "quote": "The penal charges in case of loans sanctioned to \u2018individual borrowers, for purposes other than business\u2019, shall not be higher than the penal charges applicable to non-individual borrowers for similar non-compliance of material terms and conditions."
+          },
+          "explanation": "The policy adopts the exact regulatory requirement, ensuring penal charges for individual borrowers for non-business purposes are not higher than those for non-individual borrowers for similar non-compliance.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s10"
+          ]
+        },
+        {
+          "requirement": "The NBFC must clearly disclose the quantum and reason for penal charges upfront in the loan agreement, MITC/KFS, and on its website.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s38",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "The quantum and reason for penal charges shall be clearly disclosed by the NBFC to the customers upfront in the loan agreement and Most Important Terms & Conditions/ Key Fact Statement as applicable, in addition to being displayed on the NBFC\u2019s website under Interest rates and Service Charges."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s4",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 6. Penal Charges in Loan Accounts",
+            "quote": "The quantum and reason for penal charges shall be clearly disclosed by the Company to the customers in the loan agreement and most important terms & conditions / Key Fact Statement (KFS) as applicable, in addition to being displayed on the Company\u2019s website under Interest rates and Service Charges."
+          },
+          "explanation": "The policy fully satisfies the requirement by committing to clearly disclose the quantum and reason for penal charges in loan agreements, MITC/KFS, and on the company's website under Interest rates and Service Charges.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s10"
+          ]
+        },
+        {
+          "requirement": "The NBFC must communicate the applicable penal charges whenever reminders for non-compliance with loan terms and conditions are sent to borrowers.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s38",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30",
+            "quote": "Whenever reminders for non-compliance of material terms and conditions of loan are sent to borrowers, the applicable penal charges shall be communicated."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-bajaj-finance",
+            "chunk_id": "fpc-bajaj-finance::s4",
+            "label": "Bajaj Finance Limited - Fair Practices Code | January 2026 Ver.7.1 > 6. Penal Charges in Loan Accounts",
+            "quote": "Whenever reminders for non-compliance of material terms and conditions of loan are sent to borrowers, the applicable penal charges shall be communicated."
+          },
+          "explanation": "The policy adopts the exact regulatory requirement to communicate the applicable penal charges whenever reminders for non-compliance with material loan terms are sent to borrowers.",
+          "considered": [
+            "fpc-bajaj-finance::s4",
+            "fpc-bajaj-finance::s3",
+            "fpc-bajaj-finance::s5",
+            "fpc-bajaj-finance::s7"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 7,
+        "weaker": 0,
+        "inconsistent": 0,
+        "missing": 1,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.027576
+    },
+    "Muthoot Finance | transfer of a loan account to another lender": {
+      "entity": "Muthoot Finance Limited",
+      "policy_doc_id": "fpc-muthoot",
+      "policy_title": "Muthoot Finance Limited - Fair Practices Code",
+      "policy_date": "2025-11-12",
+      "topic": "transfer of a loan account to another lender",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "Upon receiving a request from a borrower to transfer their borrowal account, the NBFC must convey its consent or objection within 21 days from the date the request was received.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s17",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20",
+            "quote": "In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request."
+          },
+          "status": "inconsistent",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s12",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > X.General Provisions",
+            "quote": "The Company will not entertain any request for transfer of borrowal accounts as this is not practical in the case of loans granted against collateral of gold jewellery pledged."
+          },
+          "explanation": "The policy contradicts the regulatory requirement by stating that it will not entertain any requests for account transfers, rather than committing to convey consent or objections within 21 days.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s3",
+            "fpc-muthoot::s2"
+          ]
+        },
+        {
+          "requirement": "The transfer of a borrowal account must be executed according to transparent contractual terms that comply with applicable law.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s17",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20",
+            "quote": "Such transfer shall be as per transparent contractual terms in consonance with law."
+          },
+          "status": "inconsistent",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s12",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > X.General Provisions",
+            "quote": "The Company will not entertain any request for transfer of borrowal accounts as this is not practical in the case of loans granted against collateral of gold jewellery pledged."
+          },
+          "explanation": "The regulation requires borrowal account transfers to be executed in accordance with transparent contractual terms in consonance with law, but the policy explicitly states that the company will not entertain any requests for transfer of borrowal accounts.",
+          "considered": [
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s4"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 0,
+        "weaker": 0,
+        "inconsistent": 2,
+        "missing": 0,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.007312
+    },
+    "Tata Capital | transfer of a loan account to another lender": {
+      "entity": "Tata Capital Limited",
+      "policy_doc_id": "fpc-tata-capital",
+      "policy_title": "Tata Capital Limited - Fair Practices Code",
+      "policy_date": "2026-01-19",
+      "topic": "transfer of a loan account to another lender",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "Upon receiving a request from a borrower to transfer their borrowal account, the NBFC must convey its consent or objection within 21 days from the date the request was received.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s17",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20",
+            "quote": "In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s11",
+            "label": "Tata Capital Limited - Fair Practices Code | other than for business or commercial purposes. > 11. General",
+            "quote": "In case of receipt of a request from the borrower for transfer of the borrowal account, the consent or otherwise i.e. objection of the Company, if any, shall be conveyed within 21 days from the date of receipt of such request."
+          },
+          "explanation": "The policy fully satisfies the requirement by committing to convey the company's consent or objection within 21 days from the date of receiving a borrower's account transfer request.",
+          "considered": [
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s12",
+            "fpc-tata-capital::s6",
+            "fpc-tata-capital::s7"
+          ]
+        },
+        {
+          "requirement": "The transfer of a borrowal account must be executed according to transparent contractual terms that comply with applicable law.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s17",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20",
+            "quote": "Such transfer shall be as per transparent contractual terms in consonance with law."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s11",
+            "label": "Tata Capital Limited - Fair Practices Code | other than for business or commercial purposes. > 11. General",
+            "quote": "Such transfer shall be as per transparent contractual terms in consonance with law."
+          },
+          "explanation": "The policy directly matches the regulatory requirement, specifying that the transfer of a borrowal account must follow transparent contractual terms in consonance with the law.",
+          "considered": [
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s10",
+            "fpc-tata-capital::s3"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 2,
+        "weaker": 0,
+        "inconsistent": 0,
+        "missing": 0,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.006233
+    },
+    "Nissan Renault | Key Facts Statement for loans": {
+      "entity": "Nissan Renault Financial Services India Private Limited",
+      "policy_doc_id": "fpc-nrfsi",
+      "policy_title": "Nissan Renault Financial Services India Private Limited - Fair Practices Code",
+      "policy_date": null,
+      "topic": "Key Facts Statement for loans",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": null,
+      "findings": [
+        {
+          "requirement": "For all retail and MSME term loans (except credit card receivables), the NBFC must provide a KFS to prospective borrowers before loan contract execution, following the standardised format in Annex I.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s24",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.9 Loan facilities to the physically / visually challenged | paras 28-29",
+            "quote": "An NBFC shall provide a KFS to all prospective borrowers to help them take an informed view before executing the loan contract, as per the standardised format given in the Annex I."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not mention the requirement to provide a Key Fact Statement (KFS) in the standardised format to prospective borrowers prior to loan contract execution.",
+          "considered": [
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s5"
+          ]
+        },
+        {
+          "requirement": "The KFS provided to prospective borrowers must be written in a language understood by them.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s24",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.9 Loan facilities to the physically / visually challenged | paras 28-29",
+            "quote": "The KFS shall be written in a language understood by such borrowers."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not mention the Key Fact Statement (KFS) or any requirement to provide it in a language understood by prospective borrowers.",
+          "considered": [
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s1"
+          ]
+        },
+        {
+          "requirement": "The NBFC must explain the contents of the KFS to the borrower and obtain an acknowledgement confirming their understanding.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "Contents of KFS shall be explained to the borrower and an acknowledgement shall be obtained that they have understood the same."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not mention the Key Facts Statement (KFS), explaining its contents to borrowers, or obtaining an acknowledgement confirming their understanding.",
+          "considered": [
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s7",
+            "fpc-nrfsi::s6"
+          ]
+        },
+        {
+          "requirement": "The KFS must be provided with a unique proposal number.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "The KFS shall be provided with a unique proposal number"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts do not mention the Key Facts Statement (KFS) or the requirement to provide it with a unique proposal number.",
+          "considered": [
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s10"
+          ]
+        },
+        {
+          "requirement": "The KFS must have a validity period of at least three working days for loans with a tenor of seven days or more.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "shall have a validity period of at least three working days for loans having tenor of seven days or more"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided policy excerpts do not mention a Key Facts Statement (KFS) or the requirement for a minimum validity period of at least three working days for loans with a tenor of seven days or more.",
+          "considered": [
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s6"
+          ]
+        },
+        {
+          "requirement": "The KFS must have a validity period of one working day for loans having a tenor of less than seven days.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "and a validity period of one working day for loans having tenor of less than seven days."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not mention the Key Facts Statement (KFS) or any requirement regarding its validity period for loans having a tenor of less than seven days.",
+          "considered": [
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s6"
+          ]
+        },
+        {
+          "requirement": "The NBFC is bound by the loan terms indicated in the KFS if the borrower agrees to them during the validity period.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "The NBFC shall be bound by the terms of the loan indicated in the KFS, if agreed to by the borrower during the validity period."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts do not mention the Key Facts Statement (KFS), a validity period, or the obligation for the NBFC to be bound by the terms indicated in the KFS upon borrower acceptance.",
+          "considered": [
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s5",
+            "fpc-nrfsi::s6"
+          ]
+        },
+        {
+          "requirement": "The KFS must include a computation sheet of the Annual Percentage Rate (APR).",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "The KFS shall also include a computation sheet of annual percentage rate (APR)"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not mention the Key Facts Statement (KFS) or the requirement to provide an Annual Percentage Rate (APR) computation sheet.",
+          "considered": [
+            "fpc-nrfsi::s4",
+            "fpc-nrfsi::s6",
+            "fpc-nrfsi::s3",
+            "fpc-nrfsi::s5"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 0,
+        "weaker": 0,
+        "inconsistent": 0,
+        "missing": 8,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.020989
+    },
+    "Tata Capital | Key Facts Statement for loans": {
+      "entity": "Tata Capital Limited",
+      "policy_doc_id": "fpc-tata-capital",
+      "policy_title": "Tata Capital Limited - Fair Practices Code",
+      "policy_date": "2026-01-19",
+      "topic": "Key Facts Statement for loans",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "For all retail and MSME term loans (except credit card receivables), the NBFC must provide a KFS to prospective borrowers before loan contract execution, following the standardised format in Annex I.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s24",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.9 Loan facilities to the physically / visually challenged | paras 28-29",
+            "quote": "An NBFC shall provide a KFS to all prospective borrowers to help them take an informed view before executing the loan contract, as per the standardised format given in the Annex I."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy commits to providing a Key Facts Statement (KFS) in the standardised format to all prospective borrowers before executing the loan contract, in accordance with the RBI Responsible Business Conduct Directions, 2025.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s3",
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s8"
+          ]
+        },
+        {
+          "requirement": "The KFS provided to prospective borrowers must be written in a language understood by them.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s24",
+            "label": "Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.9 Loan facilities to the physically / visually challenged | paras 28-29",
+            "quote": "The KFS shall be written in a language understood by such borrowers."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy commits to providing a Key Facts Statement (KFS) in a standardised format to prospective borrowers and adhering to RBI directions, but it omits the specific requirement that the KFS must be written in a language understood by the borrower.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s3",
+            "fpc-tata-capital::s1",
+            "fpc-tata-capital::s8"
+          ]
+        },
+        {
+          "requirement": "The NBFC must explain the contents of the KFS to the borrower and obtain an acknowledgement confirming their understanding.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "Contents of KFS shall be explained to the borrower and an acknowledgement shall be obtained that they have understood the same."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy commits to providing a standardised KFS and complying with RBI issuance directions, but omits the specific requirements to explain the contents of the KFS to the borrower and obtain an explicit acknowledgement confirming their understanding.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s3",
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s9"
+          ]
+        },
+        {
+          "requirement": "The KFS must be provided with a unique proposal number.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "The KFS shall be provided with a unique proposal number"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy includes a general commitment to issue a standardised KFS in compliance with RBI directions, but fails to explicitly mention the requirement to include a unique proposal number.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s10",
+            "fpc-tata-capital::s1"
+          ]
+        },
+        {
+          "requirement": "The KFS must have a validity period of at least three working days for loans with a tenor of seven days or more.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "shall have a validity period of at least three working days for loans having tenor of seven days or more"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy commits generally to providing a KFS in compliance with RBI directions, but it omits the specific requirement that the KFS must have a validity period of at least three working days for loans with a tenor of seven days or more.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s3",
+            "fpc-tata-capital::s8"
+          ]
+        },
+        {
+          "requirement": "The KFS must have a validity period of one working day for loans having a tenor of less than seven days.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "and a validity period of one working day for loans having tenor of less than seven days."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy makes a general commitment to comply with RBI instructions regarding KFS issuance, but it fails to specify the required one-working-day validity period for loans with a tenor under seven days.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s8",
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s5"
+          ]
+        },
+        {
+          "requirement": "The NBFC is bound by the loan terms indicated in the KFS if the borrower agrees to them during the validity period.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "The NBFC shall be bound by the terms of the loan indicated in the KFS, if agreed to by the borrower during the validity period."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts mention providing a Key Facts Statement (KFS) and adhering to RBI directions on KFS issuance, but do not state that the company is bound by the terms indicated in the KFS if accepted by the borrower within the validity period.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s3",
+            "fpc-tata-capital::s11",
+            "fpc-tata-capital::s5"
+          ]
+        },
+        {
+          "requirement": "The KFS must include a computation sheet of the Annual Percentage Rate (APR).",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s25",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29",
+            "quote": "The KFS shall also include a computation sheet of annual percentage rate (APR)"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-tata-capital",
+            "chunk_id": "fpc-tata-capital::s4",
+            "label": "Tata Capital Limited - Fair Practices Code | INTRODUCTION > 5. Loan appraisal and terms/conditions:",
+            "quote": "The Company shall provide a Key Facts Statement (KFS), in the standardised format, to all prospective borrowers to help them take an informed view before executing the loan contract. The Company shall comply with the instructions, relating to issuance of KFS, contained in the extant RBI\u2019s NBFC \u2013 Responsible Business Conduct Directions, 2025."
+          },
+          "explanation": "The policy generally commits to providing a KFS in the standardized format per RBI directions, but it does not explicitly specify that the KFS must include an APR computation sheet.",
+          "considered": [
+            "fpc-tata-capital::s4",
+            "fpc-tata-capital::s9",
+            "fpc-tata-capital::s3",
+            "fpc-tata-capital::s11"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 1,
+        "weaker": 6,
+        "inconsistent": 0,
+        "missing": 1,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.038616
+    },
+    "Mahindra Finance | recovery of overdue loans and calling hours": {
+      "entity": "Mahindra & Mahindra Financial Services Limited",
+      "policy_doc_id": "fpc-mahindra-finance",
+      "policy_title": "Mahindra & Mahindra Financial Services Limited - Fair Practices Code",
+      "policy_date": null,
+      "topic": "recovery of overdue loans and calling hours",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": null,
+      "findings": [
+        {
+          "requirement": "For non-microfinance loans, an NBFC and its agents must not persistently call the borrower or call the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s82",
+            "label": "Responsible Business Conduct Directions, 2025 | I. Responsibilities of Direct Sales Agents (DSA) / Direct Marketing Agents > (DMA) / Recovery Agents of the NBFC | paras 99-100",
+            "quote": "persistently calling the borrower and/ or calling the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans, making false and misleading representations, etc."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-mahindra-finance",
+            "chunk_id": "fpc-mahindra-finance::s7",
+            "label": "Mahindra & Mahindra Financial Services Limited - Fair Practices Code | General",
+            "quote": "In the matter of recovery of loans, the Company shall not resort to any harassment \u2013 such as persistently bothering the borrowers at odd hours (before 8:00 a.m. and after 7:00 p.m.), use of muscle power for recovery of loans, etc."
+          },
+          "explanation": "The policy restricts harassment to 'persistently bothering the borrowers at odd hours (before 8:00 a.m. and after 7:00 p.m.)'. This is narrower than the regulatory mandate, which separately prohibits persistent calls at any hour as well as any recovery calls outside the 8:00 a.m. to 7:00 p.m. window.",
+          "considered": [
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s4",
+            "fpc-mahindra-finance::s6",
+            "fpc-mahindra-finance::s10"
+          ]
+        },
+        {
+          "requirement": "For microfinance borrowers, an NBFC or its agent is prohibited from persistently calling the borrower or calling the borrower before 9:00 a.m. and after 6:00 p.m. for loan recovery.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s77",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 90-91",
+            "quote": "Persistently calling the borrower and/ or calling the borrower before 9:00 a.m. and after 6:00 p.m."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-mahindra-finance",
+            "chunk_id": "fpc-mahindra-finance::s7",
+            "label": "Mahindra & Mahindra Financial Services Limited - Fair Practices Code | General",
+            "quote": "In the matter of recovery of loans, the Company shall not resort to any harassment \u2013 such as persistently bothering the borrowers at odd hours (before 8:00 a.m. and after 7:00 p.m.), use of muscle power for recovery of loans, etc."
+          },
+          "explanation": "The policy prohibits contacting borrowers before 8:00 a.m. and after 7:00 p.m., which is less strict than the regulatory requirement prohibiting calls before 9:00 a.m. and after 6:00 p.m.",
+          "considered": [
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s6",
+            "fpc-mahindra-finance::s4",
+            "fpc-mahindra-finance::s3"
+          ]
+        },
+        {
+          "requirement": "An NBFC must strictly ensure that it or its agents do not resort to intimidation or harassment in debt collection efforts, including acts intended to humiliate publicly or intrude upon family privacy.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s82",
+            "label": "Responsible Business Conduct Directions, 2025 | I. Responsibilities of Direct Sales Agents (DSA) / Direct Marketing Agents > (DMA) / Recovery Agents of the NBFC | paras 99-100",
+            "quote": "The NBFC shall strictly ensure that it or its agents do not resort to intimidation or harassment of any kind, either verbal or physical, against any person in their debt collection efforts, including acts intended to humiliate publicly or intrude upon the privacy"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-mahindra-finance",
+            "chunk_id": "fpc-mahindra-finance::s7",
+            "label": "Mahindra & Mahindra Financial Services Limited - Fair Practices Code | General",
+            "quote": "In the matter of recovery of loans, the Company shall not resort to any harassment \u2013 such as persistently bothering the borrowers at odd hours (before 8:00 a.m. and after 7:00 p.m.), use of muscle power for recovery of loans, etc."
+          },
+          "explanation": "The policy prohibits harassment such as odd-hour calls and muscle power, but it omits the specific regulatory prohibitions against intimidation, public humiliation, and intrusions upon privacy.",
+          "considered": [
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s10",
+            "fpc-mahindra-finance::s11",
+            "fpc-mahindra-finance::s12"
+          ]
+        },
+        {
+          "requirement": "For microfinance loans, an NBFC or its agent is prohibited from using or threatening to use violence or other similar means to harm the borrower, their family, assets, or reputation.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s78",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 91-94",
+            "quote": "Use or threat of use of violence or other similar means to harm the borrower or borrower\u2019s family/ assets/ reputation"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-mahindra-finance",
+            "chunk_id": "fpc-mahindra-finance::s7",
+            "label": "Mahindra & Mahindra Financial Services Limited - Fair Practices Code | General",
+            "quote": "In the matter of recovery of loans, the Company shall not resort to any harassment \u2013 such as persistently bothering the borrowers at odd hours (before 8:00 a.m. and after 7:00 p.m.), use of muscle power for recovery of loans, etc."
+          },
+          "explanation": "The policy prohibits harassment and the use of muscle power during loan recovery, but it omits explicit prohibitions against threats of violence or harming the borrower's family, assets, and reputation.",
+          "considered": [
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s6",
+            "fpc-mahindra-finance::s12",
+            "fpc-mahindra-finance::s4"
+          ]
+        },
+        {
+          "requirement": "Microfinance loan recovery must be made at a mutually decided designated place, and at residence or work only if the borrower fails to appear on two or more successive occasions.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s76",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.3 Training of Staff | paras 86-90",
+            "quote": "Recovery shall be made at a designated/ central designated place decided mutually by the borrower and the NBFC. However, field staff shall be allowed to make recovery at the place of residence or work of the borrower if the borrower fails to appear"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not address the requirement that microfinance loan recovery be conducted at a mutually agreed designated place, or the conditions under which recovery at a borrower's residence or workplace is permitted.",
+          "considered": [
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s4",
+            "fpc-mahindra-finance::s10",
+            "fpc-mahindra-finance::s6"
+          ]
+        },
+        {
+          "requirement": "An NBFC must establish a dedicated mechanism for redressal of recovery-related grievances and provide its details to microfinance borrowers at loan disbursal.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s78",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 91-94",
+            "quote": "An NBFC shall have a dedicated mechanism for redressal of recovery related grievances. The details of this mechanism shall be provided to the borrower at the time of loan disbursal."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not mention a dedicated mechanism for redressal of recovery-related grievances or providing details of such a mechanism to microfinance borrowers at loan disbursal.",
+          "considered": [
+            "fpc-mahindra-finance::s9",
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s11",
+            "fpc-mahindra-finance::s6"
+          ]
+        },
+        {
+          "requirement": "An NBFC must put in place a mechanism to identify microfinance borrowers facing repayment difficulties, engage with them, and provide guidance on available recourse.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s76",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.3 Training of Staff | paras 86-90",
+            "quote": "An NBFC shall put in place a mechanism for identification of the borrowers facing repayment related difficulties, engagement with such borrowers and providing them necessary guidance about the recourse available."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "None of the provided excerpts mention any mechanism to identify microfinance borrowers facing repayment difficulties, engage with them, or offer guidance on available recourse.",
+          "considered": [
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s12",
+            "fpc-mahindra-finance::s6",
+            "fpc-mahindra-finance::s9"
+          ]
+        },
+        {
+          "requirement": "An NBFC must provide recovery agent details to the borrower upon initiating recovery, and the agent must carry the notice copy and authorization letter from the NBFC.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s79",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.5 Engagement of Recovery Agents | paras 94-95",
+            "quote": "To ensure due notice and appropriate authorisation, an NBFC shall provide the details of recovery agents to the borrower while initiating the process of recovery. The agent shall also carry a copy of the notice and the authorisation letter from the NBFC"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-mahindra-finance",
+            "chunk_id": "fpc-mahindra-finance::s11",
+            "label": "Mahindra & Mahindra Financial Services Limited - Fair Practices Code | Loans Sourced by the Company through Digital Lending",
+            "quote": "The Company will communicate to the borrower, at the time of sanctioning of the loan and also at the time of passing on the recovery responsibilities to an LSP or change in the LSP responsible for recovery, the details of the LSP acting as recovery agent who is authorised to approach the borrower for recovery."
+          },
+          "explanation": "The policy provides for communicating recovery agent details to the borrower upon assigning recovery responsibilities for digital lending, but it omits the requirement for the agent to carry a copy of the notice and the authorization letter from the company.",
+          "considered": [
+            "fpc-mahindra-finance::s10",
+            "fpc-mahindra-finance::s7",
+            "fpc-mahindra-finance::s11",
+            "fpc-mahindra-finance::s6"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 0,
+        "weaker": 5,
+        "inconsistent": 0,
+        "missing": 3,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.030747
+    },
+    "Muthoot Finance | recovery of overdue loans and calling hours": {
+      "entity": "Muthoot Finance Limited",
+      "policy_doc_id": "fpc-muthoot",
+      "policy_title": "Muthoot Finance Limited - Fair Practices Code",
+      "policy_date": "2025-11-12",
+      "topic": "recovery of overdue loans and calling hours",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "For non-microfinance loans, an NBFC and its agents must not persistently call the borrower or call the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s82",
+            "label": "Responsible Business Conduct Directions, 2025 | I. Responsibilities of Direct Sales Agents (DSA) / Direct Marketing Agents > (DMA) / Recovery Agents of the NBFC | paras 99-100",
+            "quote": "persistently calling the borrower and/ or calling the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans, making false and misleading representations, etc."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s12",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > X.General Provisions",
+            "quote": "The Company will call delinquent customers between 0900 hrs to 1800 hrs unless special circumstances of the borrower\u2019s business require to call them otherwise outside the hours mentioned."
+          },
+          "explanation": "The policy restricts calling hours between 09:00 and 18:00, but introduces an unpermitted exception allowing calls outside these hours for business circumstances, and qualifies persistent bothering only to 'odd hours'.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s2",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s4"
+          ]
+        },
+        {
+          "requirement": "For microfinance borrowers, an NBFC or its agent is prohibited from persistently calling the borrower or calling the borrower before 9:00 a.m. and after 6:00 p.m. for loan recovery.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s77",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 90-91",
+            "quote": "Persistently calling the borrower and/ or calling the borrower before 9:00 a.m. and after 6:00 p.m."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s12",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > X.General Provisions",
+            "quote": "The Company will call delinquent customers between 0900 hrs to 1800 hrs unless special circumstances of the borrower\u2019s business require to call them otherwise outside the hours mentioned."
+          },
+          "explanation": "The policy commits to calling delinquent customers between 0900 hrs and 1800 hrs, but introduces an exception allowing calls outside these hours for business circumstances, making it weaker than the strict regulatory prohibition.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s4",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s3"
+          ]
+        },
+        {
+          "requirement": "An NBFC must strictly ensure that it or its agents do not resort to intimidation or harassment in debt collection efforts, including acts intended to humiliate publicly or intrude upon family privacy.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s82",
+            "label": "Responsible Business Conduct Directions, 2025 | I. Responsibilities of Direct Sales Agents (DSA) / Direct Marketing Agents > (DMA) / Recovery Agents of the NBFC | paras 99-100",
+            "quote": "The NBFC shall strictly ensure that it or its agents do not resort to intimidation or harassment of any kind, either verbal or physical, against any person in their debt collection efforts, including acts intended to humiliate publicly or intrude upon the privacy"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s12",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > X.General Provisions",
+            "quote": "In the matter of recovery of loans, the Company shall not resort to undue harassment viz. persistently bothering the borrowers at odd hours, use of muscle power for recovery of loans etc."
+          },
+          "explanation": "The policy prohibits undue harassment such as calls at odd hours or muscle power during recovery, but it is weaker as it does not explicitly extend these restrictions to recovery agents or specifically prohibit acts intended to publicly humiliate or intrude on privacy.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s11",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s2"
+          ]
+        },
+        {
+          "requirement": "For microfinance loans, an NBFC or its agent is prohibited from using or threatening to use violence or other similar means to harm the borrower, their family, assets, or reputation.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s78",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 91-94",
+            "quote": "Use or threat of use of violence or other similar means to harm the borrower or borrower\u2019s family/ assets/ reputation"
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-muthoot",
+            "chunk_id": "fpc-muthoot::s12",
+            "label": "Muthoot Finance Limited - Fair Practices Code | Compliance Department > X.General Provisions",
+            "quote": "In the matter of recovery of loans, the Company shall not resort to undue harassment viz. persistently bothering the borrowers at odd hours, use of muscle power for recovery of loans etc."
+          },
+          "explanation": "The policy prohibits undue harassment and the use of muscle power in loan recovery, but it lacks specific prohibitions against threatening violence or causing harm to the borrower's family, assets, or reputation.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s4",
+            "fpc-muthoot::s11"
+          ]
+        },
+        {
+          "requirement": "Microfinance loan recovery must be made at a mutually decided designated place, and at residence or work only if the borrower fails to appear on two or more successive occasions.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s76",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.3 Training of Staff | paras 86-90",
+            "quote": "Recovery shall be made at a designated/ central designated place decided mutually by the borrower and the NBFC. However, field staff shall be allowed to make recovery at the place of residence or work of the borrower if the borrower fails to appear"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not mention recovery locations for microfinance loans, the requirement for a mutually decided designated place, or the conditions under which field staff may visit a borrower's residence or workplace.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s4",
+            "fpc-muthoot::s3"
+          ]
+        },
+        {
+          "requirement": "An NBFC must establish a dedicated mechanism for redressal of recovery-related grievances and provide its details to microfinance borrowers at loan disbursal.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s78",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 91-94",
+            "quote": "An NBFC shall have a dedicated mechanism for redressal of recovery related grievances. The details of this mechanism shall be provided to the borrower at the time of loan disbursal."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The excerpts describe a general customer grievance redressal process and mention grievances regarding collection agencies, but do not establish a dedicated mechanism for recovery-related grievances or commit to providing its details to microfinance borrowers at loan disbursal.",
+          "considered": [
+            "fpc-muthoot::s11",
+            "fpc-muthoot::s9",
+            "fpc-muthoot::s10",
+            "fpc-muthoot::s12"
+          ]
+        },
+        {
+          "requirement": "An NBFC must put in place a mechanism to identify microfinance borrowers facing repayment difficulties, engage with them, and provide guidance on available recourse.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s76",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.3 Training of Staff | paras 86-90",
+            "quote": "An NBFC shall put in place a mechanism for identification of the borrowers facing repayment related difficulties, engagement with such borrowers and providing them necessary guidance about the recourse available."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided policy excerpts do not mention any mechanism for identifying microfinance borrowers facing repayment difficulties, engaging with them, or providing guidance on available recourse.",
+          "considered": [
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s9",
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s11"
+          ]
+        },
+        {
+          "requirement": "An NBFC must provide recovery agent details to the borrower upon initiating recovery, and the agent must carry the notice copy and authorization letter from the NBFC.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s79",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.5 Engagement of Recovery Agents | paras 94-95",
+            "quote": "To ensure due notice and appropriate authorisation, an NBFC shall provide the details of recovery agents to the borrower while initiating the process of recovery. The agent shall also carry a copy of the notice and the authorisation letter from the NBFC"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not mention the requirement to provide recovery agent details to the borrower upon initiating recovery, nor do they require the recovery agent to carry a copy of the notice and authorization letter.",
+          "considered": [
+            "fpc-muthoot::s12",
+            "fpc-muthoot::s5",
+            "fpc-muthoot::s8",
+            "fpc-muthoot::s4"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 0,
+        "weaker": 4,
+        "inconsistent": 0,
+        "missing": 4,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.029947
+    },
+    "Cholamandalam | release of property documents after loan repayment": {
+      "entity": "Cholamandalam Investment and Finance Company Limited",
+      "policy_doc_id": "fpc-cholamandalam",
+      "policy_title": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code",
+      "policy_date": "2025-03-01",
+      "topic": "release of property documents after loan repayment",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "An NBFC must release all original movable or immovable property documents and remove registered charges within 30 days after full repayment or settlement of the loan account.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s49",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans | paras 34-38",
+            "quote": "An NBFC shall release all the original movable / immovable property documents and remove charges registered with any registry within a period of 30 days after full repayment/ settlement of the loan account."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-cholamandalam",
+            "chunk_id": "fpc-cholamandalam::s3",
+            "label": "Cholamandalam Investment and Finance Company Limited - Fair Practices Code | Penal charges in loan accounts",
+            "quote": "The Company would release all securities on repayment of all dues or on realisation of the outstanding amount of loan subject to any legitimate right or lien for any other claim the Company may have against borrower"
+          },
+          "explanation": "The policy commits to releasing securities upon repayment of dues, but it fails to specify the mandatory 30-day timeline and does not mention removing charges registered with registries.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s4",
+            "fpc-cholamandalam::s1"
+          ]
+        },
+        {
+          "requirement": "The borrower must be given the option to collect original property documents from the servicing branch or any other NBFC office where documents are available, based on borrower preference.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s49",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans | paras 34-38",
+            "quote": "The borrower shall be given the option of collecting the original movable / immovable property documents either from the banking outlet / branch where the loan account was serviced or any other office of the NBFC where the documents are available, as per her / his preference."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts mention releasing securities upon loan repayment, but do not provide the borrower with the option to collect original property documents from the servicing branch or another NBFC office based on their preference.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s1",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s4"
+          ]
+        },
+        {
+          "requirement": "The timeline and place of return of original movable or immovable property documents must be stated in loan sanction letters.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s49",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans | paras 34-38",
+            "quote": "The timeline and place of return of original movable / immovable property documents shall be mentioned in the loan sanction letters issued on or December 1, 2023."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts do not address the requirement to specify the timeline and place for returning original movable or immovable property documents in loan sanction letters.",
+          "considered": [
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s1"
+          ]
+        },
+        {
+          "requirement": "An NBFC must maintain a well-laid-out procedure for returning original property documents to legal heirs in the event of the demise of the sole borrower or joint borrowers.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s50",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39",
+            "quote": "In order to address the contingent event of demise of the sole borrower or joint borrowers, an NBFC shall have a well laid out procedure for return of original movable / immovable property documents to the legal heirs."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts address the general release of securities upon loan repayment, but do not contain any procedure for returning original movable or immovable property documents to legal heirs in the event of the borrower's demise.",
+          "considered": [
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s1",
+            "fpc-cholamandalam::s4",
+            "fpc-cholamandalam::s3"
+          ]
+        },
+        {
+          "requirement": "The procedure for returning original property documents to legal heirs must be displayed on the NBFC's website for customer information.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s50",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39",
+            "quote": "Such procedure shall be displayed on the website of the NBFC along with other similar policies and procedures for customer information."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not mention the procedure for returning original property documents to legal heirs or the requirement to display this procedure on the company's website.",
+          "considered": [
+            "fpc-cholamandalam::s1",
+            "fpc-cholamandalam::s4",
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s7"
+          ]
+        },
+        {
+          "requirement": "An NBFC must communicate to the borrower the reasons for any delay beyond 30 days in releasing original property documents or filing charge satisfaction forms.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s50",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39",
+            "quote": "An NBFC shall communicate to the borrower reasons for delay in releasing of original movable / immovable property documents or failing to file charge satisfaction form with relevant registry beyond 30 days after full repayment/ settlement of loan."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy mentions releasing securities upon loan repayment, but it does not address communicating the reasons to the borrower for delays beyond 30 days in releasing original property documents or filing charge satisfaction forms.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s1",
+            "fpc-cholamandalam::s4",
+            "fpc-cholamandalam::s2"
+          ]
+        },
+        {
+          "requirement": "Where delay in releasing property documents beyond 30 days is attributable to the NBFC, it must compensate the borrower at the rate of \u20b95,000 for each day of delay.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s51",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.2 Compensation for delay in release of Movable / Immovable Property Documents | paras 39-40",
+            "quote": "In case where the delay is attributable to the NBFC, it shall compensate the borrower at the rate of \u20b95,000 for each day of delay."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy excerpts mention releasing securities upon loan repayment subject to legitimate lien, but do not state the requirement to compensate borrowers at the rate of \u20b95,000 per day for delays in releasing property documents.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s7",
+            "fpc-cholamandalam::s2",
+            "fpc-cholamandalam::s4"
+          ]
+        },
+        {
+          "requirement": "If original property documents are lost or damaged, the NBFC must assist in obtaining duplicate or certified copies, bear associated costs, and pay the prescribed delay compensation.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s51",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.2 Compensation for delay in release of Movable / Immovable Property Documents | paras 39-40",
+            "quote": "In case of loss/damage to original movable / immovable property documents, either in part or in full, an NBFC shall assist the borrower in obtaining duplicate/certified copies of the movable / immovable property documents and shall bear the associated costs, in addition to paying compensation"
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The provided excerpts do not address the obligation to assist borrowers in obtaining duplicate or certified copies, bear associated costs, or pay compensation in the event of lost or damaged original property documents.",
+          "considered": [
+            "fpc-cholamandalam::s3",
+            "fpc-cholamandalam::s1",
+            "fpc-cholamandalam::s4",
+            "fpc-cholamandalam::s7"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 0,
+        "weaker": 1,
+        "inconsistent": 0,
+        "missing": 7,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.022322
+    },
+    "IIFL | release of property documents after loan repayment": {
+      "entity": "IIFL Finance Limited",
+      "policy_doc_id": "fpc-iifl",
+      "policy_title": "IIFL Finance Limited - Fair Practices Code",
+      "policy_date": "2026-04-29",
+      "topic": "release of property documents after loan repayment",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": true,
+      "findings": [
+        {
+          "requirement": "An NBFC must release all original movable or immovable property documents and remove registered charges within 30 days after full repayment or settlement of the loan account.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s49",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans | paras 34-38",
+            "quote": "An NBFC shall release all the original movable / immovable property documents and remove charges registered with any registry within a period of 30 days after full repayment/ settlement of the loan account."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s14",
+            "label": "IIFL Finance Limited - Fair Practices Code | P.Principal Nodal Officer under the Ombudsman Scheme",
+            "quote": "The Company shall release all the original movable / immovable property documents and remove charges registered with any registry within a period of 30 days after full repayment/settlement of the loan account."
+          },
+          "explanation": "The policy explicitly commits to releasing all original movable and immovable property documents and removing charges registered with any registry within 30 days of full repayment or settlement.",
+          "considered": [
+            "fpc-iifl::s15",
+            "fpc-iifl::s14",
+            "fpc-iifl::s8",
+            "fpc-iifl::s9"
+          ]
+        },
+        {
+          "requirement": "The borrower must be given the option to collect original property documents from the servicing branch or any other NBFC office where documents are available, based on borrower preference.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s49",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans | paras 34-38",
+            "quote": "The borrower shall be given the option of collecting the original movable / immovable property documents either from the banking outlet / branch where the loan account was serviced or any other office of the NBFC where the documents are available, as per her / his preference."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "The policy discusses the release of securities and property documents, including compensation for delays and document loss, but does not state that borrowers will be given the option to collect original property documents from the servicing branch or any other company office based on their preference.",
+          "considered": [
+            "fpc-iifl::s23",
+            "fpc-iifl::s9",
+            "fpc-iifl::s15",
+            "fpc-iifl::s4"
+          ]
+        },
+        {
+          "requirement": "The timeline and place of return of original movable or immovable property documents must be stated in loan sanction letters.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s49",
+            "label": "Responsible Business Conduct Directions, 2025 | Chapter III \u2013 Responsible Lending Conduct > F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans | paras 34-38",
+            "quote": "The timeline and place of return of original movable / immovable property documents shall be mentioned in the loan sanction letters issued on or December 1, 2023."
+          },
+          "status": "missing",
+          "policy": null,
+          "explanation": "None of the provided excerpts state that the timeline and place of return of original movable or immovable property documents must be included in loan sanction letters.",
+          "considered": [
+            "fpc-iifl::s8",
+            "fpc-iifl::s24",
+            "fpc-iifl::s15",
+            "fpc-iifl::s9"
+          ]
+        },
+        {
+          "requirement": "An NBFC must maintain a well-laid-out procedure for returning original property documents to legal heirs in the event of the demise of the sole borrower or joint borrowers.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s50",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39",
+            "quote": "In order to address the contingent event of demise of the sole borrower or joint borrowers, an NBFC shall have a well laid out procedure for return of original movable / immovable property documents to the legal heirs."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s15",
+            "label": "IIFL Finance Limited - Fair Practices Code | Q.Policy for Determining Interest Rate",
+            "quote": "procedure for return of original movable/immovable property documents to the legal heirs. (Refer https://www.iifl.com/files/2024-05/Release.pdf"
+          },
+          "explanation": "The policy provides and references a procedure for the return of original movable and immovable property documents to legal heirs.",
+          "considered": [
+            "fpc-iifl::s15",
+            "fpc-iifl::s18",
+            "fpc-iifl::s8",
+            "fpc-iifl::s17"
+          ]
+        },
+        {
+          "requirement": "The procedure for returning original property documents to legal heirs must be displayed on the NBFC's website for customer information.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s50",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39",
+            "quote": "Such procedure shall be displayed on the website of the NBFC along with other similar policies and procedures for customer information."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s15",
+            "label": "IIFL Finance Limited - Fair Practices Code | Q.Policy for Determining Interest Rate",
+            "quote": "procedure for return of original movable/immovable property documents to the legal heirs. (Refer https://www.iifl.com/files/2024-05/Release.pdf"
+          },
+          "explanation": "The policy satisfies the requirement by making the procedure for returning original movable and immovable property documents to legal heirs available on the company's website via a direct link.",
+          "considered": [
+            "fpc-iifl::s15",
+            "fpc-iifl::s17",
+            "fpc-iifl::s13",
+            "fpc-iifl::s18"
+          ]
+        },
+        {
+          "requirement": "An NBFC must communicate to the borrower the reasons for any delay beyond 30 days in releasing original property documents or filing charge satisfaction forms.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s50",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39",
+            "quote": "An NBFC shall communicate to the borrower reasons for delay in releasing of original movable / immovable property documents or failing to file charge satisfaction form with relevant registry beyond 30 days after full repayment/ settlement of loan."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s15",
+            "label": "IIFL Finance Limited - Fair Practices Code | Q.Policy for Determining Interest Rate",
+            "quote": "In case of delay in releasing of original movable/immovable property documents or failing to file charge satisfaction form with relevant registry beyond 30 days after full repayment/ settlement of loan, the Company shall communicate to the borrower reasons for such delay."
+          },
+          "explanation": "The policy explicitly commits to communicating to the borrower the reasons for any delay beyond 30 days after loan repayment in releasing property documents or filing charge satisfaction forms.",
+          "considered": [
+            "fpc-iifl::s15",
+            "fpc-iifl::s4",
+            "fpc-iifl::s9",
+            "fpc-iifl::s8"
+          ]
+        },
+        {
+          "requirement": "Where delay in releasing property documents beyond 30 days is attributable to the NBFC, it must compensate the borrower at the rate of \u20b95,000 for each day of delay.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s51",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.2 Compensation for delay in release of Movable / Immovable Property Documents | paras 39-40",
+            "quote": "In case where the delay is attributable to the NBFC, it shall compensate the borrower at the rate of \u20b95,000 for each day of delay."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s15",
+            "label": "IIFL Finance Limited - Fair Practices Code | Q.Policy for Determining Interest Rate",
+            "quote": "In case where the delay is attributable to the Company, it shall compensate the borrower at the rate of \u20b95,000 for each day of delay."
+          },
+          "explanation": "The policy explicitly commits to compensating the borrower at \u20b95,000 per day of delay when the delay in releasing property documents beyond 30 days is attributable to the company.",
+          "considered": [
+            "fpc-iifl::s15",
+            "fpc-iifl::s8",
+            "fpc-iifl::s7",
+            "fpc-iifl::s9"
+          ]
+        },
+        {
+          "requirement": "If original property documents are lost or damaged, the NBFC must assist in obtaining duplicate or certified copies, bear associated costs, and pay the prescribed delay compensation.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s51",
+            "label": "Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.2 Compensation for delay in release of Movable / Immovable Property Documents | paras 39-40",
+            "quote": "In case of loss/damage to original movable / immovable property documents, either in part or in full, an NBFC shall assist the borrower in obtaining duplicate/certified copies of the movable / immovable property documents and shall bear the associated costs, in addition to paying compensation"
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-iifl",
+            "chunk_id": "fpc-iifl::s15",
+            "label": "IIFL Finance Limited - Fair Practices Code | Q.Policy for Determining Interest Rate",
+            "quote": "In case of loss/damage to original movable/immovable property documents, either in part or in full, the Company shall assist the borrower in obtaining duplicate/certified copies of the movable/immovable property documents and the Company shall bear the associated costs, in addition to paying compensation"
+          },
+          "explanation": "The policy explicitly commits to assisting the borrower in obtaining duplicate or certified copies of lost or damaged property documents, bearing all associated costs, and paying delay compensation.",
+          "considered": [
+            "fpc-iifl::s15",
+            "fpc-iifl::s14",
+            "fpc-iifl::s4",
+            "fpc-iifl::s9"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 6,
+        "weaker": 0,
+        "inconsistent": 0,
+        "missing": 2,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.026767
+    },
+    "L&T Finance | recovery practices for microfinance loans": {
+      "entity": "L&T Finance Limited",
+      "policy_doc_id": "fpc-lnt-microloans",
+      "policy_title": "L&T Finance Limited - Fair Practices Code",
+      "policy_date": null,
+      "topic": "recovery practices for microfinance loans",
+      "regulation_as_of": "2026-07-01",
+      "policy_predates_regulation": null,
+      "findings": [
+        {
+          "requirement": "An NBFC must establish a mechanism to identify microfinance borrowers facing repayment difficulties, engage with them, and provide guidance regarding available recourse.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s76",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.3 Training of Staff | paras 86-90",
+            "quote": "An NBFC shall put in place a mechanism for identification of the borrowers facing repayment related difficulties, engagement with such borrowers and providing them necessary guidance about the recourse available."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s1",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General:",
+            "quote": "The Company will have a dedicated vertical to engage with customers who have missed two or more EMIs on their due dates and are facing repayment related difficulties. These employees to be trained specifically to interact with customers facing repayment related difficulties."
+          },
+          "explanation": "The policy establishes a mechanism to identify and engage with borrowers facing repayment difficulties through a dedicated, trained vertical, but it does not commit to providing them with guidance regarding available recourse.",
+          "considered": [
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s0",
+            "fpc-lnt-microloans::s2"
+          ]
+        },
+        {
+          "requirement": "Loan recovery for microfinance loans must be conducted at a designated or central designated location mutually agreed upon by the borrower and the NBFC.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s76",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.3 Training of Staff | paras 86-90",
+            "quote": "Recovery shall be made at a designated/ central designated place decided mutually by the borrower and the NBFC."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s1",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General:",
+            "quote": "Recovery shall be made at a designated/ central designated place decided mutually by the customer and the Company."
+          },
+          "explanation": "The policy explicitly commits to conducting recovery at a designated or central designated place mutually decided by the customer and the company.",
+          "considered": [
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s0",
+            "fpc-lnt-microloans::s3"
+          ]
+        },
+        {
+          "requirement": "Field staff may only recover dues at the borrower's residence or workplace if the borrower fails to appear at the mutually designated place on two or more consecutive occasions.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s77",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 90-91",
+            "quote": "field staff shall be allowed to make recovery at the place of residence or work of the borrower if the borrower fails to appear at the designated / central designated place on two or more successive occasions."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s1",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General:",
+            "quote": "Recovery shall be made at a designated/ central designated place decided mutually by the customer and the Company. However, field staff may visit the place of residence or work of the customer, if the customer fails to appear at the designated/ central designated place on two or more successive occasions."
+          },
+          "explanation": "The policy fully meets the requirement by specifying that recovery must be conducted at the mutually agreed designated place, permitting visits to the customer's residence or workplace only after failure to appear on two or more successive occasions.",
+          "considered": [
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s0"
+          ]
+        },
+        {
+          "requirement": "An NBFC and its agents are prohibited from using harsh methods for loan recovery, such as threatening language, violence, or persistent and untimely calls.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s77",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 90-91",
+            "quote": "An NBFC or its agent shall not engage in any harsh methods towards recovery."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s2",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General: > b. Recovery of Loans:",
+            "quote": "The Company or its agent shall not engage in any harsh methods towards recovery such as: o Use of threatening or abusive language o Calling or visiting the customer before 9:00 a.m. and after 6:00 p.m."
+          },
+          "explanation": "The policy fully meets the requirement by explicitly prohibiting the company and its agents from using harsh recovery methods, including threatening language, violence, harassment, and untimely visits or calls.",
+          "considered": [
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s0"
+          ]
+        },
+        {
+          "requirement": "An NBFC must maintain a dedicated redressal mechanism for recovery-related grievances and provide its details to the microfinance borrower at the time of loan disbursal.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s78",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 91-94",
+            "quote": "An NBFC shall have a dedicated mechanism for redressal of recovery related grievances. The details of this mechanism shall be provided to the borrower at the time of loan disbursal."
+          },
+          "status": "weaker",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s3",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General: > c. Engagement of Recovery Agents:",
+            "quote": "The Company has in place a dedicated grievance redressal mechanism covered under Client Grievance Redressal Policy of the Company."
+          },
+          "explanation": "The policy mentions a dedicated grievance redressal mechanism generally, but it does not specify a dedicated mechanism specifically for recovery-related grievances, nor does it explicitly commit to providing those details to the borrower at the time of loan disbursal.",
+          "considered": [
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s0"
+          ]
+        },
+        {
+          "requirement": "An NBFC must ensure that engaged recovery agents perform antecedent verification, including police verification, for all employees involved in the recovery process.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s79",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.5 Engagement of Recovery Agents | paras 94-95",
+            "quote": "The NBFC shall ensure that the recovery agents engaged by them carry out verification of the antecedents of its employees, which shall include police verification."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s2",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General: > b. Recovery of Loans:",
+            "quote": "The Company shall ensure that the recovery agents engaged by them carry out verification of the antecedents of their employees, which shall include police verification."
+          },
+          "explanation": "The policy explicitly commits to ensuring that engaged recovery agents verify the antecedents of their employees, specifically including police verification.",
+          "considered": [
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s0"
+          ]
+        },
+        {
+          "requirement": "When initiating recovery proceedings, the NBFC must provide the details of the recovery agents to the borrower.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s79",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.5 Engagement of Recovery Agents | paras 94-95",
+            "quote": "To ensure due notice and appropriate authorisation, an NBFC shall provide the details of recovery agents to the borrower while initiating the process of recovery."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s2",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General: > b. Recovery of Loans:",
+            "quote": "To ensure due notice and appropriate authorization, the Company shall provide the details of recovery agents to the customer while initiating the process of recovery."
+          },
+          "explanation": "The policy commits to providing the details of recovery agents to the customer when initiating the recovery process, fully matching the regulatory requirement.",
+          "considered": [
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s0"
+          ]
+        },
+        {
+          "requirement": "Recovery agents must carry an identity card, a copy of the notice, and an authorization letter from the NBFC during recovery visits.",
+          "regulation": {
+            "doc_id": "reg-rbc",
+            "chunk_id": "reg-rbc::s79",
+            "label": "Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.5 Engagement of Recovery Agents | paras 94-95",
+            "quote": "The agent shall also carry a copy of the notice and the authorisation letter from the NBFC along with the identity card issued to him/her by the NBFC or the agency."
+          },
+          "status": "met",
+          "policy": {
+            "doc_id": "fpc-lnt-microloans",
+            "chunk_id": "fpc-lnt-microloans::s2",
+            "label": "L&T Finance Limited - Fair Practices Code | a. General: > b. Recovery of Loans:",
+            "quote": "The agent shall also carry a copy of the notice and the authorization letter from the Company along with the identity card issued to him by the Company or the agency."
+          },
+          "explanation": "The policy explicitly requires recovery agents to carry a copy of the notice, an authorization letter from the Company, and an identity card issued by the Company or agency.",
+          "considered": [
+            "fpc-lnt-microloans::s2",
+            "fpc-lnt-microloans::s3",
+            "fpc-lnt-microloans::s1",
+            "fpc-lnt-microloans::s0"
+          ]
+        }
+      ],
+      "counts": {
+        "met": 6,
+        "weaker": 2,
+        "inconsistent": 0,
+        "missing": 0,
+        "needs_review": 0
+      },
+      "notes": [],
+      "injection_flags": [],
+      "cost_usd": 0.025644
+    }
+  }
+}

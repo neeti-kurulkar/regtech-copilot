@@ -88,3 +88,19 @@ measurement too, and they need checking.
   not that the company breaks the rule in practice.
 - Up to 8 requirements per topic: a broad topic ("KYC") can hold more obligations than one check covers.
 - Applicability is only as good as the extracted requirement's wording (e.g. microfinance-only rules).
+
+## Revisited in Stage 6 (2026-10-01)
+
+Two changes to `check_policy_gap`, both re-measured on this evaluation (`reports/stage3_policy_gap_v5.md`,
+empty cache): perfect on every measure, with 0 missed gaps and 0 false alarms.
+
+- **Assessments now run on the SMALL tier** (extraction stays on MAIN). Cold cost per check fell from
+  $0.032 to $0.012. SMALL matched MAIN in two cold runs each. SMALL for extraction as well ($0.007) made
+  one false alarm in one of two runs, so it was not adopted.
+- **A missed gap found by the red-team, and fixed.** The RBI's harsh-recovery rule is a lead-in plus a
+  numbered list, and item (2) holds the 9 a.m.–6 p.m. calling window. On some runs the extractor quoted
+  only item (1), or only the general sentence before the list. The assessor never saw the hours, so it
+  marked Tata Capital's 08:00–19:00 window as met. Now any requirement quote that stops before its list
+  ends is completed from the source text by code (`_complete_list`). Asking the model to repair the quote
+  was tried first: it cut the list a different way. The evaluation set had no case on this rule, which is
+  why it was not caught in Stage 3.

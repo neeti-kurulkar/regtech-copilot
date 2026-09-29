@@ -48,7 +48,10 @@ Run from the repo root with the venv active (`.venv\Scripts\Activate.ps1`):
 | `python -m regtech upcoming [DAYS] [--as-of YYYY-MM-DD]` | `check_upcoming`: what is due in the next N days |
 | `python -m regtech deadlines DOC_ID` | `extract_deadlines` for one document |
 | `python -m regtech audit-calendar [--n 20]` | Seeded random sample of calendar entries for a precision audit |
-| `python -m regtech eval-gap [--label L]` | Stage 3 evaluation; writes `reports/stage3_policy_gap_<L>.{md,json}` |
+| `python -m regtech agent "MESSAGE" [--layers default\|all\|none\|delimit+detect+...] [--confirm]` | Stage 6 agent: picks and calls the tools under the guardrail layers (default: all but `structured`); `--confirm` asks you before the (simulated) send tool runs |
+| `python -m regtech make-fixtures` | Write the poisoned Tata Capital policy PDFs into `tests/fixtures/redteam/` (never into the corpus) |
+| `python -m regtech redteam [--final-only\|--default-only] [--only ID]` | Stage 6 red-team: 18 attacks + 5 controls under 6 cumulative layer configs (or just the default); writes `reports/stage6_redteam*.{md,json}` |
+| `python -m regtech eval-gap [--label L] [--tier T] [--assess-tier SMALL]` | Stage 3 evaluation (assessments on SMALL by default since Stage 6); writes `reports/stage3_policy_gap_<L>.{md,json}` |
 | `python -m regtech judge-kappa` | Cohen's κ between the LLM judge and your hand labels in `reports/stage2_judge_calibration.csv` |
 | `python -m pytest` | Offline unit tests |
 

@@ -40,6 +40,31 @@ SOURCES = ["The surplus, if any, shall be refunded to the borrower within a maxi
            "An NBFC shall give adequate notice to the borrower before initiating the auction procedure."]
 
 
+HARSH = ("91. An NBFC or its agent shall not engage in any harsh methods towards recovery. Without limiting the general "
+         "application of the foregoing, following practices shall be deemed as harsh:\n\n(1) Use of threatening or "
+         "abusive language\n\n(2) Persistently calling the borrower and/ or calling the borrower before 9:00 a.m. and "
+         "after 6:00 p.m.\n\n(3) Harassing relatives, friends, or co-workers of the borrower")
+
+
+def test_requirement_quote_may_not_cut_a_list_short():
+    """Stage 6 regression: quoting only item (1) hid the calling-hours limit in item (2) from the assessor."""
+    schema = _requirement_schema([HARSH], 6)
+    req = {"requirement": "No harsh recovery methods", "source": 1}
+    cut = "following practices shall be deemed as harsh:\n\n(1) Use of threatening or abusive language"
+    fixed = schema.model_validate({"requirements": [{**req, "quote": cut}]}).requirements[0].quote
+    assert "before 9:00 a.m. and after 6:00 p.m." in fixed and fixed.endswith("co-workers of the borrower")
+    assert quote_in_source(fixed, HARSH)
+    general = "An NBFC or its agent shall not engage in any harsh methods towards recovery."
+    fixed = schema.model_validate({"requirements": [{**req, "quote": general}]}).requirements[0].quote
+    assert fixed.startswith(general) and "9:00 a.m." in fixed
+    whole = ("following practices shall be deemed as harsh: (1) Use of threatening or abusive language (2) Persistently "
+             "calling the borrower and/ or calling the borrower before 9:00 a.m. and after 6:00 p.m. (3) Harassing "
+             "relatives, friends, or co-workers of the borrower")
+    assert schema.model_validate({"requirements": [{**req, "quote": whole}]})
+    one_item = "(2) Persistently calling the borrower and/ or calling the borrower before 9:00 a.m. and after 6:00 p.m."
+    assert schema.model_validate({"requirements": [{**req, "quote": one_item}]})    # one item on its own is fine
+
+
 def test_requirement_schema_rejects_paraphrased_quote():
     schema = _requirement_schema(SOURCES, 6)
     ok = {"requirement": "Refund auction surplus within seven working days", "source": 1,

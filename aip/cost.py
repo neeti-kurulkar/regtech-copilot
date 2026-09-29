@@ -97,6 +97,7 @@ class Budget:
     unpriced_models: set[str] = field(default_factory=set)
     prompt_tokens: int = 0
     completion_tokens: int = 0
+    cold_usd: float = 0.0   # [regtech] what the same calls cost with an empty cache
     latencies_ms: list[float] = field(default_factory=list)
     _lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
     _token: Any = field(default=None, repr=False)
@@ -113,6 +114,8 @@ class Budget:
             self.prompt_tokens += usage.prompt_tokens
             self.completion_tokens += usage.completion_tokens
             self.spent_usd += usage.cost_usd
+            self.cold_usd += (price_of(usage.model, usage.prompt_tokens, usage.completion_tokens)
+                              if usage.cached else usage.cost_usd)
             self.latencies_ms.append(usage.latency_ms)
         if self.spent_usd > self.limit_usd:
             raise BudgetExceeded(
@@ -151,6 +154,7 @@ class Budget:
             "prompt_tokens": self.prompt_tokens,
             "completion_tokens": self.completion_tokens,
             "cost_usd": round(self.spent_usd, 6),
+            "cold_cost_usd": round(self.cold_usd, 6),
             "unpriced_calls": self.unpriced_calls,
             "unpriced_models": sorted(self.unpriced_models),
             "latency_p50_ms": round(self.percentile(50), 1),

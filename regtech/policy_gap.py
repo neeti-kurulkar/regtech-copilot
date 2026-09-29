@@ -23,7 +23,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from aip.chunking import STRATEGIES, Chunk, annotate_provenance
 from aip.cost import Budget, map_in_context
-from aip.guards import UNTRUSTED_SYSTEM_CLAUSE, delimit_untrusted, detect_injection, quote_in_source
+from aip.guards import UNTRUSTED_SYSTEM_CLAUSE, delimit_untrusted, detect_injection, normalise_text, quote_in_source
 from aip.llm import StructuredOutputError, structured
 from aip.retrieval import DenseRetriever, Hit, format_context
 
@@ -158,6 +158,80 @@ quoted words actually say (no figures, times or commitments that are not in the 
 """
 
 
+_LIST_ITEM = re.compile(r"\((\d{1,2}|[a-h]|i{1,3}|iv|v|vi{0,3})\)")
+_ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii"]
+
+
+def _next_marker(m: str) -> str | None:
+    if m.isdigit():
+        return str(int(m) + 1)
+    if m in _ROMAN[:-1]:
+        return _ROMAN[_ROMAN.index(m) + 1]
+    return chr(ord(m) + 1) if len(m) == 1 else None
+
+
+_LIST_FOLLOWS = re.compile(r"^[^()]{0,220}?:\s*\((?:1|a|i)\)")
+_PARA_NO = re.compile(r"(?:^|\s)\d{1,3}\.\s")
+
+
+def _cuts_list_short(quote: str, source: str) -> str | None:
+    """Does the quote state a rule but stop before the enumerated list that makes it specific?
+
+    Found in Stage 6, twice on the same rule. The RBI's rule on harsh recovery is a lead-in plus a list:
+    "...following practices shall be deemed as harsh: (1) Use of threatening or abusive language (2) ... calling
+    the borrower before 9:00 a.m. and after 6:00 p.m. ...". The extractor first quoted the lead-in with item (1)
+    only, then (told not to) quoted just the general sentence before the list. Both times the assessor never saw
+    the hours and marked Tata Capital's 08:00-19:00 calling window as met: a missed gap.
+    One list item quoted on its own (no lead-in) is fine."""
+    q, s = normalise_text(quote), normalise_text(source)
+    at = s.find(q)
+    if at < 0:
+        return None
+    after = s[at + len(q):]
+    markers = _LIST_ITEM.findall(q)
+    if markers:
+        first = _LIST_ITEM.search(q)
+        if len(q[:first.start()].strip()) < 20:
+            return None      # starts at an item: one item as its own requirement
+        nxt = _next_marker(markers[-1])
+        if nxt and f"({nxt})" in after[:60]:
+            return f"the quote stops after list item ({markers[-1]}), but item ({nxt}) follows directly in the source"
+        return None
+    lead = _LIST_FOLLOWS.match(after)
+    if lead and not _PARA_NO.search(lead.group()):
+        return "the text right after the quote introduces a numbered list of the specific practices or limits"
+    return None
+
+
+def _complete_list(quote: str, source: str) -> str | None:
+    """If the quote stops before its list ends, return it extended with the rest of the list, copied from the
+    source. Deterministic: asking the model to fix the quote failed twice (it cut the list a different way)."""
+    if not _cuts_list_short(quote, source):
+        return None
+    key = quote.strip()[-25:]
+    at = source.find(key)
+    if at < 0:
+        return None
+    rest = source[at + len(key):]
+    q = normalise_text(quote)
+    first = _LIST_ITEM.search(q)
+    if first and len(q[:first.start()].strip()) >= 20:
+        nxt = _next_marker(_LIST_ITEM.findall(q)[-1])
+    else:
+        start = re.search(r"\((?:1|a|i)\)", rest)
+        nxt = start.group()[1:-1] if start else None
+    pos = 0
+    while nxt:
+        k = rest.find(f"({nxt})", pos)
+        if k < 0 or k - pos > 400 or _PARA_NO.search(rest[pos:k]):
+            break
+        pos, nxt = k + 1, _next_marker(nxt)
+    if pos == 0:
+        return None
+    end = rest.find("\n\n", pos)
+    return " ".join((quote.rstrip() + rest[:len(rest) if end < 0 else end]).split())
+
+
 def _requirement_schema(sources: list[str], n_max: int) -> type[BaseModel]:
     n = len(sources)
 
@@ -173,6 +247,13 @@ def _requirement_schema(sources: list[str], n_max: int) -> type[BaseModel]:
             if self.quote.rstrip().endswith(":"):
                 raise ValueError("the quote only introduces a list (it ends with ':'); quote the listed practices, "
                                  "limits or figures themselves, as separate requirements if there are several")
+            cut = _cuts_list_short(self.quote, sources[self.source - 1])
+            if cut:
+                completed = _complete_list(self.quote, sources[self.source - 1])
+                if not completed:
+                    raise ValueError(f"{cut}; quote the list items (the specific practices, limits or figures), either "
+                                     "the whole list in one quote or each item as its own requirement")
+                self.quote = completed
             return self
 
     class RequirementList(BaseModel):
@@ -232,7 +313,8 @@ def policy_label(hit: Hit) -> str:
     return " | ".join(x for x in (hit.chunk.meta.get("title", hit.doc_id), " > ".join(path[-2:])) if x)
 
 
-def _uploaded_source(path: Path, entity: str | None) -> PolicySource:
+def _uploaded_source(path: Path, entity: str | None, sanitise: Callable[[str], str] | None = None) -> PolicySource:
+    """Index an uploaded policy on the fly. `sanitise` (the agent's layer 2) cleans the text before chunking."""
     from regtech.pdf_to_md import convert
 
     title = f"{entity or path.stem} - uploaded policy"
@@ -241,6 +323,8 @@ def _uploaded_source(path: Path, entity: str | None) -> PolicySource:
     else:
         text = path.read_text(encoding="utf-8")
         text = text if text.lstrip().startswith("#") else f"# {title}\n\n{text}"
+    if sanitise:
+        text = sanitise(text)
     cfg = DEFAULT_CONFIG["internal_policy"]
     doc_id = "upload-" + "".join(ch if ch.isalnum() else "-" for ch in path.stem.lower()).strip("-")
     chunks = STRATEGIES[cfg.strategy](text, doc_id, size=cfg.size)
@@ -256,10 +340,14 @@ def _uploaded_source(path: Path, entity: str | None) -> PolicySource:
 # ---------------------------------------------------------------------------------------------
 class PolicyGapChecker:
     def __init__(self, reg_index: CorpusIndex | None = None, policy_index: CorpusIndex | None = None,
-                 tier: str = "MAIN", reg_k: int = 8, policy_k: int = 4, workers: int = 4):
+                 tier: str = "MAIN", reg_k: int = 8, policy_k: int = 4, workers: int = 4,
+                 assess_tier: str | None = "SMALL"):
         self.reg_index = reg_index or CorpusIndex("regulation")
         self.policy_index = policy_index or CorpusIndex("internal_policy")
         self.tier, self.reg_k, self.policy_k, self.workers = tier, reg_k, policy_k, workers
+        # Step 2 runs once per requirement, so it is the cost lever. SMALL matched MAIN on the Stage 3 eval in
+        # two cold runs at ~40% of the cost (reports/stage6_findings.md, "Cheaper gap checks").
+        self.assess_tier = assess_tier or tier
         # The rulebook for a topic does not depend on the company: extract it once and share it, so
         # every company is compared against the same requirements (and concurrent checks on one
         # topic cannot each draw a slightly different list from a non-deterministic model).
@@ -268,9 +356,9 @@ class PolicyGapChecker:
         self._req_guard = threading.Lock()
 
     # -- policy side ------------------------------------------------------------------------
-    def _policy_source(self, req: PolicyGapRequest) -> PolicySource:
+    def _policy_source(self, req: PolicyGapRequest, sanitise: Callable[[str], str] | None = None) -> PolicySource:
         if req.policy_path:
-            return _uploaded_source(Path(req.policy_path), req.entity)
+            return _uploaded_source(Path(req.policy_path), req.entity, sanitise)
         ent = resolve(req.entity or "")
         row = ent.row
         chunks = [c for c in self.policy_index.chunks if c.doc_id == ent.doc_id]
@@ -302,6 +390,8 @@ class PolicyGapChecker:
             loose = structured(prompt, schema=_loose_requirements(len(sources), n_max),
                                system=EXTRACT_SYSTEM, tier=self.tier, max_tokens=4096)
             items = [r.model_dump() for r in loose.requirements if quote_in_source(r.quote, sources[r.source - 1])]
+            for r in items:   # the fallback must not reintroduce a list cut short
+                r["quote"] = _complete_list(r["quote"], sources[r["source"] - 1]) or r["quote"]
             notes.append(f"{len(loose.requirements) - len(items)} extracted requirement(s) dropped: quote not found in the cited rule")
         return items, notes
 
@@ -320,7 +410,7 @@ class PolicyGapChecker:
         try:
             a = structured(prompt, schema=_assessment_schema([h.text for h in hits], requirement["requirement"]),
                            system=ASSESS_SYSTEM,
-                           tier=self.tier, max_tokens=4096)
+                           tier=self.assess_tier, max_tokens=4096)
         except StructuredOutputError as exc:
             # Fail closed: an assessment we cannot ground is not reported as met or missing.
             return GapFinding(requirement=requirement["requirement"], regulation=reg_cite, status="needs_review",
@@ -334,10 +424,10 @@ class PolicyGapChecker:
                           policy=pol, explanation=a.explanation, considered=considered), flags
 
     # -- the whole tool --------------------------------------------------------------------------
-    def check(self, request: PolicyGapRequest | dict) -> GapReport:
+    def check(self, request: PolicyGapRequest | dict, sanitise: Callable[[str], str] | None = None) -> GapReport:
         req = request if isinstance(request, PolicyGapRequest) else PolicyGapRequest.model_validate(request)
         with Budget(limit_usd=0.25, label="check_policy_gap") as b:
-            policy = self._policy_source(req)
+            policy = self._policy_source(req, sanitise)
             reg_hits = self.reg_index.search(req.topic, k=self.reg_k)
             requirements, notes = self.requirements_for(req.topic, reg_hits, req.max_requirements)
             findings: list[GapFinding] = []

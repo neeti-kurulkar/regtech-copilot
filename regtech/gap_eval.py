@@ -119,9 +119,9 @@ def diagnose(m: dict[str, float], status: str | None) -> str | None:
     return None
 
 
-def run(label: str = "current") -> dict:
+def run(label: str = "current", tier: str = "MAIN", assess_tier: str | None = "SMALL") -> dict:
     cases = load_gap_cases()
-    ev = GapEvaluator()
+    ev = GapEvaluator(PolicyGapChecker(tier=tier, assess_tier=assess_tier))
     with Budget(limit_usd=1.0, label=f"stage3-{label}") as b:
         report = run_eval(f"stage3:{label}", cases, ev.system, ev.metric, budget_usd=1.0, progress=False)
     from regtech.gap_report import write_report

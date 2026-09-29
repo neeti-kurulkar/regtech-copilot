@@ -60,6 +60,7 @@ def write_report(label: str, cases: list[Case], rep: EvalReport, budget: dict, e
         f"| Findings that could not be grounded (needs_review) | reported | {cell('needs_review_share')} |",
         f"| Cost per check (this run) | reported | ${sum(per_check_cost) / max(len(per_check_cost), 1):.4f} "
         f"({budget.get('cached_calls', 0)}/{budget.get('calls', 0)} calls from cache) |",
+        f"| Cost per check (empty cache) | reported | ${budget.get('cold_cost_usd', 0) / max(len(per_check_cost), 1):.4f} |",
         "",
         "Gap/no-gap, missed-gap and false-alarm rates skip cases whose acceptable labels span 'met' and a",
         "gap (the rule's wording supports both readings).", "",

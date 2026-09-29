@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import sqlite3
 import threading
 from typing import Any
@@ -49,8 +50,14 @@ def _connect() -> sqlite3.Connection:
 
 
 def make_key(kind: str, payload: dict[str, Any]) -> str:
-    """Stable hash of a request payload. Sorted keys so dict order is irrelevant."""
-    blob = json.dumps({"kind": kind, **payload}, sort_keys=True, default=str)
+    """Stable hash of a request payload. Sorted keys so dict order is irrelevant.
+
+    [regtech] AIP_CACHE_SALT=<anything> gives chat calls a fresh key space, so a run can measure
+    cold latency and cost without re-embedding the corpus (embedding keys are never salted).
+    Unset, keys are exactly as before.
+    """
+    salt = os.getenv("AIP_CACHE_SALT", "") if kind == "chat" else ""
+    blob = json.dumps({"kind": kind, **payload, **({"salt": salt} if salt else {})}, sort_keys=True, default=str)
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()
 
 
