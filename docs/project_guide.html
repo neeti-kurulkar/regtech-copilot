@@ -141,7 +141,7 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
   <a href="#stage-5"><span class="dot done"></span>5 · Compliance calendar</a>
   <a href="#stage-6"><span class="dot done"></span>6 · Agent + guardrails</a>
   <a href="#stage-7"><span class="dot done"></span>7 · Service layer</a>
-  <a href="#stage-8"><span class="dot now"></span>8 · Evaluation report</a>
+  <a href="#stage-8"><span class="dot done"></span>8 · Evaluation report</a>
 
   <h4>Reference</h4>
   <a href="#aip-changes">Changes to aip</a>
@@ -435,7 +435,7 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
     <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2, 5</td><td><span class="status done">done</span></td></tr>
     <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status done">done</span></td></tr>
     <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status done">done</span></td></tr>
-    <tr><td>8</td><td>Evaluation report, "what it is not safe for"</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
+    <tr><td>8</td><td>Evaluation report, "what it is not safe for"</td><td>Lab 7</td><td><span class="status done">done</span></td></tr>
   </table></div>
 </section>
 
@@ -658,8 +658,8 @@ A: I don't have enough information in the provided sources to answer that.</code
   <div class="table-wrap"><table>
     <tr><th>Metric (Lab 4 target)</th><th>Result</th></tr>
     <tr><td>Citation validity (1.00)</td><td><span class="tag good">1.000</span></td></tr>
-    <tr><td>Faithfulness, judged (≥ 0.90)</td><td><span class="tag good">0.968</span> <span class="muted">calibration pending</span></td></tr>
-    <tr><td>Correctness on answerable, judged (≥ 0.75)</td><td><span class="tag good">0.917</span> <span class="muted">calibration pending</span></td></tr>
+    <tr><td>Faithfulness, judged (≥ 0.90)</td><td><span class="tag good">0.968</span> <span class="muted">judge agrees with a human on 19 of 20</span></td></tr>
+    <tr><td>Correctness on answerable, judged (≥ 0.75)</td><td><span class="tag good">0.917</span> <span class="muted">judge agrees with a human on 20 of 20</span></td></tr>
     <tr><td>Refusal recall (≥ 4/5)</td><td><span class="tag good">5/5</span></td></tr>
     <tr><td>Refusal precision (≥ 0.70)</td><td><span class="tag good">0.83</span> (5 of 6 refusals right)</td></tr>
     <tr><td>Cost per question (≤ $0.01)</td><td><span class="tag good">$0.0045</span></td></tr>
@@ -1100,9 +1100,43 @@ All layers:     the send is attempted, the approver refuses (not an internal add
 </section>
 
 <section id="stage-8">
-  <h2>Stage 8 · Evaluation report <span class="status next">next</span></h2>
-  <p>The final report, including an honest section on what the copilot is <em>not</em> safe for:
-  it is not legal advice, and it cannot see rules outside its 12 documents.</p>
+  <h2>Stage 8 · Evaluation report <span class="status done">done</span></h2>
+  <p><code>EVALUATION_REPORT.md</code> gathers every result into one document, in the seven parts Lab 7 asks for:
+  what it does, how well it works, where it fails (with counts), what it costs, how fast it is, what it is
+  <strong>not</strong> safe for, and what to do next. Every number links to the report and the command that
+  produced it.</p>
+
+  <h3>Checking the judge</h3>
+  <p>Two of the Q&amp;A scores (correctness and faithfulness) come from an AI "judge". Lab 4 says a judge's scores
+  cannot be reported until a human has checked it. So 20 answers were labelled by hand, without looking at the
+  judge's scores first, using the judge's own rules.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Score</th><th>Human and judge agree</th><th>Cohen's κ</th></tr>
+    <tr><td>Correctness</td><td>20 of 20</td><td><span class="tag good">1.00</span></td></tr>
+    <tr><td>Faithfulness</td><td>19 of 20</td><td><span class="tag warn">0.00</span></td></tr>
+  </table></div>
+  <p>Faithfulness agrees 19 times out of 20, so why is κ zero? Because the human found <em>every</em> answer
+  faithful. κ measures agreement beyond chance, and when one person never says "unfaithful" there is nothing to
+  measure. The one disagreement: the judge objected when an answer spelled out "ACB" as "Audit Committee of the
+  Board", because the source never spells it out; the human accepted it. So correctness scores can be trusted, and faithfulness scores mean "no unsupported
+  claim found", not a calibrated rate.</p>
+
+  <h3>What it is not safe for (short version)</h3>
+  <ul>
+    <li><strong>Not legal advice, and not proof that a company complies.</strong> A "met" means the document says
+    so. A forged policy passes.</li>
+    <li><strong>Blind outside its 36 documents</strong>, and to anything published after September 2026.</li>
+    <li><strong>"No precedent" means none among 13 penalties</strong>, not that the RBI has never fined anyone for it.</li>
+    <li><strong>Not a calendar of record</strong>: deadlines triggered by events cannot be dated, and holidays are ignored.</li>
+    <li><strong>For compliance staff</strong>, who can open a citation and check the paragraph, not for borrowers.</li>
+  </ul>
+
+  <h3>What to do next</h3>
+  <ol>
+    <li>Verify where uploaded policies come from (this closes the one attack that survives).</li>
+    <li>Larger test sets labelled by a compliance professional, not the builder.</li>
+    <li>Keep the corpus current automatically, and re-check the system when it changes.</li>
+  </ol>
 </section>
 
 <!-- ================================================================== -->
@@ -1180,7 +1214,7 @@ All layers:     the send is attempted, the approver refuses (not an internal add
     <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
     <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
   </dl>
-  <p class="muted" style="margin-top:32px">Last updated after Stage 7 · 1 October 2026</p>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 8 · 1 October 2026</p>
 </section>
 
 </main>

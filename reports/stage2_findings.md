@@ -8,16 +8,16 @@ as the "before" evidence for the fix described below (Lab 5's before/after patte
 | Metric | Target | Result |
 |---|---|---|
 | Citation validity | 1.00 | **1.000** (enforced in code, not by the prompt) |
-| Faithfulness (judge) | ≥ 0.90 | **0.968**, κ pending your labels |
-| Correctness, answerable (judge) | ≥ 0.75 | **0.917**, κ pending your labels |
+| Faithfulness (judge) | ≥ 0.90 | **0.968**; vs human: agreement 19/20, κ 0.00 (by construction, see below) |
+| Correctness, answerable (judge) | ≥ 0.75 | **0.917**; vs human: agreement 20/20, **κ 1.00** |
 | Refusal recall | ≥ 4/5 | **5/5** |
 | Refusal precision | ≥ 0.70 | **0.83** (5 of 6 refusals were right) |
 | Cost per query | ≤ $0.01 | **$0.0045** |
 | p95 latency | ≤ 6,000 ms | **6,672 ms**, borderline (p50 4,664 ms; n = 8) |
 
-The judge numbers are not claims yet. Lab 4 forbids reporting a judge score without Cohen's κ
-against at least 20 human labels, so `reports/stage2_judge_calibration.csv` holds 20 answers to
-hand-label. Then run `python -m regtech judge-kappa`.
+Lab 4 forbids reporting a judge score without Cohen's κ against at least 20 human labels. The 20 answers
+in `reports/stage2_judge_calibration.csv` were hand-labelled on 2026-10-01: correctness κ 1.00; faithfulness
+19/20 agreement but κ 0.00 (see "Judge calibration" at the end).
 
 ## 1. The biggest bug was a budget, not a prompt
 
@@ -111,3 +111,20 @@ retrieval-attributable loss reads 0.062 and the generation loss 0.021. Latency o
 p50 6.9 s and p95 10.0 s, against 4.7 s and 6.7 s earlier, with no code change on the
 generation path. Provider latency varies by run and by time of day, so the 6 s p95 target should
 be treated as **not reliably met** with this reasoning-tier generator.
+
+## Judge calibration (hand labels added 2026-10-01)
+
+The 20 answered questions in `stage2_judge_calibration.csv` were labelled by hand, blind to the judge's
+scores, using the judge's own rubric (`python -m regtech judge-kappa`).
+
+| Criterion | Raw agreement | Cohen's κ | Disagreements |
+|---|---|---|---|
+| Correctness (0/1/2) | 20/20 | **1.00** | none |
+| Faithfulness (0/1) | 19/20 | 0.00 | A16 (human 1, judge 0) |
+
+The correctness judge can be trusted on this set. The faithfulness κ is 0 by construction: the human
+labelled all 20 answers faithful, and κ measures agreement beyond chance, which is undefined when one rater
+never uses the other label. It is not evidence of a bad judge, and not evidence of a good one: a set with no
+unfaithful answers cannot test whether the judge catches them. (One human label, A08, was first entered as
+unfaithful by mistake and corrected before this was written.) A16 settles the disagreement flagged in
+section 5: the human reads the "ACB" expansion as harmless, and the judge is stricter.
