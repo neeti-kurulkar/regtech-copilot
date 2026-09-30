@@ -57,6 +57,7 @@ class Usage:
     cached: bool = False
     calls: int = 0
     priced: bool = True
+    cold_latency_ms: float = 0.0   # [regtech] for a cache hit: how long the original call took
 
     @property
     def total_tokens(self) -> int:
@@ -98,6 +99,7 @@ class Budget:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     cold_usd: float = 0.0   # [regtech] what the same calls cost with an empty cache
+    cold_latency_ms: float = 0.0   # [regtech] summed model latency as originally recorded (hits included)
     latencies_ms: list[float] = field(default_factory=list)
     _lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
     _token: Any = field(default=None, repr=False)
@@ -116,6 +118,7 @@ class Budget:
             self.spent_usd += usage.cost_usd
             self.cold_usd += (price_of(usage.model, usage.prompt_tokens, usage.completion_tokens)
                               if usage.cached else usage.cost_usd)
+            self.cold_latency_ms += usage.cold_latency_ms if usage.cached else usage.latency_ms
             self.latencies_ms.append(usage.latency_ms)
         if self.spent_usd > self.limit_usd:
             raise BudgetExceeded(
@@ -155,6 +158,7 @@ class Budget:
             "completion_tokens": self.completion_tokens,
             "cost_usd": round(self.spent_usd, 6),
             "cold_cost_usd": round(self.cold_usd, 6),
+            "cold_latency_ms": round(self.cold_latency_ms, 1),
             "unpriced_calls": self.unpriced_calls,
             "unpriced_models": sorted(self.unpriced_models),
             "latency_p50_ms": round(self.percentile(50), 1),

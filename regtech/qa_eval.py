@@ -122,8 +122,8 @@ def _judge_phase(name: str, cases: list[Case], outputs: dict[str, dict]) -> Eval
                     budget_usd=1.0, progress=False)
 
 
-def run_variant(variant: str, cases: list[Case], judge: bool = True) -> dict:
-    qa = RegulationQA(variant)
+def run_variant(variant: str, cases: list[Case], judge: bool = True, tier: str = "MAIN") -> dict:
+    qa = RegulationQA(variant, tier=tier)
     answers = run_eval(f"stage2:{variant}", cases, system=lambda q: _as_output(qa.ask(q)),
                        metric=deterministic_metrics, budget_usd=0.5, progress=False)
     outputs = {r.id: r.output for r in answers.results}
@@ -210,7 +210,7 @@ def judge_kappa() -> dict | None:
     return out or None
 
 
-def latency_probe(cases: list[Case], n: int = 8) -> dict | None:
+def latency_probe(cases: list[Case], n: int = 8, tier: str = "MAIN") -> dict | None:
     """End-to-end latency of a warm system, one request at a time, with the aip cache OFF.
 
     The answer phase runs 4 workers in parallel (queueing inflates latency) and, on any re-run,
@@ -220,7 +220,7 @@ def latency_probe(cases: list[Case], n: int = 8) -> dict | None:
 
     if settings.offline:
         return None
-    qa = RegulationQA("balanced")
+    qa = RegulationQA("balanced", tier=tier)
     questions = [c.input for c in cases if c.meta["kind"] == "answerable"][:n]
     times = []
     previous, settings.cache_enabled = settings.cache_enabled, False
@@ -252,3 +252,30 @@ def main(judge: bool = True) -> dict:
     from regtech.qa_report import write_report
     write_report(cases, balanced, strict, gold, judge_kappa(), total.as_dict())
     return {"balanced": balanced, "strict": strict, "gold": gold}
+
+
+def summarise(res: dict, cases: list[Case]) -> dict[str, float]:
+    """The headline Stage 2 metrics of one run, as a flat dict (used by the tier check and the Stage 7 gate)."""
+    per = merged(res)
+    answerable = [c.id for c in cases if c.meta["kind"] == "answerable"]
+    out = {"citation_validity": mean(per[i]["citation_valid"] for i in per),
+           "faithfulness": mean(per[i].get("faithfulness") for i in per),
+           "correctness": mean(per[i].get("correctness") for i in answerable if i in per),
+           "refusal_recall": res["refusal"]["refusal_recall"], "refusal_precision": res["refusal"]["refusal_precision"],
+           "repair_rate": mean(per[i]["repaired"] for i in per)}
+    b = res["answers"].budget
+    out["cold_cost_per_query_usd"] = b.get("cold_cost_usd", 0.0) / max(len(per), 1)
+    return out
+
+
+def tier_check(tier: str, label: str) -> dict:
+    """Stage 7: would a cheaper/faster tier hold Stage 2's quality? Answers + judge + a serial latency probe.
+    Writes reports/stage7_qa_tier_<label>.json; does not touch the Stage 2 report."""
+    import json
+
+    from regtech.paths import REPORTS_DIR
+    cases = load_cases()
+    res = run_variant("balanced", cases, judge=True, tier=tier)
+    out = {"tier": tier, "label": label, **summarise(res, cases), "latency_probe": latency_probe(cases, tier=tier)}
+    (REPORTS_DIR / f"stage7_qa_tier_{label}.json").write_text(json.dumps(out, indent=2, default=str), encoding="utf-8")
+    return out

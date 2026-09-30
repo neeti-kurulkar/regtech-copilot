@@ -1,0 +1,40 @@
+{"id": "S01", "same": true, "a": "What must an NBFC include in the Key Facts Statement?", "b": "What information has to be in the KFS given to borrowers?"}
+{"id": "S02", "same": true, "a": "Within how many days must an NBFC refund the surplus from a gold auction?", "b": "How soon does the auction surplus have to be returned to the borrower?"}
+{"id": "S03", "same": true, "a": "How often must KYC be updated for high-risk customers?", "b": "What is the periodic KYC updation interval for high risk customers?"}
+{"id": "S04", "same": true, "a": "What are the permitted calling hours for recovery agents for microfinance loans?", "b": "Between what hours can recovery agents call microfinance borrowers?"}
+{"id": "S05", "same": true, "a": "Can an NBFC charge penal interest on loans?", "b": "Is an NBFC allowed to levy penal interest?"}
+{"id": "S06", "same": true, "a": "Within how many days must an NBFC respond to a request to transfer a loan account?", "b": "How long does an NBFC have to give consent or objection to a loan transfer request?"}
+{"id": "S07", "same": true, "a": "When must original property documents be returned after loan repayment?", "b": "Within how many days must an NBFC release property documents once the loan is repaid?"}
+{"id": "S08", "same": true, "a": "What is the penalty for delay in returning property documents?", "b": "How much compensation is payable per day if property documents are released late?"}
+{"id": "S09", "same": true, "a": "Who should head the compliance function in an NBFC?", "b": "Who leads the compliance function at an NBFC?"}
+{"id": "S10", "same": true, "a": "How often must the Board review compliance with the Fair Practices Code?", "b": "What is the periodicity of the Board's review of FPC compliance?"}
+{"id": "S11", "same": true, "a": "Can NBFCs charge foreclosure charges on floating rate loans to individuals?", "b": "Are pre-payment penalties allowed on floating-rate loans taken by individuals?"}
+{"id": "S12", "same": true, "a": "What must an NBFC do when a fraud is detected?", "b": "What are an NBFC's obligations upon detecting fraud?"}
+{"id": "S13", "same": true, "a": "What is the minimum validity period of the KFS?", "b": "For how long must the KFS remain valid?"}
+{"id": "S14", "same": true, "a": "Must the sanction letter be in a language the borrower understands?", "b": "Should the loan sanction letter be in the vernacular language of the borrower?"}
+{"id": "S15", "same": true, "a": "What is a Key Facts Statement?", "b": "what's a key facts statement (KFS)?"}
+{"id": "S16", "same": true, "a": "How many days after quarter end must the statement on change of directors be filed?", "b": "When is the quarterly statement on change of directors due?"}
+{"id": "S17", "same": true, "a": "What details of recovery agents must be displayed on the NBFC website?", "b": "What recovery agent information has to be published online by the NBFC?"}
+{"id": "S18", "same": true, "a": "What is the maximum loan-to-value ratio for gold loans?", "b": "What LTV cap applies to loans against gold jewellery?"}
+{"id": "S19", "same": true, "a": "Who can be appointed as Chief Compliance Officer?", "b": "What are the eligibility criteria for the CCO?"}
+{"id": "S20", "same": true, "a": "What is the tenure of the Chief Compliance Officer?", "b": "For how long is a CCO appointed?"}
+{"id": "D01", "same": false, "a": "Within how many days must an NBFC refund the surplus from a gold auction?", "b": "Within how many days must an NBFC release property documents after repayment?"}
+{"id": "D02", "same": false, "a": "How often must KYC be updated for high-risk customers?", "b": "How often must KYC be updated for low-risk customers?"}
+{"id": "D03", "same": false, "a": "What are the permitted calling hours for recovery agents for microfinance loans?", "b": "What are the permitted calling hours for recovery agents for non-microfinance loans?"}
+{"id": "D04", "same": false, "a": "Can an NBFC charge penal interest on loans?", "b": "Can an NBFC charge penal charges on loans?"}
+{"id": "D05", "same": false, "a": "Can NBFCs charge foreclosure charges on floating rate loans to individuals?", "b": "Can NBFCs charge foreclosure charges on fixed rate loans to individuals?"}
+{"id": "D06", "same": false, "a": "What is the minimum validity period of the KFS for loans with a tenor of seven days or more?", "b": "What is the minimum validity period of the KFS for loans with a tenor of less than seven days?"}
+{"id": "D07", "same": false, "a": "What is the tenure of the Chief Compliance Officer?", "b": "What is the tenure of the Chief Risk Officer?"}
+{"id": "D08", "same": false, "a": "Who should head the compliance function in an NBFC?", "b": "Who should head the risk management function in an NBFC?"}
+{"id": "D09", "same": false, "a": "What must an NBFC report to the RBI after classifying a fraud?", "b": "What must an NBFC report to the police after classifying a fraud?"}
+{"id": "D10", "same": false, "a": "What is the maximum loan-to-value ratio for gold loans?", "b": "What is the maximum loan-to-value ratio for loans against shares?"}
+{"id": "D11", "same": false, "a": "What is the penalty for delay in returning property documents?", "b": "What is the penalty for delay in resolving customer complaints?"}
+{"id": "D12", "same": false, "a": "How often must the Board review compliance with the Fair Practices Code?", "b": "How often must the Board review the KYC policy?"}
+{"id": "D13", "same": false, "a": "Must the sanction letter be in a language the borrower understands?", "b": "Must the recovery notice be in a language the borrower understands?"}
+{"id": "D14", "same": false, "a": "Which NBFCs must appoint a Chief Compliance Officer?", "b": "Which NBFCs must appoint a Chief Risk Officer?"}
+{"id": "D15", "same": false, "a": "What are the obligations of NBFCs in the Upper Layer?", "b": "What are the obligations of NBFCs in the Base Layer?"}
+{"id": "D16", "same": false, "a": "When must the quarterly return on robberies be submitted?", "b": "When must the weekly report on large defaulters be submitted?"}
+{"id": "D17", "same": false, "a": "Can an NBFC levy pre-payment charges on business loans to micro and small enterprises?", "b": "Can an NBFC levy pre-payment charges on business loans to large corporates?"}
+{"id": "D18", "same": false, "a": "What is the limit on exposure to a single borrower?", "b": "What is the limit on exposure to a group of connected borrowers?"}
+{"id": "D19", "same": false, "a": "Within how many days must an NBFC respond to a loan transfer request?", "b": "Within how many days must an NBFC respond to a customer complaint?"}
+{"id": "D20", "same": false, "a": "What is the minimum Net Owned Fund for an NBFC?", "b": "What is the minimum Net Owned Fund for an NBFC-MFI?"}

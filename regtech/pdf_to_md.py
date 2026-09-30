@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import collections
 import re
+import threading
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -338,8 +339,15 @@ class Conversion:
     heading_levels: dict[int, int] = field(default_factory=dict)
 
 
+# PyMuPDF documents that it does not support multithreading, and uploads are converted from parallel worker
+# threads (the red-team, the web service). A precaution, not a measured fix: a 5-round parallel test in Stage 7
+# found no divergence. One conversion at a time.
+_PYMUPDF_LOCK = threading.Lock()
+
+
 def convert(pdf: Path, *, title: str, profile: str, doc_id: str = "") -> Conversion:
-    raw = _extract_lines(pdf, tables_enabled=profile != "enforcement")
+    with _PYMUPDF_LOCK:
+        raw = _extract_lines(pdf, tables_enabled=profile != "enforcement")
     chars_in = sum(len(l.text) for l in raw)
     lines = [l for l in raw if l.table_md is not None or not _NON_LATIN.search(l.text)]
     if profile == "enforcement":

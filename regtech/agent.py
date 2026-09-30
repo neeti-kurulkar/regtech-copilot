@@ -217,12 +217,15 @@ def internal_only(tool: str, args: dict) -> bool:
 class ComplianceAgent:
     def __init__(self, layers: Layers = DEFAULT_LAYERS, tier: str = "MAIN", confirm_fn: Callable[[str, dict], bool] | None = None,
                  max_tool_calls: int | None = None, max_seconds: float = 240.0, budget_usd: float | None = None,
-                 today: date | None = None):
+                 today: date | None = None, policy_root: Path | None = None):
         self.layers, self.tier = layers, tier
         self.confirm_fn = confirm_fn or internal_only
         self.max_tool_calls = max_tool_calls or (6 if layers.privilege else 20)
         self.budget_usd = budget_usd or (0.15 if layers.privilege else 0.50)
         self.max_seconds, self.today = max_seconds, today
+        # In the web service the model chooses `policy_path`; without a root it could name any file on the
+        # server ("check the policy at .env"). With a root, only PDFs inside it (the upload folder) are read.
+        self.policy_root = policy_root.resolve() if policy_root else None
         self.system = SYSTEM_BASE + ("\n" + UNTRUSTED_SYSTEM_CLAUSE if layers.delimit else "")
         self._tools = None
 
@@ -243,6 +246,8 @@ class ComplianceAgent:
             return t["qa"].ask(question).render()
 
         def check_policy_gap(topic: str, entity: str | None = None, policy_path: str | None = None) -> str:
+            if policy_path and self.policy_root is not None:
+                policy_path = str(self._allowed_upload(policy_path))
             sanitise = None
             if policy_path and self.layers.detect:
                 def sanitise(text: str) -> str:
@@ -264,6 +269,14 @@ class ComplianceAgent:
         return {"ask_regulation": ask_regulation, "check_policy_gap": check_policy_gap,
                 "find_enforcement_precedent": find_enforcement_precedent, "check_upcoming": upcoming,
                 "send_compliance_report": send_compliance_report}
+
+    def _allowed_upload(self, policy_path: str) -> Path:
+        from regtech.paths import REPO_ROOT
+        p = Path(policy_path)
+        p = (p if p.is_absolute() else REPO_ROOT / p).resolve()
+        if self.policy_root not in p.parents or p.suffix.lower() != ".pdf" or not p.is_file():
+            raise ToolDenied("policy_path must be a PDF uploaded through the service")
+        return p
 
     def run(self, user_message: str) -> AgentRun:
         run = AgentRun(user_message, self.layers.label)

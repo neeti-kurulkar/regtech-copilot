@@ -216,3 +216,56 @@ Everything else in the agent is existing aip: `llm.chat(tools=...)` for tool cal
 `guards.ToolGuard` (allow-list, call cap, schema validation before execution, confirmation),
 `guards.detect_injection` / `delimit_untrusted` / `UNTRUSTED_SYSTEM_CLAUSE` / `redact_pii`,
 `llm.structured` for the typed final answer, `cost.Budget` / `map_in_context`.
+
+---
+
+## Stage 7 (2026-10-01)
+
+### New module: `aip/response_cache.py`
+- `ExactCache` (LRU keyed by normalised question + scope) and `SemanticCache` (cosine over query embeddings,
+  hit only at or above `threshold`; `threshold=None` switches lookups off), each with hit/miss stats.
+  **Why:** Lab 7 B1's two response-cache layers, as reusable pieces. `aip.cache` caches model *calls*; these
+  cache whole *responses*, so a repeat skips embedding, retrieval and validation too. `scope` keeps entries
+  that must never be shared apart (mode, corpus version, date).
+  Measured in Stage 7: on 40 labelled NBFC question pairs, no threshold helps without wrong answers, so the
+  service runs with the semantic layer off (`reports/stage7_semantic_threshold.md`).
+
+### `aip/tracing.py`
+- The open-span stack is a `contextvars.ContextVar` (it was a `threading.local`), and every record carries a
+  `trace_id` (its root span's id). `current_trace_id()` and `span_record(...)` are new.
+  **Why:** a request's spans were split across threads. The gap tool assesses requirements in a thread
+  pool, and the web framework runs handlers in worker threads, so child spans lost their parent and one
+  request could not be read back as one trace. Now all 12 model calls of an agent request, including those
+  in the pool, share the request's trace id, which the service returns to the caller.
+  `span_record` writes a span timed by hand, for work consumed across generator `yield`s (streaming).
+
+### `aip/llm.py`
+- `stream_chat(...)` / `ChatStream`: a streamed completion with raw_call's cost accounting, tracing,
+  retries (for opening the stream only) and **the same cache key**. A streamed answer is reused by `chat()`
+  and vice versa, and a cached answer is replayed in pieces, so offline replay covers streaming too.
+- **Single-flight in `raw_call`**: identical requests in flight at the same time share one provider call.
+  A leader re-checks the cache after claiming, in case a previous leader just finished.
+  **Why:** found building the CI gate. Parallel red-team cases sent the same assessment prompt at once; each
+  got its own non-deterministic answer, and the cache kept only the last. A recorded run then could not be
+  replayed, because later prompts built from an answer that was *not* kept missed the cache. It also
+  saves the duplicate calls.
+- A cache hit now reports the original call's latency as `Usage.cold_latency_ms`.
+
+### `aip/rag.py`
+- `RagPipeline.stream(question)`: Lab 7 B3's "stream, then verdict". It yields `sources`, then `token`s
+  of the first draft, then a `verdict` that either confirms the draft or carries the repaired / fail-closed
+  replacement with `retracted=True`.
+- `_messages(...)` and `_repair_from(...)`: the prompt builder and the validate, repair, fail-closed
+  loop are shared by `answer_from_hits` and `stream`, so both paths apply identical rules. Stage 2's
+  deterministic results replay unchanged.
+
+### `aip/cost.py`
+- `Usage.cold_latency_ms` and `Budget.cold_latency_ms` (also in `as_dict()`): model time as originally
+  recorded, cache hits included. The CI gate replays a cache, so live latency is ~0; this lets it gate on
+  the recorded latency, as `cold_usd` (Stage 6) lets it gate on cost.
+
+### `aip/cache.py`
+- `accessed_keys()` and `export(keys, dest)`: the keys this process read or wrote, and a copy of just those
+  entries into a new cache file.
+  **Why:** the working cache is 284 MB of every experiment; CI needs only what the gate replays. The slim
+  cache (`ci/cache/calls.sqlite3`) is 1,940 entries, 29 MB.

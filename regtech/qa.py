@@ -102,11 +102,12 @@ class Answer:
 class RegulationQA:
     """Grounded Q&A over the RBI Directions corpus."""
 
-    def __init__(self, variant: str = "balanced", k: int = 8, final_k: int = 6, index: CorpusIndex | None = None):
-        self.variant = variant
+    def __init__(self, variant: str = "balanced", k: int = 8, final_k: int = 6, index: CorpusIndex | None = None,
+                 tier: str = "MAIN"):
+        self.variant, self.tier = variant, tier
         self.index = index or CorpusIndex("regulation")
         self.pipeline = RagPipeline(
-            self.index, k=k, final_k=final_k, tier="MAIN", system=VARIANTS[variant],
+            self.index, k=k, final_k=final_k, tier=tier, system=VARIANTS[variant],
             # MAIN is a reasoning model: its hidden thinking counts against max_tokens, and 900
             # truncated 4 of 31 answers in the first Stage 2 run (reports/stage2_qa.md).
             max_repairs=1, fail_closed=True, context_label=source_label, max_tokens=2048,

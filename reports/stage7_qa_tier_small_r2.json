@@ -1,0 +1,18 @@
+{
+  "tier": "SMALL",
+  "label": "small_r2",
+  "citation_validity": 1.0,
+  "faithfulness": 0.967741935483871,
+  "correctness": 0.8541666666666666,
+  "refusal_recall": 1.0,
+  "refusal_precision": 0.7142857142857143,
+  "repair_rate": 0.0,
+  "cold_cost_per_query_usd": 0.0007160645161290322,
+  "latency_probe": {
+    "n": 8,
+    "p50_ms": 1701.1745999916457,
+    "p95_ms": 1946.63139997283,
+    "max_ms": 1946.63139997283,
+    "cost_per_query_usd": 0.0006942875
+  }
+}

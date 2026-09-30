@@ -1,0 +1,120 @@
+{
+  "qa_uncached": {
+    "n": 12,
+    "p50_ms": 1741.5,
+    "p95_ms": 2106.8,
+    "max_ms": 2111.2,
+    "stages": {
+      "embed.batch": {
+        "p50_ms": 625.2,
+        "p95_ms": 714.7,
+        "requests": 12
+      },
+      "retrieve.dense": {
+        "p50_ms": 629.0,
+        "p95_ms": 717.6,
+        "requests": 12
+      },
+      "llm.call": {
+        "p50_ms": 1112.6,
+        "p95_ms": 1476.3,
+        "requests": 12
+      }
+    }
+  },
+  "qa_cached_exact": {
+    "n": 12,
+    "p50_ms": 0.1,
+    "p95_ms": 0.1
+  },
+  "qa_stream": {
+    "n": 6,
+    "ttft_p50_ms": 1518.0,
+    "ttft_p95_ms": 2341.1,
+    "total_p50_ms": 1518.1,
+    "total_p95_ms": 2341.2
+  },
+  "agent_uncached": {
+    "n": 4,
+    "per_query_ms": [
+      4933,
+      7683,
+      10647,
+      15962
+    ],
+    "p50_ms": 10646.8,
+    "max_ms": 15961.5,
+    "cost_per_query_usd": [
+      0.0043,
+      0.0056,
+      0.0094,
+      0.0191
+    ],
+    "stages": {
+      "embed.batch": {
+        "p50_ms": 1827.5,
+        "p95_ms": 4546.4,
+        "requests": 3
+      },
+      "retrieve.dense": {
+        "p50_ms": 1837.5,
+        "p95_ms": 4565.4,
+        "requests": 3
+      },
+      "llm.call": {
+        "p50_ms": 10680.8,
+        "p95_ms": 18012.9,
+        "requests": 4
+      },
+      "tool.call": {
+        "p50_ms": 6510.3,
+        "p95_ms": 11420.3,
+        "requests": 4
+      }
+    }
+  },
+  "service_metrics": {
+    "requests": 35,
+    "requests_today": 35,
+    "cost_usd_today": 0.05376,
+    "cost_usd_total": 0.05376,
+    "cost_per_query_usd": 0.00154,
+    "response_cache_hit_rate": 0.343,
+    "refusal_rate": 0.086,
+    "errors_by_status": {},
+    "error_rate": 0.0,
+    "tool_calls": {
+      "check_policy_gap": 2,
+      "check_upcoming": 1,
+      "find_enforcement_precedent": 1
+    },
+    "by_mode": {
+      "qa": {
+        "requests": 31,
+        "p50_ms": 1508.6,
+        "p95_ms": 2111.2,
+        "p99_ms": 2336.9,
+        "p95_uncached_ms": 2112.7,
+        "p95_cached_ms": 0.1,
+        "cost_per_query_usd": 0.00049,
+        "p95_slo_ms": 6000.0
+      },
+      "agent": {
+        "requests": 4,
+        "p50_ms": 10646.8,
+        "p95_ms": 15961.5,
+        "p99_ms": 15961.5,
+        "p95_uncached_ms": 15961.5,
+        "p95_cached_ms": null,
+        "cost_per_query_usd": 0.00961,
+        "p95_slo_ms": 40000.0
+      }
+    },
+    "stream": {
+      "requests": 6,
+      "ttft_p50_ms": 1409.5,
+      "ttft_p95_ms": 1718.8
+    },
+    "alerts": []
+  }
+}

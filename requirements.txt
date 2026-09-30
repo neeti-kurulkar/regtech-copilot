@@ -13,10 +13,21 @@ rank-bm25>=0.2.2           # aip.retrieval.Bm25Retriever, for the Lab 3 comparis
 # --- ingestion ---------------------------------------------------------------
 pymupdf>=1.24.0            # PDF -> Markdown with font/heading info
 
+# --- service (Stage 7, Lab 7 pattern) -----------------------------------------
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+sse-starlette>=2.1.0       # POST /ask/stream (server-sent events)
+python-multipart>=0.0.9    # POST /upload
+streamlit>=1.40.0          # demo UI and ops dashboard
+pandas>=2.2.0              # dashboard tables
+pyyaml>=6.0                # regression-gate thresholds
+requests>=2.32.0           # UI -> service
+
 # --- dev ---------------------------------------------------------------------
 pytest>=8.3.0
+httpx>=0.27.0              # FastAPI TestClient
 
 # Deliberately omitted (imported lazily by aip, only needed if we opt in):
 #   sentence-transformers  -> CrossEncoderReranker / local embeddings (pulls in torch, several GB)
 #   chromadb               -> ChromaRetriever
-#   fastapi, uvicorn, ...  -> Lab 7-style service layer
+

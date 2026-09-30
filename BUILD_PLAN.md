@@ -51,6 +51,14 @@ Run from the repo root with the venv active (`.venv\Scripts\Activate.ps1`):
 | `python -m regtech agent "MESSAGE" [--layers default\|all\|none\|delimit+detect+...] [--confirm]` | Stage 6 agent: picks and calls the tools under the guardrail layers (default: all but `structured`); `--confirm` asks you before the (simulated) send tool runs |
 | `python -m regtech make-fixtures` | Write the poisoned Tata Capital policy PDFs into `tests/fixtures/redteam/` (never into the corpus) |
 | `python -m regtech redteam [--final-only\|--default-only] [--only ID]` | Stage 6 red-team: 18 attacks + 5 controls under 6 cumulative layer configs (or just the default); writes `reports/stage6_redteam*.{md,json}` |
+| `python -m regtech serve [--port 8000]` | Stage 7 HTTP service: `/ask`, `/ask/stream`, `/upload`, `/health`, `/metrics` |
+| `streamlit run regtech/ui.py` | Stage 7 demo UI (needs the service running) |
+| `streamlit run regtech/dashboard.py` | Stage 7 ops dashboard from the traces: latency by stage, cost, errors, alerts, trace lookup |
+| `python -m regtech gate [--record]` | Stage 7 regression gate vs `ci/thresholds.yml`; `--record` also exports the slim cache to `ci/cache/` |
+| `AIP_CACHE_DIR=ci/cache AIP_OFFLINE=1 python -m regtech gate` | What CI runs: the gate from the committed cache, no key, no cost |
+| `python -m regtech latency` | Stage 7 end-to-end latency by mode and stage, caches off; writes `reports/stage7_latency.json` |
+| `python -m regtech semantic-study` | Stage 7 semantic-cache threshold study on 40 labelled question pairs |
+| `python -m regtech qa-tier SMALL [--label L]` | Stage 2 quality + latency of the Q&A on another model tier |
 | `python -m regtech eval-gap [--label L] [--tier T] [--assess-tier SMALL]` | Stage 3 evaluation (assessments on SMALL by default since Stage 6); writes `reports/stage3_policy_gap_<L>.{md,json}` |
 | `python -m regtech judge-kappa` | Cohen's κ between the LLM judge and your hand labels in `reports/stage2_judge_calibration.csv` |
 | `python -m pytest` | Offline unit tests |

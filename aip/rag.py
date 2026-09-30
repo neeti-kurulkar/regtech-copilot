@@ -22,13 +22,13 @@ of an afternoon.
 """
 from __future__ import annotations
 
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Iterator, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
 from aip import tracing
 from aip.guards import UNTRUSTED_SYSTEM_CLAUSE, delimit_untrusted, enforce_citations
-from aip.llm import chat
+from aip.llm import chat, stream_chat
 from aip.retrieval import Hit, Retriever, format_context
 
 ANSWER_SYSTEM = f"""\
@@ -188,8 +188,8 @@ class RagPipeline:
             res["budget_doubled"] = True
         return res
 
-    def _generate_once(self, question: str, hits: Sequence[Hit], previous: str | None,
-                       problems: Sequence[str], max_tokens: int) -> dict[str, Any]:
+    def _messages(self, question: str, hits: Sequence[Hit], previous: str | None = None,
+                  problems: Sequence[str] = ()) -> list[dict[str, str]]:
         context = delimit_untrusted(
             format_context(hits, max_chars=self.max_context_chars, label=self.context_label)
         )
@@ -201,22 +201,52 @@ class RagPipeline:
                 {"role": "user", "content": "Your answer was rejected because " + "; and ".join(problems)
                  + ". Rewrite it following every rule in your instructions."},
             ]
+        return messages
+
+    def _generate_once(self, question: str, hits: Sequence[Hit], previous: str | None,
+                       problems: Sequence[str], max_tokens: int) -> dict[str, Any]:
+        messages = self._messages(question, hits, previous, problems)
         with tracing.trace("rag.generate", n_sources=len(hits), tier=self.tier, repair=previous is not None):
             return chat(messages, system=self.system, tier=self.tier,
                         temperature=0.0, max_tokens=max_tokens, return_full=True)
 
-    def answer_from_hits(self, question: str, hits: Sequence[Hit],
-                         stages: dict[str, Any] | None = None) -> RagAnswer:
-        """[regtech] Generate -> validate -> repair -> (fail closed) over the given hits.
+    def stream(self, question: str) -> Iterator[dict[str, Any]]:
+        """[regtech] Lab 7 B3, "stream, then verdict". Yields events:
 
-        Split out of answer() so the same generator can be run on gold context
-        (Lab 4 E2: the generation ceiling vs. what retrieval actually supplies).
+            {"type": "sources", "hits": [...]}       after retrieval, before any text
+            {"type": "token", "text": "..."}         the first draft, as it is generated
+            {"type": "verdict", "answer": RagAnswer, "retracted": bool}
+
+        Citations cannot be checked until the draft is complete, and by then it has been shown. So the
+        draft is validated at the end exactly as answer_from_hits would; if it fails, the usual repair /
+        fail-closed path runs (not streamed) and the verdict carries the replacement with retracted=True.
+        The client must act on the verdict (replace the draft), which is the price of a fast first token.
         """
-        final = list(hits)
-        res = self._generate(question, final)
-        doubled = int(bool(res.get("budget_doubled")))
-        text = res["text"].strip()
-        problems = validate_answer(text, len(final), res.get("finish_reason"))
+        hits = self.retrieve(question)
+        final = self.rerank(question, hits)
+        yield {"type": "sources", "hits": final}
+        s = stream_chat(self._messages(question, final), system=self.system, tier=self.tier,
+                        temperature=0.0, max_tokens=self.max_tokens)
+        for delta in s:
+            yield {"type": "token", "text": delta}
+        draft = s.result["text"].strip()
+        problems = validate_answer(draft, len(final), s.result.get("finish_reason"))
+        if not problems:
+            ok, invalid = enforce_citations(draft, len(final))
+            refused = is_refusal(draft)
+            ans = RagAnswer(question=question, answer=draft, hits=final, citations_valid=ok or refused,
+                            invalid_citations=invalid, refused=refused,
+                            stages={"final": [h.doc_id for h in final], "final_k": len(final), "streamed": True})
+            yield {"type": "verdict", "answer": ans, "retracted": False, "ttft_ms": s.ttft_ms, "cached": s.cached}
+            return
+        tracing.event("rag.stream_retracted", problems=problems)
+        # re-run the non-streaming path from the draft: repair with the draft as `previous`, or fail closed
+        ans = self._repair_from(question, final, draft, problems, stages={"streamed": True})
+        yield {"type": "verdict", "answer": ans, "retracted": True, "ttft_ms": s.ttft_ms, "cached": s.cached}
+
+    def _repair_from(self, question: str, final: list[Hit], text: str, problems: list[str],
+                     stages: dict[str, Any] | None = None, doubled: int = 0) -> RagAnswer:
+        """Validate -> repair -> (fail closed), starting from a first draft that has already been checked."""
         repairs = 0
         while problems and repairs < self.max_repairs:
             repairs += 1
@@ -231,19 +261,24 @@ class RagPipeline:
             text = REFUSAL
         ok, invalid = enforce_citations(text, len(final))
         refused = is_refusal(text)
-        return RagAnswer(
-            question=question,
-            answer=text,
-            hits=final,
-            citations_valid=ok or refused,
-            invalid_citations=invalid,
-            refused=refused,
-            stages={**(stages or {}), "final": [h.doc_id for h in final], "final_k": len(final)},
-            problems=problems,
-            repairs=repairs,
-            fallback=fallback,
-            budget_doublings=doubled,
-        )
+        return RagAnswer(question=question, answer=text, hits=final, citations_valid=ok or refused,
+                         invalid_citations=invalid, refused=refused,
+                         stages={**(stages or {}), "final": [h.doc_id for h in final], "final_k": len(final)},
+                         problems=problems, repairs=repairs, fallback=fallback, budget_doublings=doubled)
+
+    def answer_from_hits(self, question: str, hits: Sequence[Hit],
+                         stages: dict[str, Any] | None = None) -> RagAnswer:
+        """[regtech] Generate -> validate -> repair -> (fail closed) over the given hits.
+
+        Split out of answer() so the same generator can be run on gold context
+        (Lab 4 E2: the generation ceiling vs. what retrieval actually supplies).
+        """
+        final = list(hits)
+        res = self._generate(question, final)
+        text = res["text"].strip()
+        problems = validate_answer(text, len(final), res.get("finish_reason"))
+        return self._repair_from(question, final, text, problems, stages=stages,
+                                 doubled=int(bool(res.get("budget_doubled"))))
 
     def answer(self, question: str) -> RagAnswer:
         with tracing.trace("rag.answer", question=question[:120]):

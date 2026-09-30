@@ -14,3 +14,6 @@ __pycache__/
 # (>100 MB, over GitHub's file limit). Stage 7 commits a slim cache containing
 # only what the CI regression gate replays with AIP_OFFLINE=1.
 .aip_cache/
+
+# policy files uploaded to the Stage 7 service
+uploads/

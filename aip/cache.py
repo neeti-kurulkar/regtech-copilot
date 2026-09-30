@@ -23,11 +23,13 @@ import json
 import os
 import sqlite3
 import threading
+from pathlib import Path
 from typing import Any
 
 from aip.config import settings
 
 _LOCK = threading.Lock()
+_ACCESSED: set[str] = set()   # [regtech] keys read (hit) or written by this process; see export()
 _DB_PATH = settings.cache_dir / "calls.sqlite3"
 
 
@@ -66,6 +68,8 @@ def get(key: str) -> dict[str, Any] | None:
         return None
     with _LOCK, _connect() as conn:
         row = conn.execute("SELECT response FROM calls WHERE key = ?", (key,)).fetchone()
+        if row:
+            _ACCESSED.add(key)
     return json.loads(row[0]) if row else None
 
 
@@ -74,6 +78,7 @@ def put(key: str, kind: str, request: dict[str, Any], response: dict[str, Any]) 
         return
     import time
 
+    _ACCESSED.add(key)
     with _LOCK, _connect() as conn:
         conn.execute(
             "INSERT OR REPLACE INTO calls (key, kind, request, response, created_at) "
@@ -102,3 +107,38 @@ def clear(kind: str | None = None) -> int:
         else:
             cur = conn.execute("DELETE FROM calls")
         return cur.rowcount
+
+
+def accessed_keys() -> set[str]:
+    """[regtech] Every key this process read from or wrote to the cache."""
+    return set(_ACCESSED)
+
+
+def export(keys: set[str] | list[str], dest: Path) -> int:
+    """[regtech] Copy the given entries into a new cache file at `dest` (a calls.sqlite3 path).
+
+    Used to build the slim cache CI replays with AIP_OFFLINE=1: run the regression gate once online,
+    then export only the entries it touched (the full working cache holds every experiment ever run).
+    Returns the number of entries written."""
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if dest.exists():
+        dest.unlink()
+    keys = sorted(set(keys))
+    out = sqlite3.connect(dest)
+    out.execute("CREATE TABLE calls (key TEXT PRIMARY KEY, kind TEXT NOT NULL, request TEXT NOT NULL, "
+                "response TEXT NOT NULL, created_at REAL NOT NULL)")
+    n = 0
+    with _LOCK, _connect() as conn:
+        for i in range(0, len(keys), 500):
+            part = keys[i:i + 500]
+            rows = conn.execute(f"SELECT key, kind, request, response, created_at FROM calls WHERE key IN "
+                                f"({','.join('?' * len(part))})", part).fetchall()
+            # the request text is only for humans debugging a miss; the key is what replay needs
+            out.executemany("INSERT INTO calls VALUES (?, ?, ?, ?, ?)",
+                            [(k, kind, req[:2000], resp, ts) for k, kind, req, resp, ts in rows])
+            n += len(rows)
+    out.commit()
+    out.execute("VACUUM")
+    out.close()
+    return n

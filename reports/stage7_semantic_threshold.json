@@ -1,0 +1,393 @@
+{
+  "pairs": 40,
+  "safe_threshold": 0.988,
+  "at_safe": {
+    "threshold": 0.988,
+    "paraphrase_hit_rate": 0.0,
+    "wrong_hit_rate": 0.0
+  },
+  "sweep": [
+    {
+      "threshold": 0.8,
+      "paraphrase_hit_rate": 0.9,
+      "wrong_hit_rate": 0.85
+    },
+    {
+      "threshold": 0.81,
+      "paraphrase_hit_rate": 0.9,
+      "wrong_hit_rate": 0.8
+    },
+    {
+      "threshold": 0.82,
+      "paraphrase_hit_rate": 0.9,
+      "wrong_hit_rate": 0.8
+    },
+    {
+      "threshold": 0.83,
+      "paraphrase_hit_rate": 0.8,
+      "wrong_hit_rate": 0.7
+    },
+    {
+      "threshold": 0.84,
+      "paraphrase_hit_rate": 0.75,
+      "wrong_hit_rate": 0.6
+    },
+    {
+      "threshold": 0.85,
+      "paraphrase_hit_rate": 0.65,
+      "wrong_hit_rate": 0.6
+    },
+    {
+      "threshold": 0.86,
+      "paraphrase_hit_rate": 0.65,
+      "wrong_hit_rate": 0.6
+    },
+    {
+      "threshold": 0.87,
+      "paraphrase_hit_rate": 0.65,
+      "wrong_hit_rate": 0.5
+    },
+    {
+      "threshold": 0.88,
+      "paraphrase_hit_rate": 0.55,
+      "wrong_hit_rate": 0.5
+    },
+    {
+      "threshold": 0.89,
+      "paraphrase_hit_rate": 0.5,
+      "wrong_hit_rate": 0.4
+    },
+    {
+      "threshold": 0.9,
+      "paraphrase_hit_rate": 0.5,
+      "wrong_hit_rate": 0.3
+    },
+    {
+      "threshold": 0.91,
+      "paraphrase_hit_rate": 0.45,
+      "wrong_hit_rate": 0.3
+    },
+    {
+      "threshold": 0.92,
+      "paraphrase_hit_rate": 0.45,
+      "wrong_hit_rate": 0.25
+    },
+    {
+      "threshold": 0.93,
+      "paraphrase_hit_rate": 0.4,
+      "wrong_hit_rate": 0.25
+    },
+    {
+      "threshold": 0.94,
+      "paraphrase_hit_rate": 0.35,
+      "wrong_hit_rate": 0.25
+    },
+    {
+      "threshold": 0.95,
+      "paraphrase_hit_rate": 0.35,
+      "wrong_hit_rate": 0.15
+    },
+    {
+      "threshold": 0.96,
+      "paraphrase_hit_rate": 0.25,
+      "wrong_hit_rate": 0.1
+    },
+    {
+      "threshold": 0.97,
+      "paraphrase_hit_rate": 0.25,
+      "wrong_hit_rate": 0.05
+    },
+    {
+      "threshold": 0.98,
+      "paraphrase_hit_rate": 0.0,
+      "wrong_hit_rate": 0.05
+    },
+    {
+      "threshold": 0.99,
+      "paraphrase_hit_rate": 0.0,
+      "wrong_hit_rate": 0.0
+    }
+  ],
+  "ranked": [
+    {
+      "id": "D06",
+      "same": false,
+      "a": "What is the minimum validity period of the KFS for loans with a tenor of seven days or more?",
+      "b": "What is the minimum validity period of the KFS for loans with a tenor of less than seven days?",
+      "similarity": 0.9825
+    },
+    {
+      "id": "S04",
+      "same": true,
+      "a": "What are the permitted calling hours for recovery agents for microfinance loans?",
+      "b": "Between what hours can recovery agents call microfinance borrowers?",
+      "similarity": 0.977
+    },
+    {
+      "id": "S05",
+      "same": true,
+      "a": "Can an NBFC charge penal interest on loans?",
+      "b": "Is an NBFC allowed to levy penal interest?",
+      "similarity": 0.9769
+    },
+    {
+      "id": "S12",
+      "same": true,
+      "a": "What must an NBFC do when a fraud is detected?",
+      "b": "What are an NBFC's obligations upon detecting fraud?",
+      "similarity": 0.9736
+    },
+    {
+      "id": "S13",
+      "same": true,
+      "a": "What is the minimum validity period of the KFS?",
+      "b": "For how long must the KFS remain valid?",
+      "similarity": 0.9728
+    },
+    {
+      "id": "S09",
+      "same": true,
+      "a": "Who should head the compliance function in an NBFC?",
+      "b": "Who leads the compliance function at an NBFC?",
+      "similarity": 0.9701
+    },
+    {
+      "id": "D04",
+      "same": false,
+      "a": "Can an NBFC charge penal interest on loans?",
+      "b": "Can an NBFC charge penal charges on loans?",
+      "similarity": 0.97
+    },
+    {
+      "id": "S03",
+      "same": true,
+      "a": "How often must KYC be updated for high-risk customers?",
+      "b": "What is the periodic KYC updation interval for high risk customers?",
+      "similarity": 0.9541
+    },
+    {
+      "id": "D05",
+      "same": false,
+      "a": "Can NBFCs charge foreclosure charges on floating rate loans to individuals?",
+      "b": "Can NBFCs charge foreclosure charges on fixed rate loans to individuals?",
+      "similarity": 0.9526
+    },
+    {
+      "id": "S17",
+      "same": true,
+      "a": "What details of recovery agents must be displayed on the NBFC website?",
+      "b": "What recovery agent information has to be published online by the NBFC?",
+      "similarity": 0.9522
+    },
+    {
+      "id": "D03",
+      "same": false,
+      "a": "What are the permitted calling hours for recovery agents for microfinance loans?",
+      "b": "What are the permitted calling hours for recovery agents for non-microfinance loans?",
+      "similarity": 0.9446
+    },
+    {
+      "id": "D20",
+      "same": false,
+      "a": "What is the minimum Net Owned Fund for an NBFC?",
+      "b": "What is the minimum Net Owned Fund for an NBFC-MFI?",
+      "similarity": 0.9403
+    },
+    {
+      "id": "S15",
+      "same": true,
+      "a": "What is a Key Facts Statement?",
+      "b": "what's a key facts statement (KFS)?",
+      "similarity": 0.9303
+    },
+    {
+      "id": "S16",
+      "same": true,
+      "a": "How many days after quarter end must the statement on change of directors be filed?",
+      "b": "When is the quarterly statement on change of directors due?",
+      "similarity": 0.921
+    },
+    {
+      "id": "D09",
+      "same": false,
+      "a": "What must an NBFC report to the RBI after classifying a fraud?",
+      "b": "What must an NBFC report to the police after classifying a fraud?",
+      "similarity": 0.9102
+    },
+    {
+      "id": "S06",
+      "same": true,
+      "a": "Within how many days must an NBFC respond to a request to transfer a loan account?",
+      "b": "How long does an NBFC have to give consent or objection to a loan transfer request?",
+      "similarity": 0.9038
+    },
+    {
+      "id": "D17",
+      "same": false,
+      "a": "Can an NBFC levy pre-payment charges on business loans to micro and small enterprises?",
+      "b": "Can an NBFC levy pre-payment charges on business loans to large corporates?",
+      "similarity": 0.8922
+    },
+    {
+      "id": "D02",
+      "same": false,
+      "a": "How often must KYC be updated for high-risk customers?",
+      "b": "How often must KYC be updated for low-risk customers?",
+      "similarity": 0.8918
+    },
+    {
+      "id": "D08",
+      "same": false,
+      "a": "Who should head the compliance function in an NBFC?",
+      "b": "Who should head the risk management function in an NBFC?",
+      "similarity": 0.8898
+    },
+    {
+      "id": "D14",
+      "same": false,
+      "a": "Which NBFCs must appoint a Chief Compliance Officer?",
+      "b": "Which NBFCs must appoint a Chief Risk Officer?",
+      "similarity": 0.8887
+    },
+    {
+      "id": "S08",
+      "same": true,
+      "a": "What is the penalty for delay in returning property documents?",
+      "b": "How much compensation is payable per day if property documents are released late?",
+      "similarity": 0.8803
+    },
+    {
+      "id": "S14",
+      "same": true,
+      "a": "Must the sanction letter be in a language the borrower understands?",
+      "b": "Should the loan sanction letter be in the vernacular language of the borrower?",
+      "similarity": 0.8777
+    },
+    {
+      "id": "S18",
+      "same": true,
+      "a": "What is the maximum loan-to-value ratio for gold loans?",
+      "b": "What LTV cap applies to loans against gold jewellery?",
+      "similarity": 0.875
+    },
+    {
+      "id": "D18",
+      "same": false,
+      "a": "What is the limit on exposure to a single borrower?",
+      "b": "What is the limit on exposure to a group of connected borrowers?",
+      "similarity": 0.8661
+    },
+    {
+      "id": "D15",
+      "same": false,
+      "a": "What are the obligations of NBFCs in the Upper Layer?",
+      "b": "What are the obligations of NBFCs in the Base Layer?",
+      "similarity": 0.8623
+    },
+    {
+      "id": "S20",
+      "same": true,
+      "a": "What is the tenure of the Chief Compliance Officer?",
+      "b": "For how long is a CCO appointed?",
+      "similarity": 0.8496
+    },
+    {
+      "id": "S11",
+      "same": true,
+      "a": "Can NBFCs charge foreclosure charges on floating rate loans to individuals?",
+      "b": "Are pre-payment penalties allowed on floating-rate loans taken by individuals?",
+      "similarity": 0.8408
+    },
+    {
+      "id": "D13",
+      "same": false,
+      "a": "Must the sanction letter be in a language the borrower understands?",
+      "b": "Must the recovery notice be in a language the borrower understands?",
+      "similarity": 0.8389
+    },
+    {
+      "id": "D07",
+      "same": false,
+      "a": "What is the tenure of the Chief Compliance Officer?",
+      "b": "What is the tenure of the Chief Risk Officer?",
+      "similarity": 0.8375
+    },
+    {
+      "id": "S07",
+      "same": true,
+      "a": "When must original property documents be returned after loan repayment?",
+      "b": "Within how many days must an NBFC release property documents once the loan is repaid?",
+      "similarity": 0.8329
+    },
+    {
+      "id": "D19",
+      "same": false,
+      "a": "Within how many days must an NBFC respond to a loan transfer request?",
+      "b": "Within how many days must an NBFC respond to a customer complaint?",
+      "similarity": 0.8272
+    },
+    {
+      "id": "S02",
+      "same": true,
+      "a": "Within how many days must an NBFC refund the surplus from a gold auction?",
+      "b": "How soon does the auction surplus have to be returned to the borrower?",
+      "similarity": 0.8247
+    },
+    {
+      "id": "S10",
+      "same": true,
+      "a": "How often must the Board review compliance with the Fair Practices Code?",
+      "b": "What is the periodicity of the Board's review of FPC compliance?",
+      "similarity": 0.8247
+    },
+    {
+      "id": "D10",
+      "same": false,
+      "a": "What is the maximum loan-to-value ratio for gold loans?",
+      "b": "What is the maximum loan-to-value ratio for loans against shares?",
+      "similarity": 0.8244
+    },
+    {
+      "id": "D01",
+      "same": false,
+      "a": "Within how many days must an NBFC refund the surplus from a gold auction?",
+      "b": "Within how many days must an NBFC release property documents after repayment?",
+      "similarity": 0.8097
+    },
+    {
+      "id": "S01",
+      "same": true,
+      "a": "What must an NBFC include in the Key Facts Statement?",
+      "b": "What information has to be in the KFS given to borrowers?",
+      "similarity": 0.7576
+    },
+    {
+      "id": "D11",
+      "same": false,
+      "a": "What is the penalty for delay in returning property documents?",
+      "b": "What is the penalty for delay in resolving customer complaints?",
+      "similarity": 0.729
+    },
+    {
+      "id": "S19",
+      "same": true,
+      "a": "Who can be appointed as Chief Compliance Officer?",
+      "b": "What are the eligibility criteria for the CCO?",
+      "similarity": 0.7266
+    },
+    {
+      "id": "D12",
+      "same": false,
+      "a": "How often must the Board review compliance with the Fair Practices Code?",
+      "b": "How often must the Board review the KYC policy?",
+      "similarity": 0.7207
+    },
+    {
+      "id": "D16",
+      "same": false,
+      "a": "When must the quarterly return on robberies be submitted?",
+      "b": "When must the weekly report on large defaulters be submitted?",
+      "similarity": 0.6891
+    }
+  ]
+}

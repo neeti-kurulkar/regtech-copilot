@@ -140,8 +140,8 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
   <a href="#stage-4"><span class="dot done"></span>4 · find_enforcement_precedent</a>
   <a href="#stage-5"><span class="dot done"></span>5 · Compliance calendar</a>
   <a href="#stage-6"><span class="dot done"></span>6 · Agent + guardrails</a>
-  <a href="#stage-7"><span class="dot now"></span>7 · Service layer</a>
-  <a href="#stage-8"><span class="dot"></span>8 · Evaluation report</a>
+  <a href="#stage-7"><span class="dot done"></span>7 · Service layer</a>
+  <a href="#stage-8"><span class="dot now"></span>8 · Evaluation report</a>
 
   <h4>Reference</h4>
   <a href="#aip-changes">Changes to aip</a>
@@ -434,7 +434,7 @@ svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
     <tr><td>4</td><td><code>find_enforcement_precedent</code></td><td>Labs 1, 4, 5</td><td><span class="status done">done</span></td></tr>
     <tr><td>5</td><td><code>extract_deadlines</code> / <code>check_upcoming</code></td><td>Labs 1, 2, 5</td><td><span class="status done">done</span></td></tr>
     <tr><td>6</td><td>Agent loop, budgets, red-team attacks</td><td>Lab 6</td><td><span class="status done">done</span></td></tr>
-    <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status next">next</span></td></tr>
+    <tr><td>7</td><td>Web service, caching, metrics, CI gate</td><td>Lab 7</td><td><span class="status done">done</span></td></tr>
     <tr><td>8</td><td>Evaluation report, "what it is not safe for"</td><td>Lab 7</td><td><span class="status todo">planned</span></td></tr>
   </table></div>
 </section>
@@ -1029,13 +1029,78 @@ All layers:     the send is attempted, the approver refuses (not an internal add
 </section>
 
 <section id="stage-7">
-  <h2>Stage 7 · Service layer <span class="status next">next</span></h2>
-  <p>A FastAPI service (<code>/ask</code>, <code>/metrics</code>) with caching, streaming, tracing, a cost
-  dashboard, and a regression gate that blocks changes which make quality worse.</p>
+  <h2>Stage 7 · Service layer <span class="status done">done</span></h2>
+
+  <h3>What we built</h3>
+  <p>Until now everything ran from the command line. Stage 7 turns the copilot into a <strong>web service</strong>
+  that any program (or the demo web page) can call, and adds what a real service needs:</p>
+  <ul>
+    <li><strong>Two modes.</strong> <em>Ask the rules</em> is quick grounded Q&amp;A over the RBI Directions,
+    about 2 seconds. <em>Ask the agent</em> is anything else: policy checks, penalties, deadlines. It takes 5 to
+    16 seconds, because it runs several tools.</li>
+    <li><strong>A web page</strong> (<code>streamlit run regtech/ui.py</code>) where every citation opens to show
+    the exact source text, so you can check the answer yourself.</li>
+    <li><strong>Caching:</strong> ask the same question twice and the second answer comes back in a tenth of a
+    millisecond, for free.</li>
+    <li><strong>Streaming:</strong> the answer appears as it is written, then a final "citations checked"
+    signal confirms it, or replaces it if the check fails.</li>
+    <li><strong>Tracing and a dashboard:</strong> every request gets an id. From it you can see exactly where
+    the time and money went.</li>
+    <li><strong>A regression gate:</strong> an automatic test run on every code change. It fails the build if
+    quality, safety, cost or speed get worse.</li>
+  </ul>
+
+  <h3>Connection to the labs</h3>
+  <p><strong>Lab 7</strong>, all of it. The service, errors that mean something (for example "try again in 30
+  seconds" when the AI provider is down, not a crash), two cache layers, streaming, the latency budget,
+  traces, the dashboard and one alert, and a regression gate we have seen fail. It reuses <strong>Lab 6</strong>'s
+  guardrails on every request, and <strong>Lab 4</strong>'s citation checks inside the stream.</p>
+
+  <h3>Additions to aip in this stage</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Module</th><th>Addition</th><th>Why</th></tr>
+    <tr><td><code>response_cache</code> (new)</td><td>Exact and semantic answer caches</td><td>Lab 7's two cache layers, reusable</td></tr>
+    <tr><td><code>llm</code>, <code>rag</code></td><td>Streaming that shares the normal cache; "stream, then verdict"</td><td>So streamed answers are checked, and replay offline like everything else</td></tr>
+    <tr><td><code>llm</code></td><td>Identical requests in flight share one call</td><td>Parallel duplicates got different answers and broke the recorded test run (found by the gate)</td></tr>
+    <tr><td><code>tracing</code></td><td>One trace id per request, even across threads</td><td>Parallel tool calls were losing track of which request they belonged to</td></tr>
+    <tr><td><code>cache</code>, <code>cost</code></td><td>Export the entries a run used; recorded latency</td><td>A small 29 MB cache for CI (the full one is 284 MB), and cost/speed checks that work on a replay</td></tr>
+  </table></div>
+
+  <h3>Results</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Measure</th><th>Target</th><th>Result</th></tr>
+    <tr><td>Answer time, new question (95% of requests within)</td><td>6 s</td><td><span class="tag good">2.1 s</span></td></tr>
+    <tr><td>Answer time, repeated question</td><td>0.8 s</td><td><span class="tag good">0.0001 s</span></td></tr>
+    <tr><td>Cost per question</td><td>$0.01</td><td><span class="tag good">$0.0007</span> (agent: up to $0.019)</td></tr>
+    <tr><td>Streaming: time to first words (95%)</td><td>1.5 s</td><td><span class="tag bad">2.3 s</span>: the fast model sends almost the whole answer at once</td></tr>
+    <tr><td>Regression gate</td><td>fails on a real break</td><td><span class="tag good">yes</span>: 17 checks, 27 s, no API key needed</td></tr>
+  </table></div>
+  <p>To get the Q&amp;A under 6 seconds we switched it to the faster, cheaper model (Gemini Flash-Lite). Tested
+  twice on the Stage 2 questions, it met every quality target but scored a little lower than the stronger model
+  (correctness 0.85–0.92 vs 0.92).</p>
+
+  <h3>What we learned</h3>
+  <div class="callout bad"><p><strong>A "smart" cache would give wrong legal answers.</strong> A semantic cache reuses
+  an answer when a new question <em>means the same</em> as an old one, judged by how similar they look to an AI.
+  We tested 40 pairs of questions. "Can an NBFC charge penal <em>interest</em>?" (not allowed) and "Can an NBFC charge
+  penal <em>charges</em>?" (allowed) look 97% alike, more alike than most genuine rewordings. At the usual setting
+  (95%), 15% of near-miss questions would get the other question's answer. Only at 98.8% does that stop, and by
+  then no rewording is ever matched. So the semantic cache is <strong>switched off</strong>. In regulation, the one
+  word that changes the answer is exactly the word the AI treats as noise.</p></div>
+  <ul>
+    <li><strong>The gate found two bugs before it worked.</strong> When the same question was sent twice at the same
+    moment, the AI gave two slightly different answers and only one was saved. The recorded test could then not be
+    replayed. The fix, sharing one call between identical requests, also saves money.</li>
+    <li><strong>A slow first request, explained by its trace.</strong> It took 9.9 seconds, but the AI itself
+    answered in 1.3. The trace showed the other 8.5 seconds were a software library loading. It now loads at start-up.</li>
+    <li><strong>A security hole closed.</strong> The agent can check an uploaded policy file. Over the web, it could
+    have been asked to "check" a secret file on the server, such as <code>.env</code>. It may now only open PDFs that
+    were uploaded through the service.</li>
+  </ul>
 </section>
 
 <section id="stage-8">
-  <h2>Stage 8 · Evaluation report <span class="status todo">planned</span></h2>
+  <h2>Stage 8 · Evaluation report <span class="status next">next</span></h2>
   <p>The final report, including an honest section on what the copilot is <em>not</em> safe for:
   it is not legal advice, and it cannot see rules outside its 12 documents.</p>
 </section>
@@ -1064,6 +1129,7 @@ All layers:     the send is attempted, the approver refuses (not an internal add
     <tr><td>4</td><td>none</td><td>Built entirely on existing aip pieces</td></tr>
     <tr><td>5</td><td><code>guards</code></td><td><code>number_forms</code>, <code>number_in_text</code>, <code>date_in_text</code> (grounding for extracted figures and dates)</td></tr>
     <tr><td>6</td><td><code>guards</code>, <code>cache</code>, <code>cost</code></td><td>Tunable injection detector, PII subsets, cache salt and cold-cost accounting for honest measurement</td></tr>
+    <tr><td>7</td><td><code>response_cache</code> (new), <code>llm</code>, <code>rag</code>, <code>tracing</code>, <code>cache</code>, <code>cost</code></td><td>Answer caches, streaming with a verdict, single-flight calls, one trace id per request, slim-cache export, recorded latency</td></tr>
   </table></div>
 </section>
 
@@ -1088,6 +1154,8 @@ All layers:     the send is attempted, the approver refuses (not an internal add
     <tr><td><code>python -m regtech deadlines reg-kyc</code></td><td>Every deadline in one Direction</td></tr>
     <tr><td><code>python -m regtech agent "…"</code></td><td>Ask the agent anything; it picks the tools (add <code>--layers none</code> to see it unprotected)</td></tr>
     <tr><td><code>python -m regtech redteam</code></td><td>Re-run the Stage 6 attack suite</td></tr>
+    <tr><td><code>python -m regtech serve</code> then <code>streamlit run regtech/ui.py</code></td><td>The web service and its demo page</td></tr>
+    <tr><td><code>python -m regtech gate</code></td><td>The regression gate (add <code>AIP_OFFLINE=1</code> and <code>AIP_CACHE_DIR=ci/cache</code> to run it without a key)</td></tr>
     <tr><td><code>python -m pytest</code></td><td>Run the offline test suite</td></tr>
   </table></div>
 </section>
@@ -1112,7 +1180,7 @@ All layers:     the send is attempted, the approver refuses (not an internal add
     <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
     <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
   </dl>
-  <p class="muted" style="margin-top:32px">Last updated after Stage 6 · 1 October 2026</p>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 7 · 1 October 2026</p>
 </section>
 
 </main>

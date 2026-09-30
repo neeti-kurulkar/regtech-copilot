@@ -1,0 +1,18 @@
+{
+  "tier": "MAIN",
+  "label": "main_r1",
+  "citation_validity": 1.0,
+  "faithfulness": 1.0,
+  "correctness": 0.9166666666666666,
+  "refusal_recall": 1.0,
+  "refusal_precision": 0.8333333333333334,
+  "repair_rate": 0.0,
+  "cold_cost_per_query_usd": 0.003895096774193548,
+  "latency_probe": {
+    "n": 8,
+    "p50_ms": 4205.130300018936,
+    "p95_ms": 7985.908999980893,
+    "max_ms": 7985.908999980893,
+    "cost_per_query_usd": 0.004435818750000001
+  }
+}

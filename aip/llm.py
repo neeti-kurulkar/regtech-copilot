@@ -19,8 +19,10 @@ from __future__ import annotations
 import json
 import random
 import re
+import threading
 import time
 from collections.abc import Sequence
+from concurrent.futures import Future
 from typing import Any, TypeVar
 
 from pydantic import BaseModel, ValidationError
@@ -29,6 +31,9 @@ from aip import cache, cost, retry, tracing
 from aip.config import resolve_model, settings
 
 T = TypeVar("T", bound=BaseModel)
+
+_INFLIGHT: dict[str, Future] = {}   # [regtech] single-flight, see raw_call
+_INFLIGHT_LOCK = threading.Lock()
 
 Messages = Sequence[dict[str, Any]]
 
@@ -98,6 +103,7 @@ def raw_call(
             cached=True,
             calls=1,
             priced=True,           # free for certain -- it never left the machine
+            cold_latency_ms=float(hit["usage"].get("latency_ms", 0.0) or 0.0),   # [regtech]
         )
         cost.record(usage)
         tracing.event("llm.call", model=model, cached=True, cost_usd=0.0)
@@ -112,6 +118,48 @@ def raw_call(
             "Either run once online to populate the cache, or unset AIP_OFFLINE."
         )
 
+    # [regtech] single-flight: identical requests in flight at the same time share one provider call.
+    # Without it, parallel workers sending the same prompt each get their own (non-deterministic) answer,
+    # and the cache keeps only the last one written, so a recorded run can no longer be replayed: a later
+    # prompt built from the answer that was NOT kept misses the cache (found building the Stage 7 CI gate).
+    with _INFLIGHT_LOCK:
+        fut = _INFLIGHT.get(key)
+        leader = fut is None
+        if leader:
+            fut = _INFLIGHT[key] = Future()
+    if not leader:
+        shared = fut.result()
+        cost.record(cost.Usage(model, shared["usage"]["prompt_tokens"], shared["usage"]["completion_tokens"], 0.0,
+                               0.0, cached=True, calls=1, priced=True,
+                               cold_latency_ms=float(shared["usage"].get("latency_ms", 0.0) or 0.0)))
+        tracing.event("llm.call", model=model, cached=True, coalesced=True, cost_usd=0.0)
+        return {**shared, "usage": {**shared["usage"], "cached": True}}
+    try:
+        # re-check: a previous leader may have finished (and cached) between our cache miss and our claim
+        late = cache.get(key)
+        if late is not None:
+            cost.record(cost.Usage(model, late["usage"]["prompt_tokens"], late["usage"]["completion_tokens"], 0.0,
+                                   0.0, cached=True, calls=1, priced=True,
+                                   cold_latency_ms=float(late["usage"].get("latency_ms", 0.0) or 0.0)))
+            late["usage"]["cached"] = True
+            fut.set_result(late)
+            return late
+        result = _call_provider(request, key, model=model, messages=messages, temperature=temperature,
+                                max_tokens=max_tokens, response_format=response_format, tools=tools,
+                                tool_choice=tool_choice, extra=extra)
+        fut.set_result(result)
+        return result
+    except BaseException as exc:
+        fut.set_exception(exc)
+        raise
+    finally:
+        with _INFLIGHT_LOCK:
+            _INFLIGHT.pop(key, None)
+
+
+def _call_provider(request: dict[str, Any], key: str, *, model: str, messages: list[dict[str, Any]],
+                   temperature: float, max_tokens: int, response_format: dict | None, tools: list[dict] | None,
+                   tool_choice: Any | None, extra: dict | None) -> dict[str, Any]:
     # LiteLLM is imported lazily: importing it costs ~1s, and offline/cached
     # runs should not pay for it.
     from litellm import completion
@@ -219,6 +267,97 @@ def chat(
         extra=extra or None,
     )
     return result if return_full else result["text"]
+
+
+class ChatStream:
+    """[regtech] A streamed completion: iterate for text deltas; afterwards `.result` holds the same dict
+    raw_call returns, and `.cached` / `.ttft_ms` say how it was served.
+
+    It shares raw_call's cache key, so a streamed answer is reused by `chat()` and vice versa, and a
+    cached answer is replayed in small pieces (offline replay and CI work unchanged). Cost, retries and
+    tracing follow raw_call. Retries only cover opening the stream: once a token has been sent, a failure
+    is raised, not silently restarted. The span is written when the stream ends (see tracing.span_record),
+    because a stream is consumed across yields."""
+
+    def __init__(self, messages: list[dict[str, Any]], *, model: str, temperature: float, max_tokens: int,
+                 extra: dict | None = None, piece_chars: int = 24):
+        self.request = {"model": model, "messages": messages, "temperature": temperature, "max_tokens": max_tokens,
+                        "response_format": None, "tools": None, "tool_choice": None, **(extra or {})}
+        self.model, self.piece_chars = model, piece_chars
+        self.result: dict[str, Any] | None = None
+        self.cached = False
+        self.ttft_ms: float | None = None
+        self._parent_id = tracing._parent()["span_id"] if tracing._parent() else None
+        self._trace_id = tracing.current_trace_id()
+
+    def __iter__(self):
+        key = cache.make_key("chat", self.request)
+        t_start, started = time.perf_counter(), time.time()
+        hit = cache.get(key)
+        if hit is not None:
+            cost.record(cost.Usage(self.model, hit["usage"]["prompt_tokens"], hit["usage"]["completion_tokens"],
+                                   0.0, 0.0, cached=True, calls=1, priced=True,
+                                   cold_latency_ms=float(hit["usage"].get("latency_ms", 0.0) or 0.0)))
+            self.cached, self.result, self.ttft_ms = True, hit, 0.0
+            text = hit["text"]
+            for i in range(0, len(text), self.piece_chars):
+                yield text[i:i + self.piece_chars]
+            tracing.span_record("llm.stream", started, (time.perf_counter() - t_start) * 1000,
+                                parent_id=self._parent_id, trace_id=self._trace_id, model=self.model, cached=True)
+            return
+        if settings.offline:
+            raise cache.CacheMiss("AIP_OFFLINE=1 and this streamed request is not in the cache "
+                                  f"(model={self.model}).")
+        from litellm import completion
+
+        kwargs = {k: v for k, v in self.request.items() if k not in ("response_format", "tools", "tool_choice")}
+        resp = retry.call_with_retries(
+            lambda: completion(**kwargs, timeout=settings.timeout_s, stream=True,
+                               stream_options={"include_usage": True}), event="llm.retry")
+        parts: list[str] = []
+        finish, pt, ct = None, 0, 0
+        status = "ok"
+        try:
+            for chunk in resp:
+                choices = getattr(chunk, "choices", None) or []
+                if choices:
+                    delta = getattr(choices[0].delta, "content", None) or ""
+                    finish = getattr(choices[0], "finish_reason", None) or finish
+                    if delta:
+                        if self.ttft_ms is None:
+                            self.ttft_ms = (time.perf_counter() - t_start) * 1000
+                        parts.append(delta)
+                        yield delta
+                usage = getattr(chunk, "usage", None)
+                if usage:
+                    pt = int(getattr(usage, "prompt_tokens", 0) or 0)
+                    ct = int(getattr(usage, "completion_tokens", 0) or 0)
+        except Exception:
+            status = "error"
+            raise
+        finally:
+            latency_ms = (time.perf_counter() - t_start) * 1000
+            usd = cost.price_of(self.model, pt, ct)
+            tracing.span_record("llm.stream", started, latency_ms, parent_id=self._parent_id,
+                                trace_id=self._trace_id, model=self.model, cached=False, status=status,
+                                ttft_ms=round(self.ttft_ms or 0.0, 1), prompt_tokens=pt, completion_tokens=ct,
+                                cost_usd=round(usd, 6), finish_reason=finish)
+        cost.record(cost.Usage(self.model, pt, ct, usd, latency_ms, cached=False, calls=1,
+                               priced=cost.is_priced(self.model)))
+        self.result = {"text": "".join(parts), "tool_calls": [],
+                       "usage": {"prompt_tokens": pt, "completion_tokens": ct, "cost_usd": usd,
+                                 "latency_ms": latency_ms, "cached": False},
+                       "finish_reason": finish}
+        cache.put(key, "chat", self.request, self.result)
+
+
+def stream_chat(prompt_or_messages: str | Messages, *, system: str | None = None, tier: str = "MAIN",
+                model: str | None = None, temperature: float | None = None, max_tokens: int = 1024,
+                **extra: Any) -> ChatStream:
+    """[regtech] Streaming counterpart of chat(): `for delta in stream_chat(...)`, then `.result`."""
+    return ChatStream(_normalise(prompt_or_messages, system), model=resolve_model(model or tier),
+                      temperature=settings.temperature if temperature is None else temperature,
+                      max_tokens=max_tokens, extra=extra or None)
 
 
 _JSON_BLOCK = re.compile(r"```(?:json)?\s*(.*?)```", re.DOTALL)

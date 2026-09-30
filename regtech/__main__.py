@@ -1,6 +1,7 @@
 import argparse
 import logging
 import sys
+from pathlib import Path
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -29,6 +30,10 @@ def main(argv: list[str] | None = None) -> int:
 
     p_qa = sub.add_parser("eval-qa", help="Lab 4 evaluation of the grounded Q&A; writes reports/stage2_qa.*")
     p_qa.add_argument("--no-judge", action="store_true", help="skip the LLM judges and the gold-context run")
+
+    p_qt = sub.add_parser("qa-tier", help="Stage 7: Stage 2 quality + latency of the Q&A on a given model tier")
+    p_qt.add_argument("tier")
+    p_qt.add_argument("--label")
 
     sub.add_parser("judge-kappa", help="Cohen's kappa between the judge and your labels in the calibration sheet")
 
@@ -75,6 +80,17 @@ def main(argv: list[str] | None = None) -> int:
     p_ag.add_argument("--as-of", help="YYYY-MM-DD for calendar questions (default: today)")
     p_ag.add_argument("--confirm", action="store_true", help="ask you (y/n) before the privileged send tool runs")
 
+    p_srv = sub.add_parser("serve", help="Stage 7: run the HTTP service (uvicorn) on localhost")
+    p_srv.add_argument("--port", type=int, default=8000)
+
+    sub.add_parser("semantic-study", help="Stage 7: find the semantic-cache similarity threshold that starts giving wrong answers")
+
+    p_gate = sub.add_parser("gate", help="Stage 7 regression gate: golden sets vs ci/thresholds.yml (exit 1 on breach)")
+    p_gate.add_argument("--record", action="store_true", help="also export the cache entries used to ci/cache/ for CI")
+    p_gate.add_argument("--config", default=None)
+
+    sub.add_parser("latency", help="Stage 7: end-to-end latency of the service by mode and stage (caches off)")
+
     sub.add_parser("make-fixtures", help="write the poisoned policy PDFs used by the red-team into tests/fixtures/redteam/")
 
     p_rt = sub.add_parser("redteam", help="Stage 6 red-team: attacks and controls under cumulative layers")
@@ -109,6 +125,30 @@ def main(argv: list[str] | None = None) -> int:
             print("  flag:", f)
         for m in run.outbox:
             print(f"  outbox (simulated): to {m['recipient']}: {m['subject']}")
+        return 0
+
+    if args.command == "gate":
+        from regtech.gate import CONFIG, main as gate
+        return gate(Path(args.config) if args.config else CONFIG, record=args.record)
+
+    if args.command == "latency":
+        import json as _json
+        from regtech.latency import run as lat
+        out = lat()
+        print(_json.dumps({k: {kk: vv for kk, vv in v.items() if kk != "stages"} if isinstance(v, dict) else v
+                           for k, v in out.items() if k != "service_metrics"}, indent=1))
+        return 0
+
+    if args.command == "serve":
+        from regtech.service import main as serve
+        serve(port=args.port)
+        return 0
+
+    if args.command == "semantic-study":
+        from regtech.semantic_study import run as study
+        o = study()
+        print("lowest threshold with no wrong hit:", o["safe_threshold"], o["at_safe"])
+        print("report: reports/stage7_semantic_threshold.md")
         return 0
 
     if args.command == "make-fixtures":
@@ -218,10 +258,16 @@ def main(argv: list[str] | None = None) -> int:
         print(RegulationQA("strict" if args.strict else "balanced").ask(args.question).render())
         return 0
 
+    if args.command == "qa-tier":
+        from regtech.qa_eval import tier_check
+        out = tier_check(args.tier, args.label or args.tier.lower())
+        print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in out.items()})
+        return 0
+
     if args.command == "eval-qa":
         from regtech.qa_eval import main as eval_qa
         eval_qa(judge=not args.no_judge)
-        print("wrote reports/stage2_qa.md")
+        print("wrote reports/" + ("stage2_qa_nojudge.md" if args.no_judge else "stage2_qa.md"))
         return 0
 
     if args.command == "judge-kappa":

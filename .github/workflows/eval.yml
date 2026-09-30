@@ -1,0 +1,35 @@
+name: eval-gate
+
+# Stage 7 regression gate (Lab 7 Part D), on every push and pull request.
+# AIP_OFFLINE=1 replays the committed slim cache (ci/cache/calls.sqlite3, recorded with
+# `python -m regtech gate --record`): no API key, no cost, deterministic. A change that alters any model
+# request is a cache miss, and the gate fails closed until the new behaviour is recorded and evaluated.
+
+on: [push, pull_request]
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      AIP_OFFLINE: "1"
+      AIP_PROFILE: gemini
+      AIP_CACHE_DIR: ci/cache
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Unit tests (offline)
+        run: python -m pytest -q
+      - name: Regression gate
+        run: python -m regtech gate
+      - name: Upload gate metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate-metrics
+          path: reports/stage7_gate.json

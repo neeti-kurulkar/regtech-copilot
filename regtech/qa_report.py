@@ -152,7 +152,8 @@ def write_report(cases: list[Case], balanced: dict, strict: dict, gold: dict | N
             + (f"; gold-context run incl. judging: ${gold['answers'].budget.get('cost_usd', 0) + gold['judge'].budget.get('cost_usd', 0):.4f}" if gold else ""),
             f"- Total: ${total_budget.get('cost_usd', 0):.4f} ({total_budget.get('calls', 0)} model calls, "
             f"{total_budget.get('cached_calls', 0)} from cache)", ""]
-    (REPORTS_DIR / "stage2_qa.md").write_text("\n".join(out) + "\n", encoding="utf-8")
+    name = "stage2_qa" if gold is not None else "stage2_qa_nojudge"   # a --no-judge run never overwrites the full report
+    (REPORTS_DIR / f"{name}.md").write_text("\n".join(out) + "\n", encoding="utf-8")
 
     def slim(res: dict | None) -> dict | None:
         if not res:
@@ -161,7 +162,7 @@ def write_report(cases: list[Case], balanced: dict, strict: dict, gold: dict | N
                 "outputs": {i: {**o, "sources": [{k: v for k, v in s.items() if k != "text"} for s in o["sources"]]}
                             for i, o in res["outputs"].items()},
                 "refusal": res.get("refusal")}
-    (REPORTS_DIR / "stage2_qa.json").write_text(json.dumps(
+    (REPORTS_DIR / f"{name}.json").write_text(json.dumps(
         {"balanced": slim(balanced), "strict": slim(strict), "gold": slim(gold), "kappa": kappa,
          "calibration_sheet": str(CALIBRATION_CSV.name), "total_budget": total_budget}, indent=2, default=str),
         encoding="utf-8")
