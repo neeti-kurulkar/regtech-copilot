@@ -65,6 +65,7 @@ def test_identical_concurrent_requests_share_one_provider_call(monkeypatch):
                 "usage": {"prompt_tokens": 1, "completion_tokens": 1, "cost_usd": 0.0, "latency_ms": 200.0, "cached": False}}
     monkeypatch.setattr(llm, "_call_provider", slow_provider)
     monkeypatch.setattr(cache, "get", lambda key: None)
+    monkeypatch.setattr(llm.settings, "offline", False)   # CI runs with AIP_OFFLINE=1; no provider is reached here
     barrier = threading.Barrier(4)
 
     def ask(_):
