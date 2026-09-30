@@ -123,5 +123,5 @@ class RegulationQA:
     def _wrap(r: RagAnswer) -> Answer:
         sources = [{"n": i, "doc_id": h.doc_id, "chunk_id": h.chunk.chunk_id, "label": source_label(h),
                     "text": h.text} for i, h in enumerate(r.hits, start=1)]
-        return Answer(r.question, r.answer, r.refused, r.citations_valid, sources, r.cited_indices,
+        return Answer(r.question, r.answer, False, r.citations_valid, sources, r.cited_indices,
                       r.repairs, r.fallback, r.problems, r.budget_doublings)
