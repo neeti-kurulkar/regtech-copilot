@@ -19,10 +19,11 @@ from aip.cost import Budget
 from aip.evals import (JUDGE_RUBRIC_CORRECTNESS, JUDGE_RUBRIC_FAITHFULNESS, Case, EvalReport,
                        evidence_labels, judge_agreement, llm_judge, missing_evidence, normalise_text,
                        refusal_metrics, run_eval)
+from aip.guards import citation_support
 from aip.retrieval import Hit
 
 from regtech.index import load_documents
-from regtech.paths import EVAL_DIR, REPORTS_DIR
+from regtech.paths import REPORTS_DIR, eval_file
 from regtech.qa import Answer, RegulationQA
 
 CALIBRATION_CSV = REPORTS_DIR / "stage2_judge_calibration.csv"
@@ -33,7 +34,7 @@ _CITE = re.compile(r"\[\d+\]")
 
 
 def load_cases() -> list[Case]:
-    rows = [json.loads(x) for x in (EVAL_DIR / "qa_regulation.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [json.loads(x) for x in eval_file("qa_regulation.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
     docs = {r.doc_id: t for r, t in load_documents("regulation")}
     problems = missing_evidence({r["id"]: r["relevant"] for r in rows}, docs)
     if problems:
@@ -67,7 +68,20 @@ def deterministic_metrics(out: dict, expected: dict) -> dict[str, float]:
         if nums:
             cited_text = " ".join(f"{s['label']} {s['text']}" for s in out["sources"] if s["n"] in out["cited"])
             m["numbers_supported"] = len(nums & _numbers(cited_text)) / len(nums)
+        # sentence level (F1): does each claim carry its own citation, and are its numbers in what it cites?
+        sup = citation_support(out["text"], {s["n"]: f"{s['label']} {s['text']}" for s in out["sources"]})
+        m.update({f"support_{k}": float(v) for k, v in sup.items()})
     return m
+
+
+def citation_support_summary(metrics: list[dict[str, float]]) -> dict[str, float]:
+    """Pooled over answers: share of claims with no citation of their own, and share of cited numeric claims
+    whose numbers all appear in the sources they cite."""
+    tot = {k: sum(m.get(f"support_{k}", 0.0) for m in metrics)
+           for k in ("claims", "uncited", "with_numbers", "numbers_unsupported")}
+    return {"uncited_claim_rate": tot["uncited"] / tot["claims"] if tot["claims"] else float("nan"),
+            "numeric_claim_support": 1 - tot["numbers_unsupported"] / tot["with_numbers"] if tot["with_numbers"] else float("nan"),
+            "claims": tot["claims"], "numeric_claims": tot["with_numbers"]}
 
 
 def _context_for_judge(out: dict) -> str:

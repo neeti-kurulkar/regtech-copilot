@@ -24,6 +24,9 @@ from regtech.enforcement import CaseRecord, load_cases
 from regtech.index import CorpusIndex
 
 Match = Literal["same_failure", "related", "unrelated"]
+# Every tool result says which of three things happened. "Could not judge" is never folded into "none found":
+# an error must not read, to the agent or to a metric, as evidence that no penalty exists (independent review F12).
+Outcome = Literal["found", "none_found", "could_not_judge"]
 GAP_STATUSES = {"missing", "weaker", "inconsistent"}
 
 
@@ -69,7 +72,8 @@ class PrecedentReport(BaseModel):
     risk: str
     precedents: list[Precedent]
     related: list[Precedent]
-    no_precedent: bool
+    outcome: Outcome
+    no_precedent: bool = Field(description="True only when the candidates were judged and none is the same failure")
     message: str
     candidates_considered: list[str]
     cost_usd: float = 0.0
@@ -182,6 +186,7 @@ class PrecedentFinder:
                     penalty_inr=c.penalty_inr, penalty_text=c.penalty_text, directions=c.directions,
                     matched_charge=v.charge, match=v.match, reason=v.reason))
         precedents, related = found["same_failure"][: req.max_cases], found["related"][: req.max_cases]
+        outcome: Outcome = "found" if precedents else ("could_not_judge" if cands and not verdicts else "none_found")
         n_total = len(self.cases)
         if precedents:
             message = f"{len(precedents)} precedent(s): the RBI has penalised this kind of failure."
@@ -190,7 +195,7 @@ class PrecedentFinder:
         else:
             message = (f"No comparable precedent among the {n_total} RBI penalty cases in the corpus"
                        + (" (related cases in the same area are listed below)." if related else "."))
-        return PrecedentReport(risk=risk, precedents=precedents, related=related, no_precedent=not precedents,
+        return PrecedentReport(risk=risk, precedents=precedents, related=related, outcome=outcome, no_precedent=outcome == "none_found",
                                message=message, candidates_considered=[c.doc_id for c in cands],
                                cost_usd=round(b.spent_usd, 6))
 

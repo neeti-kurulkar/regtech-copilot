@@ -178,3 +178,12 @@ def test_target_finding_accepts_any_passage_stating_the_rule():
     assert target_finding(report, ["There shall be no capitalisation of penal charges",
                                    "there is no capitalization of the penal charges"])
     assert target_finding(report, "There shall be no capitalisation of penal charges") is None
+
+
+def test_stale_policy_flag_respects_how_the_date_is_known():
+    from regtech.policy_gap import policy_predates
+    assert policy_predates("2020-05-26", "pdf_metadata", "2026-07-01") is True
+    assert policy_predates("2026-08-01", "stated", "2026-07-01") is False
+    assert policy_predates("2025-07-02", "not_before", "2026-07-01") is None      # could be either
+    assert policy_predates("2026-08-01", "not_before", "2026-07-01") is False     # on or after a later date
+    assert policy_predates(None, None, "2026-07-01") is None                      # uploaded document

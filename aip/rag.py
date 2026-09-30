@@ -82,10 +82,24 @@ class RagAnswer:
 REFUSAL = "I don't have enough information in the provided sources to answer that."
 
 
+def _normalise_refusal(text: str) -> str:
+    return " ".join(text.strip().strip("\"'“”").split()).rstrip(".").lower()
+
+
 def is_refusal(text: str) -> bool:
-    """[regtech] True if the answer *is* the refusal (a partial answer that ends
-    by declining one part is not a refusal)."""
-    return text.strip().startswith(REFUSAL[:40])
+    """[regtech] True if the answer *is* the refusal: exactly the refusal sentence, ignoring case,
+    whitespace, surrounding quotes and the final full stop. This is the one definition of a refusal,
+    used by validation, the metrics and the service.
+
+    It used to be a prefix match, so "<refusal sentence> However, <uncited claims>" counted as a refusal
+    and skipped the citation check (reports/independent_review.md, F2). Anything that is not exactly the
+    refusal is now validated as an answer."""
+    return _normalise_refusal(text) == _normalise_refusal(REFUSAL)
+
+
+def starts_with_refusal(text: str) -> bool:
+    """[regtech] The refusal sentence followed by more text: neither a refusal nor a valid answer."""
+    return _normalise_refusal(text).startswith(_normalise_refusal(REFUSAL)) and not is_refusal(text)
 
 
 def validate_answer(text: str, n_sources: int, finish_reason: str | None = None) -> list[str]:
@@ -101,6 +115,10 @@ def validate_answer(text: str, n_sources: int, finish_reason: str | None = None)
     if finish_reason == "length":
         problems.append("the answer was cut off (token limit); write a shorter complete answer")
     if is_refusal(stripped):
+        return problems
+    if starts_with_refusal(stripped):
+        problems.append("it begins with the refusal sentence and then continues; either reply with the refusal "
+                        "sentence alone, or answer the supported part with citations without the refusal sentence")
         return problems
     ok, invalid = enforce_citations(stripped, n_sources)
     if invalid:

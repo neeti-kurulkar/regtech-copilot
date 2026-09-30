@@ -61,6 +61,10 @@ Run from the repo root with the venv active (`.venv\Scripts\Activate.ps1`):
 | `python -m regtech qa-tier SMALL [--label L]` | Stage 2 quality + latency of the Q&A on another model tier |
 | `python -m regtech eval-gap [--label L] [--tier T] [--assess-tier SMALL]` | Stage 3 evaluation (assessments on SMALL by default since Stage 6); writes `reports/stage3_policy_gap_<L>.{md,json}` |
 | `python -m regtech judge-kappa` | Cohen's κ between the LLM judge and your hand labels in `reports/stage2_judge_calibration.csv` |
+| `python -m regtech judge-sheet` | Write the v2 blind judge-calibration sheet: served answers plus deliberately corrupted copies (`reports/judge_calibration_v2.csv`) |
+| `python -m regtech judge-kappa --v2` | Run the judge on the labelled v2 sheet (online) and report κ and per-defect detection |
+| `python -m regtech headline [--write]` | The EVALUATION_REPORT headline table (k/n with 95% intervals) from the committed reports |
+| `$env:REGTECH_EVAL_SPLIT="test"; python -m regtech eval-...` | Run an evaluation on the held-out set in `data/eval/test/` (protocol: `data/eval/README.md`) |
 | `python -m pytest` | Offline unit tests |
 
 Later stages add their own subcommands here.

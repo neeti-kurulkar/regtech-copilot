@@ -264,3 +264,53 @@ def enforce_citations(answer: str, n_sources: int) -> tuple[bool, list[int]]:
     cited = sorted({int(m) for m in re.findall(r"\[(\d+)\]", answer)})
     invalid = [c for c in cited if c < 1 or c > n_sources]
     return (not invalid and bool(cited)), invalid
+
+
+# [regtech] Per-sentence citation support (reports/independent_review.md, F1). enforce_citations proves that
+# every [n] names a real source; it says nothing about whether the sentence carrying [n] is backed by source n.
+# This is the cheapest deterministic evidence for that: every sentence that states a fact carries its own
+# citation, and every number it states appears in (one of) the sources IT cites, as digits or words.
+# A measurement, not a validator: it never changes what is asked of the model.
+_SENTENCE_SPLIT = re.compile(r"(?<=[.;:!?])\s+(?=[A-Z(\"'“])|\n+")
+_SENT_CITE = re.compile(r"\[(\d+)\]")
+_SENT_NUM = re.compile(r"(?<![\w.])\d[\d,]*(?:\.\d+)?(?![\w])")
+_DECLINES = re.compile(r"\b(?:sources?|provided (?:text|extracts?)|directions?)\b.{0,40}\b(?:do(?:es)? not|don't|no)\b"
+                       r".{0,40}\b(?:specify|state|mention|cover|say|address|provide|include|information)", re.I)
+
+
+def split_sentences(text: str) -> list[str]:
+    return [s.strip(" -*\t") for s in _SENTENCE_SPLIT.split(text.strip()) if len(s.strip(" -*\t").split()) >= 4]
+
+
+def citation_support(answer: str, sources: dict[int, str]) -> dict[str, float]:
+    """[regtech] Sentence-level grounding of a cited answer.
+
+    Returns counts: `claims` (sentences of at least 4 words that are not a statement of what the sources do
+    not cover), `uncited` (claims with no [n] of their own), `with_numbers` (cited claims stating a number) and
+    `numbers_unsupported` (of those, claims with a number absent from every source the sentence cites).
+    Numbers inside citation markers are ignored."""
+    counts = {"claims": 0, "uncited": 0, "with_numbers": 0, "numbers_unsupported": 0}
+    for s in split_sentences(answer):
+        if _DECLINES.search(s):
+            continue
+        counts["claims"] += 1
+        cited = [int(n) for n in _SENT_CITE.findall(s)]
+        if not cited:
+            counts["uncited"] += 1
+            continue
+        nums = {n.replace(",", "") for n in _SENT_NUM.findall(_SENT_CITE.sub(" ", s))}
+        nums = {n for n in nums if n.replace(".", "").isdigit()}
+        if not nums:
+            continue
+        counts["with_numbers"] += 1
+        text = " ".join(sources.get(i, "") for i in cited)
+        plain = normalise_text(text).replace(",", "")
+
+        def stated(n: str) -> bool:
+            if "." in n:
+                return n in plain
+            return number_in_text(int(n), text) or re.search(rf"(?<![\d]){n}(?![\d])", plain) is not None
+
+        if not all(stated(n) for n in nums):
+            counts["numbers_unsupported"] += 1
+    return counts

@@ -143,3 +143,20 @@ def test_failure_mode_classification():
     assert failure_mode({"correctness": 0.0, "evidence_in_context": 1.0}, "answerable", True).startswith("over-refusal")
     assert failure_mode({}, "unanswerable", False).startswith("answered an unanswerable")
     assert failure_mode({}, "unanswerable", True) is None
+
+
+def test_refusal_is_exact_not_a_prefix():
+    # F2: the refusal sentence followed by claims used to count as a refusal and skip the citation check
+    assert is_refusal(f'"{REFUSAL}"') and is_refusal(REFUSAL.upper().rstrip("."))
+    smuggled = REFUSAL + " However, NBFCs must report fraud within 3 days."
+    assert not is_refusal(smuggled)
+    assert validate_answer(smuggled, 6), "refusal + uncited claims must be sent back for repair"
+
+
+def test_citation_support_is_sentence_level():
+    from aip.guards import citation_support
+    c = citation_support("The CCO tenure is 3 years [1]. The CCO must be paid Rs 1 crore. "
+                         "The sources do not specify a minimum salary.", {1: "a minimum tenure of three years"})
+    assert c == {"claims": 2, "uncited": 1, "with_numbers": 1, "numbers_unsupported": 0}
+    bad = citation_support("Gold loans need 50 per cent LTV [2].", {1: "50 per cent", 2: "75 per cent"})
+    assert bad["numbers_unsupported"] == 1, "a number must be in the source the sentence itself cites"

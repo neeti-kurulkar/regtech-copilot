@@ -21,7 +21,7 @@ def test_corpus_dirs_cover_every_doc_type():
 def _row(**overrides):
     base = dict(doc_id="fpc-iifl", doc_type="internal_policy", title="IIFL Finance Limited - Fair Practices Code",
                 entity_name="IIFL Finance Limited",
-                publish_date="2026-04-29", source_url="", file_name="iifl.pdf")
+                publish_date="2026-04-29", date_basis="stated", source_url="", file_name="iifl.pdf")
     base.update(overrides)
     return base
 
@@ -30,7 +30,24 @@ def test_valid_row_and_blank_optionals():
     row = ManifestRow(**_row())
     assert row.source_url is None
     assert row.publish_date.isoformat() == "2026-04-29"
-    assert ManifestRow(**_row(publish_date="")).publish_date is None
+    assert ManifestRow(**_row(publish_date="", date_basis="undated")).publish_date is None
+
+
+def test_every_date_has_a_basis():
+    # F6: a blank date used to be silently allowed, so the stale-policy flag never fired for undated Codes
+    with pytest.raises(ValueError, match="publish_date is required"):
+        ManifestRow(**_row(publish_date=""))
+    with pytest.raises(ValueError, match="undated"):
+        ManifestRow(**_row(date_basis="undated"))
+    with pytest.raises(ValueError):
+        ManifestRow(**_row(date_basis="guessed"))
+    assert ManifestRow(**_row(date_basis="pdf_metadata")).date_is_exact
+    assert not ManifestRow(**_row(date_basis="not_before")).date_is_exact
+
+
+def test_corpus_policies_all_carry_a_date():
+    rows = [r for r in load_manifest() if r.doc_type == "internal_policy"]
+    assert rows and all(r.publish_date for r in rows)
 
 
 @pytest.mark.parametrize("bad", [

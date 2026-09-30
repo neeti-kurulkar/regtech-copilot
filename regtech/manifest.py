@@ -10,7 +10,15 @@ from pydantic import BaseModel, ValidationError, field_validator, model_validato
 
 from regtech.paths import CORPUS_DIRS, MANIFEST_PATH
 
-COLUMNS = ["doc_id", "doc_type", "title", "entity_name", "publish_date", "source_url", "file_name"]
+COLUMNS = ["doc_id", "doc_type", "title", "entity_name", "publish_date", "date_basis", "source_url", "file_name"]
+
+# Where publish_date comes from. Every row must say, because "does this Code predate the rules?" is only as good as
+# the date (independent review F6: four Codes had no date, so the stale-policy flag never fired for the stale ones).
+#   stated        printed in the document (or the press release date)
+#   pdf_metadata  not printed; taken from the PDF's creation/modification date
+#   not_before    not printed; the document cites something of this date, so it was issued on or after it
+#   undated       no usable evidence (publish_date must then be empty)
+DateBasis = Literal["stated", "pdf_metadata", "not_before", "undated"]
 
 DOC_ID_PREFIX = {"regulation": "reg", "internal_policy": "fpc", "enforcement": "enf"}
 _DOC_ID_RE = re.compile(r"^(reg|fpc|enf)-[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -22,6 +30,7 @@ class ManifestRow(BaseModel):
     title: str
     entity_name: str
     publish_date: date | None = None
+    date_basis: DateBasis
     source_url: str | None = None
     file_name: str
 
@@ -50,6 +59,19 @@ class ManifestRow(BaseModel):
         if v is not None and not v.startswith(("http://", "https://")):
             raise ValueError("source_url must start with http:// or https://")
         return v
+
+    @model_validator(mode="after")
+    def _date_has_a_basis(self) -> ManifestRow:
+        if self.date_basis == "undated" and self.publish_date is not None:
+            raise ValueError("date_basis 'undated' needs an empty publish_date")
+        if self.date_basis != "undated" and self.publish_date is None:
+            raise ValueError(f"publish_date is required (date_basis {self.date_basis!r}); "
+                             "use date_basis 'undated' only when there is no evidence of a date")
+        return self
+
+    @property
+    def date_is_exact(self) -> bool:
+        return self.date_basis in ("stated", "pdf_metadata")
 
     @model_validator(mode="after")
     def _prefix_matches_type(self) -> ManifestRow:

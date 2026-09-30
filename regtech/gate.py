@@ -49,7 +49,8 @@ def measure_qa(index=None) -> dict[str, float]:
     from aip.evals import refusal_metrics, run_eval
 
     from regtech.qa import RegulationQA
-    from regtech.qa_eval import _as_output, _judge_phase, deterministic_metrics, load_cases, summarise
+    from regtech.qa_eval import (_as_output, _judge_phase, citation_support_summary, deterministic_metrics,
+                                 load_cases, summarise)
     from regtech.service import QA_TIER
 
     cases = load_cases()
@@ -69,12 +70,17 @@ def measure_qa(index=None) -> dict[str, float]:
                                       [c.expected["should_refuse"] for c in cases])}
     m = summarise(res, cases)
     graded = [r for r in answers.results if "evidence_in_context" in r.metrics]
+    sup = citation_support_summary([r.metrics for r in answers.results])
     return {"qa_correctness": m["correctness"], "qa_faithfulness": m["faithfulness"],
             "qa_citation_validity": m["citation_validity"], "qa_refusal_recall": m["refusal_recall"],
             "qa_refusal_precision": m["refusal_precision"],
             "qa_evidence_in_context": sum(r.metrics["evidence_in_context"] for r in graded) / max(len(graded), 1),
             "qa_cost_per_query_usd": sum(c for _, c in cold.values()) / max(len(cold), 1),
-            "qa_p95_model_latency_ms": _pct([lat for lat, _ in cold.values()], 0.95)}
+            "qa_p95_model_latency_ms": _pct([lat for lat, _ in cold.values()], 0.95),
+            # citation SUPPORT, sentence level (qa_citation_validity only proves each [n] exists)
+            "qa_uncited_claim_rate": sup["uncited_claim_rate"],
+            "qa_numeric_claim_support": sup["numeric_claim_support"],
+            "qa_support_claims": sup["claims"], "qa_support_numeric_claims": sup["numeric_claims"]}
 
 
 def measure_gap() -> dict[str, float]:
@@ -107,6 +113,9 @@ def measure_redteam() -> dict[str, float]:
 
 
 def measure() -> dict[str, float]:
+    from regtech.paths import eval_split
+    if eval_split() != "dev":
+        raise SystemExit("the gate runs on the dev sets its thresholds were set on; unset REGTECH_EVAL_SPLIT")
     if os.getenv("AIP_CACHE_SALT"):
         raise SystemExit("unset AIP_CACHE_SALT: the gate must use the same cache keys CI replays")
     from regtech.index import CorpusIndex

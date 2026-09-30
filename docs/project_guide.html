@@ -1073,7 +1073,7 @@ All layers:     the send is attempted, the approver refuses (not an internal add
     <tr><td>Answer time, repeated question</td><td>0.8 s</td><td><span class="tag good">0.0001 s</span></td></tr>
     <tr><td>Cost per question</td><td>$0.01</td><td><span class="tag good">$0.0007</span> (agent: up to $0.019)</td></tr>
     <tr><td>Streaming: time to first words (95%)</td><td>1.5 s</td><td><span class="tag bad">2.3 s</span>: the fast model sends almost the whole answer at once</td></tr>
-    <tr><td>Regression gate</td><td>fails on a real break</td><td><span class="tag good">yes</span>: 17 checks, 27 s, no API key needed</td></tr>
+    <tr><td>Regression gate</td><td>fails on a real break</td><td><span class="tag good">yes</span>: 19 checks, under 30 s, no API key needed</td></tr>
   </table></div>
   <p>To get the Q&amp;A under 6 seconds we switched it to the faster, cheaper model (Gemini Flash-Lite). Tested
   twice on the Stage 2 questions, it met every quality target but scored a little lower than the stronger model
@@ -1214,7 +1214,7 @@ All layers:     the send is attempted, the approver refuses (not an internal add
     <dt>RAG</dt><dd>Retrieval-augmented generation: find relevant passages, then answer from them.</dd>
     <dt>hit@1, recall@5, MRR, nDCG@10</dt><dd>Search scores, 0 to 1: first result right; right passage in the top 5; how high the first right passage is; overall ranking quality.</dd>
   </dl>
-  <p class="muted" style="margin-top:32px">Last updated after Stage 8 · 1 October 2026</p>
+  <p class="muted" style="margin-top:32px">Last updated after Stage 8 · 30 September 2026</p>
 </section>
 
 </main>

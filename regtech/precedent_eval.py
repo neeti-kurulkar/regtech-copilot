@@ -13,12 +13,12 @@ from aip.cost import Budget
 from aip.evals import Case, refusal_metrics, run_eval
 
 from regtech.enforcement import load_cases as load_case_table
-from regtech.paths import EVAL_DIR, REPORTS_DIR
+from regtech.paths import REPORTS_DIR, eval_file
 from regtech.precedent import PrecedentFinder, PrecedentReport
 
 
 def load_precedent_cases() -> list[Case]:
-    rows = [json.loads(x) for x in (EVAL_DIR / "precedent_cases.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [json.loads(x) for x in eval_file("precedent_cases.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
     known = set(load_case_table())
     bad = [f"{r['id']}: unknown case {d}" for r in rows for d in r["expected"] if d not in known]
     if bad:
@@ -30,7 +30,9 @@ def load_precedent_cases() -> list[Case]:
 def metric(out: dict, expected: list[str]) -> dict[str, float]:
     got = [p["case_id"] for p in out["precedents"]]
     top = out["candidates_considered"][:1]
-    m = {"no_precedent": float(out["no_precedent"]), "baseline_claimed_precedent": float(bool(top))}
+    outcome = out.get("outcome") or ("none_found" if out["no_precedent"] else "found")
+    m = {"no_precedent": float(outcome == "none_found"), "could_not_judge": float(outcome == "could_not_judge"),
+         "baseline_claimed_precedent": float(bool(top))}
     if expected:
         hit = set(expected) & set(got)
         m["recall"] = len(hit) / len(expected)
@@ -39,8 +41,9 @@ def metric(out: dict, expected: list[str]) -> dict[str, float]:
             m["precision"] = len(hit) / len(got)
         m["baseline_hit_at_1"] = float(bool(top) and top[0] in expected)
     else:
-        m["correct_no_precedent"] = float(out["no_precedent"])
-        m["false_precedent"] = float(not out["no_precedent"])
+        # a failed judgement is not a correct "none": it counts against the tool
+        m["correct_no_precedent"] = float(outcome == "none_found")
+        m["false_precedent"] = float(outcome == "found")
         m["baseline_false_precedent"] = float(bool(top))
     return m
 
@@ -64,7 +67,7 @@ def run() -> dict:
     kinds = {c.id: c.meta["kind"] for c in cases}
     refusal = refusal_metrics([r.output["no_precedent"] for r in res], [not by_id[r.id].expected for r in res])
     agg = {k: _mean(res, k) for k in ("recall", "precision", "hit_at_1", "correct_no_precedent", "false_precedent",
-                                       "baseline_hit_at_1", "baseline_false_precedent")}
+                                       "baseline_hit_at_1", "baseline_false_precedent", "could_not_judge")}
     costs = [r.output["cost_usd"] for r in res]
 
     def f(x, d=2):

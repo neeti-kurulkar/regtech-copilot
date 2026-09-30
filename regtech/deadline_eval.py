@@ -16,7 +16,7 @@ from aip.guards import quote_in_source
 
 from regtech.deadlines import extract_section
 from regtech.index import build_chunks
-from regtech.paths import EVAL_DIR, REPORTS_DIR
+from regtech.paths import REPORTS_DIR, eval_file
 
 VARIANTS = [("A", "SMALL"), ("A", "MAIN"), ("B", "SMALL"), ("B", "MAIN")]
 FIELD_MAP = {"days": "within_days", "n_years": "n_years", "frequency": "frequency", "due_date": "due_date",
@@ -24,7 +24,7 @@ FIELD_MAP = {"days": "within_days", "n_years": "n_years", "frequency": "frequenc
 
 
 def load_dev() -> list[Case]:
-    rows = [json.loads(x) for x in (EVAL_DIR / "deadline_dev.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [json.loads(x) for x in eval_file("deadline_dev.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
     chunks = {c.chunk_id: c for c in build_chunks("regulation", "markdown", 1500)}
     for r in rows:
         text = chunks[r["chunk_id"]].text

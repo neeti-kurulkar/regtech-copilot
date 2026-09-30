@@ -13,7 +13,7 @@ from aip.cost import Budget
 from aip.evals import Case, EvalReport, evidence_retrieval_metrics, missing_evidence, run_eval
 
 from regtech.index import CorpusIndex, IndexConfig, load_documents
-from regtech.paths import EVAL_DIR
+from regtech.paths import eval_file
 
 KS = (1, 3, 5, 10)
 K = 10
@@ -22,7 +22,7 @@ HEADLINE = ("ndcg@10", "recall@5", "hit_rate@1", "mrr")
 
 def load_queries(doc_type: str) -> list[Case]:
     """The golden set as aip Cases, after checking every evidence phrase exists verbatim."""
-    path = EVAL_DIR / f"retrieval_{doc_type}.jsonl"
+    path = eval_file(f"retrieval_{doc_type}.jsonl")
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     docs = {row.doc_id: text for row, text in load_documents(doc_type)}
     problems = missing_evidence({r["id"]: r["relevant"] for r in rows}, docs)

@@ -98,3 +98,28 @@ def test_precedent_cases_validate():
     cases = load_precedent_cases()
     kinds = [c.meta["kind"] for c in cases]
     assert kinds.count("no_precedent") == 8 and kinds.count("gap") == 4 and kinds.count("boundary") == 4 and len(cases) == 32
+
+
+def test_a_failed_judgement_is_not_a_negative_finding(monkeypatch):
+    # F12: a structured-output failure used to come back as no_precedent=True
+    import regtech.precedent as prec
+    from aip.llm import StructuredOutputError
+
+    cases = load_cases()
+    first = next(iter(cases.values()))
+
+    class OneCandidate(prec.PrecedentFinder):
+        def __init__(self):
+            self.cases, self.n_candidates, self.tier = cases, 1, "MAIN"
+
+        def candidates(self, risk):
+            return [first]
+
+    def fail(*a, **k):
+        raise StructuredOutputError("no valid verdicts")
+
+    monkeypatch.setattr(prec, "structured", fail)
+    r = OneCandidate().find({"risk": "a risk the judge cannot decide on"})
+    assert r.outcome == "could_not_judge" and r.no_precedent is False and not r.precedents
+    m = metric(r.model_dump(mode="json"), [])
+    assert m["correct_no_precedent"] == 0.0 and m["could_not_judge"] == 1.0 and m["false_precedent"] == 0.0

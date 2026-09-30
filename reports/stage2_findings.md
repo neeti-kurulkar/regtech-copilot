@@ -16,7 +16,7 @@ as the "before" evidence for the fix described below (Lab 5's before/after patte
 | p95 latency | ≤ 6,000 ms | **6,672 ms**, borderline (p50 4,664 ms; n = 8) |
 
 Lab 4 forbids reporting a judge score without Cohen's κ against at least 20 human labels. The 20 answers
-in `reports/stage2_judge_calibration.csv` were hand-labelled on 2026-10-01: correctness κ 1.00; faithfulness
+in `reports/stage2_judge_calibration.csv` were hand-labelled on 2026-09-30: correctness κ 1.00; faithfulness
 19/20 agreement but κ 0.00 (see "Judge calibration" at the end).
 
 ## 1. The biggest bug was a budget, not a prompt
@@ -112,7 +112,7 @@ p50 6.9 s and p95 10.0 s, against 4.7 s and 6.7 s earlier, with no code change o
 generation path. Provider latency varies by run and by time of day, so the 6 s p95 target should
 be treated as **not reliably met** with this reasoning-tier generator.
 
-## Judge calibration (hand labels added 2026-10-01)
+## Judge calibration (hand labels added 2026-09-30)
 
 The 20 answered questions in `stage2_judge_calibration.csv` were labelled by hand, blind to the judge's
 scores, using the judge's own rubric (`python -m regtech judge-kappa`).

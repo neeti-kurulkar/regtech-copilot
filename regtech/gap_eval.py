@@ -20,7 +20,7 @@ from aip.guards import normalise_text, quote_in_source
 
 from regtech.entities import resolve
 from regtech.index import load_documents
-from regtech.paths import EVAL_DIR, REPORTS_DIR
+from regtech.paths import REPORTS_DIR, eval_file
 from regtech.policy_gap import PolicyGapChecker
 
 GAP = {"weaker", "missing", "inconsistent"}
@@ -28,7 +28,7 @@ TARGETS = {"requirement_found": 0.90, "status_exact": 0.80, "missed_gap": 0.0, "
 
 
 def load_gap_cases() -> list[Case]:
-    rows = [json.loads(x) for x in (EVAL_DIR / "gap_cases.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [json.loads(x) for x in eval_file("gap_cases.jsonl").read_text(encoding="utf-8").splitlines() if x.strip()]
     docs = {r.doc_id: t for r, t in load_documents("regulation")}
     docs |= {r.doc_id: t for r, t in load_documents("internal_policy")}
     labels = {r["id"]: [{"doc_id": r["rule"]["doc_id"], "evidence": e} for e in r["rule"]["evidence"]] for r in rows}
@@ -92,8 +92,13 @@ class GapEvaluator:
         m["status_exact_original_labels"] = float(status in exp.get("original_expected", exp["expected"]))
         if not ambiguous:
             m["gap_call_correct"] = float((status in GAP) == expected_gap and status != "needs_review")
-            m["missed_gap"] = float(expected_gap and status == "met")
-            m["false_alarm"] = float(not expected_gap and status in GAP)
+            # Each error rate is over the cases where that error is possible (independent review F3): a missed
+            # gap only on cases labelled as a gap, a false alarm only on cases labelled 'met'. Averaging both over
+            # every unambiguous case diluted them (0/9 and 0/5 were reported over 14).
+            if expected_gap:
+                m["missed_gap"] = float(status == "met")
+            else:
+                m["false_alarm"] = float(status in GAP)
         if exp["policy_evidence"]:
             seen = any(quote_in_source(exp["policy_evidence"], self.policy_text.get(c, ""), 0.6) for c in f["considered"])
             m["policy_evidence_seen"] = float(seen)

@@ -1,0 +1,146 @@
+{
+  "J01": {
+    "question_id": "A17",
+    "variant": "half_answer"
+  },
+  "J02": {
+    "question_id": "A23",
+    "variant": "original"
+  },
+  "J03": {
+    "question_id": "A11",
+    "variant": "original"
+  },
+  "J04": {
+    "question_id": "A01",
+    "variant": "original"
+  },
+  "J05": {
+    "question_id": "A22",
+    "variant": "original"
+  },
+  "J06": {
+    "question_id": "A04",
+    "variant": "original"
+  },
+  "J07": {
+    "question_id": "A13",
+    "variant": "original"
+  },
+  "J08": {
+    "question_id": "A21",
+    "variant": "unsupported_claim"
+  },
+  "J09": {
+    "question_id": "A08",
+    "variant": "wrong_number"
+  },
+  "J10": {
+    "question_id": "A13",
+    "variant": "wrong_number"
+  },
+  "J11": {
+    "question_id": "A20",
+    "variant": "wrong_number"
+  },
+  "J12": {
+    "question_id": "A10",
+    "variant": "half_answer"
+  },
+  "J13": {
+    "question_id": "A14",
+    "variant": "original"
+  },
+  "J14": {
+    "question_id": "A16",
+    "variant": "half_answer"
+  },
+  "J15": {
+    "question_id": "A11",
+    "variant": "unsupported_claim"
+  },
+  "J16": {
+    "question_id": "A09",
+    "variant": "unsupported_claim"
+  },
+  "J17": {
+    "question_id": "A24",
+    "variant": "wrong_number"
+  },
+  "J18": {
+    "question_id": "A13",
+    "variant": "unsupported_claim"
+  },
+  "J19": {
+    "question_id": "A21",
+    "variant": "original"
+  },
+  "J20": {
+    "question_id": "A12",
+    "variant": "half_answer"
+  },
+  "J21": {
+    "question_id": "A09",
+    "variant": "original"
+  },
+  "J22": {
+    "question_id": "A19",
+    "variant": "half_answer"
+  },
+  "J23": {
+    "question_id": "A19",
+    "variant": "unsupported_claim"
+  },
+  "J24": {
+    "question_id": "A18",
+    "variant": "original"
+  },
+  "J25": {
+    "question_id": "P02",
+    "variant": "half_answer"
+  },
+  "J26": {
+    "question_id": "A15",
+    "variant": "original"
+  },
+  "J27": {
+    "question_id": "A03",
+    "variant": "unsupported_claim"
+  },
+  "J28": {
+    "question_id": "A03",
+    "variant": "half_answer"
+  },
+  "J29": {
+    "question_id": "P01",
+    "variant": "half_answer"
+  },
+  "J30": {
+    "question_id": "A07",
+    "variant": "wrong_number"
+  },
+  "J31": {
+    "question_id": "A06",
+    "variant": "wrong_number"
+  },
+  "J32": {
+    "question_id": "A09",
+    "variant": "wrong_number"
+  },
+  "J33": {
+    "question_id": "A06",
+    "variant": "original"
+  },
+  "J34": {
+    "question_id": "A17",
+    "variant": "unsupported_claim"
+  },
+  "J35": {
+    "question_id": "A11",
+    "variant": "wrong_number"
+  },
+  "J36": {
+    "question_id": "A06",
+    "variant": "unsupported_claim"
+  }
+}

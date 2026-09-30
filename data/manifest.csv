@@ -1,37 +1,37 @@
-doc_id,doc_type,title,entity_name,publish_date,source_url,file_name
-reg-compliance-function,regulation,"Reserve Bank of India (Non-Banking Financial Companies - Compliance Function) Directions, 2026",Reserve Bank of India,2026-07-31,,reg-compliance-function.pdf
-reg-concentration-risk,regulation,"Reserve Bank of India (Non-Banking Financial Companies - Concentration Risk Management) Directions, 2025",Reserve Bank of India,2026-08-25,,reg-concentration-risk.pdf
-reg-credit-facilities,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Credit Facilities) Directions, 2025",Reserve Bank of India,2026-07-15,,reg-credit-facilities.pdf
-reg-credit-info-reporting,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Credit Information Reporting) Directions, 2025",Reserve Bank of India,2026-07-01,,reg-credit-info-reporting.pdf
-reg-fraud-risk,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Fraud Risk Management) Directions, 2026",Reserve Bank of India,2026-07-31,,reg-fraud-risk.pdf
-reg-governance,regulation,"Reserve Bank of India (Non-Banking Financial Companies - Governance) Directions, 2025",Reserve Bank of India,2026-06-24,,reg-governance.pdf
-reg-iracp,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Income Recognition, Asset Classification and Provisioning) Directions, 2025",Reserve Bank of India,2026-07-01,,reg-iracp.pdf
-reg-kyc,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Know Your Customer) Directions, 2025",Reserve Bank of India,2025-12-29,,reg-kyc.pdf
-reg-microfinance,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Microfinance Institution) Directions, 2025",Reserve Bank of India,2025-11-28,,reg-microfinance.pdf
-reg-sbr,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Registration, Exemptions and Framework for Scale Based Regulation) Directions, 2025",Reserve Bank of India,2026-07-01,,reg-sbr.pdf
-reg-stressed-assets,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Resolution of Stressed Assets) Directions, 2025",Reserve Bank of India,2026-07-01,,reg-stressed-assets.pdf
-reg-rbc,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Responsible Business Conduct) Directions, 2025",Reserve Bank of India,2026-07-01,,reg-rbc.pdf
-fpc-bajaj-finance,internal_policy,Bajaj Finance Limited - Fair Practices Code,Bajaj Finance Limited,2026-01-01,,fpc-bajaj-finance.pdf
-fpc-cholamandalam,internal_policy,Cholamandalam Investment and Finance Company Limited - Fair Practices Code,Cholamandalam Investment and Finance Company Limited,2025-03-01,,fpc-cholamandalam.pdf
-fpc-iifl,internal_policy,IIFL Finance Limited - Fair Practices Code,IIFL Finance Limited,2026-04-29,,fpc-iifl.pdf
-fpc-lnt-microloans,internal_policy,L&T Finance Limited - Fair Practices Code,L&T Finance Limited,,,fpc-lnt-microloans.pdf
-fpc-mahindra-finance,internal_policy,Mahindra & Mahindra Financial Services Limited - Fair Practices Code,Mahindra & Mahindra Financial Services Limited,,https://www.mahindrafinance.com/customer-service/fair-practice-code,fpc-mahindra-finance.pdf
-fpc-manappuram,internal_policy,Manappuram Finance Limited - Fair Practices Code,Manappuram Finance Limited,2026-08-11,https://www.manappuram.com/fair-practice-code,fpc-manappuram.pdf
-fpc-muthoot,internal_policy,Muthoot Finance Limited - Fair Practices Code,Muthoot Finance Limited,2025-11-12,,fpc-muthoot.pdf
-fpc-nrfsi,internal_policy,Nissan Renault Financial Services India Private Limited - Fair Practices Code,Nissan Renault Financial Services India Private Limited,,,fpc-nrfsi.pdf
-fpc-protium,internal_policy,Protium Finance Limited - Fair Practices Code,Protium Finance Limited,,,fpc-protium.pdf
-fpc-shri-ram-finance-corp,internal_policy,Shri Ram Finance Corporation Private Limited - Fair Practices Code,Shri Ram Finance Corporation Private Limited,2025-06-30,,fpc-shri-ram-finance-corp.pdf
-fpc-tata-capital,internal_policy,Tata Capital Limited - Fair Practices Code,Tata Capital Limited,2026-01-19,,fpc-tata-capital.pdf
-enf-five-star-2026-06-19,enforcement,RBI imposes monetary penalty on Five Star Business Finance Limited,Five Star Business Finance Limited,2026-06-19,,enf-five-star-2026-06-19.pdf
-enf-fusion-2026-08-14,enforcement,RBI imposes monetary penalty on Fusion Finance Limited,Fusion Finance Limited,2026-08-14,,enf-fusion-2026-08-14.pdf
-enf-hero-fincorp-2026-09-24,enforcement,RBI imposes monetary penalty on Hero Fincorp Limited,Hero Fincorp Limited,2026-09-24,,enf-hero-fincorp-2026-09-24.pdf
-enf-hinduja-leyland-2026-09-04,enforcement,RBI imposes monetary penalty on Hinduja Leyland Finance Limited,Hinduja Leyland Finance Limited,2026-09-04,,enf-hinduja-leyland-2026-09-04.pdf
-enf-iifl-2026-02-13,enforcement,RBI imposes monetary penalty on IIFL Finance Limited,IIFL Finance Limited,2026-02-13,,enf-iifl-2026-02-13.pdf
-enf-iifl-2026-05-15,enforcement,RBI imposes monetary penalty on IIFL Finance Limited,IIFL Finance Limited,2026-05-15,,enf-iifl-2026-05-15.pdf
-enf-mahindra-finance-2026-02-27,enforcement,RBI imposes monetary penalty on Mahindra & Mahindra Financial Services Limited,Mahindra & Mahindra Financial Services Limited,2026-02-27,,enf-mahindra-finance-2026-02-27.pdf
-enf-manappuram-2026-03-13,enforcement,RBI imposes monetary penalty on Manappuram Finance Limited,Manappuram Finance Limited,2026-03-13,,enf-manappuram-2026-03-13.pdf
-enf-muthoot-2026-07-17,enforcement,RBI imposes monetary penalty on Muthoot Finance Limited,Muthoot Finance Limited,2026-07-17,,enf-muthoot-2026-07-17.pdf
-enf-ola-fs-2026-09-24,enforcement,Reserve Bank of India imposes monetary penalty on Ola Financial Services Private Limited,Ola Financial Services Private Limited,2026-09-24,,enf-ola-fs-2026-09-24.pdf
-enf-sammaan-finserve-2026-09-04,enforcement,RBI imposes monetary penalty on Sammaan Finserve Limited,Sammaan Finserve Limited,2026-09-04,,enf-sammaan-finserve-2026-09-04.pdf
-enf-satya-2026-07-17,enforcement,RBI imposes monetary penalty on Satya MicroCapital Limited,Satya MicroCapital Limited,2026-07-17,,enf-satya-2026-07-17.pdf
-enf-shri-ram-finance-corp-2026-08-21,enforcement,RBI imposes monetary penalty on Shri Ram Finance Corporation Private Limited,Shri Ram Finance Corporation Private Limited,2026-08-21,,enf-shri-ram-finance-corp-2026-08-21.pdf
+doc_id,doc_type,title,entity_name,publish_date,date_basis,source_url,file_name
+reg-compliance-function,regulation,"Reserve Bank of India (Non-Banking Financial Companies - Compliance Function) Directions, 2026",Reserve Bank of India,2026-07-31,stated,,reg-compliance-function.pdf
+reg-concentration-risk,regulation,"Reserve Bank of India (Non-Banking Financial Companies - Concentration Risk Management) Directions, 2025",Reserve Bank of India,2026-08-25,stated,,reg-concentration-risk.pdf
+reg-credit-facilities,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Credit Facilities) Directions, 2025",Reserve Bank of India,2026-07-15,stated,,reg-credit-facilities.pdf
+reg-credit-info-reporting,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Credit Information Reporting) Directions, 2025",Reserve Bank of India,2026-07-01,stated,,reg-credit-info-reporting.pdf
+reg-fraud-risk,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Fraud Risk Management) Directions, 2026",Reserve Bank of India,2026-07-31,stated,,reg-fraud-risk.pdf
+reg-governance,regulation,"Reserve Bank of India (Non-Banking Financial Companies - Governance) Directions, 2025",Reserve Bank of India,2026-06-24,stated,,reg-governance.pdf
+reg-iracp,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Income Recognition, Asset Classification and Provisioning) Directions, 2025",Reserve Bank of India,2026-07-01,stated,,reg-iracp.pdf
+reg-kyc,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Know Your Customer) Directions, 2025",Reserve Bank of India,2025-12-29,stated,,reg-kyc.pdf
+reg-microfinance,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Microfinance Institution) Directions, 2025",Reserve Bank of India,2025-11-28,stated,,reg-microfinance.pdf
+reg-sbr,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Registration, Exemptions and Framework for Scale Based Regulation) Directions, 2025",Reserve Bank of India,2026-07-01,stated,,reg-sbr.pdf
+reg-stressed-assets,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Resolution of Stressed Assets) Directions, 2025",Reserve Bank of India,2026-07-01,stated,,reg-stressed-assets.pdf
+reg-rbc,regulation,"Reserve Bank of India (Non-Banking Financial Companies – Responsible Business Conduct) Directions, 2025",Reserve Bank of India,2026-07-01,stated,,reg-rbc.pdf
+fpc-bajaj-finance,internal_policy,Bajaj Finance Limited - Fair Practices Code,Bajaj Finance Limited,2026-01-01,stated,,fpc-bajaj-finance.pdf
+fpc-cholamandalam,internal_policy,Cholamandalam Investment and Finance Company Limited - Fair Practices Code,Cholamandalam Investment and Finance Company Limited,2025-03-01,stated,,fpc-cholamandalam.pdf
+fpc-iifl,internal_policy,IIFL Finance Limited - Fair Practices Code,IIFL Finance Limited,2026-04-29,stated,,fpc-iifl.pdf
+fpc-lnt-microloans,internal_policy,L&T Finance Limited - Fair Practices Code,L&T Finance Limited,2022-07-18,pdf_metadata,,fpc-lnt-microloans.pdf
+fpc-mahindra-finance,internal_policy,Mahindra & Mahindra Financial Services Limited - Fair Practices Code,Mahindra & Mahindra Financial Services Limited,2025-07-02,not_before,https://www.mahindrafinance.com/customer-service/fair-practice-code,fpc-mahindra-finance.pdf
+fpc-manappuram,internal_policy,Manappuram Finance Limited - Fair Practices Code,Manappuram Finance Limited,2026-08-11,stated,https://www.manappuram.com/fair-practice-code,fpc-manappuram.pdf
+fpc-muthoot,internal_policy,Muthoot Finance Limited - Fair Practices Code,Muthoot Finance Limited,2025-11-12,stated,,fpc-muthoot.pdf
+fpc-nrfsi,internal_policy,Nissan Renault Financial Services India Private Limited - Fair Practices Code,Nissan Renault Financial Services India Private Limited,2020-05-26,pdf_metadata,,fpc-nrfsi.pdf
+fpc-protium,internal_policy,Protium Finance Limited - Fair Practices Code,Protium Finance Limited,2026-05-08,pdf_metadata,,fpc-protium.pdf
+fpc-shri-ram-finance-corp,internal_policy,Shri Ram Finance Corporation Private Limited - Fair Practices Code,Shri Ram Finance Corporation Private Limited,2025-06-30,stated,,fpc-shri-ram-finance-corp.pdf
+fpc-tata-capital,internal_policy,Tata Capital Limited - Fair Practices Code,Tata Capital Limited,2026-01-19,stated,,fpc-tata-capital.pdf
+enf-five-star-2026-06-19,enforcement,RBI imposes monetary penalty on Five Star Business Finance Limited,Five Star Business Finance Limited,2026-06-19,stated,,enf-five-star-2026-06-19.pdf
+enf-fusion-2026-08-14,enforcement,RBI imposes monetary penalty on Fusion Finance Limited,Fusion Finance Limited,2026-08-14,stated,,enf-fusion-2026-08-14.pdf
+enf-hero-fincorp-2026-09-24,enforcement,RBI imposes monetary penalty on Hero Fincorp Limited,Hero Fincorp Limited,2026-09-24,stated,,enf-hero-fincorp-2026-09-24.pdf
+enf-hinduja-leyland-2026-09-04,enforcement,RBI imposes monetary penalty on Hinduja Leyland Finance Limited,Hinduja Leyland Finance Limited,2026-09-04,stated,,enf-hinduja-leyland-2026-09-04.pdf
+enf-iifl-2026-02-13,enforcement,RBI imposes monetary penalty on IIFL Finance Limited,IIFL Finance Limited,2026-02-13,stated,,enf-iifl-2026-02-13.pdf
+enf-iifl-2026-05-15,enforcement,RBI imposes monetary penalty on IIFL Finance Limited,IIFL Finance Limited,2026-05-15,stated,,enf-iifl-2026-05-15.pdf
+enf-mahindra-finance-2026-02-27,enforcement,RBI imposes monetary penalty on Mahindra & Mahindra Financial Services Limited,Mahindra & Mahindra Financial Services Limited,2026-02-27,stated,,enf-mahindra-finance-2026-02-27.pdf
+enf-manappuram-2026-03-13,enforcement,RBI imposes monetary penalty on Manappuram Finance Limited,Manappuram Finance Limited,2026-03-13,stated,,enf-manappuram-2026-03-13.pdf
+enf-muthoot-2026-07-17,enforcement,RBI imposes monetary penalty on Muthoot Finance Limited,Muthoot Finance Limited,2026-07-17,stated,,enf-muthoot-2026-07-17.pdf
+enf-ola-fs-2026-09-24,enforcement,Reserve Bank of India imposes monetary penalty on Ola Financial Services Private Limited,Ola Financial Services Private Limited,2026-09-24,stated,,enf-ola-fs-2026-09-24.pdf
+enf-sammaan-finserve-2026-09-04,enforcement,RBI imposes monetary penalty on Sammaan Finserve Limited,Sammaan Finserve Limited,2026-09-04,stated,,enf-sammaan-finserve-2026-09-04.pdf
+enf-satya-2026-07-17,enforcement,RBI imposes monetary penalty on Satya MicroCapital Limited,Satya MicroCapital Limited,2026-07-17,stated,,enf-satya-2026-07-17.pdf
+enf-shri-ram-finance-corp-2026-08-21,enforcement,RBI imposes monetary penalty on Shri Ram Finance Corporation Private Limited,Shri Ram Finance Corporation Private Limited,2026-08-21,stated,,enf-shri-ram-finance-corp-2026-08-21.pdf

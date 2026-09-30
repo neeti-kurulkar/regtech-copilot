@@ -80,6 +80,7 @@ class GapReport(BaseModel):
     policy_doc_id: str
     policy_title: str
     policy_date: str | None
+    policy_date_basis: str | None = None   # manifest date_basis; None for an uploaded document
     topic: str
     regulation_as_of: str | None
     policy_predates_regulation: bool | None
@@ -89,11 +90,21 @@ class GapReport(BaseModel):
     injection_flags: list[str] = Field(default_factory=list)
     cost_usd: float = 0.0
 
+    def _date_text(self) -> str:
+        if not self.policy_date:
+            return "undated"
+        return {"pdf_metadata": f"{self.policy_date}, from the PDF's metadata",
+                "not_before": f"issued on or after {self.policy_date}"}.get(self.policy_date_basis or "", self.policy_date)
+
     def render(self) -> str:
         head = [f"Policy gap check: {self.entity} - {self.topic}",
-                f"Policy: {self.policy_title} ({self.policy_date or 'undated'})"
+                f"Policy: {self.policy_title} ({self._date_text()})"
                 + (f"  [last revised before the rules' latest update, {self.regulation_as_of}]"
-                   if self.policy_predates_regulation else ""),
+                   if self.policy_predates_regulation else "")
+                + (f"  [date not known exactly: cannot tell whether it reflects the rules' latest update, "
+                   f"{self.regulation_as_of}]"
+                   if self.policy_predates_regulation is None and self.policy_date_basis and self.regulation_as_of
+                   else ""),
                 "Result: " + ", ".join(f"{n} {s}" for s, n in self.counts.items() if n), ""]
         body = []
         for i, f in enumerate(self.findings, 1):
@@ -306,6 +317,7 @@ class PolicySource:
     date: str | None
     search: Callable[[str, int], list[Hit]]
     chunks: list[Chunk]
+    date_basis: str | None = None
 
 
 def policy_label(hit: Hit) -> str:
@@ -363,7 +375,7 @@ class PolicyGapChecker:
         row = ent.row
         chunks = [c for c in self.policy_index.chunks if c.doc_id == ent.doc_id]
         return PolicySource(ent.doc_id, ent.name, row.title, row.publish_date.isoformat() if row.publish_date else None,
-                            lambda q, k: self.policy_index.search(q, k=k, scope=ent.doc_id), chunks)
+                            lambda q, k: self.policy_index.search(q, k=k, scope=ent.doc_id), chunks, row.date_basis)
 
     # -- step 1: requirements from the rulebook (Lab 1 pattern) --------------------------------
     def requirements_for(self, topic: str, hits: list[Hit], n_max: int) -> tuple[list[dict], list[str]]:
@@ -442,14 +454,27 @@ class PolicyGapChecker:
         reg_dates = sorted({h.chunk.meta.get("publish_date", "") for h in reg_hits
                             if any(f.regulation.chunk_id == h.chunk.chunk_id for f in findings)} - {""})
         as_of = reg_dates[-1] if reg_dates else None
-        predates = (policy.date < as_of) if (policy.date and as_of) else None
+        predates = policy_predates(policy.date, policy.date_basis, as_of)
         counts = {s: sum(f.status == s for f in findings) for s in ("met", "weaker", "inconsistent", "missing", "needs_review")}
         injection = [f"policy text matched prompt-injection signatures ({', '.join(sorted(flags))}); "
                      "treated as data, but review the document"] if flags else []
         return GapReport(entity=policy.entity, policy_doc_id=policy.doc_id, policy_title=policy.title,
-                         policy_date=policy.date, topic=req.topic, regulation_as_of=as_of,
+                         policy_date=policy.date, policy_date_basis=policy.date_basis, topic=req.topic, regulation_as_of=as_of,
                          policy_predates_regulation=predates, findings=findings, counts=counts, notes=notes,
                          injection_flags=injection, cost_usd=round(b.spent_usd, 6))
+
+
+def policy_predates(policy_date: str | None, basis: str | None, rules_as_of: str | None) -> bool | None:
+    """True / False when the dates settle it; None when they cannot. An exact date (stated or PDF metadata) is
+    compared directly. A 'not_before' date settles only one direction: issued on or after a date later than the
+    rules means current, anything else is unknown. Undated or uploaded documents: unknown."""
+    if not policy_date or not rules_as_of:
+        return None
+    if basis in ("stated", "pdf_metadata", None):
+        return policy_date < rules_as_of if basis else None
+    if basis == "not_before":
+        return False if policy_date >= rules_as_of else None
+    return None
 
 
 def _loose_requirements(n_sources: int, n_max: int) -> type[BaseModel]:

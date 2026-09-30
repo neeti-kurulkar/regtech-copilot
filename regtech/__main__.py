@@ -35,7 +35,13 @@ def main(argv: list[str] | None = None) -> int:
     p_qt.add_argument("tier")
     p_qt.add_argument("--label")
 
-    sub.add_parser("judge-kappa", help="Cohen's kappa between the judge and your labels in the calibration sheet")
+    p_head = sub.add_parser("headline", help="print the EVALUATION_REPORT headline table from the committed artefacts")
+    p_head.add_argument("--write", action="store_true", help="replace the table in EVALUATION_REPORT.md")
+
+    p_jk = sub.add_parser("judge-kappa", help="Cohen's kappa between the judge and your labels in the calibration sheet")
+    p_jk.add_argument("--v2", action="store_true", help="the v2 sheet (served model + corrupted answers); runs the judge online")
+    p_js = sub.add_parser("judge-sheet", help="write the v2 blind judge-calibration sheet (served answers + corrupted copies)")
+    p_js.add_argument("--force", action="store_true", help="overwrite a sheet that already has labels")
 
     p_gap = sub.add_parser("gap", help="check_policy_gap: compare a company's Fair Practices Code with the RBI rules on a topic")
     p_gap.add_argument("entity", help="NBFC name, e.g. 'IIFL'; or use --file")
@@ -125,6 +131,14 @@ def main(argv: list[str] | None = None) -> int:
             print("  flag:", f)
         for m in run.outbox:
             print(f"  outbox (simulated): to {m['recipient']}: {m['subject']}")
+        return 0
+
+    if args.command == "headline":
+        from regtech.headline import table, write
+        if args.write:
+            print("EVALUATION_REPORT.md " + ("updated" if write() else "already up to date"))
+        else:
+            print(table())
         return 0
 
     if args.command == "gate":
@@ -268,6 +282,19 @@ def main(argv: list[str] | None = None) -> int:
         from regtech.qa_eval import main as eval_qa
         eval_qa(judge=not args.no_judge)
         print("wrote reports/" + ("stage2_qa_nojudge.md" if args.no_judge else "stage2_qa.md"))
+        return 0
+
+    if args.command == "judge-sheet":
+        from regtech.judge_sheet import SHEET, build
+        info = build(force=args.force)
+        print(f"wrote {SHEET.relative_to(Path.cwd()) if SHEET.is_relative_to(Path.cwd()) else SHEET}: {info}")
+        print("Label every row blind (do not open the _key.json file first), then: python -m regtech judge-kappa --v2")
+        return 0
+
+    if args.command == "judge-kappa" and args.v2:
+        import json as _json
+        from regtech.judge_sheet import kappa as kappa_v2
+        print(_json.dumps(kappa_v2(), indent=1, default=str))
         return 0
 
     if args.command == "judge-kappa":

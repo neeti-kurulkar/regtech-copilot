@@ -180,7 +180,7 @@ Stage 5 also fixed a bug in `number_forms` found by its own test: 180 rendered a
 
 ---
 
-## Stage 6 (2026-10-01)
+## Stage 6 (2026-09-30)
 
 ### `aip/guards.py`
 - `pii_patterns(*labels)`: a named subset of the built-in PII patterns, kept in the built-in order
@@ -219,7 +219,7 @@ Everything else in the agent is existing aip: `llm.chat(tools=...)` for tool cal
 
 ---
 
-## Stage 7 (2026-10-01)
+## Stage 7 (2026-09-30)
 
 ### New module: `aip/response_cache.py`
 - `ExactCache` (LRU keyed by normalised question + scope) and `SemanticCache` (cosine over query embeddings,
@@ -269,3 +269,27 @@ Everything else in the agent is existing aip: `llm.chat(tools=...)` for tool cal
   entries into a new cache file.
   **Why:** the working cache is 284 MB of every experiment; CI needs only what the gate replays. The slim
   cache (`ci/cache/calls.sqlite3`) is 1,940 entries, 29 MB.
+
+## After the independent review (2026-09-30)
+
+Findings are numbered as in `reports/independent_review.md`. None of these changes alters a model request, so
+the committed CI cache still replays: the offline gate passes, now with 19 metrics.
+
+### `aip/rag.py`
+- **A refusal is exactly the refusal sentence** (`is_refusal`, ignoring case, whitespace, quotes and the final
+  full stop), and `starts_with_refusal` catches the refusal followed by more text. `validate_answer` sends that
+  back for repair instead of accepting it.
+  **Why (F2):** `is_refusal` was a 40-character prefix match, so "<refusal> However, <uncited claims>" skipped
+  the citation check and was scored as a correct refusal. No recorded answer had this shape.
+
+### `aip/guards.py`
+- `split_sentences(text)` and `citation_support(answer, sources)`: sentence-level grounding counts. It counts
+  claims, uncited claims, claims stating a number, and claims with a number that is absent from every source
+  that sentence cites (digits or words, via `number_in_text`). It only measures; it never changes a prompt.
+  **Why (F1):** `enforce_citations` proves each [n] names a real source, which fail-closed makes 1.00 by
+  construction. This is the first deterministic evidence that the cited source *supports* the sentence.
+
+### `aip/evals.py`
+- `wilson_interval(k, n)` and `format_rate(k, n)`, which returns `'17/18 (0.94; 95% CI 0.74-0.99)'`.
+  **Why (F3):** bare rates hid tiny denominators. The EVALUATION_REPORT headline table is now generated
+  with these (`regtech/headline.py`), and a test fails if the table drifts from the reports.

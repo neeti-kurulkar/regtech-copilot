@@ -89,7 +89,7 @@ measurement too, and they need checking.
 - Up to 8 requirements per topic: a broad topic ("KYC") can hold more obligations than one check covers.
 - Applicability is only as good as the extracted requirement's wording (e.g. microfinance-only rules).
 
-## Revisited in Stage 6 (2026-10-01)
+## Revisited in Stage 6 (2026-09-30)
 
 Two changes to `check_policy_gap`, both re-measured on this evaluation (`reports/stage3_policy_gap_v5.md`,
 empty cache): perfect on every measure, with 0 missed gaps and 0 false alarms.

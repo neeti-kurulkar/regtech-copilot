@@ -5,16 +5,20 @@
   "qa_refusal_recall": 1.0,
   "qa_refusal_precision": 0.7142857142857143,
   "qa_evidence_in_context": 0.9230769230769231,
-  "qa_cost_per_query_usd": 0.000724358064516129,
+  "qa_cost_per_query_usd": 0.0007243580645161292,
   "qa_p95_model_latency_ms": 1361.195100005716,
+  "qa_uncited_claim_rate": 0.0,
+  "qa_numeric_claim_support": 1.0,
+  "qa_support_claims": 40.0,
+  "qa_support_numeric_claims": 29.0,
   "gap_requirement_found": 1.0,
   "gap_status_exact": 1.0,
   "gap_missed_gap": 0.0,
   "gap_false_alarm": 0.0,
-  "gap_cost_per_check_usd": 0.012357576666666667,
+  "gap_cost_per_check_usd": 0.012357576666666665,
   "redteam_block_rate": 0.944,
   "redteam_false_positive_rate": 0.0,
   "redteam_privileged_calls": 0.0,
   "agent_cost_per_query_usd": 0.0093,
-  "gate_runtime_s": 10.3
+  "gate_runtime_s": 12.2
 }

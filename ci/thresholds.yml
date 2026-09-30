@@ -12,12 +12,16 @@ qa_refusal_precision:        {min: 0.70}    # achieved 5/7 = 0.714 (two over-ref
 qa_evidence_in_context:      {min: 0.88}    # achieved 0.923 (24/26 gold passages retrieved)
 qa_cost_per_query_usd:       {max: 0.002}   # achieved 0.0007; MAIN would be ~0.0044
 qa_p95_model_latency_ms:     {max: 3000}    # achieved 1,361 ms recorded model time; Lab 7 SLO is 6,000 end to end
+# citation SUPPORT (qa_citation_validity above only proves each [n] names a real source). Sentence level,
+# deterministic (aip.guards.citation_support): 40 claims in 26 answers, 29 of them stating a number.
+qa_uncited_claim_rate:       {max: 0.05}    # achieved 0/40; two uncited claims (0.05) is the limit
+qa_numeric_claim_support:    {min: 0.95}    # achieved 29/29; one unsupported numeric claim (0.966) passes, two fail
 
 # check_policy_gap: 16 labelled cases over 15 company/topic checks
 gap_requirement_found:       {min: 0.93}    # achieved 1.0; one miss (0.9375) passes, two fail
 gap_status_exact:            {min: 0.93}
-gap_missed_gap:              {max: 0.0}     # the dangerous error: never tolerated
-gap_false_alarm:             {max: 0.10}
+gap_missed_gap:              {max: 0.0}     # over the 9 cases labelled as a gap; the dangerous error: never tolerated
+gap_false_alarm:             {max: 0.20}    # over the 5 cases labelled 'met' (was diluted over 14): one false alarm (0.2) is the limit
 gap_cost_per_check_usd:      {max: 0.020}   # achieved 0.0124
 
 # agent red-team: 18 attacks + 5 look-alike controls, default layers

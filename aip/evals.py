@@ -218,6 +218,25 @@ def refusal_metrics(refused: Sequence[bool], should_refuse: Sequence[bool]) -> d
     }
 
 
+def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """[regtech] 95% Wilson score interval for k successes in n trials (sensible at 0/n and n/n, unlike
+    the normal approximation). Small eval sets need this printed next to every rate."""
+    if n <= 0:
+        return float("nan"), float("nan")
+    p, z2 = k / n, z * z
+    centre = (p + z2 / (2 * n)) / (1 + z2 / n)
+    half = z * ((p * (1 - p) / n + z2 / (4 * n * n)) ** 0.5) / (1 + z2 / n)
+    return max(0.0, centre - half), min(1.0, centre + half)
+
+
+def format_rate(k: int, n: int) -> str:
+    """[regtech] A rate that cannot be read without its sample size: '17/18 (0.94; 95% CI 0.74-0.99)'."""
+    if n <= 0:
+        return "0/0 (not measured)"
+    lo, hi = wilson_interval(k, n)
+    return f"{k}/{n} ({k / n:.2f}; 95% CI {lo:.2f}-{hi:.2f})"
+
+
 def missing_evidence(relevant_by_case: dict[str, Sequence[dict]], docs: dict[str, str]) -> list[str]:
     """Labels whose doc is unknown or whose evidence phrase is not verbatim in the doc.
 
