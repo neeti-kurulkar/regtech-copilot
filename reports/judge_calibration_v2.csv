@@ -2,21 +2,23 @@ id,question,reference,answer,cited_sources,human_faithfulness_0_or_1,human_corre
 J01,Can part of a senior executive's bonus be held back and paid later depending on risk?,"Yes. A portion of variable pay, as decided by the Board, may be deferred over the time horizon of the risks; deferral can cover cash and non-cash components, and the Board decides the deferral period.","Yes, according to para 35(3) of the Governance Directions, a certain portion of the variable pay awarded after performance assessment may be deferred by the Board of an NBFC to a time horizon of the risks, and this deferral arrangement can apply to both cash and non-cash components [1][2]. Additionally, under para 37, deferred compensation to senior management may be subject to malus and / or clawback arrangements in the event of subdued or negative financial performance or employee misconduct [3].","[1] Governance Directions, 2025 | Chapter-IV Directions applicable to NBFCs-Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) > H. Compensation of KMP and Senior Management | para 35
 le such that it may be reduced to zero based on performance at an individual, business-unit and company-wide level. In order to do so, performance measures and their relation to remuneration packages shall be clearly defined at the beginning of the performance measurement period to ensure that the employees are well aware of the incentive mechanism.
 
-(3) Deferral of variable pay: Not all the variable pay awarded after performance assessment may be paid immediately. Certain portion of variable pay, as decided by the Board of the NBFC, may be deferred to time horizon of the risks. The portion of deferral arrangement may be made applicable for both cash and non-cash components of the variable p
+(3) Deferral of variable pay: Not all the variable pay awarded after performance assessment may be paid immediately. Certain portion of variable pay, as decided by the Board of the NBFC, may be deferred to time horizon of the risks. The portion of deferral arrangement may be made applicable for both cash and non-cash components of the variable pay. Deferral period for such an arrangement shall be decided by the Board of the NBFC.
+
+(4) Control 
 ---
 [2] Governance Directions, 2025 | Chapter-IV Directions applicable to NBFCs-Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) > H. Compensation of KMP and Senior Management | paras 35-36
 oth cash and non-cash components of the variable pay. Deferral period for such an arrangement shall be decided by the Board of the NBFC.
 
 (4) Control and assurance function personnel: KMP and senior management engaged in financial control, risk management, compliance and internal audit may be compensated in a manner that is independent of the business areas they oversee and commensurate with their key role in the NBFC. Accordingly, such personnel may have higher proportion of fixed compensation. However, a reasonable proportion of compensation may be in the form of variable pay, so that exercising the options of malus and / or clawback, when warranted, is not rendered infructuous.
 
-36. Guara
+36. Guaranteed bonus: An NBFC may not pay guaranteed bonus to KMP and senior management. However, in the cont
 ---
 [3] Governance Directions, 2025 | Chapter-IV Directions applicable to NBFCs-Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) > H. Compensation of KMP and Senior Management | paras 35-37
 warranted, is not rendered infructuous.
 
 36. Guaranteed bonus: An NBFC may not pay guaranteed bonus to KMP and senior management. However, in the context of new hiring, joining / sign-on bonus may be considered. Such bonus shall neither be considered part of the fixed pay nor of variable pay.
 
-37. Malus / Clawback: The deferred compensation to KMP and senior management of an NBFC may be subject to malus and / or clawback arrangements in the event of subdued or negative financial performance of the NBFC and / or the relevant line of business or employee misconduct in any year. For this purpose, a representative set of situations may be identified by the NBFC, which require them to invoke the ",,
+37. Malus / Clawback: The deferred compensation to KMP and senior management of an NBFC may be subject to malus and / or clawback arrangements in the event of subdued or negative financial performance of the NBFC and / or the relevant line of business or employee misconduct in any year. For this purpose, a representative set of situations may be identified by the NBFC, which require them to invoke the malus and clawback clauses that may be applicable on entire variable pay. While setting criteria for",1,1
 J02,What minimum share of total assets must be qualifying assets for an NBFC-MFI?,"At least 60 percent of total assets (netted off by intangible assets), on an ongoing basis.","According to paragraph 12 of the Microfinance Institution Directions, 2025, qualifying assets of NBFC-MFIs must constitute a minimum of 60 percent of the total assets (netted off by intangible assets), on an ongoing basis [1].","[1] Microfinance Institution Directions, 2025 | Chapter-III – Qualifying Assets and Permissible Activities | paras 11-13
 e Activities
 
@@ -26,24 +28,28 @@ e Activities
 
 ### B. Channelizing Agents for Schemes operated by Central / State Government Agencies
 
-13. An NBFC-MFI acting as Channelizing Agent for Schemes operated by Cen",,
+13. An NBFC-MFI acting as Channelizing Agent for Schemes operated by Central / State Government Agencies shall abide by the following guidelines:
+
+(1) Loans disbursed or ma",,
 J03,How must an auction of pledged gold be announced to the public?,"By advertisements in at least two newspapers, one in the regional language and one national daily, as part of a transparent auction procedure.","An NBFC must announce an auction of pledged eligible collateral to the public by issuing advertisements in at least two newspapers, one in the regional language and another in a national daily [1][2].","[1] Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64
 uage and another in a national daily.
 
 62. The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary experience and / or training or an auctioneer empanelled by the NBFC as per its policy. In cases where auctions are conducted by an NBFC through its employees, necessary safeguards such as surprise visits by regional / controlling officials on periodic basis, coverage under internal audit, etc., shall be put in place.
 
-63. An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value. Provided that in case auctions fail twice, a reserve price not less
+63. An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value. Provided that in case auctions fail twice, a reserve price not less than 85 per cent of its current value shall be adopted.
+
+64. The first auction shall be conducted p
 ---
 [2] Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 60-62
  communication to repay or settle the loan dues prior to initiating the auction procedure. A copy of the notice and acknowledgement thereof shall be kept on record in both scenarios. In case the lender is unable to locate the borrower(s)/ legal heir(s) despite best efforts and even after issuance of a public notice, it may proceed with the auction, provided that a period of one month has lapsed from the date of the public notice.
 
 61. An NBFC shall implement a transparent auction procedure, which shall include, inter alia, announcement of the auction to the public by issue of advertisements in at least two newspapers, one in the regional language and another in a national daily.
 
-62. The ple",,
+62. The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary ex",1,1
 J04,How often does an NBFC have to refresh KYC details for a customer it has classified as high risk?,"At least once every two years for high-risk customers (once every eight years for medium risk and ten years for low risk), from account opening or the last KYC update.","According to para 42 of the Know Your Customer Directions, the NBFC shall carry out periodic updation of KYC at least once in every two years for high-risk customers from the date of opening of the account or last KYC updation [1][2].","[1] Know Your Customer Directions, 2025 | E. On-going Due Diligence > Updation / Periodic Updation of KYC | para 42
 e in every two years for high-risk customers, once in every eight years for medium risk customers and once in every 10 years for low-risk customers from the date of opening of the account / last KYC updation. The NBFC shall document its policy in this regard as part of the NBFC’s internal KYC policy duly approved by the Board of Directors of NBFC or any committee of the Board to which power has been delegated.
 
-(2) Notwithstanding the provisions given above, in respect of an individual customer who is categorised as low-risk, the NBFC shall allow all transactions and ensure the updation of KYC within one year of its falling due for KYC or up to June 30, 2026, whichever is later. The NBFC sha
+(2) Notwithstanding the provisions given above, in respect of an individual customer who is categorised as low-risk, the NBFC shall allow all transactions and ensure the updation of KYC within one year of its falling due for KYC or up to June 30, 2026, whichever is later. The NBFC shall subject accounts of such customers to regular monitoring. This shall also apply to low-risk indiv
 ---
 [2] Know Your Customer Directions, 2025 | Chapter VI – Customer Due Diligence (CDD) Procedure > E. On-going Due Diligence | paras 41-42
 y six months and shall establish the need for applying enhanced due diligence measures.
@@ -56,7 +62,7 @@ Explanation: The NBFC shall subject high-risk accounts to more intensified monit
 
 #### Updation / Periodic Updation of KYC
 
-(1) The NBFC shall adopt a risk-based approach for periodic updation of KYC ensuring that it keeps the information or data collected under CDD is kept up-to-date and relevant, particularly where there is high risk. However, the NBFC shall carry out periodic updation at least once in every two years for high-risk customers, once",,
+(1) The NBFC shall adopt a risk-based approach for periodic updation of KYC ensuring that it keeps the information or data collected under CDD is kept up-to-date and relevant, particularly where there is high risk. However, the NBFC shall carry out periodic updation at least once in every two years for high-risk customers, once in every eight years for medium risk customers and once in every 10 years for low-risk customers fr",1,1
 J05,What is the maximum loan-to-value ratio for consumption loans against gold?,"85 per cent for total consumption loans up to Rs 2.5 lakh per borrower, 80 per cent above Rs 2.5 lakh up to Rs 5 lakh, and 75 per cent above Rs 5 lakh.","According to paragraph 43 of the Credit Facilities Directions, 2025, the maximum LTV ratio in respect of consumption loans against the eligible collateral shall not exceed the following [1][2]:
 - 85 per cent for total consumption loan amounts per borrower $\le$ ₹2.5 lakh [1][2].
 - 80 per cent for total consumption loan amounts per borrower > ₹2.5 lakh & $\le$ ₹5 lakh [1][2].
@@ -69,7 +75,10 @@ J05,What is the maximum loan-to-value ratio for consumption loans against gold?,
 
 43. The maximum LTV ratio in respect of consumption loans against the eligible collateral shall not exceed LTV ratios as provided in the table below:
 
-|Total consumption loan amo
+|Total consumption loan amount per borrower|Maximum LTV ratio|
+|---|---|
+|≤ ₹2.5 lakh|85 per cent|
+|> ₹2.5 lakh & ≤ ₹5 lakh|80 
 ---
 [2] Credit Facilities Directions, 2025 | Chapter IV - Lending against Gold and Silver Collateral > D. Loan to Value Ratio (LTV) | paras 43-45
 d in the table below:
@@ -86,11 +95,13 @@ Explanation: ‘Loan to Value (LTV) ratio’ on a day in this context means the 
 
 ### E. Other Provisions
 
-45. For conduct related aspects and collat",,
+45. For conduct related aspects and collateral management, the NBFC shall be guided by the instructions contained in Reserve Bank of India (No",,
 J06,Can an NBFC tell a customer which risk category they have been placed in?,"No. The risk categorisation and the specific reasons for it must be kept confidential and not revealed to the customer, to avoid tipping off.","No, an NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid tipping off [1].","[1] Know Your Customer Directions, 2025 | Chapter IV – Risk Management | para 20
 d information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / services offered, delivery channel used for delivery of products / services, types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. The NBFC may also factor in the ability to confirm identity documents through online or other services offered by issuing authorities, while considering customer’s identity.
 
-(4) The NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid",,
+(4) The NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid tipping off.
+
+Provided that the NBFC collects various other non-intrusive information from differen",1,2
 J07,Within what time must an individual fraud case be reported to the RBI through FMR?,"Immediately, and not later than 14 days from the date the incident or account is classified as fraud, irrespective of the amount.","An applicable NBFC must furnish Fraud Monitoring Returns (FMR) in individual fraud cases, irrespective of the amount involved, immediately but not later than 14 days from the date of classification of an incident or account as fraud, according to para 43 of the Fraud Risk Management Directions [1].","[1] Fraud Risk Management Directions, 2026 | Chapter VI - Reporting to Reserve Bank of India > A. Reporting of Incidents of Fraud | paras 42-45
 er type of fraudulent activity not covered under any of the above.
 
@@ -100,7 +111,7 @@ er type of fraudulent activity not covered under any of the above.
 
 44. Incidents of fraud at overseas branches of Indian NBFCs shall also be reported to the concerned overseas LEAs in accordance with the relevant laws / regulations of the host countries.
 
-45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [th",,
+45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [the FMR shall be furnished through e-mail (fmgconbfc@rbi.org.in) only], if such entities are not regul",1,2
 J08,What is a customer owed if a mistake in their credit information is not fixed within a month of complaining?,Compensation of Rs 100 per calendar day if the complaint is not resolved within thirty calendar days of the initial complaint.,Complainants are entitled to a compensation of ₹100 per calendar day in case their complaint is not resolved within a period of thirty calendar days from the date of the initial filing of the complaint with a Credit Institution (CI) or Credit Information Company (CIC) [1]. The Board must review compliance with this requirement every month [1].,"[1] Credit Information Reporting Directions, 2025 | Chapter-V Customer Service and Grievance Redressal > B. Framework for compensation to customers | para 35
  information:
 
@@ -108,11 +119,15 @@ J08,What is a customer owed if a mistake in their credit information is not fixe
 
 (i) Section 21 (3) of CICRA, 2005 provides that a complainant may request a CIC or CI to update the credit information by making an appropriate correction, addition or otherwise, and on such request the CI or CIC shall take steps to update the credit information within 30 days after being requested to do so.
 
-(ii) Rule 20 (3) (c) of CIC Rules, 2006 provides that the CI shall forward the corrected particulars of the credi",,
+(ii) Rule 20 (3) (c) of CIC Rules, 2006 provides that the CI shall forward the corrected particulars of the credit information to the CIC or complainant within a period of 21 days from the date when the CI was inf",0,2
 J09,How long must a Key Facts Statement remain valid?,"At least three working days for loans with a tenor of seven days or more, and one working day for loans with a tenor of less than seven days.","According to para 29(2) of the Responsible Business Conduct Directions, 3037, the Key Facts Statement (KFS) shall have a validity period of at least three working days for loans having a tenor of seven days or more, and a validity period of one working day for loans having a tenor of less than seven days [1].","[1] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > B. Key Facts Statement for Loans & Advances | para 29
 anguage understood by such borrowers. Contents of KFS shall be explained to the borrower and an acknowledgement shall be obtained that they have understood the same.
 
-(2) The KFS shall be provided with a unique proposal number and shall have a validity period of at least three working days for loans having tenor of seven days or more, and a validity period of one working day for loans having tenor of less than seven days. Explanation: Validity period refers to the period available to the borrower, after being provided the KFS by the NBFC, to agree to the terms of the loan. The NBFC shall be bound by the terms of the loan indicated in the KFS, if agreed to by the borrower during the validity ",,
+(2) The KFS shall be provided with a unique proposal number and shall have a validity period of at least three working days for loans having tenor of seven days or more, and a validity period of one working day for loans having tenor of less than seven days. Explanation: Validity period refers to the period available to the borrower, after being provided the KFS by the NBFC, to agree to the terms of the loan. The NBFC shall be bound by the terms of the loan indicated in the KFS, if agreed to by the borrower during the validity period.
+
+(3) The KFS shall also include a computation sheet of annual percentage rate
+
+(APR), and th",0,2
 J10,Within what time must an individual fraud case be reported to the RBI through FMR?,"Immediately, and not later than 14 days from the date the incident or account is classified as fraud, irrespective of the amount.","An applicable NBFC must furnish Fraud Monitoring Returns (FMR) in individual fraud cases, irrespective of the amount involved, immediately but not later than 14 days from the date of classification of an incident or account as fraud, according to para 64 of the Fraud Risk Management Directions [1].","[1] Fraud Risk Management Directions, 2026 | Chapter VI - Reporting to Reserve Bank of India > A. Reporting of Incidents of Fraud | paras 42-45
 er type of fraudulent activity not covered under any of the above.
 
@@ -122,7 +137,7 @@ er type of fraudulent activity not covered under any of the above.
 
 44. Incidents of fraud at overseas branches of Indian NBFCs shall also be reported to the concerned overseas LEAs in accordance with the relevant laws / regulations of the host countries.
 
-45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [th",,
+45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [the FMR shall be furnished through e-mail (fmgconbfc@rbi.org.in) only], if such entities are not regul",,
 J11,When can an NPA loan account be upgraded back to standard?,Only if the entire arrears of interest and principal are paid by the borrower.,"An NPA loan account may be upgraded as a 'standard' asset only if the borrower pays the entire arrears of interest and principal [1][2]. For borrowers with more than one credit facility, all loan accounts can only be upgraded upon the repayment of the entire arrears of interest and principal pertaining to all of the credit facilities [1][2]. For accounts classified as NPA due to restructuring, non-achievement of the date of commencement of commercial operations (DCCO), or rescheduling, instructions in the Reserve Bank of India (Non-Banking Financial Companies – Resolution of Stressed Assets) Directions, 3037 shall apply in addition to these directions [1][2].","[1] Income Recognition, Asset Classification and Provisioning Directions, 2025 | Chapter II - Prudential Norms applicable to all NBFCs > B. Asset Classification | paras 24-27
 and principal are paid by the borrower.
 
@@ -130,7 +145,7 @@ and principal are paid by the borrower.
 
 26. With regard to upgradation of accounts classified as NPA due to restructuring, non-achievement of date of commence of commercial operations (DCCO), etc., the instructions contained in the Reserve Bank of India (Non-Banking Financial Companies – Resolution of Stressed Assets) Directions, 2025shall be applicable in addition to compliance with these directions.
 
-27. The asset classification and provisioning requiremen
+27. The asset classification and provisioning requirements in respect of transactions involving transfer of loans shall be as per the Reserve Bank of India 
 ---
 [2] Income Recognition, Asset Classification and Provisioning Directions, 2025 | Chapter II - Prudential Norms applicable to all NBFCs > B. Asset Classification | paras 22-25
 escheduling, unless it satisfies the conditions required for the upgradation as laid out in the Reserve Bank of India (Non-Banking Financial Companies – Resolution of Stressed Assets) Directions, 2025.
@@ -139,7 +154,7 @@ escheduling, unless it satisfies the conditions required for the upgradation as 
 
 24. Loan accounts classified as NPAs may be upgraded as ‘standard’ asset only if entire arrears of interest and principal are paid by the borrower.
 
-25. In ca",,
+25. In case of borrowers having more than one credit facility, loan accounts shall be upgraded from NPA to st",,
 J12,Are collection agents allowed to phone borrowers early in the morning or late at night?,No. Calling the borrower before 8:00 a.m. or after 7:00 p.m. for recovery of overdue loans is prohibited harassment.,"For microfinance borrowers, NBFCs or their agents are deemed to engage in harsh recovery methods—and are thus prohibited—if they persistently call the borrower and/or call before 9:00 a.m. and after 6:00 p.m. [1].","[1] Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.4 Guidelines related to Recovery of Loans | paras 90-91
 wever, field staff shall be allowed to make recovery at the place of residence or work of the borrower if the borrower fails to appear at the designated / central designated place on two or more successive occasions.
 
@@ -153,12 +168,14 @@ wever, field staff shall be allowed to make recovery at the place of residence o
 
 (4) Publishing the name of borrowers
 
-(5) Use or threat of use of violence or oth
+(5) Use or threat of use of violence or other similar means to harm the borrower or borrower’s family/ assets/ reputation
+
+(6) Misleading the b
 ---
 [2] Responsible Business Conduct Directions, 2025 | I. Responsibilities of Direct Sales Agents (DSA) / Direct Marketing Agents > (DMA) / Recovery Agents of the NBFC | paras 99-100
 essential that the Recovery Agents refrain from action that could damage the integrity and reputation of the NBFC and that they observe strict customer confidentiality.
 
-100. The NBFC shall strictly ensure that it or its agents do not resort to intimidation or harassment of any kind, either verbal or physical, against any person in their debt collection efforts, including acts intended to humiliate publicly or intrude upon the privacy of the debtors' family members, referees and friends, sending inappropriate messages either on mobile or through social media, making threatening and/ or anonymous calls, persistently calling the borrower and/ or calling the borrower before 8:00 a.m. and after 
+100. The NBFC shall strictly ensure that it or its agents do not resort to intimidation or harassment of any kind, either verbal or physical, against any person in their debt collection efforts, including acts intended to humiliate publicly or intrude upon the privacy of the debtors' family members, referees and friends, sending inappropriate messages either on mobile or through social media, making threatening and/ or anonymous calls, persistently calling the borrower and/ or calling the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans, making false and misleading representations, etc. This dire
 ---
 [3] Responsible Business Conduct Directions, 2025 | I. Responsibilities of Direct Sales Agents (DSA) / Direct Marketing Agents > (DMA) / Recovery Agents of the NBFC | para 100
 r calling the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans, making false and misleading representations, etc. This direction shall not be applicable to microfinance loans provided as per Reserve Bank of India (Non- Banking Financial Companies – Credit Facilities) Directions, 2025.
@@ -167,7 +184,7 @@ r calling the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of over
 
 (1) Not engage Telemarketers (DSAs / DMAs) who do not have any valid registration certificate from DoT, Government of India, as telemarketers; NBFCs shall engage only those telemarketers who are registered in terms of the guidelines issued by TRAI, from time to time, for all their promotional / telemarketing activities.
 
-(2) Furnish the list of Telemarketers (DSAs / ",,
+(2) Furnish the list of Telemarketers (DSAs / DMAs) engaged by them along with the registered telephone numbers being used by them for making tele",,
 J13,"Before declaring someone responsible for a fraud, what must the NBFC do to give them a chance to respond?","Follow the principles of natural justice, including issuing a detailed Show Cause Notice with complete details of the transactions or events on which the fraud declaration is contemplated.","According to para 6 of the Fraud Risk Management Directions, the Applicable NBFC must issue a detailed Show Cause Notice (SCN) to the persons, entities, and their promoters or whole-time and executive directors against whom the allegation of fraud is being examined [1][2]. The SCN must provide complete details of the transactions, actions, or events on the basis of which the declaration and reporting of a fraud is being contemplated [2]. Furthermore, the NBFC must provide a reasonable time of not less than 21 days for them to respond to the SCN [2].","[1] Fraud Risk Management Directions, 2026 | Chapter II - Governance and Oversight > A. Governance Structure for Fraud Risk Management | paras 5-6
 policy shall inter alia contain measures towards prevention, early detection, investigation, staff accountability, monitoring, recovery, and reporting of frauds.
 
@@ -175,12 +192,14 @@ In this context, ‘Board’ will refer to ‘Board of Directors’ of the Appli
 
 6. The Policy shall also incorporate measures for ensuring compliance with principles of natural justice1 in a time-bound manner, which at a minimum, shall include:
 
-(1) Issuance of a detailed Show Cause Notice (SCN) to the Persons (including Third Party Service Providers and Professionals, inter-alia, architects, valuers, chartered accountants, and advocates and other professional / service providers), Entities and their Promoters / Whole-time and
+(1) Issuance of a detailed Show Cause Notice (SCN) to the Persons (including Third Party Service Providers and Professionals, inter-alia, architects, valuers, chartered accountants, and advocates and other professional / service providers), Entities and their Promoters / Whole-time and Executive Directors against whom allegation of fraud is being examined. The SCN shall provide compl
 ---
 [2] Fraud Risk Management Directions, 2026 | Chapter II - Governance and Oversight > A. Governance Structure for Fraud Risk Management | para 6
 rs), Entities and their Promoters / Whole-time and Executive Directors against whom allegation of fraud is being examined. The SCN shall provide complete details of transactions / actions / events basis which declaration and reporting of a fraud is being contemplated under these Directions. As non-whole-time directors (like nominee directors and independent directors) are normally not in charge of, or responsible to the company for the conduct of business of the company, the Applicable NBFC may take this into consideration before proceeding against such directors under these Directions.
 
-(2) The Applicable NBFC shall provide a reasonable time of not less than 21 days to the Persons / Entitie",,
+(2) The Applicable NBFC shall provide a reasonable time of not less than 21 days to the Persons / Entities on whom the SCN was served to respond to
+
+1 Refer to the judgement of the Hon’ble Supreme Court da",,
 J14,What is the minimum tenure of a Chief Compliance Officer?,A fixed minimum tenure of not less than three years; in exceptional cases the Board/ACB may relax it by one year if succession planning is in place.,"According to para 21 of the Compliance Function Directions, the Chief Compliance Officer (CCO) shall be appointed for a fixed minimum tenure of not less than three years [1].","[1] Compliance Function Directions, 2026 | Chapter IV - Chief Compliance Officer > A. Appointment | paras 19-23
 integrity.
 
@@ -190,20 +209,24 @@ integrity.
 
 21. The CCO shall be appointed for a fixed minimum tenure of not less than three years. However, in exceptional cases, the Board / ACB may relax the minimum tenure by one year, provided appropriate succession planning is put in place.
 
-22. The CCO can be transferred / removed before completion of the tenure only in exceptional circumstances, with the explicit prior approval of the Board / ACB, after following a well-defined and transparent internal ad",,
+22. The CCO can be transferred / removed before completion of the tenure only in exceptional circumstances, with the explicit prior approval of the Board / ACB, after following a well-defined and transparent internal administrative procedure.
+
+23. The CCO shall be a senior executive of the NBFC with a position not bel",,
 J15,How must an auction of pledged gold be announced to the public?,"By advertisements in at least two newspapers, one in the regional language and one national daily, as part of a transparent auction procedure.","An NBFC must announce an auction of pledged eligible collateral to the public by issuing advertisements in at least two newspapers, one in the regional language and another in a national daily [1][2]. A breach attracts a fixed penalty of Rs 5 lakh for each instance [1].","[1] Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64
 uage and another in a national daily.
 
 62. The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary experience and / or training or an auctioneer empanelled by the NBFC as per its policy. In cases where auctions are conducted by an NBFC through its employees, necessary safeguards such as surprise visits by regional / controlling officials on periodic basis, coverage under internal audit, etc., shall be put in place.
 
-63. An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value. Provided that in case auctions fail twice, a reserve price not less
+63. An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value. Provided that in case auctions fail twice, a reserve price not less than 85 per cent of its current value shall be adopted.
+
+64. The first auction shall be conducted p
 ---
 [2] Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 60-62
  communication to repay or settle the loan dues prior to initiating the auction procedure. A copy of the notice and acknowledgement thereof shall be kept on record in both scenarios. In case the lender is unable to locate the borrower(s)/ legal heir(s) despite best efforts and even after issuance of a public notice, it may proceed with the auction, provided that a period of one month has lapsed from the date of the public notice.
 
 61. An NBFC shall implement a transparent auction procedure, which shall include, inter alia, announcement of the auction to the public by issue of advertisements in at least two newspapers, one in the regional language and another in a national daily.
 
-62. The ple",,
+62. The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary ex",,
 J16,Can penal charges be capitalised or added to the rate of interest?,"No. Penalties must be levied as penal charges, not as penal interest added to the rate of interest, and penal charges must not be capitalised (no further interest computed on them).","According to para 30 of the Responsible Business Conduct Directions, penal charges cannot be capitalised, meaning no further interest can be computed on such charges, nor can they be levied in the form of penal interest added to the rate of interest charged on advances [1][3]. The NBFC must also report each such case to the RBI's Department of Supervision within 7 days [1].","[1] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30
 s only on the amount under default in a non-discriminatory manner as per their Board approved policy. Further, it shall be ensured that there is no capitalization of the penal charges i.e., no further interest computed on such charges.
 
@@ -213,12 +236,14 @@ s only on the amount under default in a non-discriminatory manner as per their B
 
 (2) The NBFC shall not introduce any additional component to the rate of interest and ensure compliance to these guidelines in both letter and spirit.
 
-(3) The NBFC shal
+(3) The NBFC shall formulate a Board approved policy on penal charges or similar charges on loans, by whatever name c
 ---
 [3] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30
 r product specific directions, as also other foreign currency loans.
 
-(1) Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as ‘penal charges’ and shall not be levied in the form of ‘penal interest’ that is added to the rate of interest charged on the advances. There shall be no capitalisation of penal charges, i.e., no further interest computed on such charges. However, this will not affect the normal procedures for compounding of interest in the loan account. Therefore, the NBFC may charge interest on unpaid interest (including on unpaid EMI) at the contracted rate of interest till the date of remediation, and not at ",,
+(1) Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as ‘penal charges’ and shall not be levied in the form of ‘penal interest’ that is added to the rate of interest charged on the advances. There shall be no capitalisation of penal charges, i.e., no further interest computed on such charges. However, this will not affect the normal procedures for compounding of interest in the loan account. Therefore, the NBFC may charge interest on unpaid interest (including on unpaid EMI) at the contracted rate of interest till the date of remediation, and not at the penal rate of interest. Notes:
+
+(i) The material terms and conditions shall be defined, if not a",,
 J17,Which smaller non-deposit taking NBFCs sit in the Base Layer under Scale Based Regulation?,"Non-deposit taking NBFCs with asset size below Rs 1,000 crore (along with NBFC-P2P, NBFC-AA, NOFHC and certain others).","Under para 10 of the Registration, Exemptions and Framework for Scale Based Regulation Directions, 3037, the Base Layer comprises non-deposit taking NBFCs below the asset size of ₹1,000 crore [1], as well as NBFCs undertaking specific activities such as NBFC-Peer to Peer Lending Platforms (NBFC-P2P), NBFC-Account Aggregators (NBFC-AA), Non-Operative Financial Holding Companies (NOFHC), and NBFCs holding a Certificate of Registration as a 'Type I NBFC' [1][5].","[1] Registration, Exemptions and Framework for Scale Based Regulation Directions, 2025 | Chapter-II – Framework for Scale Based Regulation > A. Regulatory Structure under Scale Based Regulation (SBR) | paras 8-10
 r NBFCs shall comprise of four layers based on their size, activity and perceived riskiness. NBFCs in the lowest layer shall be known as NBFCs- Base Layer (NBFCs-BL). NBFCs in middle layer and upper layer shall be known as NBFCs-Middle Layer (NBFCs-ML) and NBFCs Upper Layer (NBFCs-UL), respectively. The Top Layer is ideally expected to be empty and will be known as NBFCs-Top Layer (NBFCs-TL).
 
@@ -232,7 +257,11 @@ r NBFCs shall comprise of four layers based on their size, activity and perceive
 
 (2) NBFCs undertaking the following activities:
 
-(i) NBFC-Peer to Peer Lending Platform (NBFC-
+(i) NBFC-Peer to Peer Lending Platform (NBFC-P2P),
+
+(ii) NBFC-Account Aggregator (NBFC-AA),
+
+(iii) Non-Operative Financial Holding Company (NOFHC
 ---
 [5] Registration, Exemptions and Framework for Scale Based Regulation Directions, 2025 | A. Regulatory Structure under Scale Based Regulation (SBR) > A.1 Base Layer | paras 10-11
 es:
@@ -263,7 +292,9 @@ es:
 
 (iv) Housing Finance Company (HFC) and
 
-(v) Non-Banking Financial Co",,
+(v) Non-Banking Financial Company-Infrastructure Finance Company (NBFC- IFC).
+
+4Substituted with effect from July 01, 2026 vide ",,
 J18,Within what time must an individual fraud case be reported to the RBI through FMR?,"Immediately, and not later than 14 days from the date the incident or account is classified as fraud, irrespective of the amount.","An applicable NBFC must furnish Fraud Monitoring Returns (FMR) in individual fraud cases, irrespective of the amount involved, immediately but not later than 14 days from the date of classification of an incident or account as fraud, according to para 43 of the Fraud Risk Management Directions [1]. The statutory auditor must certify compliance with this requirement every quarter [1].","[1] Fraud Risk Management Directions, 2026 | Chapter VI - Reporting to Reserve Bank of India > A. Reporting of Incidents of Fraud | paras 42-45
 er type of fraudulent activity not covered under any of the above.
 
@@ -273,7 +304,7 @@ er type of fraudulent activity not covered under any of the above.
 
 44. Incidents of fraud at overseas branches of Indian NBFCs shall also be reported to the concerned overseas LEAs in accordance with the relevant laws / regulations of the host countries.
 
-45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [th",,
+45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [the FMR shall be furnished through e-mail (fmgconbfc@rbi.org.in) only], if such entities are not regul",,
 J19,What is a customer owed if a mistake in their credit information is not fixed within a month of complaining?,Compensation of Rs 100 per calendar day if the complaint is not resolved within thirty calendar days of the initial complaint.,Complainants are entitled to a compensation of ₹100 per calendar day in case their complaint is not resolved within a period of thirty calendar days from the date of the initial filing of the complaint with a Credit Institution (CI) or Credit Information Company (CIC) [1].,"[1] Credit Information Reporting Directions, 2025 | Chapter-V Customer Service and Grievance Redressal > B. Framework for compensation to customers | para 35
  information:
 
@@ -281,7 +312,7 @@ J19,What is a customer owed if a mistake in their credit information is not fixe
 
 (i) Section 21 (3) of CICRA, 2005 provides that a complainant may request a CIC or CI to update the credit information by making an appropriate correction, addition or otherwise, and on such request the CI or CIC shall take steps to update the credit information within 30 days after being requested to do so.
 
-(ii) Rule 20 (3) (c) of CIC Rules, 2006 provides that the CI shall forward the corrected particulars of the credi",,
+(ii) Rule 20 (3) (c) of CIC Rules, 2006 provides that the CI shall forward the corrected particulars of the credit information to the CIC or complainant within a period of 21 days from the date when the CI was inf",,
 J20,Can an NBFC levy prepayment or late-payment charges on microfinance loans?,"No pre-payment charge may be levied on microfinance loans; charges for delayed payment, if any, apply only to the overdue amount, not the entire loan.","According to para 81 of the Responsible Business Conduct Directions, 2025, an NBFC shall not levy any pre-payment charge on microfinance loans [4].","[4] Responsible Business Conduct Directions, 2025 | H. Guidelines on conduct towards Microfinance borrowers > H.1 General | paras 78-82
  and contact number of the nodal officer of the NBFC.
 
@@ -293,7 +324,7 @@ J20,Can an NBFC levy prepayment or late-payment charges on microfinance loans?,"
 
 81. There shall be no pre-payment charge levied on microfinance loans. Charges, if any, for delayed payment shall be applied on the overdue amount and not on the entire loan amount.
 
-82. An NBFC shall prominently display the minimum, maximum and average interest rates charged on microfinance loans in all its offices, in t",,
+82. An NBFC shall prominently display the minimum, maximum and average interest rates charged on microfinance loans in all its offices, in the literature (information booklets/ pamphlets) issued by it and details on its website. This inform",,
 J21,Can penal charges be capitalised or added to the rate of interest?,"No. Penalties must be levied as penal charges, not as penal interest added to the rate of interest, and penal charges must not be capitalised (no further interest computed on them).","According to para 30 of the Responsible Business Conduct Directions, penal charges cannot be capitalised, meaning no further interest can be computed on such charges, nor can they be levied in the form of penal interest added to the rate of interest charged on advances [1][3].","[1] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30
 s only on the amount under default in a non-discriminatory manner as per their Board approved policy. Further, it shall be ensured that there is no capitalization of the penal charges i.e., no further interest computed on such charges.
 
@@ -303,12 +334,14 @@ s only on the amount under default in a non-discriminatory manner as per their B
 
 (2) The NBFC shall not introduce any additional component to the rate of interest and ensure compliance to these guidelines in both letter and spirit.
 
-(3) The NBFC shal
+(3) The NBFC shall formulate a Board approved policy on penal charges or similar charges on loans, by whatever name c
 ---
 [3] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30
 r product specific directions, as also other foreign currency loans.
 
-(1) Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as ‘penal charges’ and shall not be levied in the form of ‘penal interest’ that is added to the rate of interest charged on the advances. There shall be no capitalisation of penal charges, i.e., no further interest computed on such charges. However, this will not affect the normal procedures for compounding of interest in the loan account. Therefore, the NBFC may charge interest on unpaid interest (including on unpaid EMI) at the contracted rate of interest till the date of remediation, and not at ",,
+(1) Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as ‘penal charges’ and shall not be levied in the form of ‘penal interest’ that is added to the rate of interest charged on the advances. There shall be no capitalisation of penal charges, i.e., no further interest computed on such charges. However, this will not affect the normal procedures for compounding of interest in the loan account. Therefore, the NBFC may charge interest on unpaid interest (including on unpaid EMI) at the contracted rate of interest till the date of remediation, and not at the penal rate of interest. Notes:
+
+(i) The material terms and conditions shall be defined, if not a",,
 J22,"Which borrowers must an NBFC report to CRILC, and how often?","Credit information (including SMA status) on all borrowers with aggregate exposure of Rs 5 crore and above, reported monthly; defaults by such borrowers are also reported weekly, by close of business every Friday.","An NBFC shall report credit information, including the classification of an account as SMA, to the Central Repository of Information on Large Credits (CRILC) on all borrowers having an aggregate exposure of ₹5 crore and above with them on a monthly basis, according to para 20 of the Resolution of Stressed Assets Directions [1]. Additionally, per para 21 of the Resolution of Stressed Assets Directions, an NBFC must submit a weekly report of instances of default by all borrowers with an aggregate exposure of ₹5 crore and above by the close of business on every Friday, or the preceding working day if Friday happens to be a holiday [1].","[1] Resolution of Stressed Assets Directions, 2025 | Chapter II - Definitions and General Requirements > C. Early identification and reporting of stress | paras 19-22
 rower accounts into SMA categories are applicable for all loans (including retail loans) irrespective of size of exposure of the NBFC.
 
@@ -316,7 +349,7 @@ rower accounts into SMA categories are applicable for all loans (including retai
 
 21. A NBFC shall submit a weekly report of instances of default by all borrowers (with aggregate exposure of ₹5 crore and above) by close of business on every Friday, or the preceding working day if Friday happens to be a holiday.
 
-22. In cases where a NBFC fails to report SMA status of the accounts to CRILC or 
+22. In cases where a NBFC fails to report SMA status of the accounts to CRILC or resort to methods with the intent to conceal the actual status of the accounts or evergreen the acco
 ---
 [2] Resolution of Stressed Assets Directions, 2025 | Chapter VI - Special Cases of Restructuring > E. Projects Under Implementation | paras 105-110
 ce accounts, unless specified otherwise.
@@ -329,7 +362,7 @@ ce accounts, unless specified otherwise.
 
 109. A NBFC shall undertake a prima facie review of the borrower account during the Review Period.
 
-110. The conduct of a NBFC during ",,
+110. The conduct of a NBFC during the Review Period, including signing of Inter Creditor Agreement (ICA), and the decision to implemen",,
 J23,"Which borrowers must an NBFC report to CRILC, and how often?","Credit information (including SMA status) on all borrowers with aggregate exposure of Rs 5 crore and above, reported monthly; defaults by such borrowers are also reported weekly, by close of business every Friday.","An NBFC shall report credit information, including the classification of an account as SMA, to the Central Repository of Information on Large Credits (CRILC) on all borrowers having an aggregate exposure of ₹5 crore and above with them on a monthly basis, according to para 20 of the Resolution of Stressed Assets Directions [1]. Additionally, per para 21 of the Resolution of Stressed Assets Directions, an NBFC must submit a weekly report of instances of default by all borrowers with an aggregate exposure of ₹5 crore and above by the close of business on every Friday, or the preceding working day if Friday happens to be a holiday [1]. Furthermore, according to para 106 of the Resolution of Stressed Assets Directions, any credit event with an NBFC regarding projects under implementation must be reported to CRILC in the prescribed weekly as well as the CRILC-Main report in compliance with paragraphs 20 and 21 [2]. The customer must be informed of this in writing within 48 hours [1].","[1] Resolution of Stressed Assets Directions, 2025 | Chapter II - Definitions and General Requirements > C. Early identification and reporting of stress | paras 19-22
 rower accounts into SMA categories are applicable for all loans (including retail loans) irrespective of size of exposure of the NBFC.
 
@@ -337,7 +370,7 @@ rower accounts into SMA categories are applicable for all loans (including retai
 
 21. A NBFC shall submit a weekly report of instances of default by all borrowers (with aggregate exposure of ₹5 crore and above) by close of business on every Friday, or the preceding working day if Friday happens to be a holiday.
 
-22. In cases where a NBFC fails to report SMA status of the accounts to CRILC or 
+22. In cases where a NBFC fails to report SMA status of the accounts to CRILC or resort to methods with the intent to conceal the actual status of the accounts or evergreen the acco
 ---
 [2] Resolution of Stressed Assets Directions, 2025 | Chapter VI - Special Cases of Restructuring > E. Projects Under Implementation | paras 105-110
 ce accounts, unless specified otherwise.
@@ -350,7 +383,7 @@ ce accounts, unless specified otherwise.
 
 109. A NBFC shall undertake a prima facie review of the borrower account during the Review Period.
 
-110. The conduct of a NBFC during ",,
+110. The conduct of a NBFC during the Review Period, including signing of Inter Creditor Agreement (ICA), and the decision to implemen",,
 J24,How many days overdue is an account classified as SMA-2?,"SMA-2 covers accounts where principal, interest or any other amount is overdue for more than 60 days and up to 90 days.",An account is classified as SMA-2 when the principal or interest payment or any other amount is wholly or partly overdue for more than 60 days and up to 90 days [5].,"[5] Resolution of Stressed Assets Directions, 2025 | Chapter II - Definitions and General Requirements > B. Board approved policies: | paras 17-20
 the board approved policy and the outcomes would be examined as part of the supervisory oversight of the Reserve Bank.
 
@@ -364,7 +397,9 @@ the board approved policy and the outcomes would be examined as part of the supe
 |SMA-1|More than 30 days and up to 60 days|
 |SMA-2|More than 60 days and up to 90 days|
 
-19. The instructions on classification of borrower accounts into SMA categories are applicable ",,
+19. The instructions on classification of borrower accounts into SMA categories are applicable for all loans (including retail loans) irrespective of size of exposure of the NBFC.
+
+20. A NBFC sha",,
 J25,"Within how many days must an individual fraud be reported through FMR, and what monetary penalty does the RBI levy if it is reported late?",FMR must be furnished immediately and not later than 14 days from classification as fraud. The sources do not state a monetary penalty amount for late reporting.,"The Applicable NBFC shall furnish FMR in individual fraud cases, irrespective of the amount involved, immediately but not later than 14 days from the date of classification of an incident / account as fraud [1].","[1] Fraud Risk Management Directions, 2026 | Chapter VI - Reporting to Reserve Bank of India > A. Reporting of Incidents of Fraud | paras 42-45
 er type of fraudulent activity not covered under any of the above.
 
@@ -374,7 +409,7 @@ er type of fraudulent activity not covered under any of the above.
 
 44. Incidents of fraud at overseas branches of Indian NBFCs shall also be reported to the concerned overseas LEAs in accordance with the relevant laws / regulations of the host countries.
 
-45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [th",,
+45. The Applicable NBFC shall also report frauds perpetrated in its group entities to RBI separately [the FMR shall be furnished through e-mail (fmgconbfc@rbi.org.in) only], if such entities are not regul",,
 J26,Which NBFCs must have an Early Warning Signals framework for fraud?,"NBFCs in the Upper Layer and Middle Layer, as part of their Board-approved Fraud Risk Management Policy.",NBFCs in the Upper Layer and Middle Layer (NBFCs - UL and ML) must have a framework for Early Warning Signals (EWS) under the overall Fraud Risk Management Policy approved by the Board [1].,"[1] Fraud Risk Management Directions, 2026 | Chapter III - Framework for Early Warning Signals for Detection of Frauds (NBFCs in the Upper Layer and Middle Layer only) | paras 12-15
 only)
 
@@ -384,7 +419,7 @@ only)
 
 14. A Board Level Committee i.e., Risk Management Committee or any other Committee having similar functions, shall oversee the effectiveness of the framework for EWS. The Senior Management shall be responsible for implementation of a robust Framework for EWS within NBFCs - UL and ML.
 
-15. NBFCs - UL and ML shall identify appropriate early warning indicators for monitoring credit facilities / loan accounts and other financial transactions. These indicators shall be rev",,
+15. NBFCs - UL and ML shall identify appropriate early warning indicators for monitoring credit facilities / loan accounts and other financial transactions. These indicators shall be reviewed periodically for its effectiveness. Suspicion of fraudulent activity thrown up by the presence",,
 J27,What parameters should an NBFC use for risk categorisation of customers under the KYC Directions?,"Parameters such as the customer's identity, social/financial status, nature of business activity, information about the customer's business and its location, and geographical risk.","Under the Know Your Customer Directions, 2025, an NBFC shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and its location [1]. Additionally, the parameters include geographical risk covering customers as well as transactions, the type of products / services offered, the delivery channel used for delivery of products / services, and the types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. [2]. The NBFC may also factor in the ability to confirm identity documents through online or other services offered by issuing authorities while considering the customer’s identity [2]. The Chief Compliance Officer must personally approve every exception to this rule [1].","[1] Know Your Customer Directions, 2025 | Chapter III – Customer Acceptance Policy | paras 19-20
 believes that performing the CDD process will tip off the customer, it shall not pursue the CDD process and instead file an STR with FIU-IND.
 
@@ -396,12 +431,14 @@ believes that performing the CDD process will tip off the customer, it shall not
 
 (2) The NBFC may lay down broad principles for the risk-categorisation of customers.
 
-(3) The NBFC shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and it
+(3) The NBFC shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / service
 ---
 [2] Know Your Customer Directions, 2025 | Chapter IV – Risk Management | para 20
 d information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / services offered, delivery channel used for delivery of products / services, types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. The NBFC may also factor in the ability to confirm identity documents through online or other services offered by issuing authorities, while considering customer’s identity.
 
-(4) The NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid",,
+(4) The NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid tipping off.
+
+Provided that the NBFC collects various other non-intrusive information from differen",,
 J28,What parameters should an NBFC use for risk categorisation of customers under the KYC Directions?,"Parameters such as the customer's identity, social/financial status, nature of business activity, information about the customer's business and its location, and geographical risk.","Under the Know Your Customer Directions, 2025, an NBFC shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and its location [1]. Additionally, the parameters include geographical risk covering customers as well as transactions, the type of products / services offered, the delivery channel used for delivery of products / services, and the types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. [2].","[1] Know Your Customer Directions, 2025 | Chapter III – Customer Acceptance Policy | paras 19-20
 believes that performing the CDD process will tip off the customer, it shall not pursue the CDD process and instead file an STR with FIU-IND.
 
@@ -413,12 +450,14 @@ believes that performing the CDD process will tip off the customer, it shall not
 
 (2) The NBFC may lay down broad principles for the risk-categorisation of customers.
 
-(3) The NBFC shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and it
+(3) The NBFC shall undertake risk categorisation based on parameters such as the customer’s identity, social / financial status, nature of business activity, and information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / service
 ---
 [2] Know Your Customer Directions, 2025 | Chapter IV – Risk Management | para 20
 d information about the customer’s business and its location, geographical risk covering customers as well as transactions, type of products / services offered, delivery channel used for delivery of products / services, types of transactions undertaken such as cash, cheque / monetary instruments, wire transfers, forex transactions, etc. The NBFC may also factor in the ability to confirm identity documents through online or other services offered by issuing authorities, while considering customer’s identity.
 
-(4) The NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid",,
+(4) The NBFC shall keep the risk categorisation of a customer and the specific reasons for such categorisation confidential and shall not reveal this information to the customer to avoid tipping off.
+
+Provided that the NBFC collects various other non-intrusive information from differen",,
 J29,"What is the minimum tenure of a Chief Compliance Officer, and what minimum salary must the CCO be paid?",The CCO's minimum tenure is not less than three years (relaxable by one year in exceptional cases). The sources do not specify any minimum salary for the CCO.,"According to para 21 of the Compliance Function Directions, the Chief Compliance Officer shall be appointed for a fixed minimum tenure of not less than three years, though the Board / ACB may relax this minimum tenure by one year in exceptional cases with appropriate succession planning [1].","[1] Compliance Function Directions, 2026 | Chapter IV - Chief Compliance Officer > A. Appointment | paras 19-23
 integrity.
 
@@ -428,11 +467,13 @@ integrity.
 
 21. The CCO shall be appointed for a fixed minimum tenure of not less than three years. However, in exceptional cases, the Board / ACB may relax the minimum tenure by one year, provided appropriate succession planning is put in place.
 
-22. The CCO can be transferred / removed before completion of the tenure only in exceptional circumstances, with the explicit prior approval of the Board / ACB, after following a well-defined and transparent internal ad",,
+22. The CCO can be transferred / removed before completion of the tenure only in exceptional circumstances, with the explicit prior approval of the Board / ACB, after following a well-defined and transparent internal administrative procedure.
+
+23. The CCO shall be a senior executive of the NBFC with a position not bel",,
 J30,What does the NBFC owe the borrower if it is late in handing back property documents after the loan is repaid?,"If documents are not released (or the charge not removed) within 30 days of full repayment and the delay is attributable to the NBFC, it must compensate the borrower at Rs 5,000 for each day of delay, and communicate the reasons for the delay.","If the delay is attributable to the NBFC, it shall compensate the borrower at the rate of ₹10,000 for each day of delay [1]. Additionally, the NBFC shall communicate to the borrower the reasons for the delay or for failing to file the charge satisfaction form with the relevant registry beyond 30 days after full repayment or settlement of the loan [1][2].","[1] Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.2 Compensation for delay in release of Movable / Immovable Property Documents | paras 39-40
  or failing to file charge satisfaction form with relevant registry beyond 30 days after full repayment/ settlement of loan. In case where the delay is attributable to the NBFC, it shall compensate the borrower at the rate of ₹5,000 for each day of delay.
 
-40. In case of loss/damage to original movable / immovable property documents, either in part or in full, an NBFC shall assist the borrower in obtaining duplicate/certified copies of the movable / immovable property documents and shall bear the associated costs, in addition to paying compensation as indicated at paragraph 39 above. However, in such cases, an additional time of 30 days will be available to the NBFC to complete this procedur
+40. In case of loss/damage to original movable / immovable property documents, either in part or in full, an NBFC shall assist the borrower in obtaining duplicate/certified copies of the movable / immovable property documents and shall bear the associated costs, in addition to paying compensation as indicated at paragraph 39 above. However, in such cases, an additional time of 30 days will be available to the NBFC to complete this procedure and the delayed period penalty will be calculated thereafter (i.e., after a total period of 60 day
 ---
 [2] Responsible Business Conduct Directions, 2025 | F. Release of Movable / Immovable Property Documents on Repayment / Settlement of Personal Loans > F.1 Release of Movable / Immovable Property Documents | paras 37-39
 ll be mentioned in the loan sanction letters issued on or December 1, 2023.
@@ -441,7 +482,7 @@ ll be mentioned in the loan sanction letters issued on or December 1, 2023.
 
 #### F.2 Compensation for delay in release of Movable / Immovable Property Documents
 
-39. An NBFC shall communicate to the borrower reasons for delay in releasing of original movable / immovable property documents or failing to file charge satisfaction form with ",,
+39. An NBFC shall communicate to the borrower reasons for delay in releasing of original movable / immovable property documents or failing to file charge satisfaction form with relevant registry beyond 30 days after full repayment/ settlement of loan. In case where the delay i",,
 J31,A borrower wants to shift their loan to another lender. How long does the NBFC have to give its consent or objection?,The consent or objection must be conveyed within 21 days from the date of receipt of the request.,"An NBFC shall convey its consent or otherwise, i.e., its objection, to a borrower's request for the transfer of a borrowal account within 31 days from the date of receipt of the request [1][2].","[1] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20
 cised, the borrower shall be given notice about the same with full particulars about the remaining claims and the conditions under which the NBFC is entitled to retain the securities till the relevant claim is settled/paid.
 
@@ -449,7 +490,9 @@ cised, the borrower shall be given notice about the same with full particulars a
 
 18. An NBFC shall refrain from interference in the affairs of the borrower except for the purposes provided in the terms and conditions of the loan agreement (unless information, not earlier disclosed by the borrower, has been noticed).
 
-19. In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request. S
+19. In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request. Such transfer shall be as per transparent contractual terms in consonance with law.
+
+20. In the matte
 ---
 [2] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.4 General | paras 19-21
 hin 21 days from the date of receipt of request. Such transfer shall be as per transparent contractual terms in consonance with law.
@@ -458,7 +501,7 @@ hin 21 days from the date of receipt of request. Such transfer shall be as per t
 
 #### A.5 Language and mode of communicating Fair Practice Code
 
-21. An NBFC shall have the freedom of drafting the Fair Practices Code, enhancing the scope of the guidelines but ",,
+21. An NBFC shall have the freedom of drafting the Fair Practices Code, enhancing the scope of the guidelines but in no way sacrificing the spirit underlying the above guidelines. The same shall be put up on its we",,
 J32,Can penal charges be capitalised or added to the rate of interest?,"No. Penalties must be levied as penal charges, not as penal interest added to the rate of interest, and penal charges must not be capitalised (no further interest computed on them).","According to para 45 of the Responsible Business Conduct Directions, penal charges cannot be capitalised, meaning no further interest can be computed on such charges, nor can they be levied in the form of penal interest added to the rate of interest charged on advances [1][3].","[1] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30
 s only on the amount under default in a non-discriminatory manner as per their Board approved policy. Further, it shall be ensured that there is no capitalization of the penal charges i.e., no further interest computed on such charges.
 
@@ -468,12 +511,14 @@ s only on the amount under default in a non-discriminatory manner as per their B
 
 (2) The NBFC shall not introduce any additional component to the rate of interest and ensure compliance to these guidelines in both letter and spirit.
 
-(3) The NBFC shal
+(3) The NBFC shall formulate a Board approved policy on penal charges or similar charges on loans, by whatever name c
 ---
 [3] Responsible Business Conduct Directions, 2025 | Chapter III – Responsible Lending Conduct > C. Penal Charges in Loan Accounts | para 30
 r product specific directions, as also other foreign currency loans.
 
-(1) Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as ‘penal charges’ and shall not be levied in the form of ‘penal interest’ that is added to the rate of interest charged on the advances. There shall be no capitalisation of penal charges, i.e., no further interest computed on such charges. However, this will not affect the normal procedures for compounding of interest in the loan account. Therefore, the NBFC may charge interest on unpaid interest (including on unpaid EMI) at the contracted rate of interest till the date of remediation, and not at ",,
+(1) Penalty, if charged, for non-compliance of material terms and conditions of loan contract by the borrower shall be treated as ‘penal charges’ and shall not be levied in the form of ‘penal interest’ that is added to the rate of interest charged on the advances. There shall be no capitalisation of penal charges, i.e., no further interest computed on such charges. However, this will not affect the normal procedures for compounding of interest in the loan account. Therefore, the NBFC may charge interest on unpaid interest (including on unpaid EMI) at the contracted rate of interest till the date of remediation, and not at the penal rate of interest. Notes:
+
+(i) The material terms and conditions shall be defined, if not a",,
 J33,A borrower wants to shift their loan to another lender. How long does the NBFC have to give its consent or objection?,The consent or objection must be conveyed within 21 days from the date of receipt of the request.,"An NBFC shall convey its consent or otherwise, i.e., its objection, to a borrower's request for the transfer of a borrowal account within 21 days from the date of receipt of the request [1][2].","[1] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20
 cised, the borrower shall be given notice about the same with full particulars about the remaining claims and the conditions under which the NBFC is entitled to retain the securities till the relevant claim is settled/paid.
 
@@ -481,7 +526,9 @@ cised, the borrower shall be given notice about the same with full particulars a
 
 18. An NBFC shall refrain from interference in the affairs of the borrower except for the purposes provided in the terms and conditions of the loan agreement (unless information, not earlier disclosed by the borrower, has been noticed).
 
-19. In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request. S
+19. In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request. Such transfer shall be as per transparent contractual terms in consonance with law.
+
+20. In the matte
 ---
 [2] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.4 General | paras 19-21
 hin 21 days from the date of receipt of request. Such transfer shall be as per transparent contractual terms in consonance with law.
@@ -490,38 +537,42 @@ hin 21 days from the date of receipt of request. Such transfer shall be as per t
 
 #### A.5 Language and mode of communicating Fair Practice Code
 
-21. An NBFC shall have the freedom of drafting the Fair Practices Code, enhancing the scope of the guidelines but ",,
+21. An NBFC shall have the freedom of drafting the Fair Practices Code, enhancing the scope of the guidelines but in no way sacrificing the spirit underlying the above guidelines. The same shall be put up on its we",,
 J34,Can part of a senior executive's bonus be held back and paid later depending on risk?,"Yes. A portion of variable pay, as decided by the Board, may be deferred over the time horizon of the risks; deferral can cover cash and non-cash components, and the Board decides the deferral period.","Yes, according to para 35(3) of the Governance Directions, a certain portion of the variable pay awarded after performance assessment may be deferred by the Board of an NBFC to a time horizon of the risks, and this deferral arrangement can apply to both cash and non-cash components [1][2]. Additionally, under para 37, deferred compensation to senior management may be subject to malus and / or clawback arrangements in the event of subdued or negative financial performance or employee misconduct [3]. These provisions apply to NBFCs in the Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) [1]. The statutory auditor must certify compliance with this requirement every quarter [1].","[1] Governance Directions, 2025 | Chapter-IV Directions applicable to NBFCs-Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) > H. Compensation of KMP and Senior Management | para 35
 le such that it may be reduced to zero based on performance at an individual, business-unit and company-wide level. In order to do so, performance measures and their relation to remuneration packages shall be clearly defined at the beginning of the performance measurement period to ensure that the employees are well aware of the incentive mechanism.
 
-(3) Deferral of variable pay: Not all the variable pay awarded after performance assessment may be paid immediately. Certain portion of variable pay, as decided by the Board of the NBFC, may be deferred to time horizon of the risks. The portion of deferral arrangement may be made applicable for both cash and non-cash components of the variable p
+(3) Deferral of variable pay: Not all the variable pay awarded after performance assessment may be paid immediately. Certain portion of variable pay, as decided by the Board of the NBFC, may be deferred to time horizon of the risks. The portion of deferral arrangement may be made applicable for both cash and non-cash components of the variable pay. Deferral period for such an arrangement shall be decided by the Board of the NBFC.
+
+(4) Control 
 ---
 [2] Governance Directions, 2025 | Chapter-IV Directions applicable to NBFCs-Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) > H. Compensation of KMP and Senior Management | paras 35-36
 oth cash and non-cash components of the variable pay. Deferral period for such an arrangement shall be decided by the Board of the NBFC.
 
 (4) Control and assurance function personnel: KMP and senior management engaged in financial control, risk management, compliance and internal audit may be compensated in a manner that is independent of the business areas they oversee and commensurate with their key role in the NBFC. Accordingly, such personnel may have higher proportion of fixed compensation. However, a reasonable proportion of compensation may be in the form of variable pay, so that exercising the options of malus and / or clawback, when warranted, is not rendered infructuous.
 
-36. Guara
+36. Guaranteed bonus: An NBFC may not pay guaranteed bonus to KMP and senior management. However, in the cont
 ---
 [3] Governance Directions, 2025 | Chapter-IV Directions applicable to NBFCs-Middle Layer (NBFCs-ML) and Upper Layer (NBFCs-UL) > H. Compensation of KMP and Senior Management | paras 35-37
 warranted, is not rendered infructuous.
 
 36. Guaranteed bonus: An NBFC may not pay guaranteed bonus to KMP and senior management. However, in the context of new hiring, joining / sign-on bonus may be considered. Such bonus shall neither be considered part of the fixed pay nor of variable pay.
 
-37. Malus / Clawback: The deferred compensation to KMP and senior management of an NBFC may be subject to malus and / or clawback arrangements in the event of subdued or negative financial performance of the NBFC and / or the relevant line of business or employee misconduct in any year. For this purpose, a representative set of situations may be identified by the NBFC, which require them to invoke the ",,
+37. Malus / Clawback: The deferred compensation to KMP and senior management of an NBFC may be subject to malus and / or clawback arrangements in the event of subdued or negative financial performance of the NBFC and / or the relevant line of business or employee misconduct in any year. For this purpose, a representative set of situations may be identified by the NBFC, which require them to invoke the malus and clawback clauses that may be applicable on entire variable pay. While setting criteria for",,
 J35,How must an auction of pledged gold be announced to the public?,"By advertisements in at least two newspapers, one in the regional language and one national daily, as part of a transparent auction procedure.","An NBFC must announce an auction of pledged eligible collateral to the public by issuing advertisements in at least three newspapers, one in the regional language and another in a national daily [1][2].","[1] Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 61-64
 uage and another in a national daily.
 
 62. The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary experience and / or training or an auctioneer empanelled by the NBFC as per its policy. In cases where auctions are conducted by an NBFC through its employees, necessary safeguards such as surprise visits by regional / controlling officials on periodic basis, coverage under internal audit, etc., shall be put in place.
 
-63. An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value. Provided that in case auctions fail twice, a reserve price not less
+63. An NBFC shall declare a reserve price for the gold and silver collateral at the time of auction, which shall not be less than 90 per cent of its current value. Provided that in case auctions fail twice, a reserve price not less than 85 per cent of its current value shall be adopted.
+
+64. The first auction shall be conducted p
 ---
 [2] Responsible Business Conduct Directions, 2025 | G. Conduct related aspects in Lending Against Gold and Silver Collateral > G.6 Transparency in Auction Procedure | paras 60-62
  communication to repay or settle the loan dues prior to initiating the auction procedure. A copy of the notice and acknowledgement thereof shall be kept on record in both scenarios. In case the lender is unable to locate the borrower(s)/ legal heir(s) despite best efforts and even after issuance of a public notice, it may proceed with the auction, provided that a period of one month has lapsed from the date of the public notice.
 
 61. An NBFC shall implement a transparent auction procedure, which shall include, inter alia, announcement of the auction to the public by issue of advertisements in at least two newspapers, one in the regional language and another in a national daily.
 
-62. The ple",,
+62. The pledged eligible collateral shall be auctioned by an NBFC only through its employee having necessary ex",,
 J36,A borrower wants to shift their loan to another lender. How long does the NBFC have to give its consent or objection?,The consent or objection must be conveyed within 21 days from the date of receipt of the request.,"An NBFC shall convey its consent or otherwise, i.e., its objection, to a borrower's request for the transfer of a borrowal account within 21 days from the date of receipt of the request [1][2]. Microfinance loans are exempt from this requirement [1].","[1] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.3 Disbursement of loans including changes in terms and conditions | paras 17-20
 cised, the borrower shall be given notice about the same with full particulars about the remaining claims and the conditions under which the NBFC is entitled to retain the securities till the relevant claim is settled/paid.
 
@@ -529,7 +580,9 @@ cised, the borrower shall be given notice about the same with full particulars a
 
 18. An NBFC shall refrain from interference in the affairs of the borrower except for the purposes provided in the terms and conditions of the loan agreement (unless information, not earlier disclosed by the borrower, has been noticed).
 
-19. In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request. S
+19. In case of receipt of request from the borrower for transfer of borrowal account, the consent or otherwise i.e., objection of the NBFC, if any, shall be conveyed within 21 days from the date of receipt of request. Such transfer shall be as per transparent contractual terms in consonance with law.
+
+20. In the matte
 ---
 [2] Responsible Business Conduct Directions, 2025 | A. Fair Practices Code for NBFCs > A.4 General | paras 19-21
 hin 21 days from the date of receipt of request. Such transfer shall be as per transparent contractual terms in consonance with law.
@@ -538,4 +591,4 @@ hin 21 days from the date of receipt of request. Such transfer shall be as per t
 
 #### A.5 Language and mode of communicating Fair Practice Code
 
-21. An NBFC shall have the freedom of drafting the Fair Practices Code, enhancing the scope of the guidelines but ",,
+21. An NBFC shall have the freedom of drafting the Fair Practices Code, enhancing the scope of the guidelines but in no way sacrificing the spirit underlying the above guidelines. The same shall be put up on its we",,

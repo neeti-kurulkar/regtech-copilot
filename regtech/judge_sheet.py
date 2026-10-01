@@ -32,7 +32,7 @@ from regtech.paths import REPORTS_DIR
 
 SHEET = REPORTS_DIR / "judge_calibration_v2.csv"
 KEY = REPORTS_DIR / "judge_calibration_v2_key.json"          # the answer key: open only after labelling
-SOURCES = REPORTS_DIR / "judge_calibration_v2_sources.json"  # full context the judge sees, per row
+SOURCES = REPORTS_DIR / "judge_calibration_v2_sources.json"  # what the judge sees per row: the same cited sources
 SCORES = REPORTS_DIR / "judge_calibration_v2_scores.json"
 COLUMNS = ["id", "question", "reference", "answer", "cited_sources", "human_faithfulness_0_or_1",
            "human_correctness_0_1_2"]
@@ -134,10 +134,13 @@ def build(force: bool = False) -> dict:
         w.writerow(COLUMNS)
         for i, (c, o, variant, text) in enumerate(rows, 1):
             rid = f"J{i:02d}"
-            cited = "\n---\n".join(f"[{s['n']}] {s['label']}\n{s['text'][:700]}" for s in o["sources"] if s["n"] in o["cited"])
+            # The human and the judge must grade against the SAME evidence: the full text of the cited sources.
+            # (The v2 sheet first cut each source at 700 characters while the judge saw everything, so a claim
+            # supported past the cut looked unsupported to the human only.)
+            cited = "\n---\n".join(f"[{s['n']}] {s['label']}\n{s['text']}" for s in o["sources"] if s["n"] in o["cited"])
             w.writerow([rid, c.input, c.expected["reference"], text, cited, "", ""])
             key[rid] = {"question_id": c.id, "variant": variant}
-            sources[rid] = "\n\n".join(f"[{s['n']}] ({s['label']})\n{s['text']}" for s in o["sources"])
+            sources[rid] = cited
     KEY.write_text(json.dumps(key, indent=2), encoding="utf-8")
     SOURCES.write_text(json.dumps(sources, indent=2, ensure_ascii=False), encoding="utf-8")
     return {"rows": len(rows), **{k: v for k, v in used.items()}}
