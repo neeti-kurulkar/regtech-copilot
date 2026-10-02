@@ -128,3 +128,23 @@ never uses the other label. It is not evidence of a bad judge, and not evidence 
 unfaithful answers cannot test whether the judge catches them. (One human label, A08, was first entered as
 unfaithful by mistake and corrected before this was written.) A16 settles the disagreement flagged in
 section 5: the human reads the "ACB" expansion as harmless, and the judge is stricter.
+
+## Judge recalibration v2 (2026-10-02)
+
+The first calibration could not test the judge: all 20 answers were faithful, correctness used only 0 and 2,
+and the answers came from the reasoning model, not the model the service uses. `python -m regtech judge-sheet`
+built a blind set from the **served** answers: 12 unchanged, plus 8 each with a number changed, the answer cut
+to its first half, or a plausible claim added with a citation. I labelled all 36 before running the judge
+(`reports/judge_calibration_v2.csv`; results in `judge_calibration_v2_summary.json`).
+
+| Criterion | Agreement | Cohen's κ | Planted errors caught (human / judge) |
+|---|---|---|---|
+| Faithfulness (0/1) | 35/36 | **0.94** | 16/16 / 16/16 |
+| Correctness (0/1/2) | 29/36 | 0.58 | - |
+
+- **Faithfulness can now be trusted as a rate.** The one disagreement is the judge flagging an unchanged answer.
+- **Correctness is lenient.** All seven disagreements are the judge scoring one point higher: three answers with
+  an added unsupported claim (the rubric penalises only additions the reference contradicts, so the rubric is
+  part of the cause), two unchanged answers that omit part of the reference, and two half-answers. On the
+  unchanged answers the judge averages 1.00 against my 0.92. Treat reported correctness as an upper estimate.
+- Next: tighten the correctness rubric ("adds a claim the reference does not support" scores 1) and re-run.

@@ -1,0 +1,16 @@
+{
+ "source": "python -m regtech judge-kappa --v2, run online by the builder on 2026-10-02; per-row scores in judge_calibration_v2_scores.json (builder's machine)",
+ "n": 36,
+ "faithfulness": {"raw_agreement": 0.9722222222222222, "cohens_kappa": 0.9440993788819876, "n": 36},
+ "correctness": {"raw_agreement": 0.8055555555555556, "cohens_kappa": 0.5757575757575757, "n": 36},
+ "by_variant": {
+  "half_answer": {"n": 8, "human_unfaithful": 0, "judge_unfaithful": 0,
+   "human_correctness": [1, 0, 1, 1, 2, 1, 2, 1], "judge_correctness": [2, 1, 1, 1, 2, 1, 2, 1]},
+  "original": {"n": 12, "human_unfaithful": 0, "judge_unfaithful": 1,
+   "human_correctness": [2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2], "judge_correctness": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]},
+  "unsupported_claim": {"n": 8, "human_unfaithful": 8, "judge_unfaithful": 8,
+   "human_correctness": [2, 1, 2, 2, 2, 2, 1, 1], "judge_correctness": [2, 2, 2, 2, 2, 2, 2, 2]},
+  "wrong_number": {"n": 8, "human_unfaithful": 8, "judge_unfaithful": 8,
+   "human_correctness": [2, 2, 2, 2, 1, 0, 2, 1], "judge_correctness": [2, 2, 2, 2, 1, 0, 2, 1]}
+ }
+}

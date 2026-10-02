@@ -44,9 +44,9 @@ def rows() -> list[tuple[str, str, str, str, str]]:
     kinds = Counter(r["kind"] for r in qa)
     runs = sorted(round(_json(f)["correctness"], 2) for f in ("stage7_qa_tier_small_r1.json", "stage7_qa_tier_small_r2.json"))
     src = "`stage7_gate.json`"
-    out.append(("Q&A (served)", f"Correctness, judge mean over {kinds['answerable']} answerable questions",
+    out.append(("Q&A (served)", f"Correctness, judge mean over {kinds['answerable']} answerable questions (judge is lenient: kappa 0.58 vs human, every disagreement scored higher; may overstate by up to ~0.08)",
                 f"{g['qa_correctness']:.2f} (other cold runs: {', '.join(map(str, runs))})", ">= 0.75", src))
-    out.append(("", "Faithfulness, judge mean over all answers (judge not validated on unfaithful answers)",
+    out.append(("", "Faithfulness, judge mean over all answers (judge vs human on 36 calibration answers: kappa 0.94, caught 16/16 planted errors)",
                 f"{g['qa_faithfulness']:.2f}", ">= 0.90", src))
     n_all = len(qa)
     out.append(("", "Citation *index* validity: every [n] names a real source (enforced by code: an invalid answer "
